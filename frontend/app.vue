@@ -1,6 +1,6 @@
 <script setup>
     useSeoMeta({
-        title: 'PopnBed',
+        title: 'Salair',
     });
 </script>
 

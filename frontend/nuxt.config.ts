@@ -39,7 +39,7 @@ export default defineNuxtConfig({
     },
     vite: {
         server: {
-            allowedHosts: ['popnbed.com'],
+            allowedHosts: ['salair.com'],
         },
     },
     components: {
