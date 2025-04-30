@@ -2,6 +2,7 @@ import { DateTime } from 'luxon'
 import { BaseModel, column, hasMany } from '@adonisjs/lucid/orm'
 import CompanyUser from './company_user.js'
 import type { HasMany } from '@adonisjs/lucid/types/relations'
+import Contract from './contract.js'
 
 export default class Company extends BaseModel {
   @column({ isPrimary: true })
@@ -24,6 +25,9 @@ export default class Company extends BaseModel {
 
   @hasMany(() => CompanyUser)
   declare companyUsers: HasMany<typeof CompanyUser>
+
+  @hasMany(() => Contract)
+  declare contracts: HasMany<typeof Contract>
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime
