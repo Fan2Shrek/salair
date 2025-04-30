@@ -8,7 +8,7 @@ body,
     height: 100%;
     width: 100%;
     @apply bg-primary;
-    font-family: 'Poppins';
+    font-family: 'DM Sans';
 }
 
 input[type='number']::-webkit-inner-spin-button,
