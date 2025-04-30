@@ -26,6 +26,8 @@ export default class CreateUser extends BaseCommand {
         lastName,
         email,
         password,
+        role: 'platform_admin',
+        isVerified: true,
       })
 
       if (user) {

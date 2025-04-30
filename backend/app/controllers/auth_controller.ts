@@ -26,6 +26,9 @@ export default class AuthController {
       expiresAt: DateTime.now().plus({ days: 30 }),
     })
 
+    user.lastLoginAt = DateTime.local()
+    await user.save()
+
     return {
       access_token: accessToken.value?.release(),
       refresh_token: refreshTokenString,
