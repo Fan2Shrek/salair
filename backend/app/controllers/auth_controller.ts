@@ -1,6 +1,9 @@
+import RefreshToken from '#models/refresh_token'
 import User from '#models/user'
 import { loginValidator, registerValidator } from '#validators/auth'
 import type { HttpContext } from '@adonisjs/core/http'
+import { DateTime } from 'luxon'
+import * as crypto from 'node:crypto'
 
 export default class AuthController {
   async register({ request }: HttpContext) {
@@ -11,23 +14,26 @@ export default class AuthController {
     return User.accessTokens.create(user)
   }
 
-  async login({ request, response }: HttpContext) {
+  async login({ request, auth }: HttpContext) {
     const { email, password } = await request.validateUsing(loginValidator)
     const user = await User.verifyCredentials(email, password)
 
-    const token = await User.accessTokens.create(user)
+    const accessToken = await auth.use('api').createToken(user)
+    const refreshTokenString = crypto.randomBytes(40).toString('hex')
+    await RefreshToken.create({
+      userId: user.id,
+      token: refreshTokenString,
+      expiresAt: DateTime.now().plus({ days: 30 }),
+    })
 
-    // return response.cookie('access_token', `Bearer ${token.value}`)
     return {
-      type: 'bearer',
-      value: token.value!.release(),
+      access_token: accessToken.value?.release(),
+      refresh_token: refreshTokenString,
     }
   }
 
   async logout({ auth }: HttpContext) {
-    const user = auth.user!
-
-    await User.accessTokens.delete(user, user.currentAccessToken.identifier)
+    await auth.use('api').invalidateToken()
 
     return { message: 'success' }
   }
@@ -39,6 +45,39 @@ export default class AuthController {
 
     return {
       user: auth.user,
+    }
+  }
+
+  async refresh({ request, response, auth }: HttpContext) {
+    const { refresh_token: refreshToken } = request.only(['refresh_token'])
+
+    const token = await RefreshToken.query()
+      .where('token', refreshToken)
+      .where('is_revoked', false)
+      .where('expires_at', '>', DateTime.now().toSQL())
+      .first()
+
+    if (!token) {
+      return response.unauthorized('Invalid or expired refresh token')
+    }
+
+    const user = await token.related('user').query().firstOrFail()
+
+    token.isRevoked = true
+    await token.save()
+
+    const newAccessToken = await auth.use('api').createToken(user)
+    const newRefreshToken = crypto.randomBytes(40).toString('hex')
+
+    await RefreshToken.create({
+      userId: user.id,
+      token: newRefreshToken,
+      expiresAt: DateTime.now().plus({ days: 30 }),
+    })
+
+    return {
+      access_token: newAccessToken.value?.release(),
+      refresh_token: newRefreshToken,
     }
   }
 }
