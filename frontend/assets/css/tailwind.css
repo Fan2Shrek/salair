@@ -50,18 +50,18 @@ input[type='number']::-webkit-outer-spin-button {
     --transparent: rgba(255, 255, 255, 0);
 
     /* Brand Colors */
-    --brand-25: #fefaf5;
-    --brand-50: #fef6ee;
-    --brand-100: #fdead7;
-    --brand-200: #f9dbaf;
-    --brand-300: #f7b27a;
-    --brand-400: #f38744;
-    --brand-500: #ef6820;
-    --brand-600: #e04f16;
-    --brand-700: #b93815;
-    --brand-800: #932f19;
-    --brand-900: #772917;
-    --brand-950: #511c10;
+    --brand-25: #F5F8FF;
+    --brand-50: #EEF4FF;
+    --brand-100: #E0EAFF;
+    --brand-200: #C7D7FE;
+    --brand-300: #A4BCFD;
+    --brand-400: #8098F9;
+    --brand-500: #6172F3;
+    --brand-600: #444CE7;
+    --brand-700: #3538CD;
+    --brand-800: #2D31A6;
+    --brand-900: #2D3282;
+    --brand-950: #1F235B;
 
     /* Error Colors */
     --error-25: #fffbfa;
