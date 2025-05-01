@@ -92,8 +92,8 @@ export const useAuthStore = defineStore('auth', {
             try {
                 const { $api } = useNuxtApp();
 
-                await useFetch($api('/api/logout'), {
-                    method: 'POST',
+                await useAuthFetch($api('/api/logout'), {
+                    method: 'DELETE',
                     credentials: 'include',
                 });
 
