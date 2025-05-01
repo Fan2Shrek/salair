@@ -18,7 +18,9 @@ export default class AuthController {
     const { email, password } = await request.validateUsing(loginValidator)
     const user = await User.verifyCredentials(email, password)
 
-    const accessToken = await auth.use('api').createToken(user)
+    const accessToken = await auth.use('api').createToken(user, ['*'], {
+      expiresIn: '10 minutes',
+    })
     const refreshTokenString = crypto.randomBytes(40).toString('hex')
     await RefreshToken.create({
       userId: user.id,
