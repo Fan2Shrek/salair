@@ -5,12 +5,23 @@ type User = {
     firstName: string;
     lastName: string;
     email: string;
-    roles: string[];
+    role: string;
+    isVerified: boolean
+    lastLoginAt: string
+    createdAt: string
+    updatedAt: string
 };
+
+type TokenResponse = {
+    access_token: string
+    refresh_token: string
+}
 
 export const useAuthStore = defineStore('auth', {
     state: () => ({
         user: null as User | null,
+        accessToken: null as string | null,
+        refreshToken: null as string | null,
         isAuthenticated: false,
         isLoading: false,
     }),
@@ -49,13 +60,16 @@ export const useAuthStore = defineStore('auth', {
             try {
                 const { $api } = useNuxtApp();
 
-                const { error } = await useFetch($api('/api/login'), {
+                const { data, error } = await useFetch<TokenResponse>($api('/api/login'), {
                     method: 'POST',
-                    body: { username: email, password },
+                    body: { email, password },
                     credentials: 'include',
                 });
 
-                if (!error.value) {
+                if (data.value && !error.value) {
+                    this.accessToken = data.value.access_token
+                    this.refreshToken = data.value.refresh_token
+
                     await this.fetchUser();
                     return { success: true };
                 }
@@ -84,6 +98,8 @@ export const useAuthStore = defineStore('auth', {
                 });
 
                 this.user = null;
+                this.accessToken = null;
+                this.refreshToken = null;
                 this.isAuthenticated = false;
             } catch (error) {
                 console.error(error);
@@ -92,15 +108,25 @@ export const useAuthStore = defineStore('auth', {
             }
         },
         
-        async refreshToken(): Promise<boolean> {
+        async refresh(): Promise<boolean> {
             try {
                 const { $api } = useNuxtApp();
-                const { error } = await useFetch($api('/api/token/refresh'), {
+                const { data, error } = await useFetch<TokenResponse>($api('/api/token/refresh'), {
+                    body: {
+                        refresh_token: this.refreshToken
+                    },
                     method: 'POST',
                     credentials: 'include',
                 });
 
-                return !error.value;
+                if (data.value && !error.value) {
+                    this.accessToken = data.value.access_token
+                    this.refreshToken = data.value.refresh_token
+
+                    return true
+                } else {
+                    return false
+                }
             } catch {
                 return false;
             }

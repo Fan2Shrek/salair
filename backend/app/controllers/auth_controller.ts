@@ -46,9 +46,7 @@ export default class AuthController {
       return response.status(401).send({ message: 'JWT not valid or missing' })
     }
 
-    return {
-      user: auth.user,
-    }
+    return auth.user
   }
 
   async refresh({ request, response, auth }: HttpContext) {
