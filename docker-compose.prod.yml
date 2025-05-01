@@ -3,7 +3,7 @@ version: '3.8'
 services:
     frontend:
         platform: linux/amd64
-        image: registry.nassimlounadi.fr/nassimlnd/portfolio-frontend:latest
+        image: registry.nassimlounadi.fr/nassimlnd/salair-frontend:latest
         restart: always
         environment:
             - NUXT_PUBLIC_API_URL=https://api.nassimlounadi.fr
@@ -16,7 +16,7 @@ services:
 
     backend:
         platform: linux/amd64
-        image: registry.nassimlounadi.fr/nassimlnd/portfolio-backend:latest
+        image: registry.nassimlounadi.fr/nassimlnd/salair-backend:latest
         restart: always
         ports:
             - "3299:3333"
