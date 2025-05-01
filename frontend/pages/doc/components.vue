@@ -17,6 +17,7 @@
     const isSecondModalOpen = ref(false);
     const numberValue = ref(0);
     const selectedDate = ref(new Date());
+    const selectedValue = ref();
 
     const toast = useToast();
 
@@ -539,6 +540,22 @@
                 <UButton @click="showErrorToast"> Show Error Toast </UButton>
                 <UButton @click="showWarningToast"> Show Warning Toast </UButton>
                 <UButton @click="showInfoToast"> Show Info Toast </UButton>
+            </div>
+        </section>
+
+        <section class="w-full max-w-3xl">
+            <h2 class="text-xl font-semibold mb-4 text-primary">Selectbox</h2>
+            <div class="p-4 bg-gray-100/10 rounded-lg space-y-3">
+                <USelectBox
+                    v-model="selectedValue"
+                    :options="[
+                        { label: 'Option 1', value: 1 },
+                        { label: 'Option 2', value: 2 },
+                        { label: 'Option 3', value: 3 },
+                    ]"
+                    :search-input="true"
+                    label="Sélectionnez une option"
+                />
             </div>
         </section>
     </main>
