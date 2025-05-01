@@ -1,3 +1,6 @@
 <template>
-    <div></div>
+    <main class="w-full h-full">
+        <UHeader />
+    </main>
 </template>
+
