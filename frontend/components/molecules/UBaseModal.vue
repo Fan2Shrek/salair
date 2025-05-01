@@ -34,6 +34,18 @@
     function close() {
         emit('close');
     }
+
+    watch(() => _props.isOpen, (isOpen: boolean) => {
+        if (isOpen) {
+            document.body.classList.toggle('overflow-hidden');
+        } else {
+            document.body.classList.toggle('overflow-hidden');
+        }
+    })
+
+    onUnmounted(() => {
+        document.body.classList.remove('overflow-hidden');
+    })
 </script>
 
 <template>
