@@ -460,7 +460,16 @@ input[type='number']::-webkit-outer-spin-button {
     --fg-success-secondary: var(--success-400);
 
     /* Utility colors */
-    --utility-gray-50: var(--gray-50);
+    --utility-gray-50: var(--gray-900);
+    --utility-gray-100: var(--gray-800);
+    --utility-gray-200: var(--gray-700);
+    --utility-gray-300: var(--gray-700);
+    --utility-gray-400: var(--gray-600);
+    --utility-gray-500: var(--gray-500);
+    --utility-gray-600: var(--gray-400);
+    --utility-gray-700: var(--gray-300);
+    --utility-gray-800: var(--gray-200);
+    --utility-gray-900: var(--gray-100);
 
     --utility-brand-50: var(--brand-50);
     --utility-brand-50-alt: var(--utility-gray-50);
