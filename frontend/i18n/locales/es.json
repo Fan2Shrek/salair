@@ -1,6 +1,60 @@
 {
+    "general": {
+        "login": "Iniciar sesión",
+        "sign_up": "Únete a nosotros"
+    },
+    "header": {
+        "navigation": {
+            "product": "Producto",
+            "about": "Acerca de",
+            "pricing": "Precios"
+        }
+    },
     "landing": {
-        "title": "Gérez la paie et la facturation, sans complexité",
-        "subtitle": "Un outil tout-en-un pour automatiser les fiches de paie, les déclarations légales et les factures clients — pensé pour les freelances comme pour les PME."
+        "title": "Simplifica la nómina y la facturación en un solo lugar",
+        "subtitle": "Una herramienta todo en uno para automatizar nóminas, declaraciones legales y facturas de clientes — creada tanto para autónomos como para pequeñas empresas."
+    },
+    "features": {
+        "title": "Características",
+        "heading": "Gestión de nóminas que parece venir del futuro",
+        "description": "Herramientas potentes e intuitivas para automatizar la nómina, simplificar los trámites administrativos y ahorrar tiempo valioso. Diseñado para PYMES modernas. Ya adoptado por decenas de empresas.",
+        "items": {
+            "access": {
+                "title": "Comparte el acceso de RRHH",
+                "description": "Ya sean 2 o 200, mantenga a todos alineados gracias a accesos compartidos y roles bien definidos."
+            },
+            "payslips": {
+                "title": "Genera nóminas al instante",
+                "description": "Cree y descargue nóminas con un solo clic, siempre actualizadas con la legislación."
+            },
+            "reports": {
+                "title": "Haga seguimiento de sus obligaciones con informes",
+                "description": "Paneles claros, calendarios, exportables: gestione URSSAF, DSN y otras declaraciones sin estrés."
+            },
+            "employees": {
+                "title": "Simplifica la vida de tus empleados",
+                "description": "Un espacio dedicado para consultar nóminas, solicitar ausencias y centralizar todos sus documentos."
+            },
+            "documents": {
+                "title": "Gestiona todos tus documentos de RRHH",
+                "description": "Contratos, datos bancarios, documentos justificativos, anexos: todo se almacena de forma segura y se clasifica automáticamente."
+            },
+            "support": {
+                "title": "Un equipo que te apoya",
+                "description": "Nuestros expertos están disponibles los 7 días de la semana para responder a tus preguntas, formarte o ayudarte cuando lo necesites."
+            }
+        }
+    },
+    "login": {
+        "title": "¡Bienvenido de nuevo!",
+        "subtitle": "¡Bienvenido de nuevo! Por favor, ingresa tus datos",
+        "form": {
+            "email": {
+                "label": "Correo electrónico"
+            },
+            "password": {
+                "label": "Contraseña"
+            }
+        }
     }
 }

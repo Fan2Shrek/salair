@@ -14,6 +14,37 @@
         "title": "Gérez la paie et la facturation, sans complexité",
         "subtitle": "Un outil tout-en-un pour automatiser les fiches de paie, les déclarations légales et les factures clients — pensé pour les freelances comme pour les PME."
     },
+    "features": {
+        "title": "Features",
+        "heading": "Une gestion de la paie qui semble venir du futur",
+        "description": "Des outils puissants et intuitifs pour automatiser la paie, simplifier les démarches administratives, et gagner un temps précieux. Conçu pour les PME modernes. Déjà adopté par des dizaines d'entreprises.",
+        "items": {
+            "access": {
+                "title": "Partagez les accès RH",
+                "description": "Que vous soyez 2 ou 200, gardez tout le monde aligné grâce à des accès partagés et des rôles bien définis."
+            },
+            "payslips": {
+                "title": "Générez les bulletins instantanément",
+                "description": "Créez et téléchargez des fiches de paie en un clic, toujours à jour avec la législation."
+            },
+            "reports": {
+                "title": "Suivez vos obligations avec les rapports",
+                "description": "Tableaux de bord clairs, échéanciers, exportables : gérez URSSAF, DSN et autres déclarations sans stress."
+            },
+            "employees": {
+                "title": "Simplifiez la vie de vos salariés",
+                "description": "Un espace dédié pour consulter les fiches de paie, faire des demandes d'absence, et centraliser tous leurs documents."
+            },
+            "documents": {
+                "title": "Gérez tous vos documents RH",
+                "description": "Contrats, RIB, justificatifs, pièces jointes : tout est stocké de façon sécurisée et classé automatiquement."
+            },
+            "support": {
+                "title": "Une équipe qui vous accompagne",
+                "description": "Nos experts sont là 7j/7 pour répondre à vos questions, vous former ou vous dépanner quand vous en avez besoin."
+            }
+        }
+    },
     "login": {
         "title": "Bon retour !",
         "subtitle": "Bon retour ! Veuillez saisir vos informations",

@@ -14,6 +14,37 @@
         "title": "Simplify payroll and invoicing in one place",
         "subtitle": "An all-in-one tool to automate payslips, legal filings, and client invoices — built for freelancers and small businesses alike."
     },
+    "features": {
+        "title": "Features",
+        "heading": "Payroll management that seems to come from the future",
+        "description": "Powerful and intuitive tools to automate payroll, simplify administrative procedures, and save precious time. Designed for modern SMEs. Already adopted by dozens of companies.",
+        "items": {
+            "access": {
+                "title": "Share HR access",
+                "description": "Whether you're 2 or 200, keep everyone aligned thanks to shared access and well-defined roles."
+            },
+            "payslips": {
+                "title": "Generate payslips instantly",
+                "description": "Create and download pay slips with one click, always up to date with legislation."
+            },
+            "reports": {
+                "title": "Track your obligations with reports",
+                "description": "Clear dashboards, schedules, exportable: manage URSSAF, DSN and other declarations without stress."
+            },
+            "employees": {
+                "title": "Simplify your employees' lives",
+                "description": "A dedicated space to consult pay slips, request absences, and centralize all their documents."
+            },
+            "documents": {
+                "title": "Manage all your HR documents",
+                "description": "Contracts, bank details, supporting documents, attachments: everything is stored securely and classified automatically."
+            },
+            "support": {
+                "title": "A team that supports you",
+                "description": "Our experts are available 7 days a week to answer your questions, train you or help you when you need it."
+            }
+        }
+    },
     "login": {
         "title": "Welcome back!",
         "subtitle": "Welcome back! Please enter your details",
