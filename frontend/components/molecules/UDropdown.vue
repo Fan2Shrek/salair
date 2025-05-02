@@ -4,6 +4,7 @@
     interface MenuItem {
         label: string;
         icon: Component;
+        value?: any; // Ajout d'une propriété value optionnelle
     }
 
     interface DropdownProps {
@@ -16,11 +17,21 @@
         position: 'bottom-left',
     });
 
+    // Définition des événements émis
+    const emit = defineEmits<{
+        itemSelected: [value: any]
+    }>();
+
     const isOpen = ref(false);
     const dropdownPosition = ref<string>(props.position);
 
     function toggleDropdown() {
         isOpen.value = !isOpen.value;
+    }
+
+    function selectItem(item: MenuItem) {
+        emit('itemSelected', item.value !== undefined ? item.value : item.label);
+        isOpen.value = false;
     }
 
     onMounted(() => {
@@ -59,7 +70,8 @@
                 <div class="py-1">
                     <div v-for="(item, index) in menuItems" :key="index" class="px-1.5 py-px">
                         <div
-                            class="px-3 py-2 flex items-center gap-3 group hover:bg-primary-hover transition-colors rounded-md"
+                            class="px-3 py-2 flex items-center gap-3 group hover:bg-primary-hover transition-colors rounded-md cursor-pointer"
+                            @click="selectItem(item)"
                         >
                             <div
                                 class="flex items-center gap-2 w-full text-secondary group-hover:text-secondary-hover [&_svg]:text-fg-quaternary [&_svg]:group-hover:text-fg-quaternary-hover [&_svg]:size-4 text-sm font-semibold"
