@@ -19,27 +19,32 @@
 </script>
 
 <template>
-    <main class="w-full h-full flex justify-center pt-40">
-        <UGridBackgroundPattern class="absolute top-0" />
-        <section class="flex flex-col items-center space-y-8 relative">
-            <div class="text-center space-y-3">
-                <h1 class="text-primary font-semibold text-3xl">Welcome back</h1>
-                <p class="text-tertiary font-normal">Welcome back! Please enter your details</p>
-            </div>
-            <form class="w-96" @submit.prevent="login">
-                <div class="space-y-5">
-                    <UInput v-model="email" type="email" name="email" placeholder="Email" label="Email" required />
-                    <UInput
-                        v-model="password"
-                        type="password"
-                        name="password"
-                        placeholder="••••••••"
-                        label="Password"
-                        required
-                    />
+    <NuxtLayout name="landing">
+        <main class="w-full h-full flex justify-center px-4 sm:px-6 pt-20 sm:pt-30 md:pt-40 overflow-hidden">
+            <UGridBackgroundPattern class="absolute top-0" />
+            <section class="flex flex-col items-center space-y-6 sm:space-y-8 relative">
+                <div class="text-center space-y-2 sm:space-y-3">
+                    <h1 class="text-primary font-semibold text-2xl sm:text-3xl">Welcome back</h1>
+                    <p class="text-tertiary font-normal text-sm sm:text-base">
+                        Welcome back! Please enter your details
+                    </p>
                 </div>
-                <UButton class="mt-6 w-full justify-center" type="submit">Submit</UButton>
-            </form>
-        </section>
-    </main>
+                <form class="w-full max-w-xs sm:max-w-sm md:max-w-md" @submit.prevent="login">
+                    <div class="space-y-4 sm:space-y-5">
+                        <UInput v-model="email" type="email" name="email" placeholder="Email" label="Email" required />
+                        <UInput
+                            v-model="password"
+                            type="password"
+                            name="password"
+                            placeholder="••••••••"
+                            label="Password"
+                            required
+                        />
+                    </div>
+                    <UButton class="mt-5 sm:mt-6 w-full justify-center" type="submit">Submit</UButton>
+                </form>
+            </section>
+        </main>
+    </NuxtLayout>
 </template>
+
