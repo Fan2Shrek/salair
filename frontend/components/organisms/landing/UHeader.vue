@@ -3,7 +3,7 @@
 </script>
 
 <template>
-    <div class="fixed top-3 w-full">
+    <div class="fixed top-3 w-full z-10">
             <header
                 class="max-w-6xl w-full mx-auto rounded-2xl border border-secondary-alt px-4 py-3 flex items-center bg-primary shadow-xs"
             >
