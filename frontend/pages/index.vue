@@ -9,11 +9,6 @@
                 <UChessBackgroundPattern class="mx-auto" />
             </div>
             <section class="pt-10 md:pt-19 px-4 sm:px-6 max-w-7xl w-full mx-auto">
-                <!-- Ajout du sélecteur de langue en haut à droite -->
-                <div class="absolute top-24 right-6 md:right-10 z-10">
-                    <LanguageSwitcher />
-                </div>
-                
                 <div class="mt-12 md:mt-24 relative">
                     <UBadge variant="modern" class="w-fit mx-auto">New features</UBadge>
                     <h1

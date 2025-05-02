@@ -24,19 +24,20 @@
             <nav class="hidden md:block flex-grow mx-4">
                 <ul class="flex items-center gap-6">
                     <li>
-                        <ULink to="#" variant="secondary">{{ $t('landing.header.navigation.product') }}</ULink>
+                        <ULink to="#" variant="secondary">{{ $t('header.navigation.product') }}</ULink>
                     </li>
                     <li>
-                        <ULink to="#" variant="secondary">{{ $t('landing.header.navigation.about') }}</ULink>
+                        <ULink to="#" variant="secondary">{{ $t('header.navigation.about') }}</ULink>
                     </li>
                     <li>
-                        <ULink to="#" variant="secondary">{{ $t('landing.header.navigation.pricing') }}</ULink>
+                        <ULink to="#" variant="secondary">{{ $t('header.navigation.pricing') }}</ULink>
                     </li>
                 </ul>
             </nav>
 
             <!-- Boutons d'authentification - visibles uniquement sur desktop -->
             <div v-if="!authStore.isAuthenticated" class="hidden md:flex items-center gap-3">
+                <LanguageSwitcher format="icon" />
                 <UButton variant="secondary" @click="navigateTo('/login')">{{ $t('general.login') }}</UButton>
                 <UButton>{{ $t('general.sign_up') }}</UButton>
             </div>

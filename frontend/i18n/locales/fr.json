@@ -3,14 +3,26 @@
         "login": "Se connecter",
         "sign_up": "Nous rejoindre"
     },
+    "header": {
+        "navigation": {
+            "product": "Produit",
+            "about": "À propos",
+            "pricing": "Tarifs"
+        }
+    },
     "landing": {
         "title": "Gérez la paie et la facturation, sans complexité",
-        "subtitle": "Un outil tout-en-un pour automatiser les fiches de paie, les déclarations légales et les factures clients — pensé pour les freelances comme pour les PME.",
-        "header": {
-            "navigation": {
-                "product": "Produit",
-                "about": "À propos",
-                "pricing": "Tarifs"
+        "subtitle": "Un outil tout-en-un pour automatiser les fiches de paie, les déclarations légales et les factures clients — pensé pour les freelances comme pour les PME."
+    },
+    "login": {
+        "title": "Bon retour !",
+        "subtitle": "Bon retour ! Veuillez saisir vos informations",
+        "form": {
+            "email": {
+                "label": "Adresse email"
+            },
+            "password": {
+                "label": "Mot de passe"
             }
         }
     }

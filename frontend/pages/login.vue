@@ -24,20 +24,20 @@
             <UGridBackgroundPattern class="absolute top-0" />
             <section class="flex flex-col items-center space-y-6 sm:space-y-8 relative">
                 <div class="text-center space-y-2 sm:space-y-3">
-                    <h1 class="text-primary font-semibold text-2xl sm:text-3xl">Welcome back</h1>
+                    <h1 class="text-primary font-semibold text-2xl sm:text-3xl">{{ $t('login.title') }}</h1>
                     <p class="text-tertiary font-normal text-sm sm:text-base">
-                        Welcome back! Please enter your details
+                        {{ $t('login.subtitle') }}
                     </p>
                 </div>
                 <form class="w-full max-w-xs sm:max-w-sm md:max-w-md" @submit.prevent="login">
                     <div class="space-y-4 sm:space-y-5">
-                        <UInput v-model="email" type="email" name="email" placeholder="Email" label="Email" required />
+                        <UInput v-model="email" type="email" name="email" placeholder="Email" :label="$t('login.form.email.label')" required />
                         <UInput
                             v-model="password"
                             type="password"
                             name="password"
                             placeholder="••••••••"
-                            label="Password"
+                            :label="$t('login.form.password.label')"
                             required
                         />
                     </div>

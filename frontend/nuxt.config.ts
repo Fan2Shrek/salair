@@ -22,6 +22,7 @@ export default defineNuxtConfig({
         bundle: {
             optimizeTranslationDirective: false,
         },
+        strategy: "no_prefix"
     },
     tailwindcss: {
         exposeConfig: true,

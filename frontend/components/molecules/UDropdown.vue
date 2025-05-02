@@ -3,7 +3,7 @@
 
     interface MenuItem {
         label: string;
-        icon: Component;
+        icon: Component | null;
         value?: any; // Ajout d'une propriété value optionnelle
     }
 

@@ -12,7 +12,9 @@
         "lint:fix": "eslint . --fix",
         "format": "prettier ."
     },
-    "overrides": { "@intlify/unplugin-vue-i18n": "^6.0.8" },
+    "overrides": {
+        "@intlify/unplugin-vue-i18n": "^6.0.8"
+    },
     "dependencies": {
         "@nuxt/eslint": "^1.2.0",
         "@nuxt/image": "^1.10.0",
@@ -26,7 +28,8 @@
         "pinia": "^3.0.1",
         "pinia-plugin-persistedstate": "^4.2.0",
         "vue": "^3.5.13",
-        "vue-router": "^4.5.0"
+        "vue-router": "^4.5.0",
+        "zod": "^3.24.3"
     },
     "devDependencies": {
         "eslint-config-prettier": "^10.1.2",

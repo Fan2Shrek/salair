@@ -3,14 +3,26 @@
         "login": "Log in",
         "sign_up": "Join us"
     },
+    "header": {
+        "navigation": {
+            "product": "Product",
+            "about": "About",
+            "pricing": "Pricing"
+        }
+    },
     "landing": {
         "title": "Simplify payroll and invoicing in one place",
-        "subtitle": "An all-in-one tool to automate payslips, legal filings, and client invoices — built for freelancers and small businesses alike.",
-        "header": {
-            "navigation": {
-                "product": "Product",
-                "about": "About",
-                "pricing": "Pricing"
+        "subtitle": "An all-in-one tool to automate payslips, legal filings, and client invoices — built for freelancers and small businesses alike."
+    },
+    "login": {
+        "title": "Welcome back!",
+        "subtitle": "Welcome back! Please enter your details",
+        "form": {
+            "email": {
+                "label": "Email"
+            },
+            "password": {
+                "label": "Password"
             }
         }
     }
