@@ -12,6 +12,7 @@
         "lint:fix": "eslint . --fix",
         "format": "prettier ."
     },
+    "overrides": { "@intlify/unplugin-vue-i18n": "^6.0.8" },
     "dependencies": {
         "@nuxt/eslint": "^1.2.0",
         "@nuxt/image": "^1.10.0",
