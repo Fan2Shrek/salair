@@ -10,7 +10,7 @@
             </div>
             <section class="pt-10 md:pt-19 px-4 sm:px-6 max-w-7xl w-full mx-auto pb-24">
                 <div class="mt-12 md:mt-24 relative">
-                    <UBadge variant="modern" class="w-fit mx-auto">New features</UBadge>
+                    <UBadge variant="modern" class="w-fit mx-auto">Still in development</UBadge>
                     <h1
                         class="text-primary font-semibold text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-center mt-4 md:mt-6"
                     >
