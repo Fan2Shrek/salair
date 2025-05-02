@@ -12,7 +12,7 @@
     const languageOptions = [
         { code: 'fr', label: 'Français', emoji: '🇫🇷' },
         { code: 'en', label: 'English', emoji: '🇬🇧' },
-        // { code: 'es', label: 'Español', emoji: '🇪🇸' } Desactived temporally
+        { code: 'es', label: 'Español', emoji: '🇪🇸' }
     ];
 
     // Langue actuellement active
