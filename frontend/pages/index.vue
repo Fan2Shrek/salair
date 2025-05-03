@@ -102,7 +102,7 @@ class="w-full h-full border border-utility-gray-200 bg-utility-gray-50 rounded-3
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-16 mt-16">
                     <div class="flex flex-col gap-4" itemscope itemtype="https://schema.org/Service">
-                        <div class="bg-primary border border-primary p-3 rounded-[10px] w-fit mx-auto shadow-xs">
+                        <div class="bg-primary border border-primary p-3 rounded-[10px] w-fit mx-auto shadow-xs text-fg-secondary">
                             <RepeatIcon class="size-6" aria-hidden="true" />
                         </div>
                         <div class="space-y-1">
@@ -113,7 +113,7 @@ class="w-full h-full border border-utility-gray-200 bg-utility-gray-50 rounded-3
                         </div>
                     </div>
                     <div class="flex flex-col gap-4" itemscope itemtype="https://schema.org/Service">
-                        <div class="bg-primary border border-primary p-3 rounded-[10px] w-fit mx-auto shadow-xs">
+                        <div class="bg-primary border border-primary p-3 rounded-[10px] w-fit mx-auto shadow-xs text-fg-secondary">
                             <LightningIcon class="size-6" aria-hidden="true" />
                         </div>
                         <div class="space-y-1">
@@ -126,7 +126,7 @@ class="w-full h-full border border-utility-gray-200 bg-utility-gray-50 rounded-3
                         </div>
                     </div>
                     <div class="flex flex-col gap-4" itemscope itemtype="https://schema.org/Service">
-                        <div class="bg-primary border border-primary p-3 rounded-[10px] w-fit mx-auto shadow-xs">
+                        <div class="bg-primary border border-primary p-3 rounded-[10px] w-fit mx-auto shadow-xs text-fg-secondary">
                             <ChartIcon class="size-6" aria-hidden="true" />
                         </div>
                         <div class="space-y-1">
@@ -139,7 +139,7 @@ class="w-full h-full border border-utility-gray-200 bg-utility-gray-50 rounded-3
                         </div>
                     </div>
                     <div class="flex flex-col gap-4" itemscope itemtype="https://schema.org/Service">
-                        <div class="bg-primary border border-primary p-3 rounded-[10px] w-fit mx-auto shadow-xs">
+                        <div class="bg-primary border border-primary p-3 rounded-[10px] w-fit mx-auto shadow-xs text-fg-secondary">
                             <MessageIcon class="size-6" aria-hidden="true" />
                         </div>
                         <div class="space-y-1">
@@ -152,7 +152,7 @@ class="w-full h-full border border-utility-gray-200 bg-utility-gray-50 rounded-3
                         </div>
                     </div>
                     <div class="flex flex-col gap-4" itemscope itemtype="https://schema.org/Service">
-                        <div class="bg-primary border border-primary p-3 rounded-[10px] w-fit mx-auto shadow-xs">
+                        <div class="bg-primary border border-primary p-3 rounded-[10px] w-fit mx-auto shadow-xs text-fg-secondary">
                             <FolderIcon class="size-6" aria-hidden="true" />
                         </div>
                         <div class="space-y-1">
@@ -163,7 +163,7 @@ class="w-full h-full border border-utility-gray-200 bg-utility-gray-50 rounded-3
                         </div>
                     </div>
                     <div class="flex flex-col gap-4" itemscope itemtype="https://schema.org/Service">
-                        <div class="bg-primary border border-primary p-3 rounded-[10px] w-fit mx-auto shadow-xs">
+                        <div class="bg-primary border border-primary p-3 rounded-[10px] w-fit mx-auto shadow-xs text-fg-secondary">
                             <PhoneIcon class="size-6" aria-hidden="true" />
                         </div>
                         <div class="space-y-1">
