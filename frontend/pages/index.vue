@@ -1,44 +1,48 @@
 <script setup lang="ts">
-import PlayCircleIcon from '~/components/atoms/icons/PlayCircleIcon.vue';
+    import PlayCircleIcon from '~/components/atoms/icons/PlayCircleIcon.vue';
 
-// Définition des métadonnées SEO pour la page
-useSeoMeta({
-    title: 'Salair - Gérez votre activité de freelance, sans prise de tête',
-    description: 'Salair automatise vos factures, vos paiements et vos déclarations URSSAF. Pour les freelances qui veulent se concentrer sur leur métier, pas sur l\'administratif.',
-    keywords: 'freelance, factures, paiements, URSSAF, gestion, indépendants, automatisation, administratif',
-    ogTitle: 'Salair - Gérez votre activité de freelance, sans prise de tête',
-    ogDescription: 'Automatisez vos factures, paiements et déclarations URSSAF. Un outil tout-en-un pensé pour les indépendants.',
-    ogImage: '/landing-mockup.png',
-    twitterTitle: 'Salair - Gérez votre activité de freelance, sans prise de tête',
-    twitterDescription: 'Automatisez vos factures, paiements et déclarations URSSAF. Un outil tout-en-un pensé pour les indépendants.',
-    twitterCard: 'summary_large_image',
-});
+    // Définition des métadonnées SEO pour la page
+    useSeoMeta({
+        title: 'Salair - Gérez votre activité de freelance, sans prise de tête',
+        description:
+            "Salair automatise vos factures, vos paiements et vos déclarations URSSAF. Pour les freelances qui veulent se concentrer sur leur métier, pas sur l'administratif.",
+        keywords: 'freelance, factures, paiements, URSSAF, gestion, indépendants, automatisation, administratif',
+        ogTitle: 'Salair - Gérez votre activité de freelance, sans prise de tête',
+        ogDescription:
+            'Automatisez vos factures, paiements et déclarations URSSAF. Un outil tout-en-un pensé pour les indépendants.',
+        ogImage: '/landing-mockup.png',
+        twitterTitle: 'Salair - Gérez votre activité de freelance, sans prise de tête',
+        twitterDescription:
+            'Automatisez vos factures, paiements et déclarations URSSAF. Un outil tout-en-un pensé pour les indépendants.',
+        twitterCard: 'summary_large_image',
+    });
 
-// Définir les données structurées pour les moteurs de recherche
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'SoftwareApplication',
-  'name': 'Salair',
-  'applicationCategory': 'BusinessApplication',
-  'description': 'Solution pour les freelances qui automatise les factures, paiements et déclarations fiscales',
-  'offers': {
-    '@type': 'Offer',
-    'price': '0',
-    'priceCurrency': 'EUR'
-  },
-  'operatingSystem': 'Web',
-  'featureList': 'Gestion des clients, Création de factures, Suivi des paiements, Préparation des déclarations fiscales, Centralisation des documents'
-};
+    // Définir les données structurées pour les moteurs de recherche
+    const jsonLd = {
+        '@context': 'https://schema.org',
+        '@type': 'SoftwareApplication',
+        name: 'Salair',
+        applicationCategory: 'BusinessApplication',
+        description: 'Solution pour les freelances qui automatise les factures, paiements et déclarations fiscales',
+        offers: {
+            '@type': 'Offer',
+            price: '0',
+            priceCurrency: 'EUR',
+        },
+        operatingSystem: 'Web',
+        featureList:
+            'Gestion des clients, Création de factures, Suivi des paiements, Préparation des déclarations fiscales, Centralisation des documents',
+    };
 
-// Ajout des données structurées à la page
-useHead({
-  script: [
-    {
-      type: 'application/ld+json',
-      innerHTML: JSON.stringify(jsonLd)
-    }
-  ]
-});
+    // Ajout des données structurées à la page
+    useHead({
+        script: [
+            {
+                type: 'application/ld+json',
+                innerHTML: JSON.stringify(jsonLd),
+            },
+        ],
+    });
 </script>
 
 <template>
@@ -72,11 +76,9 @@ useHead({
                         aria-label="Voir la démonstration"
                         >Demo</UButton
                     >
-                    <UButton 
-                        size="xl" 
-                        class="w-full sm:w-auto mt-3 sm:mt-0"
-                        aria-label="S'inscrire à Salair"
-                    >{{ $t('general.sign_up') }}</UButton>
+                    <UButton size="xl" class="w-full sm:w-auto mt-3 sm:mt-0" aria-label="S'inscrire à Salair">{{
+                        $t('general.sign_up')
+                    }}</UButton>
                 </div>
                 <div
                     class="mt-10 sm:mt-14 md:mt-18 relative max-h-[300px] sm:max-h-[400px] md:max-h-[500px] overflow-hidden"
@@ -86,13 +88,17 @@ useHead({
                     >
                         <div class="w-full h-full rounded-[28px] bg-primary shadow-inner p-1">
                             <div
-class="w-full h-full border border-utility-gray-200 bg-utility-gray-50 rounded-3xl" 
-                                 aria-label="Interface de démonstration de l'application Salair" />
+                                class="w-full h-full border border-utility-gray-200 bg-utility-gray-50 rounded-3xl"
+                                aria-label="Interface de démonstration de l'application Salair"
+                            />
                         </div>
                     </div>
                 </div>
             </section>
-            <section class="max-w-7xl mx-auto w-full bg-primary py-24 border-t border-secondary" aria-labelledby="features-heading">
+            <section
+                class="max-w-7xl mx-auto w-full bg-primary py-24 border-t border-secondary"
+                aria-labelledby="features-heading"
+            >
                 <div class="max-w-3xl w-full mx-auto">
                     <p class="text-brand-secondary font-semibold text-center">{{ $t('features.title') }}</p>
                     <h2 id="features-heading" class="text-3xl font-semibold text-primary text-center mt-3">
@@ -104,18 +110,24 @@ class="w-full h-full border border-utility-gray-200 bg-utility-gray-50 rounded-3
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-16 mt-16">
                     <div class="flex flex-col gap-4" itemscope itemtype="https://schema.org/Service">
-                        <div class="bg-primary border border-primary p-3 rounded-[10px] w-fit mx-auto shadow-xs text-fg-secondary">
+                        <div
+                            class="bg-primary border border-primary p-3 rounded-[10px] w-fit mx-auto shadow-xs text-fg-secondary"
+                        >
                             <RepeatIcon class="size-6" aria-hidden="true" />
                         </div>
                         <div class="space-y-1">
-                            <h3 class="text-primary text-lg font-semibold text-center" itemprop="name">{{ $t('features.items.access.title') }}</h3>
+                            <h3 class="text-primary text-lg font-semibold text-center" itemprop="name">
+                                {{ $t('features.items.access.title') }}
+                            </h3>
                             <p class="text-tertiary text-center" itemprop="description">
                                 {{ $t('features.items.access.description') }}
                             </p>
                         </div>
                     </div>
                     <div class="flex flex-col gap-4" itemscope itemtype="https://schema.org/Service">
-                        <div class="bg-primary border border-primary p-3 rounded-[10px] w-fit mx-auto shadow-xs text-fg-secondary">
+                        <div
+                            class="bg-primary border border-primary p-3 rounded-[10px] w-fit mx-auto shadow-xs text-fg-secondary"
+                        >
                             <LightningIcon class="size-6" aria-hidden="true" />
                         </div>
                         <div class="space-y-1">
@@ -128,7 +140,9 @@ class="w-full h-full border border-utility-gray-200 bg-utility-gray-50 rounded-3
                         </div>
                     </div>
                     <div class="flex flex-col gap-4" itemscope itemtype="https://schema.org/Service">
-                        <div class="bg-primary border border-primary p-3 rounded-[10px] w-fit mx-auto shadow-xs text-fg-secondary">
+                        <div
+                            class="bg-primary border border-primary p-3 rounded-[10px] w-fit mx-auto shadow-xs text-fg-secondary"
+                        >
                             <ChartIcon class="size-6" aria-hidden="true" />
                         </div>
                         <div class="space-y-1">
@@ -141,7 +155,9 @@ class="w-full h-full border border-utility-gray-200 bg-utility-gray-50 rounded-3
                         </div>
                     </div>
                     <div class="flex flex-col gap-4" itemscope itemtype="https://schema.org/Service">
-                        <div class="bg-primary border border-primary p-3 rounded-[10px] w-fit mx-auto shadow-xs text-fg-secondary">
+                        <div
+                            class="bg-primary border border-primary p-3 rounded-[10px] w-fit mx-auto shadow-xs text-fg-secondary"
+                        >
                             <MessageIcon class="size-6" aria-hidden="true" />
                         </div>
                         <div class="space-y-1">
@@ -154,18 +170,24 @@ class="w-full h-full border border-utility-gray-200 bg-utility-gray-50 rounded-3
                         </div>
                     </div>
                     <div class="flex flex-col gap-4" itemscope itemtype="https://schema.org/Service">
-                        <div class="bg-primary border border-primary p-3 rounded-[10px] w-fit mx-auto shadow-xs text-fg-secondary">
+                        <div
+                            class="bg-primary border border-primary p-3 rounded-[10px] w-fit mx-auto shadow-xs text-fg-secondary"
+                        >
                             <FolderIcon class="size-6" aria-hidden="true" />
                         </div>
                         <div class="space-y-1">
-                            <h3 class="text-primary text-lg font-semibold text-center" itemprop="name">{{ $t('features.items.documents.title') }}</h3>
+                            <h3 class="text-primary text-lg font-semibold text-center" itemprop="name">
+                                {{ $t('features.items.documents.title') }}
+                            </h3>
                             <p class="text-tertiary text-center" itemprop="description">
                                 {{ $t('features.items.documents.description') }}
                             </p>
                         </div>
                     </div>
                     <div class="flex flex-col gap-4" itemscope itemtype="https://schema.org/Service">
-                        <div class="bg-primary border border-primary p-3 rounded-[10px] w-fit mx-auto shadow-xs text-fg-secondary">
+                        <div
+                            class="bg-primary border border-primary p-3 rounded-[10px] w-fit mx-auto shadow-xs text-fg-secondary"
+                        >
                             <PhoneIcon class="size-6" aria-hidden="true" />
                         </div>
                         <div class="space-y-1">
@@ -181,7 +203,9 @@ class="w-full h-full border border-utility-gray-200 bg-utility-gray-50 rounded-3
             </section>
             <footer class="w-full bg-secondary py-8 border-t border-secondary">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6">
-                    <p class="text-center text-tertiary">© {{ new Date().getFullYear() }} Salair. Tous droits réservés.</p>
+                    <p class="text-center text-tertiary">
+                        © {{ new Date().getFullYear() }} Salair. {{ $t('copyright') }}
+                    </p>
                 </div>
             </footer>
         </main>
