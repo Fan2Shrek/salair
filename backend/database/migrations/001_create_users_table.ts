@@ -10,10 +10,10 @@ export default class extends BaseSchema {
       table.string('last_name').nullable()
       table.string('email', 254).notNullable().unique()
       table.string('password').notNullable()
-      table.enum('role', ['platform_admin', 'standard']).notNullable().defaultTo('standard')
+      table.string('phone_number').nullable()
       table.boolean('is_verified').notNullable().defaultTo(false)
-      table.timestamp('last_login_at').nullable()
 
+      table.timestamp('last_login_at').nullable()
       table.timestamp('created_at').notNullable()
       table.timestamp('updated_at').nullable()
     })

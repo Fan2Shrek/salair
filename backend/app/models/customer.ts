@@ -1,32 +1,32 @@
 import { DateTime } from 'luxon'
 import { BaseModel, belongsTo, column } from '@adonisjs/lucid/orm'
-import CompanyUser from './company_user.js'
 import type { BelongsTo } from '@adonisjs/lucid/types/relations'
+import User from './user.js'
 
-export default class Employee extends BaseModel {
+export default class Customer extends BaseModel {
   @column({ isPrimary: true })
   declare id: number
 
   @column()
-  declare companyUserId: number
-
-  @column.dateTime()
-  declare birthDate: DateTime
+  declare userId: number
 
   @column()
-  declare socialSecurityNumber: string
+  declare companyName: string
+
+  @column()
+  declare contactName: string
+
+  @column()
+  declare email: string
+
+  @column()
+  declare phoneNumber: string
 
   @column()
   declare address: string
 
-  @column()
-  declare position: string
-
-  @column()
-  declare onboardingComplete: boolean
-
-  @belongsTo(() => CompanyUser)
-  declare companyUser: BelongsTo<typeof CompanyUser>
+  @belongsTo(() => User)
+  declare user: BelongsTo<typeof User>
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime
