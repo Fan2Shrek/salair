@@ -3,14 +3,14 @@ import PlayCircleIcon from '~/components/atoms/icons/PlayCircleIcon.vue';
 
 // Définition des métadonnées SEO pour la page
 useSeoMeta({
-    title: 'Salair - Gestion simplifiée des salaires',
-    description: 'Salair vous aide à gérer vos fiches de paie, contrats et données employés en toute simplicité avec une interface moderne et intuitive.',
-    keywords: 'salaires, paie, gestion, employés, fiches de paie, RH, entreprise',
-    ogTitle: 'Salair - Gestion simplifiée des salaires',
-    ogDescription: 'Solution moderne pour la gestion des fiches de paie et des données employés',
+    title: 'Salair - Gérez votre activité de freelance, sans prise de tête',
+    description: 'Salair automatise vos factures, vos paiements et vos déclarations URSSAF. Pour les freelances qui veulent se concentrer sur leur métier, pas sur l\'administratif.',
+    keywords: 'freelance, factures, paiements, URSSAF, gestion, indépendants, automatisation, administratif',
+    ogTitle: 'Salair - Gérez votre activité de freelance, sans prise de tête',
+    ogDescription: 'Automatisez vos factures, paiements et déclarations URSSAF. Un outil tout-en-un pensé pour les indépendants.',
     ogImage: '/landing-mockup.png',
-    twitterTitle: 'Salair - Gestion simplifiée des salaires',
-    twitterDescription: 'Solution moderne pour la gestion des fiches de paie et des données employés',
+    twitterTitle: 'Salair - Gérez votre activité de freelance, sans prise de tête',
+    twitterDescription: 'Automatisez vos factures, paiements et déclarations URSSAF. Un outil tout-en-un pensé pour les indépendants.',
     twitterCard: 'summary_large_image',
 });
 
@@ -20,12 +20,14 @@ const jsonLd = {
   '@type': 'SoftwareApplication',
   'name': 'Salair',
   'applicationCategory': 'BusinessApplication',
+  'description': 'Solution pour les freelances qui automatise les factures, paiements et déclarations fiscales',
   'offers': {
     '@type': 'Offer',
     'price': '0',
     'priceCurrency': 'EUR'
   },
-  'operatingSystem': 'Web'
+  'operatingSystem': 'Web',
+  'featureList': 'Gestion des clients, Création de factures, Suivi des paiements, Préparation des déclarations fiscales, Centralisation des documents'
 };
 
 // Ajout des données structurées à la page
