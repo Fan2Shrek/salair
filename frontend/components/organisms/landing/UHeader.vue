@@ -31,7 +31,7 @@
                         <ULink to="#" variant="secondary">{{ $t('header.navigation.about') }}</ULink>
                     </li>
                     <li>
-                        <ULink to="#" variant="secondary">{{ $t('header.navigation.pricing') }}</ULink>
+                        <ULink to="/pricing" variant="secondary">{{ $t('header.navigation.pricing') }}</ULink>
                     </li>
                 </ul>
             </nav>
