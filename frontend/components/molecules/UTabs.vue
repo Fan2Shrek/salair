@@ -115,7 +115,7 @@
         </button>
     </div>
 
-    <div v-for="(item, index) in items" v-show="activeTab.label === item.label" :key="index">
+    <div v-for="(item, index) in items" v-show="activeTab.label === item.label" :key="index" class="w-full">
         <slot :name="item.name" :item="item" />
     </div>
 </template>
