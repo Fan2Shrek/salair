@@ -12,6 +12,9 @@ export default class extends BaseSchema {
       table.string('password').notNullable()
       table.string('phone_number').nullable()
       table.boolean('is_verified').notNullable().defaultTo(false)
+      table.integer('current_plan_id').notNullable()
+      table.boolean('is_on_trial').defaultTo(false)
+      table.timestamp('trial_ends_at').nullable()
 
       table.timestamp('last_login_at').nullable()
       table.timestamp('created_at').notNullable()

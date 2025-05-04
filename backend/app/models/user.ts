@@ -35,6 +35,15 @@ export default class User extends compose(BaseModel, AuthFinder) {
   @column.dateTime()
   declare lastLoginAt: DateTime
 
+  @column()
+  declare currentPlanId: number
+
+  @column()
+  declare isOnTrial: boolean
+
+  @column.dateTime()
+  declare trialEndsAt: DateTime
+
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime
 
