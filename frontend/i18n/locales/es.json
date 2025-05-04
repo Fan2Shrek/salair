@@ -11,37 +11,37 @@
         }
     },
     "landing": {
-        "title": "Simplifica la nómina y la facturación en un solo lugar",
-        "subtitle": "Una herramienta todo en uno para automatizar nóminas, declaraciones legales y facturas de clientes — creada tanto para autónomos como para pequeñas empresas."
+        "title": "Gestiona tu actividad freelance, sin complicaciones",
+        "subtitle": "Salair automatiza tus facturas, pagos y declaraciones fiscales. Para freelancers que quieren centrarse en su trabajo, no en tareas administrativas."
     },
     "features": {
         "title": "Características",
-        "heading": "Gestión de nóminas que parece venir del futuro",
-        "description": "Herramientas potentes e intuitivas para automatizar la nómina, simplificar los trámites administrativos y ahorrar tiempo valioso. Diseñado para PYMES modernas. Ya adoptado por decenas de empresas.",
+        "heading": "Una herramienta todo en uno, pensada para independientes",
+        "description": "Salair estructura tu actividad freelance desde tu primer cliente. Se acabaron los archivos Excel y los recordatorios fiscales olvidados.",
         "items": {
             "access": {
-                "title": "Comparte el acceso de RRHH",
-                "description": "Ya sean 2 o 200, mantenga a todos alineados gracias a accesos compartidos y roles bien definidos."
+                "title": "Gestiona tus clientes con facilidad",
+                "description": "Crea perfiles completos de clientes, consulta su historial de facturas y haz seguimiento de tus relaciones sin esfuerzo."
             },
             "payslips": {
-                "title": "Genera nóminas al instante",
-                "description": "Cree y descargue nóminas con un solo clic, siempre actualizadas con la legislación."
+                "title": "Crea facturas en 30 segundos",
+                "description": "Genera y envía facturas profesionales conformes, listas para ser pagadas en línea."
             },
             "reports": {
-                "title": "Haga seguimiento de sus obligaciones con informes",
-                "description": "Paneles claros, calendarios, exportables: gestione URSSAF, DSN y otras declaraciones sin estrés."
+                "title": "Seguimiento de pagos e ingresos",
+                "description": "Recibe pagos por transferencia o tarjeta, envía recordatorios automáticos de impagos y haz seguimiento de tus ingresos a lo largo del mes."
             },
             "employees": {
-                "title": "Simplifica la vida de tus empleados",
-                "description": "Un espacio dedicado para consultar nóminas, solicitar ausencias y centralizar todos sus documentos."
+                "title": "Prepara tus declaraciones fiscales",
+                "description": "Salair te recuerda tus fechas límite y te guía paso a paso en tus declaraciones mensuales o trimestrales."
             },
             "documents": {
-                "title": "Gestiona todos tus documentos de RRHH",
-                "description": "Contratos, datos bancarios, documentos justificativos, anexos: todo se almacena de forma segura y se clasifica automáticamente."
+                "title": "Centraliza tus documentos fiscales",
+                "description": "Facturas, recibos, extractos: todo está organizado, archivado y listo para auditorías o contabilidad."
             },
             "support": {
-                "title": "Un equipo que te apoya",
-                "description": "Nuestros expertos están disponibles los 7 días de la semana para responder a tus preguntas, formarte o ayudarte cuando lo necesites."
+                "title": "Soporte humano y reactivo",
+                "description": "¿Tienes una pregunta sobre tus declaraciones o facturas? Te acompañamos de principio a fin, sin jerga innecesaria."
             }
         }
     },

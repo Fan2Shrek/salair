@@ -1,60 +1,61 @@
 {
     "general": {
-        "login": "Se connecter",
-        "sign_up": "Nous rejoindre"
+      "login": "Se connecter",
+      "sign_up": "Nous rejoindre"
     },
     "header": {
-        "navigation": {
-            "product": "Produit",
-            "about": "À propos",
-            "pricing": "Tarifs"
-        }
+      "navigation": {
+        "product": "Produit",
+        "about": "À propos",
+        "pricing": "Tarifs"
+      }
     },
     "landing": {
-        "title": "Gérez la paie et la facturation, sans complexité",
-        "subtitle": "Un outil tout-en-un pour automatiser les fiches de paie, les déclarations légales et les factures clients — pensé pour les freelances comme pour les PME."
+      "title": "Gérez votre activité de freelance, sans prise de tête",
+      "subtitle": "Salair automatise vos factures, vos paiements et vos déclarations URSSAF. Pour les freelances qui veulent se concentrer sur leur métier, pas sur l’administratif."
     },
     "features": {
-        "title": "Features",
-        "heading": "Une gestion de la paie qui semble venir du futur",
-        "description": "Des outils puissants et intuitifs pour automatiser la paie, simplifier les démarches administratives, et gagner un temps précieux. Conçu pour les PME modernes. Déjà adopté par des dizaines d'entreprises.",
-        "items": {
-            "access": {
-                "title": "Partagez les accès RH",
-                "description": "Que vous soyez 2 ou 200, gardez tout le monde aligné grâce à des accès partagés et des rôles bien définis."
-            },
-            "payslips": {
-                "title": "Générez les bulletins instantanément",
-                "description": "Créez et téléchargez des fiches de paie en un clic, toujours à jour avec la législation."
-            },
-            "reports": {
-                "title": "Suivez vos obligations avec les rapports",
-                "description": "Tableaux de bord clairs, échéanciers, exportables : gérez URSSAF, DSN et autres déclarations sans stress."
-            },
-            "employees": {
-                "title": "Simplifiez la vie de vos salariés",
-                "description": "Un espace dédié pour consulter les fiches de paie, faire des demandes d'absence, et centraliser tous leurs documents."
-            },
-            "documents": {
-                "title": "Gérez tous vos documents RH",
-                "description": "Contrats, RIB, justificatifs, pièces jointes : tout est stocké de façon sécurisée et classé automatiquement."
-            },
-            "support": {
-                "title": "Une équipe qui vous accompagne",
-                "description": "Nos experts sont là 7j/7 pour répondre à vos questions, vous former ou vous dépanner quand vous en avez besoin."
-            }
+      "title": "Fonctionnalités",
+      "heading": "Un outil tout-en-un, pensé pour les indépendants",
+      "description": "Salair structure votre activité freelance dès votre premier client. Finis les fichiers Excel et les rappels URSSAF oubliés.",
+      "items": {
+        "access": {
+          "title": "Gérez vos clients facilement",
+          "description": "Créez des fiches clients complètes, consultez leur historique de factures et suivez vos relations sans effort."
+        },
+        "payslips": {
+          "title": "Créez vos factures en 30 secondes",
+          "description": "Générez et envoyez des factures professionnelles conformes, prêtes à être réglées en ligne."
+        },
+        "reports": {
+          "title": "Suivez vos paiements et revenus",
+          "description": "Encaissez par virement ou carte, relancez les impayés automatiquement, suivez votre chiffre d’affaires au fil du mois."
+        },
+        "employees": {
+          "title": "Préparez vos déclarations URSSAF",
+          "description": "Salair vous rappelle vos échéances et vous accompagne pas à pas dans vos déclarations mensuelles ou trimestrielles."
+        },
+        "documents": {
+          "title": "Centralisez vos documents fiscaux",
+          "description": "Factures, justificatifs, relevés : tout est organisé, archivé et prêt en cas de contrôle ou pour votre compta."
+        },
+        "support": {
+          "title": "Un support humain et réactif",
+          "description": "Une question sur vos déclarations ou vos factures ? On vous accompagne de A à Z, sans jargon inutile."
         }
+      }
     },
     "login": {
-        "title": "Bon retour !",
-        "subtitle": "Bon retour ! Veuillez saisir vos informations",
-        "form": {
-            "email": {
-                "label": "Adresse email"
-            },
-            "password": {
-                "label": "Mot de passe"
-            }
+      "title": "Bon retour !",
+      "subtitle": "Bon retour ! Veuillez saisir vos informations",
+      "form": {
+        "email": {
+          "label": "Adresse email"
+        },
+        "password": {
+          "label": "Mot de passe"
         }
+      }
     }
-}
+  }
+  

@@ -11,37 +11,37 @@
         }
     },
     "landing": {
-        "title": "Simplify payroll and invoicing in one place",
-        "subtitle": "An all-in-one tool to automate payslips, legal filings, and client invoices — built for freelancers and small businesses alike."
+        "title": "Manage your freelance business, hassle-free",
+        "subtitle": "Salair automates your invoices, payments and tax declarations. For freelancers who want to focus on their work, not on administrative tasks."
     },
     "features": {
         "title": "Features",
-        "heading": "Payroll management that seems to come from the future",
-        "description": "Powerful and intuitive tools to automate payroll, simplify administrative procedures, and save precious time. Designed for modern SMEs. Already adopted by dozens of companies.",
+        "heading": "An all-in-one tool, designed for freelancers",
+        "description": "Salair structures your freelance activity from your first client. No more Excel files and forgotten tax reminders.",
         "items": {
             "access": {
-                "title": "Share HR access",
-                "description": "Whether you're 2 or 200, keep everyone aligned thanks to shared access and well-defined roles."
+                "title": "Manage your clients easily",
+                "description": "Create complete client profiles, view their invoice history and track your relationships effortlessly."
             },
             "payslips": {
-                "title": "Generate payslips instantly",
-                "description": "Create and download pay slips with one click, always up to date with legislation."
+                "title": "Create invoices in 30 seconds",
+                "description": "Generate and send professional compliant invoices, ready to be paid online."
             },
             "reports": {
-                "title": "Track your obligations with reports",
-                "description": "Clear dashboards, schedules, exportable: manage URSSAF, DSN and other declarations without stress."
+                "title": "Track your payments and income",
+                "description": "Get paid by transfer or card, automatically remind unpaid invoices, and track your revenue throughout the month."
             },
             "employees": {
-                "title": "Simplify your employees' lives",
-                "description": "A dedicated space to consult pay slips, request absences, and centralize all their documents."
+                "title": "Prepare your tax declarations",
+                "description": "Salair reminds you of your deadlines and guides you step by step through your monthly or quarterly declarations."
             },
             "documents": {
-                "title": "Manage all your HR documents",
-                "description": "Contracts, bank details, supporting documents, attachments: everything is stored securely and classified automatically."
+                "title": "Centralize your tax documents",
+                "description": "Invoices, receipts, statements: everything is organized, archived and ready for audits or accounting."
             },
             "support": {
-                "title": "A team that supports you",
-                "description": "Our experts are available 7 days a week to answer your questions, train you or help you when you need it."
+                "title": "Responsive human support",
+                "description": "Have a question about your declarations or invoices? We'll support you from A to Z, without unnecessary jargon."
             }
         }
     },
