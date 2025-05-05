@@ -28,7 +28,9 @@ export default class Plan extends BaseModel {
   @column()
   declare isPopular: boolean
 
-  @column()
+  @column({
+    prepare: (value: string[]) => JSON.stringify(value),
+  })
   declare features: string[]
 
   @column()
