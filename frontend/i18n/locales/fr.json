@@ -1,62 +1,97 @@
 {
     "general": {
-      "login": "Se connecter",
-      "sign_up": "Nous rejoindre"
+        "login": "Se connecter",
+        "sign_up": "Nous rejoindre"
     },
     "header": {
-      "navigation": {
-        "product": "Produit",
-        "about": "À propos",
-        "pricing": "Tarifs"
-      }
+        "navigation": {
+            "product": "Produit",
+            "about": "À propos",
+            "pricing": "Tarifs"
+        }
     },
     "landing": {
-      "title": "Gérez votre activité de freelance, sans prise de tête",
-      "subtitle": "Salair automatise vos factures, vos paiements et vos déclarations URSSAF. Pour les freelances qui veulent se concentrer sur leur métier, pas sur l’administratif."
+        "title": "Gérez votre activité de freelance, sans prise de tête",
+        "subtitle": "Salair automatise vos factures, vos paiements et vos déclarations URSSAF. Pour les freelances qui veulent se concentrer sur leur métier, pas sur l’administratif."
     },
     "features": {
-      "title": "Fonctionnalités",
-      "heading": "Un outil tout-en-un, pensé pour les indépendants",
-      "description": "Salair structure votre activité freelance dès votre premier client. Finis les fichiers Excel et les rappels URSSAF oubliés.",
-      "items": {
-        "access": {
-          "title": "Gérez vos clients facilement",
-          "description": "Créez des fiches clients complètes, consultez leur historique de factures et suivez vos relations sans effort."
-        },
-        "payslips": {
-          "title": "Créez vos factures en 30 secondes",
-          "description": "Générez et envoyez des factures professionnelles conformes, prêtes à être réglées en ligne."
-        },
-        "reports": {
-          "title": "Suivez vos paiements et revenus",
-          "description": "Encaissez par virement ou carte, relancez les impayés automatiquement, suivez votre chiffre d’affaires au fil du mois."
-        },
-        "employees": {
-          "title": "Préparez vos déclarations URSSAF",
-          "description": "Salair vous rappelle vos échéances et vous accompagne pas à pas dans vos déclarations mensuelles ou trimestrielles."
-        },
-        "documents": {
-          "title": "Centralisez vos documents fiscaux",
-          "description": "Factures, justificatifs, relevés : tout est organisé, archivé et prêt en cas de contrôle ou pour votre compta."
-        },
-        "support": {
-          "title": "Un support humain et réactif",
-          "description": "Une question sur vos déclarations ou vos factures ? On vous accompagne de A à Z, sans jargon inutile."
+        "title": "Fonctionnalités",
+        "heading": "Un outil tout-en-un, pensé pour les indépendants",
+        "description": "Salair structure votre activité freelance dès votre premier client. Finis les fichiers Excel et les rappels URSSAF oubliés.",
+        "items": {
+            "access": {
+                "title": "Gérez vos clients facilement",
+                "description": "Créez des fiches clients complètes, consultez leur historique de factures et suivez vos relations sans effort."
+            },
+            "payslips": {
+                "title": "Créez vos factures en 30 secondes",
+                "description": "Générez et envoyez des factures professionnelles conformes, prêtes à être réglées en ligne."
+            },
+            "reports": {
+                "title": "Suivez vos paiements et revenus",
+                "description": "Encaissez par virement ou carte, relancez les impayés automatiquement, suivez votre chiffre d’affaires au fil du mois."
+            },
+            "employees": {
+                "title": "Préparez vos déclarations URSSAF",
+                "description": "Salair vous rappelle vos échéances et vous accompagne pas à pas dans vos déclarations mensuelles ou trimestrielles."
+            },
+            "documents": {
+                "title": "Centralisez vos documents fiscaux",
+                "description": "Factures, justificatifs, relevés : tout est organisé, archivé et prêt en cas de contrôle ou pour votre compta."
+            },
+            "support": {
+                "title": "Un support humain et réactif",
+                "description": "Une question sur vos déclarations ou vos factures ? On vous accompagne de A à Z, sans jargon inutile."
+            }
         }
-      }
+    },
+    "faq": {
+        "title": "Questions fréquentes",
+        "subtitle": "Tout ce que vous devez savoir sur l'utilisation de Salair, la facturation et votre abonnement.",
+        "more_questions": {
+            "title": "Vous avez encore des questions?",
+            "subtitle": "Vous ne trouvez pas la réponse que vous cherchez? Discutez avec notre équipe.",
+            "button": "Contactez-nous"
+        },
+        "items": {
+            "trial": {
+                "question": "Y a-t-il une période d'essai gratuite ?",
+                "answer": "Oui, vous pouvez tester Salair gratuitement pendant 30 jours. Et pour bien démarrer, nous vous offrons un appel de prise en main personnalisé de 30 minutes pour configurer votre compte et répondre à toutes vos questions."
+            },
+            "change_plan": {
+                "question": "Puis-je changer de formule plus tard ?",
+                "answer": "Bien sûr ! Vous pouvez modifier votre abonnement à tout moment depuis votre espace personnel. Le changement prend effet immédiatement, et tout est calculé au prorata."
+            },
+            "cancellation": {
+                "question": "Quelle est votre politique d'annulation ?",
+                "answer": "Vous pouvez annuler votre abonnement à tout moment. Une fois annulé, vous conserverez l'accès à toutes les fonctionnalités payantes jusqu'à la fin de votre période de facturation en cours. Aucune reconduction automatique n'est faite après cette date."
+            },
+            "invoice_info": {
+                "question": "Puis-je ajouter d'autres informations sur mes factures ?",
+                "answer": "Oui, vous pouvez personnaliser vos factures avec les informations de votre choix : mentions légales, conditions de paiement, numéro SIRET, IBAN, etc. Vous pouvez aussi ajouter un message ou une note spécifique à chaque client."
+            },
+            "billing": {
+                "question": "Comment fonctionne la facturation ?",
+                "answer": "La facturation est mensuelle ou annuelle selon la formule choisie. Un récapitulatif détaillé est disponible à chaque renouvellement, et vos factures d'abonnement sont téléchargeables à tout moment depuis votre compte."
+            },
+            "email_change": {
+                "question": "Comment changer mon adresse email de connexion ?",
+                "answer": "Rendez-vous dans les paramètres de votre compte, rubrique \"Informations personnelles\". Vous pourrez y modifier votre adresse email de connexion en toute sécurité. Une vérification par email sera nécessaire."
+            }
+        }
     },
     "login": {
-      "title": "Bon retour !",
-      "subtitle": "Bon retour ! Veuillez saisir vos informations",
-      "form": {
-        "email": {
-          "label": "Adresse email"
-        },
-        "password": {
-          "label": "Mot de passe"
+        "title": "Bon retour !",
+        "subtitle": "Bon retour ! Veuillez saisir vos informations",
+        "form": {
+            "email": {
+                "label": "Adresse email"
+            },
+            "password": {
+                "label": "Mot de passe"
+            }
         }
-      }
     },
     "copyright": "Tous droits réservés."
-  }
-  
+}
+

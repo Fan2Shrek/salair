@@ -45,6 +45,41 @@
             }
         }
     },
+    "faq": {
+        "title": "Preguntas frecuentes",
+        "subtitle": "Todo lo que necesitas saber sobre el uso de Salair, la facturación y tu suscripción.",
+        "more_questions": {
+            "title": "¿Todavía tienes preguntas?",
+            "subtitle": "¿No encuentras la respuesta que buscas? Chatea con nuestro amable equipo.",
+            "button": "Contáctanos"
+        },
+        "items": {
+            "trial": {
+                "question": "¿Hay un período de prueba gratuito?",
+                "answer": "Sí, puedes probar Salair gratis durante 30 días. Y para ayudarte a comenzar, te ofrecemos una llamada de incorporación personalizada de 30 minutos para configurar tu cuenta y responder a todas tus preguntas."
+            },
+            "change_plan": {
+                "question": "¿Puedo cambiar mi plan más tarde?",
+                "answer": "¡Por supuesto! Puedes modificar tu suscripción en cualquier momento desde tu panel personal. Los cambios surten efecto inmediatamente, y todo se calcula de manera prorrateada."
+            },
+            "cancellation": {
+                "question": "¿Cuál es vuestra política de cancelación?",
+                "answer": "Puedes cancelar tu suscripción en cualquier momento. Una vez cancelada, conservarás el acceso a todas las funciones de pago hasta el final de tu período de facturación actual. No se realizará ninguna renovación automática después de esa fecha."
+            },
+            "invoice_info": {
+                "question": "¿Puedo añadir otra información a mis facturas?",
+                "answer": "Sí, puedes personalizar tus facturas con la información de tu elección: avisos legales, condiciones de pago, número de identificación fiscal, datos bancarios, etc. También puedes añadir un mensaje o una nota específica para cada cliente."
+            },
+            "billing": {
+                "question": "¿Cómo funciona la facturación?",
+                "answer": "La facturación es mensual o anual según el plan que elijas. Un resumen detallado está disponible con cada renovación, y tus facturas de suscripción pueden descargarse en cualquier momento desde tu cuenta."
+            },
+            "email_change": {
+                "question": "¿Cómo cambio mi dirección de correo electrónico de inicio de sesión?",
+                "answer": "Ve a la configuración de tu cuenta, en la sección 'Información personal'. Allí podrás cambiar de forma segura tu dirección de correo electrónico de inicio de sesión. Se requerirá una verificación por correo electrónico."
+            }
+        }
+    },
     "login": {
         "title": "¡Bienvenido de nuevo!",
         "subtitle": "¡Bienvenido de nuevo! Por favor, ingresa tus datos",

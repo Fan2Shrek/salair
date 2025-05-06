@@ -45,6 +45,41 @@
             }
         }
     },
+    "faq": {
+        "title": "Frequently Asked Questions",
+        "subtitle": "Everything you need to know about using Salair, billing, and your subscription.",
+        "more_questions": {
+            "title": "Still have questions?",
+            "subtitle": "Can't find the answer you're looking for? Please chat to our friendly team.",
+            "button": "Get in touch"
+        },
+        "items": {
+            "trial": {
+                "question": "Is there a free trial?",
+                "answer": "Yes, you can try Salair for free for 30 days. And to help you get started, we offer a personalized 30-minute onboarding call to set up your account and answer all your questions."
+            },
+            "change_plan": {
+                "question": "Can I change my plan later?",
+                "answer": "Absolutely! You can modify your subscription at any time from your personal dashboard. Changes take effect immediately, and everything is prorated."
+            },
+            "cancellation": {
+                "question": "What's your cancellation policy?",
+                "answer": "You can cancel your subscription at any time. Once cancelled, you'll retain access to all paid features until the end of your current billing period. No automatic renewal will occur after that date."
+            },
+            "invoice_info": {
+                "question": "Can I add other information to my invoices?",
+                "answer": "Yes, you can customize your invoices with the information of your choice: legal notices, payment terms, business ID number, bank details, etc. You can also add a specific message or note for each client."
+            },
+            "billing": {
+                "question": "How does billing work?",
+                "answer": "Billing is either monthly or annual depending on the plan you choose. A detailed summary is available with each renewal, and your subscription invoices can be downloaded at any time from your account."
+            },
+            "email_change": {
+                "question": "How do I change my login email address?",
+                "answer": "Go to your account settings, under 'Personal Information'. There, you can safely change your login email address. An email verification will be required."
+            }
+        }
+    },
     "login": {
         "title": "Welcome back!",
         "subtitle": "Welcome back! Please enter your details",

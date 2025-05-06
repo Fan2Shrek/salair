@@ -1,6 +1,8 @@
 <script setup lang="ts">
     import PlayCircleIcon from '~/components/atoms/icons/PlayCircleIcon.vue';
 
+    const { t } = useI18n()
+
     // Définition des métadonnées SEO pour la page
     useSeoMeta({
         title: 'Salair - Gérez votre activité de freelance, sans prise de tête',
@@ -45,38 +47,32 @@
         ],
     });
 
-    const accordionItems = [
+    const accordionItems = computed(() => [
         {
-            label: 'Y a-t-il une période d’essai gratuite ?',
-            content:
-                'Oui, vous pouvez tester Salair gratuitement pendant 30 jours. Et pour bien démarrer, nous vous offrons un appel de prise en main personnalisé de 30 minutes pour configurer votre compte et répondre à toutes vos questions.',
+            label: t('faq.items.trial.question'),
+            content: t('faq.items.trial.answer'),
         },
         {
-            label: 'Puis-je changer de formule plus tard ?',
-            content:
-                'Bien sûr ! Vous pouvez modifier votre abonnement à tout moment depuis votre espace personnel. Le changement prend effet immédiatement, et tout est calculé au prorata.',
+            label: t('faq.items.change_plan.question'),
+            content: t('faq.items.change_plan.answer'),
         },
         {
-            label: 'Quelle est votre politique d’annulation ?',
-            content:
-                'Vous pouvez annuler votre abonnement à tout moment. Une fois annulé, vous conserverez l’accès à toutes les fonctionnalités payantes jusqu’à la fin de votre période de facturation en cours. Aucune reconduction automatique n’est faite après cette date.',
+            label: t('faq.items.cancellation.question'),
+            content: t('faq.items.cancellation.answer'),
         },
         {
-            label: "Puis-je ajouter d'autres informations sur mes factures ?",
-            content:
-                'Oui, vous pouvez personnaliser vos factures avec les informations de votre choix : mentions légales, conditions de paiement, numéro SIRET, IBAN, etc. Vous pouvez aussi ajouter un message ou une note spécifique à chaque client.',
+            label: t('faq.items.invoice_info.question'),
+            content: t('faq.items.invoice_info.answer'),
         },
         {
-            label: 'Comment fonctionne la facturation ?',
-            content:
-                'La facturation est mensuelle ou annuelle selon la formule choisie. Un récapitulatif détaillé est disponible à chaque renouvellement, et vos factures d’abonnement sont téléchargeables à tout moment depuis votre compte.',
+            label: t('faq.items.billing.question'),
+            content: t('faq.items.billing.answer'),
         },
         {
-            label: 'Comment changer mon adresse email de connexion ?',
-            content:
-                'Rendez-vous dans les paramètres de votre compte, rubrique “Informations personnelles”. Vous pourrez y modifier votre adresse email de connexion en toute sécurité. Une vérification par email sera nécessaire.',
+            label: t('faq.items.email_change.question'),
+            content: t('faq.items.email_change.answer'),
         },
-    ];
+    ]);
 </script>
 
 <template>
@@ -237,9 +233,9 @@
             </section>
             <section class="py-24 max-w-7xl w-full mx-auto">
                 <div class="space-y-5">
-                    <h2 class="text-primary font-semibold text-4xl text-center">Questions fréquentes</h2>
+                    <h2 class="text-primary font-semibold text-4xl text-center">{{ $t('faq.title') }}</h2>
                     <p class="text-tertiary text-xl text-center">
-                        Tout ce que vous devez savoir sur l'utilisation de Salair, la facturation et votre abonnement.
+                        {{ $t('faq.subtitle') }}
                     </p>
                 </div>
                 <div class="mt-16 max-w-3xl w-full mx-auto">
@@ -247,10 +243,10 @@
                 </div>
                 <div class="mt-16 px-8 py-8 rounded-2xl bg-secondary w-full">
                     <div class="max-w-3xl w-full mx-auto space-y-2">
-                        <h3 class="text-primary font-semibold text-xl text-center">Still have questions?</h3>
-                        <p class="text-tertiary text-lg text-center">Can’t find the answer you’re looking for? Please chat to our friendly team.</p>
+                        <h3 class="text-primary font-semibold text-xl text-center">{{ $t('faq.more_questions.title') }}</h3>
+                        <p class="text-tertiary text-lg text-center">{{ $t('faq.more_questions.subtitle') }}</p>
                     </div>
-                    <UButton class="mt-8 mx-auto">Get in touch</UButton>
+                    <UButton class="mt-8 mx-auto">{{ $t('faq.more_questions.button') }}</UButton>
                 </div>
             </section>
             <footer class="w-full bg-secondary py-8 border-t border-secondary">
