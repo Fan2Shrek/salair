@@ -5,7 +5,6 @@
         size?: 'sm' | 'md';
         disabled?: boolean;
         showExternalIcon?: boolean;
-        className?: string;
     }
 
     const props = withDefaults(defineProps<Props>(), {
@@ -13,7 +12,6 @@
         size: 'md',
         disabled: false,
         showExternalIcon: true,
-        className: '',
     });
 
     const _emit = defineEmits(['click']);
@@ -48,7 +46,6 @@
             variantClasses[variant],
             sizeClasses[size],
             disabled ? 'opacity-50 cursor-not-allowed' : '',
-            className,
         ]"
         @click="!disabled && $emit('click', $event)"
     >
