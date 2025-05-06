@@ -67,4 +67,7 @@ export default defineNuxtConfig({
         url: 'https://salair.fr', 
         name: 'Salair - Gérez votre activité de freelance, sans prise de tête' 
     },
+    routeRules: {
+        '/doc/**': { robots: false }
+    }
 });
