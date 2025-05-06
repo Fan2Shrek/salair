@@ -245,6 +245,13 @@
                 <div class="mt-16 max-w-3xl w-full mx-auto">
                     <UAccordion :items="accordionItems" />
                 </div>
+                <div class="mt-16 px-8 py-8 rounded-2xl bg-secondary w-full">
+                    <div class="max-w-3xl w-full mx-auto space-y-2">
+                        <h3 class="text-primary font-semibold text-xl text-center">Still have questions?</h3>
+                        <p class="text-tertiary text-lg text-center">Can’t find the answer you’re looking for? Please chat to our friendly team.</p>
+                    </div>
+                    <UButton class="mt-8 mx-auto">Get in touch</UButton>
+                </div>
             </section>
             <footer class="w-full bg-secondary py-8 border-t border-secondary">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6">
