@@ -4,6 +4,7 @@
     // Définition des métadonnées SEO pour la page
     useSeoMeta({
         title: 'Salair - Gérez votre activité de freelance, sans prise de tête',
+        titleTemplate: '%s',
         description:
             "Salair automatise vos factures, vos paiements et vos déclarations URSSAF. Pour les freelances qui veulent se concentrer sur leur métier, pas sur l'administratif.",
         keywords: 'freelance, factures, paiements, URSSAF, gestion, indépendants, automatisation, administratif',

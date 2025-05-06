@@ -20,6 +20,7 @@ router.get('/', async () => {
 
 router
   .group(() => {
+    // Authentication routes
     router.post('/register', [AuthController, 'register']).as('auth.register')
     router.post('/login', [AuthController, 'login']).as('auth.login')
     router.delete('/logout', [AuthController, 'logout']).as('auth.logout')

@@ -1,7 +1,11 @@
 <script setup lang="ts">
+    useSeoMeta({
+        title: 'Pricing'
+    })
+
     const tabItems = [
-        { name: 'annual', label: 'Annual billing' },
         { name: 'monthly', label: 'Monthly billing' },
+        { name: 'annual', label: 'Annual billing' },
     ];
 </script>
 
@@ -18,6 +22,9 @@
                 </div>
                 <div class="w-full flex flex-col items-center mt-12">
                     <UTabs variant="border" :items="tabItems">
+                        <template #monthly>
+                            <div class="pt-24"></div>
+                        </template>
                         <template #annual>
                             <div class="py-24 w-full flex gap-8">
                                 <div class="shadow-lg bg-primary border border-secondary rounded-2xl w-full">
@@ -39,7 +46,9 @@
                                     <div class="pt-8 px-8 pb-10 w-full">
                                         <div class="space-y-1">
                                             <p class="text-primary font-semibold uppercase">FEATURES</p>
-                                            <p class="text-tertiary">Everything in our <span class="font-semibold">free plan</span> plus....</p>
+                                            <p class="text-tertiary">
+                                                Everything in our <span class="font-semibold">free plan</span> plus....
+                                            </p>
                                         </div>
                                         <div class="space-y-4 w-full mt-6">
                                             <div class="flex items-center gap-3 w-full">
@@ -84,7 +93,9 @@
                                     <div class="pt-8 px-8 pb-10 w-full">
                                         <div class="space-y-1">
                                             <p class="text-primary font-semibold uppercase">FEATURES</p>
-                                            <p class="text-tertiary">Everything in our <span class="font-semibold">free plan</span> plus....</p>
+                                            <p class="text-tertiary">
+                                                Everything in our <span class="font-semibold">free plan</span> plus....
+                                            </p>
                                         </div>
                                         <div class="space-y-4 w-full mt-6">
                                             <div class="flex items-center gap-3 w-full">
@@ -129,7 +140,9 @@
                                     <div class="pt-8 px-8 pb-10 w-full">
                                         <div class="space-y-1">
                                             <p class="text-primary font-semibold uppercase">FEATURES</p>
-                                            <p class="text-tertiary">Everything in our <span class="font-semibold">free plan</span> plus....</p>
+                                            <p class="text-tertiary">
+                                                Everything in our <span class="font-semibold">free plan</span> plus....
+                                            </p>
                                         </div>
                                         <div class="space-y-4 w-full mt-6">
                                             <div class="flex items-center gap-3 w-full">
@@ -156,9 +169,6 @@
                                     </div>
                                 </div>
                             </div>
-                        </template>
-                        <template #monthly>
-                            <div class="pt-24"></div>
                         </template>
                     </UTabs>
                 </div>
