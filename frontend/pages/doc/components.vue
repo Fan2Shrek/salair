@@ -558,5 +558,25 @@
                 />
             </div>
         </section>
+
+        <section class="w-full max-w-3xl">
+            <h2 class="text-xl font-semibold mb-4 text-primary">Accordion</h2>
+            <div class="p-4 bg-gray-100/10 rounded-lg space-y-3">
+                <UAccordion
+                    type="single"
+                    :items="[
+                        {
+                            label: 'Section 1',
+                            content: 'Contenu de la section 1',
+                        },
+                        {
+                            label: 'Section 2',
+                            content: 'Contenu de la section 2',
+                        },
+                    ]"
+                />
+            </div>
+        </section>
     </main>
 </template>
+
