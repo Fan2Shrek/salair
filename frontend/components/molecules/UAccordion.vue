@@ -51,10 +51,10 @@
             >
                 <div class="flex items-center gap-3">
                     <component :is="item.icon" v-if="item.icon" class="text-tertiary size-5" />
-                    <h3 class="font-semibold text-sm text-secondary">{{ item.label }}</h3>
+                    <h3 class="font-semibold text-primary">{{ item.label }}</h3>
                 </div>
                 <ChrevronDownIcon
-                    class="size-5 text-tertiary transition-transform duration-300"
+                    class="size-5 text-fg-quaternary transition-transform duration-300"
                     :class="{ 'rotate-180': isOpen(index) }"
                 />
             </div>
@@ -65,7 +65,7 @@
                 @leave="(el: Element) => (el as HTMLElement).style.height = '0px'"
             >
                 <div v-if="isOpen(index)" class="overflow-hidden transition-all duration-300">
-                    <div class="px-4 py-3 border-t border-secondary">
+                    <div class="px-4 py-3">
                         <p v-if="item.content" class="text-tertiary">
                             {{ item.content }}
                         </p>

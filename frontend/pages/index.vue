@@ -44,6 +44,39 @@
             },
         ],
     });
+
+    const accordionItems = [
+        {
+            label: 'Y a-t-il une période d’essai gratuite ?',
+            content:
+                'Oui, vous pouvez tester Salair gratuitement pendant 30 jours. Et pour bien démarrer, nous vous offrons un appel de prise en main personnalisé de 30 minutes pour configurer votre compte et répondre à toutes vos questions.',
+        },
+        {
+            label: 'Puis-je changer de formule plus tard ?',
+            content:
+                'Bien sûr ! Vous pouvez modifier votre abonnement à tout moment depuis votre espace personnel. Le changement prend effet immédiatement, et tout est calculé au prorata.',
+        },
+        {
+            label: 'Quelle est votre politique d’annulation ?',
+            content:
+                'Vous pouvez annuler votre abonnement à tout moment. Une fois annulé, vous conserverez l’accès à toutes les fonctionnalités payantes jusqu’à la fin de votre période de facturation en cours. Aucune reconduction automatique n’est faite après cette date.',
+        },
+        {
+            label: "Puis-je ajouter d'autres informations sur mes factures ?",
+            content:
+                'Oui, vous pouvez personnaliser vos factures avec les informations de votre choix : mentions légales, conditions de paiement, numéro SIRET, IBAN, etc. Vous pouvez aussi ajouter un message ou une note spécifique à chaque client.',
+        },
+        {
+            label: 'Comment fonctionne la facturation ?',
+            content:
+                'La facturation est mensuelle ou annuelle selon la formule choisie. Un récapitulatif détaillé est disponible à chaque renouvellement, et vos factures d’abonnement sont téléchargeables à tout moment depuis votre compte.',
+        },
+        {
+            label: 'Comment changer mon adresse email de connexion ?',
+            content:
+                'Rendez-vous dans les paramètres de votre compte, rubrique “Informations personnelles”. Vous pourrez y modifier votre adresse email de connexion en toute sécurité. Une vérification par email sera nécessaire.',
+        },
+    ];
 </script>
 
 <template>
@@ -200,6 +233,17 @@
                             </p>
                         </div>
                     </div>
+                </div>
+            </section>
+            <section class="py-24 max-w-7xl w-full mx-auto">
+                <div class="space-y-5">
+                    <h2 class="text-primary font-semibold text-4xl text-center">Questions fréquentes</h2>
+                    <p class="text-tertiary text-xl text-center">
+                        Tout ce que vous devez savoir sur l'utilisation de Salair, la facturation et votre abonnement.
+                    </p>
+                </div>
+                <div class="mt-16 max-w-3xl w-full mx-auto">
+                    <UAccordion :items="accordionItems" />
                 </div>
             </section>
             <footer class="w-full bg-secondary py-8 border-t border-secondary">
