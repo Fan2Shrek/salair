@@ -1,12 +1,27 @@
 <script setup lang="ts">
+    import type Plan from '~/types/plan';
+
     useSeoMeta({
-        title: 'Pricing'
-    })
+        title: 'Pricing',
+    });
 
     const tabItems = [
         { name: 'monthly', label: 'Monthly billing' },
-        { name: 'annual', label: 'Annual billing' },
+        { name: 'yearly', label: 'Annual billing' },
     ];
+
+    const monthlyPlans = ref<Plan[]>([]);
+    const _annualPlans = ref();
+    const _freePlan = ref();
+    const { $api } = useNuxtApp();
+
+    onMounted(async () => {
+        const { data, error } = await useAuthFetch<Plan[]>($api('/api/plans'));
+
+        if (data.value && !error.value) {
+            monthlyPlans.value = data.value;
+        }
+    });
 </script>
 
 <template>
@@ -22,10 +37,21 @@
                 </div>
                 <div class="w-full flex flex-col items-center mt-12">
                     <UTabs variant="border" :items="tabItems">
-                        <template #monthly>
-                            <div class="pt-24"></div>
+                        <template v-if="monthlyPlans" #monthly>
+                            <div class="py-24 w-full flex gap-8">
+                                <UPlanCard
+                                    v-for="plan in monthlyPlans"
+                                    :key="plan.id"
+                                    :name="plan.name"
+                                    :description="plan.description"
+                                    :popular="plan.isPopular"
+                                    :billing-cycle="plan.billingCycle"
+                                    :features="plan.features"
+                                    :price="plan.priceCents / 100"
+                                />
+                            </div>
                         </template>
-                        <template #annual>
+                        <template #yearly>
                             <div class="py-24 w-full flex gap-8">
                                 <div class="shadow-lg bg-primary border border-secondary rounded-2xl w-full">
                                     <div class="w-full p-8 border-b border-secondary">
