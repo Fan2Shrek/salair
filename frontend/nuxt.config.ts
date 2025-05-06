@@ -3,14 +3,16 @@ export default defineNuxtConfig({
     compatibilityDate: '2024-11-01',
     devtools: { enabled: true },
     modules: [
-        '@nuxt/eslint',
-        '@nuxt/image',
-        '@nuxtjs/tailwindcss',
-        '@pinia/nuxt',
-        'pinia-plugin-persistedstate/nuxt',
-        '@nuxtjs/color-mode',
-        '@nuxtjs/google-fonts',
-        '@nuxtjs/i18n',
+      '@nuxt/eslint',
+      '@nuxt/image',
+      '@nuxtjs/tailwindcss',
+      '@pinia/nuxt',
+      'pinia-plugin-persistedstate/nuxt',
+      '@nuxtjs/color-mode',
+      '@nuxtjs/google-fonts',
+      '@nuxtjs/i18n',
+      '@nuxtjs/sitemap',
+      '@nuxtjs/robots',
     ],
     i18n: {
         baseUrl: 'https://salair.fr',
@@ -41,7 +43,7 @@ export default defineNuxtConfig({
     },
     vite: {
         server: {
-            allowedHosts: ['salair.com'],
+            allowedHosts: ['salair.fr'],
         },
     },
     components: {
@@ -60,5 +62,9 @@ export default defineNuxtConfig({
                 "ital,opsz,wght": "0,9..40,100..1000;1,9..40,100..1000"
             },
         },
+    },
+    site: { 
+        url: 'https://salair.fr', 
+        name: 'Salair - Gérez votre activité de freelance, sans prise de tête' 
     },
 });
