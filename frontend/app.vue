@@ -20,13 +20,15 @@
         author: 'Salair',
     });
 
+    const i18nHead = useLocaleHead();
+
     // Configuration globale de l'en-tête
     useHead({
         htmlAttrs: {
-            lang: 'fr',
+            lang: i18nHead.value.htmlAttrs.lang,
             dir: 'ltr',
         },
-        link: [{ rel: 'icon', href: '/favicon.ico' }],
+        link: [{ rel: 'icon', href: '/favicon.ico' }, ...(i18nHead.value.link || [])],
     });
 </script>
 

@@ -13,6 +13,7 @@ export default defineNuxtConfig({
         '@nuxtjs/i18n',
     ],
     i18n: {
+        baseUrl: 'https://salair.fr',
         locales: [
             { code: 'fr', language: 'fr-FR', file: 'fr.json' },
             { code: 'en', language: 'en-US', file: 'en.json' },
