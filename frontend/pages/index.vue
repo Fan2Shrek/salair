@@ -249,13 +249,6 @@
                     <UButton class="mt-8 mx-auto">{{ $t('faq.more_questions.button') }}</UButton>
                 </div>
             </section>
-            <footer class="w-full bg-secondary py-8 border-t border-secondary">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6">
-                    <p class="text-center text-tertiary">
-                        © {{ new Date().getFullYear() }} Salair. {{ $t('copyright') }}
-                    </p>
-                </div>
-            </footer>
         </main>
     </NuxtLayout>
 </template>
