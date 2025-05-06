@@ -6,7 +6,7 @@ services:
         image: registry.nassimlounadi.fr/nassimlnd/salair-frontend:latest
         restart: always
         environment:
-            - NUXT_PUBLIC_API_URL=https://api.nassimlounadi.fr
+            NUXT_PUBLIC_API_URL: ${NUXT_PUBLIC_API_URL}
         networks:
             - app_network
         ports:
