@@ -26,7 +26,7 @@
 
 <template>
     <NuxtLayout name="landing">
-        <main class="w-full h-full relative" role="main">
+        <main class="w-full flex-grow relative" role="main">
             <section class="pt-19 max-w-7xl mx-auto w-full">
                 <div class="mt-24">
                     <p class="text-brand-secondary font-semibold text-center">Pricing</p>

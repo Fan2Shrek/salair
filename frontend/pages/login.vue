@@ -20,7 +20,7 @@
 
 <template>
     <NuxtLayout name="landing">
-        <main class="w-full h-full flex justify-center px-4 sm:px-6 pt-20 sm:pt-30 md:pt-40 overflow-hidden">
+        <main class="w-full h-full flex flex-grow justify-center px-4 sm:px-6 pt-20 sm:pt-30 md:pt-40 overflow-hidden">
             <UGridBackgroundPattern class="absolute top-0" />
             <section class="flex flex-col items-center space-y-6 sm:space-y-8 relative">
                 <div class="text-center space-y-2 sm:space-y-3">

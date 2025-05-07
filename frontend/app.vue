@@ -1,5 +1,4 @@
 <script setup>
-    // Définition des métadonnées SEO globales par défaut
     useSeoMeta({
         title: 'Salair - La solution moderne de gestion des salaires',
         titleTemplate: '%s | Salair',
@@ -14,7 +13,7 @@
         twitterCard: 'summary_large_image',
         viewport: 'width=device-width, initial-scale=1',
         charset: 'utf-8',
-        themeColor: '#6366f1', // couleur principale basée sur les variables de couleur du projet
+        themeColor: '#6366f1',
         robots: 'index, follow',
         canonical: 'https://salair.fr',
         author: 'Salair',
@@ -22,7 +21,6 @@
 
     const i18nHead = useLocaleHead();
 
-    // Configuration globale de l'en-tête
     useHead({
         htmlAttrs: {
             lang: i18nHead.value.htmlAttrs.lang,
