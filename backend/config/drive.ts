@@ -17,6 +17,8 @@ const driveConfig = defineConfig({
       visibility: 'public',
     }),
     s3: services.s3({
+      forcePathStyle: true,
+      endpoint: env.get('S3_ENDPOINT'),
       credentials: {
         accessKeyId: env.get('AWS_ACCESS_KEY_ID'),
         secretAccessKey: env.get('AWS_SECRET_ACCESS_KEY'),
