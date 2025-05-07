@@ -40,7 +40,7 @@
             <div v-if="!authStore.isAuthenticated" class="hidden md:flex items-center gap-3">
                 <LanguageSwitcher format="icon" />
                 <UButton variant="secondary" @click="navigateTo('/login')">{{ $t('general.login') }}</UButton>
-                <UButton>{{ $t('general.sign_up') }}</UButton>
+                <UButton @click="navigateTo('/signup')">{{ $t('general.sign_up') }}</UButton>
 </div>
             <div v-else class="hidden md:flex items-center gap-3">
                 <LogoutButton />
