@@ -72,6 +72,7 @@
                 :placeholder="placeholder"
                 :name="name"
                 :value="modelValue"
+                :required="required"
                 @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)"
             />
             <component
