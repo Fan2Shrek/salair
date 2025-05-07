@@ -21,7 +21,7 @@
     });
 
     const baseClasses =
-        'flex gap-1 items-center font-semibold focus:ring focus:ring-primary ring-offset-2 rounded ring-offset-transparent';
+        'flex gap-1 items-center font-semibold focus:ring focus:ring-primary ring-offset-2 rounded ring-offset-transparent group';
 
     const variantClasses = {
         primary:
@@ -52,7 +52,7 @@
         <slot />
         <svg
             v-if="isExternal ? showExternalIcon : false"
-            class="size-4"
+            class="size-4 hidden group-hover:block"
             xmlns="http://www.w3.org/2000/svg"
             width="24"
             height="24"
