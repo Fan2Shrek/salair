@@ -39,7 +39,7 @@
 </script>
 
 <template>
-    <div class="flex flex-col w-full divide-y">
+    <div class="flex flex-col w-full divide-y divide-secondary">
         <div
             v-for="(item, index) in items"
             :key="index"
