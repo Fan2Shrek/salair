@@ -25,6 +25,8 @@ export default class CreateUser extends BaseCommand {
         firstName,
         lastName,
         email,
+        role: 'admin',
+        currentPlanId: 1,
         password,
         isVerified: true,
       })

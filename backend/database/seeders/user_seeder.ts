@@ -1,5 +1,80 @@
 import { BaseSeeder } from '@adonisjs/lucid/seeders'
+import User from '#models/user'
+import { DateTime } from 'luxon'
 
 export default class extends BaseSeeder {
-  async run() {}
+  async run() {
+    await User.createMany([
+      {
+        firstName: 'Sophie',
+        lastName: 'Dubois',
+        email: 'sophie.dubois@example.com',
+        password: 'password',
+        role: 'user',
+        phoneNumber: '+33612345678',
+        isVerified: true,
+        lastLoginAt: DateTime.now(),
+        currentPlanId: 1,
+        isOnTrial: false,
+        trialEndsAt: DateTime.now().plus({ days: 30 }),
+        avatar: 'avatar-1.png',
+      },
+      {
+        firstName: 'Thomas',
+        lastName: 'Martin',
+        email: 'thomas.martin@example.com',
+        password: 'password',
+        role: 'user',
+        phoneNumber: '+33623456789',
+        isVerified: true,
+        lastLoginAt: DateTime.now().minus({ days: 2 }),
+        currentPlanId: 2,
+        isOnTrial: true,
+        trialEndsAt: DateTime.now().plus({ days: 14 }),
+        avatar: 'avatar-2.png',
+      },
+      {
+        firstName: 'Emma',
+        lastName: 'Bernard',
+        email: 'emma.bernard@example.com',
+        password: 'password',
+        role: 'user',
+        phoneNumber: '+33634567890',
+        isVerified: true,
+        lastLoginAt: DateTime.now().minus({ days: 5 }),
+        currentPlanId: 1,
+        isOnTrial: false,
+        trialEndsAt: DateTime.now().minus({ days: 10 }),
+        avatar: 'avatar-3.png',
+      },
+      {
+        firstName: 'Lucas',
+        lastName: 'Petit',
+        email: 'lucas.petit@example.com',
+        password: 'password',
+        role: 'user',
+        phoneNumber: '+33645678901',
+        isVerified: false,
+        lastLoginAt: DateTime.now(),
+        currentPlanId: 3,
+        isOnTrial: true,
+        trialEndsAt: DateTime.now().plus({ days: 28 }),
+        avatar: 'avatar-4.png',
+      },
+      {
+        firstName: 'Chloé',
+        lastName: 'Moreau',
+        email: 'chloe.moreau@example.com',
+        password: 'password',
+        role: 'user',
+        phoneNumber: '+33656789012',
+        isVerified: true,
+        lastLoginAt: DateTime.now().minus({ days: 1 }),
+        currentPlanId: 2,
+        isOnTrial: false,
+        trialEndsAt: DateTime.now().minus({ days: 5 }),
+        avatar: 'avatar-5.png',
+      },
+    ])
+  }
 }
