@@ -113,7 +113,7 @@
                 "placeholder": "••••••••",
                 "hint": "Password must be at least 8 characters long"
             },
-            "submit": "Create account"
+            "submit": "Get started"
         },
         "already_account": "Already have an account?"
     },

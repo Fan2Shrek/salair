@@ -113,7 +113,7 @@
                 "placeholder": "••••••••",
                 "hint": "Le mot de passe doit contenir au moins 8 caractères"
             },
-            "submit": "Créer un compte"
+            "submit": "Commencer"
         },
         "already_account": "Vous avez déjà un compte ?"
     },
