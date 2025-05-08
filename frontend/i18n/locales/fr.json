@@ -89,8 +89,33 @@
             },
             "password": {
                 "label": "Mot de passe"
-            }
-        }
+            },
+            "remember_me": "Se souvenir de moi",
+            "forgot_password": "Mot de passe oublié ?",
+            "submit": "Se connecter"
+        },
+        "no_account": "Vous n'avez pas encore de compte ?"
+    },
+    "signup": {
+        "title": "Créer un compte",
+        "subtitle": "Remplissez le formulaire ci-dessous pour commencer",
+        "form": {
+            "name": {
+                "label": "Nom complet",
+                "placeholder": "John Doe"
+            },
+            "email": {
+                "label": "Adresse email",
+                "placeholder": "john{'@'}exemple.fr"
+            },
+            "password": {
+                "label": "Mot de passe",
+                "placeholder": "••••••••",
+                "hint": "Le mot de passe doit contenir au moins 8 caractères"
+            },
+            "submit": "Créer un compte"
+        },
+        "already_account": "Vous avez déjà un compte ?"
     },
     "copyright": "Tous droits réservés."
 }

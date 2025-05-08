@@ -19,19 +19,19 @@
         } else {
             if (result.data?.errors) {
                 if (result.data.errors[0].message === 'Invalid user credentials') {
-                    error('Une erreur est survenue', 'Votre email ou mot de passe est incorrect')
-                    return
+                    error('Une erreur est survenue', 'Votre email ou mot de passe est incorrect');
+                    return;
                 }
             }
 
-            error('Une erreur est survenue', result.error)
+            error('Une erreur est survenue', result.error);
         }
     };
 </script>
 
 <template>
     <main class="w-full h-full flex">
-        <section class="w-1/2 relative flex items-center justify-center">
+        <section class="w-1/2 relative flex flex-col items-center justify-center">
             <div
                 class="flex items-center gap-3 rounded-lg hover:bg-primary-hover p-2 cursor-pointer absolute top-8 left-8"
                 @click="navigateTo('/')"
@@ -69,19 +69,23 @@
                         <div class="flex gap-2 items-center">
                             <UCheckbox id="remember-check" v-model="rememberMe" size="sm" name="remember-me" />
                             <label for="remember-check" class="text-sm text-secondary font-medium">
-                                Remember me
+                                {{ $t('login.form.remember_me') }}
                             </label>
                         </div>
-                        <ULink size="sm" to="#">Forgot password?</ULink>
+                        <ULink size="sm" to="#">{{ $t('login.form.forgot_password') }}</ULink>
                     </div>
-                    <UButton class="mt-5 sm:mt-6 w-full justify-center" type="submit">Submit</UButton>
+                    <UButton class="mt-5 sm:mt-6 w-full justify-center" type="submit">{{
+                        $t('login.form.submit')
+                    }}</UButton>
                 </form>
-                <div class="mt-8 flex gap-1 justify-center">
-                    <p class="text-tertiary">Don’t have an account?</p>
-                    <ULink to="/signup">Sign up</ULink>
-                </div>
             </div>
-            <p class="absolute bottom-8 left-8 text-tertiary text-sm">© Salair {{ new Date().getFullYear() }}</p>
+            <div class="mt-8 flex gap-1 justify-center">
+                <p class="text-tertiary">{{ $t('login.no_account') }}</p>
+                <ULink to="/signup">{{ $t('general.sign_up') }}</ULink>
+            </div>
+            <p class="absolute bottom-8 left-8 text-tertiary text-sm">
+                © Salair {{ new Date().getFullYear() }} {{ $t('copyright') }}
+            </p>
             <div class="flex items-center gap-2 absolute bottom-8 right-8">
                 <MailIcon class="text-fg-quaternary size-4" />
                 <ULink to="mailto:help@salair.fr" class="text-tertiary text-sm">help@salair.fr</ULink>

@@ -89,8 +89,33 @@
             },
             "password": {
                 "label": "Password"
-            }
-        }
+            },
+            "remember_me": "Remember me",
+            "forgot_password": "Forgot password?",
+            "submit": "Log in"
+        },
+        "no_account": "Don't have an account yet?"
+    },
+    "signup": {
+        "title": "Create an account",
+        "subtitle": "Fill in the form below to get started",
+        "form": {
+            "name": {
+                "label": "Full name",
+                "placeholder": "John Doe"
+            },
+            "email": {
+                "label": "Email address",
+                "placeholder": "john{'@'}example.com"
+            },
+            "password": {
+                "label": "Password",
+                "placeholder": "••••••••",
+                "hint": "Password must be at least 8 characters long"
+            },
+            "submit": "Create account"
+        },
+        "already_account": "Already have an account?"
     },
     "copyright": "All rights reserved."
 }
