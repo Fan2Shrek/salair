@@ -8,9 +8,9 @@
 </script>
 
 <template>
-    <div class="fixed top-3 w-full z-10 px-4 sm:px-6">
+    <div class="fixed md:top-3 w-full z-10 px-4 sm:px-6">
         <header
-            class="max-w-6xl w-full mx-auto rounded-2xl border border-secondary-alt px-4 py-3 flex items-center justify-between bg-primary shadow-xs"
+            class="md:max-w-6xl w-full md:mx-auto rounded-2xl md:border border-secondary-alt md:px-4 py-3 flex items-center justify-between md:bg-primary md:shadow-xs"
             role="banner"
         >
             <div
