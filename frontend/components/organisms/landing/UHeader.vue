@@ -10,7 +10,7 @@
 <template>
     <div class="fixed md:top-3 w-full z-10 px-4 sm:px-6">
         <header
-            class="md:max-w-6xl w-full md:mx-auto rounded-2xl md:border border-secondary-alt md:px-4 py-3 flex items-center justify-between md:bg-primary md:shadow-xs"
+            class="md:max-w-6xl w-full max-w-screen-md md:mx-auto rounded-2xl md:border border-secondary-alt md:px-4 py-3 flex items-center justify-between md:bg-primary md:shadow-xs"
             role="banner"
         >
             <div
@@ -21,7 +21,6 @@
                 <p class="text-primary font-semibold text-lg">Salair</p>
             </div>
 
-            <!-- Navigation principale - visible uniquement sur desktop -->
             <nav class="hidden md:block flex-grow mx-4" aria-label="Navigation principale">
                 <ul class="flex items-center gap-6">
                     <li>
