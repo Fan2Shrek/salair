@@ -10,7 +10,7 @@
         backgroundSize?: 'sm' | 'md' | 'lg';
     }
 
-    const _props = withDefaults(defineProps<BaseModalProps>(), {
+    const props = withDefaults(defineProps<BaseModalProps>(), {
         closeButton: true,
         background: 'empty',
         backgroundSize: 'sm',
@@ -35,16 +35,32 @@
         emit('close');
     }
 
-    watch(() => _props.isOpen, (isOpen: boolean) => {
+    // Fonction pour gérer l'appui sur la touche Escape
+    function handleEscape(e: KeyboardEvent) {
+        if (props.isOpen && e.key === 'Escape') {
+            close();
+        }
+    }
+
+    watch(() => props.isOpen, (isOpen: boolean) => {
         if (isOpen) {
             document.body.classList.toggle('overflow-hidden');
+            document.addEventListener('keydown', handleEscape);
         } else {
             document.body.classList.toggle('overflow-hidden');
+            document.removeEventListener('keydown', handleEscape);
+        }
+    })
+
+    onMounted(() => {
+        if (props.isOpen) {
+            document.addEventListener('keydown', handleEscape);
         }
     })
 
     onUnmounted(() => {
         document.body.classList.remove('overflow-hidden');
+        document.removeEventListener('keydown', handleEscape);
     })
 </script>
 
