@@ -15,6 +15,8 @@ export default class extends BaseSchema {
       table.integer('current_plan_id').notNullable()
       table.boolean('is_on_trial').defaultTo(false)
       table.timestamp('trial_ends_at').nullable()
+      table.string('avatar').nullable()
+      table.enum('role', ['user', 'admin']).notNullable().defaultTo('user')
 
       table.timestamp('last_login_at').nullable()
       table.timestamp('created_at').notNullable()

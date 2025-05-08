@@ -27,6 +27,9 @@ export default class User extends compose(BaseModel, AuthFinder) {
   declare password: string
 
   @column()
+  declare role: 'user' | 'admin'
+
+  @column()
   declare phoneNumber: string | null
 
   @column()
@@ -43,6 +46,9 @@ export default class User extends compose(BaseModel, AuthFinder) {
 
   @column.dateTime()
   declare trialEndsAt: DateTime
+
+  @column()
+  declare avatar: string
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime
