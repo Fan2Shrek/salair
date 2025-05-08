@@ -1,4 +1,13 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+    const onboardingStore = useOnboardingStore();
+    const email = ref<string>('')
+    const router = useRouter()
+
+    function handleSubmit() {
+        onboardingStore.email = email.value
+        router.push('/onboarding')
+    }
+</script>
 
 <template>
     <main class="w-full h-full flex flex-col md:flex-row">
@@ -15,27 +24,13 @@
                     <h1 class="text-primary font-semibold text-2xl sm:text-3xl">{{ $t('signup.title') }}</h1>
                     <p class="text-tertiary font-normal text-sm sm:text-base">{{ $t('signup.subtitle') }}</p>
                 </div>
-                <form class="mt-8 space-y-4 sm:space-y-5" @submit.prevent="console.log('form ok')">
+                <form class="mt-8 space-y-4 sm:space-y-5" @submit.prevent="handleSubmit">
                     <UInput
-                        type="text"
-                        :label="$t('signup.form.name.label')"
-                        name="name"
-                        :placeholder="$t('signup.form.name.placeholder')"
-                        required
-                    />
-                    <UInput
+                        v-model="email"
                         type="email"
                         :label="$t('signup.form.email.label')"
                         name="email"
                         :placeholder="$t('signup.form.email.placeholder')"
-                        required
-                    />
-                    <UInput
-                        type="password"
-                        :label="$t('signup.form.password.label')"
-                        name="password"
-                        :placeholder="$t('signup.form.password.placeholder')"
-                        :hint-text="$t('signup.form.password.hint')"
                         required
                     />
                     <div class="space-y-4 w-full">
