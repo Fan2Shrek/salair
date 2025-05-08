@@ -78,7 +78,7 @@
 <template>
     <NuxtLayout name="landing">
         <main class="w-full relative flex-grow" role="main" aria-labelledby="main-heading">
-            <div class="absolute top-0 flex justify-center w-full">
+            <div class="absolute top-0 md:flex justify-center w-full overflow-hidden">
                 <UChessBackgroundPattern class="mx-auto" aria-hidden="true" />
             </div>
             <section class="pt-19 px-4 sm:px-6 max-w-7xl w-full mx-auto pb-24">
