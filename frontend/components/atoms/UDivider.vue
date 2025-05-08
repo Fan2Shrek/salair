@@ -1,5 +1,5 @@
 <script setup lang="ts"></script>
 
 <template>
-    <div class="bg-gray-200 h-px" />
+    <div class="bg-[var(--border-secondary)] h-px" />
 </template>
