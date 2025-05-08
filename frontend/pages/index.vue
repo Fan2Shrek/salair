@@ -1,7 +1,7 @@
 <script setup lang="ts">
     import PlayCircleIcon from '~/components/atoms/icons/PlayCircleIcon.vue';
 
-    const { t } = useI18n()
+    const { t } = useI18n();
 
     // Définition des métadonnées SEO pour la page
     useSeoMeta({
@@ -81,7 +81,7 @@
             <div class="absolute top-0 flex justify-center w-full">
                 <UChessBackgroundPattern class="mx-auto" aria-hidden="true" />
             </div>
-            <section class="pt-10 md:pt-19 px-4 sm:px-6 max-w-7xl w-full mx-auto pb-24">
+            <section class="pt-19 px-4 sm:px-6 max-w-7xl w-full mx-auto pb-24">
                 <div class="mt-12 md:mt-24 relative">
                     <UBadge icon="dot" variant="modern" class="w-fit mx-auto">Still in development</UBadge>
                     <h1
@@ -96,7 +96,9 @@
                         {{ $t('landing.subtitle') }}
                     </p>
                 </div>
-                <div class="mt-8 md:mt-12 w-fit mx-auto flex flex-col sm:flex-row items-center gap-3 relative">
+                <div
+                    class="mt-8 md:mt-12 w-fit max-md:w-full md:mx-auto flex flex-col sm:flex-row items-center gap-3 max-md:gap-2 max-md:flex-col-reverse relative"
+                >
                     <UButton
                         variant="secondary"
                         size="xl"
@@ -138,7 +140,7 @@
                         {{ $t('features.description') }}
                     </p>
                 </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-16 mt-16">
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-16 mt-16 max-md:px-8">
                     <div class="flex flex-col gap-4" itemscope itemtype="https://schema.org/Service">
                         <div
                             class="bg-primary border border-primary p-3 rounded-[10px] w-fit mx-auto shadow-xs text-fg-secondary"
@@ -238,15 +240,19 @@
                         {{ $t('faq.subtitle') }}
                     </p>
                 </div>
-                <div class="mt-16 max-w-3xl w-full mx-auto">
+                <div class="mt-16 max-w-3xl w-full mx-auto max-md:px-6">
                     <UAccordion :items="accordionItems" />
                 </div>
-                <div class="mt-16 px-8 py-8 rounded-2xl bg-secondary w-full">
-                    <div class="max-w-3xl w-full mx-auto space-y-2">
-                        <h3 class="text-primary font-semibold text-xl text-center">{{ $t('faq.more_questions.title') }}</h3>
-                        <p class="text-tertiary text-lg text-center">{{ $t('faq.more_questions.subtitle') }}</p>
+                <div class="w-full px-4">
+                    <div class="mt-16 px-8 py-8 rounded-2xl bg-secondary w-full">
+                        <div class="max-w-3xl w-full mx-auto space-y-2">
+                            <h3 class="text-primary font-semibold text-xl text-center">
+                                {{ $t('faq.more_questions.title') }}
+                            </h3>
+                            <p class="text-tertiary text-lg text-center">{{ $t('faq.more_questions.subtitle') }}</p>
+                        </div>
+                        <UButton class="mt-8 mx-auto">{{ $t('faq.more_questions.button') }}</UButton>
                     </div>
-                    <UButton class="mt-8 mx-auto">{{ $t('faq.more_questions.button') }}</UButton>
                 </div>
             </section>
         </main>
