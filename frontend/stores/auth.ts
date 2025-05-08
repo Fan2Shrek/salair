@@ -1,21 +1,6 @@
 import { defineStore } from 'pinia';
-
-type User = {
-    id: number;
-    firstName: string;
-    lastName: string;
-    email: string;
-    role: string;
-    isVerified: boolean
-    lastLoginAt: string
-    createdAt: string
-    updatedAt: string
-};
-
-type TokenResponse = {
-    access_token: string
-    refresh_token: string
-}
+import type User from '~/types/user';
+import type TokenResponse from '~/types/token_response';
 
 export const useAuthStore = defineStore('auth', {
     state: () => ({
