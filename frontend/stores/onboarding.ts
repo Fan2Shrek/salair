@@ -3,6 +3,7 @@ export const useOnboardingStore = defineStore('onboarding', {
         email: '',
         firstName: '',
         lastName: '',
+        password: '',
         siret: '',
         declarationFrequency: '',
         goals: [] as string[]
@@ -12,5 +13,7 @@ export const useOnboardingStore = defineStore('onboarding', {
         reset() {
             this.$reset()
         }
-    }
+    },
+
+    persist: true
 })

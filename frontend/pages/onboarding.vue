@@ -1,8 +1,9 @@
 <script setup lang="ts">
+    import { StepUserDetails, StepActivity, StepBilling, StepPassword, StepUrssaf } from '#components';
     import BuildingIcon from '~/components/atoms/icons/BuildingIcon.vue';
-import CalendarIcon from '~/components/atoms/icons/CalendarIcon.vue';
-import PasscodeIcon from '~/components/atoms/icons/PasscodeIcon.vue';
-import ReceiptCheckIcon from '~/components/atoms/icons/ReceiptCheckIcon.vue';
+    import CalendarIcon from '~/components/atoms/icons/CalendarIcon.vue';
+    import PasscodeIcon from '~/components/atoms/icons/PasscodeIcon.vue';
+    import ReceiptCheckIcon from '~/components/atoms/icons/ReceiptCheckIcon.vue';
     import UserIcon from '~/components/atoms/icons/UserIcon.vue';
 
     const steps = [
@@ -32,7 +33,36 @@ import ReceiptCheckIcon from '~/components/atoms/icons/ReceiptCheckIcon.vue';
             icon: ReceiptCheckIcon,
         },
     ];
-    const activeTab = ref<number>(1)
+    const activeTab = ref<number>(0);
+    const previousTab = ref<number>(0);
+
+    const direction = computed(() => {
+        return activeTab.value > previousTab.value ? 'left' : 'right';
+    });
+
+    function nextStep() {
+        if (activeTab.value < steps.length - 1) {
+            previousTab.value = activeTab.value;
+            activeTab.value++;
+        }
+    }
+
+    function _prevStep() {
+        if (activeTab.value > 0) {
+            previousTab.value = activeTab.value;
+            activeTab.value--;
+        }
+    }
+
+    onMounted(() => {
+        if (!useOnboardingStore().email) {
+            navigateTo('/signup');
+        }
+        window.addEventListener('popstate', (_event: any) => {
+            console.log('back');
+            history.pushState(null, '', window.location.href);
+        });
+    });
 </script>
 
 <template>
@@ -40,7 +70,7 @@ import ReceiptCheckIcon from '~/components/atoms/icons/ReceiptCheckIcon.vue';
         <section class="max-w-md w-full bg-secondary flex flex-col">
             <div class="pt-8 px-8 flex-grow">
                 <div
-                    class="flex items-center gap-3 rounded-lg hover:bg-primary-hover p-2 cursor-pointer"
+                    class="flex items-center gap-3 rounded-lg hover:bg-secondary-hover p-2 cursor-pointer w-fit"
                     @click="navigateTo('/')"
                 >
                     <ULogo class="size-8" alt="Logo Salair" />
@@ -58,6 +88,44 @@ import ReceiptCheckIcon from '~/components/atoms/icons/ReceiptCheckIcon.vue';
                 </div>
             </div>
         </section>
+        <section class="flex-grow h-full pt-40 pb-24 flex flex-col items-center relative">
+            <UGridBackgroundPattern class="absolute top-0" />
+
+            <Transition :name="`slide-${direction}`" mode="out-in">
+                <div :key="activeTab">
+                    <StepUserDetails v-if="activeTab === 0" :next-step="nextStep" />
+                    <StepPassword v-else-if="activeTab === 1" :next-step="nextStep" />
+                    <StepActivity v-else-if="activeTab === 2" />
+                    <StepUrssaf v-else-if="activeTab === 3" />
+                    <StepBilling v-else-if="activeTab === 4" />
+                </div>
+            </Transition>
+        </section>
     </main>
 </template>
+
+<style scoped>
+    .slide-left-enter-active,
+    .slide-left-leave-active,
+    .slide-right-enter-active,
+    .slide-right-leave-active {
+        transition: all 0.2s;
+    }
+    .slide-left-enter-from {
+        opacity: 0;
+        transform: translate(50px, 0);
+    }
+    .slide-left-leave-to {
+        opacity: 0;
+        transform: translate(-50px, 0);
+    }
+    .slide-right-enter-from {
+        opacity: 0;
+        transform: translate(-50px, 0);
+    }
+    .slide-right-leave-to {
+        opacity: 0;
+        transform: translate(50px, 0);
+    }
+</style>
 
