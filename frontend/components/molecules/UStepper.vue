@@ -21,7 +21,7 @@
         horizontal: '',
     };
 
-    const itemClasses = 'flex gap-4 text-secondary h-fit';
+    const itemClasses = 'flex gap-4 text-secondary h-fit transition duration-200 ease-in-out';
 </script>
 
 <template>
