@@ -34,13 +34,13 @@
                     </li>
                 </ul>
             </nav>
-            
+
             <!-- Boutons d'authentification - visibles uniquement sur desktop -->
             <div v-if="!authStore.isAuthenticated" class="hidden md:flex items-center gap-3">
                 <LanguageSwitcher format="icon" />
                 <UButton variant="secondary" @click="navigateTo('/login')">{{ $t('general.login') }}</UButton>
                 <UButton @click="navigateTo('/signup')">{{ $t('general.sign_up') }}</UButton>
-</div>
+            </div>
             <div v-else class="hidden md:flex items-center gap-3">
                 <LogoutButton />
             </div>
@@ -53,7 +53,14 @@
                 aria-controls="mobile-menu"
                 @click="toggleMobileMenu"
             >
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true"
+                >
                     <path
                         d="M3 12H21M3 6H21M3 18H21"
                         stroke="currentColor"
@@ -78,7 +85,7 @@
                 <ul class="flex flex-col space-y-4 py-4">
                     <li><ULink to="#" variant="secondary" class="text-lg">Product</ULink></li>
                     <li><ULink to="#" variant="secondary" class="text-lg">About</ULink></li>
-                    <li><ULink to="#" variant="secondary" class="text-lg">Pricing</ULink></li>
+                    <li><ULink to="/pricing" variant="secondary" class="text-lg">Pricing</ULink></li>
                 </ul>
                 <div class="flex flex-col space-y-3 pt-4 border-t border-secondary">
                     <UButton
@@ -87,9 +94,9 @@
                         class="w-full"
                         @click="navigateTo('/login')"
                         >Log in</UButton
->
-                    <UButton v-if="!authStore.isAuthenticated" class="w-full">Sign in</UButton>
-<LogoutButton v-else />
+                    >
+                    <UButton v-if="!authStore.isAuthenticated" class="w-full" @click="navigateTo('/signup')">Sign in</UButton>
+                    <LogoutButton v-else />
                 </div>
             </nav>
         </div>
