@@ -6,12 +6,29 @@ import { DateTime } from 'luxon'
 import * as crypto from 'node:crypto'
 
 export default class AuthController {
-  async register({ request }: HttpContext) {
+  async register({ request, auth }: HttpContext) {
     const data = await request.validateUsing(registerValidator)
 
     const user = await User.create(data)
 
-    return User.accessTokens.create(user)
+    const accessToken = await auth.use('api').createToken(user, ['*'], {
+      expiresIn: '10 minutes',
+    })
+
+    const refreshTokenString = crypto.randomBytes(40).toString('hex')
+    await RefreshToken.create({
+      userId: user.id,
+      token: refreshTokenString,
+      expiresAt: DateTime.now().plus({ days: 30 }),
+    })
+
+    user.lastLoginAt = DateTime.now()
+    await user.save()
+
+    return {
+      access_token: accessToken.value?.release(),
+      refresh_token: refreshTokenString,
+    }
   }
 
   async login({ request, auth }: HttpContext) {
