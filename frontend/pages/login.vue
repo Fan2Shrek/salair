@@ -15,7 +15,11 @@
         const result = await authStore.login(email.value, password.value);
 
         if (result.success) {
-            router.push('/');
+            if (!authStore.user.company) {
+                router.push('/onboarding');
+            } else {
+                router.push('/');
+            }
         } else {
             if (result.data?.errors) {
                 if (result.data.errors[0].message === 'Invalid user credentials') {

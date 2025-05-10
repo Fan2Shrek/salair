@@ -1,4 +1,8 @@
 <script setup lang="ts">
+    definePageMeta({
+        middleware: 'auth'
+    })
+
     const onboardingStore = useOnboardingStore();
     const email = ref<string>('')
     const router = useRouter()

@@ -36,6 +36,7 @@
     const activeTab = ref<number>(0);
     const previousTab = ref<number>(0);
     const onboardingStore = useOnboardingStore();
+    const authStore = useAuthStore()
 
     const direction = computed(() => {
         return activeTab.value > previousTab.value ? 'left' : 'right';
@@ -64,10 +65,10 @@
         if (!useOnboardingStore().email) {
             navigateTo('/signup');
         }
-        window.addEventListener('popstate', (_event: any) => {
-            console.log('back');
-            history.pushState(null, '', window.location.href);
-        });
+
+        if (authStore.user && !authStore.user.company) {
+            activeTab.value = 2
+        }
     });
 </script>
 
