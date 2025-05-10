@@ -6,6 +6,8 @@
     const props = defineProps<StepPasswordProps>();
 
     const onboardingStore = useOnboardingStore();
+    const authStore = useAuthStore();
+    const { error: toastError } = useToast();
 
     const password = ref<string>(onboardingStore.password);
     const passwordConfirm = ref<string>('');
@@ -16,10 +18,27 @@
         }
     });
 
-    function handleNextStep() {
+    async function handleNextStep() {
         if (password.value === passwordConfirm.value) {
-            if (props.nextStep) {
-                props.nextStep();
+            try {
+                const { success, error } = await authStore.register({
+                    firstName: onboardingStore.firstName,
+                    lastName: onboardingStore.lastName,
+                    password: password.value,
+                    email: onboardingStore.email,
+                });
+
+                if (success) {
+                    if (props.nextStep) {
+                        props.nextStep();
+                    }
+                } else {
+                    if (error) {
+                        toastError('An error occured', error);
+                    }
+                }
+            } catch {
+                toastError('An error occured', '');
             }
         }
     }
@@ -30,7 +49,9 @@
         <PasscodeIcon class="text-fg-secondary size-7" />
     </div>
     <h2 class="font-semibold text-primary text-3xl mt-8 text-center relative">Mot de passe</h2>
-    <p class="text-tertiary text-center mt-3 relative max-w-90">Choisissez un mot de passe sécurisé pour votre compte</p>
+    <p class="text-tertiary text-center mt-3 relative max-w-90">
+        Choisissez un mot de passe sécurisé pour votre compte
+    </p>
     <div class="max-w-90 mx-auto w-full mt-8 space-y-5 relative">
         <UInput
             v-model="password"
