@@ -102,7 +102,9 @@ export const useAuthStore = defineStore('auth', {
                     data: error.value?.data
                 };
             } catch {
-                console.error('')
+                return { success: false, error: 'Authentication failed' };
+            } finally {
+                this.isLoading = false
             }
         },
 
