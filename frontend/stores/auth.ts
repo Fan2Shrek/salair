@@ -72,6 +72,40 @@ export const useAuthStore = defineStore('auth', {
             }
         },
 
+        async register({ firstName, lastName, email, password }: { firstName: string, lastName: string, email: string, password: string }) {
+            this.isLoading = true
+
+            try {
+                const { $api } = useNuxtApp();
+
+                const { data, error } = await useAuthFetch<TokenResponse>($api('/api/register'), {
+                    method: 'POST',
+                    body: {
+                        firstName,
+                        lastName,
+                        email,
+                        password
+                    }
+                })
+
+                if (data.value && !error.value) {
+                    this.accessToken = data.value.access_token
+                    this.refreshToken = data.value.refresh_token
+
+                    await this.fetchUser();
+                    return { success: true };
+                }
+
+                return {
+                    success: false,
+                    error: error.value?.message || 'Register failed',
+                    data: error.value?.data
+                };
+            } catch {
+                console.error('')
+            }
+        },
+
         async logout() {
             this.isLoading = true;
 
