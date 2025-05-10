@@ -1,12 +1,12 @@
+import type Company from "~/types/company"
+
 export const useOnboardingStore = defineStore('onboarding', {
     state: () => ({
         email: '',
         firstName: '',
         lastName: '',
         password: '',
-        siret: '',
-        declarationFrequency: '',
-        goals: [] as string[]
+        company: {} as Company
     }),
 
     actions: {
