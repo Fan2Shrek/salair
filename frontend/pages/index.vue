@@ -108,7 +108,7 @@
                         aria-label="Voir la démonstration"
                         >Demo</UButton
                     >
-                    <UButton size="xl" class="w-full sm:w-auto mt-3 sm:mt-0" aria-label="S'inscrire à Salair">{{
+                    <UButton size="xl" class="w-full sm:w-auto mt-3 sm:mt-0" aria-label="S'inscrire à Salair" @click="navigateTo('/signup')">{{
                         $t('general.sign_up')
                     }}</UButton>
                 </div>
