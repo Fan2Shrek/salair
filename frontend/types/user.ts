@@ -1,16 +1,19 @@
+import type Company from "./company";
+
 export default interface User {
     id: number;
-    firstName: string | null;
-    lastName: string | null;
+    firstName?: string;
+    lastName?: string;
     email: string;
     role: 'user' | 'admin';
-    phoneNumber: string | null;
-    isVerified: boolean;
+    phoneNumber?: string;
+    isVerified?: boolean;
     lastLoginAt: string;
     currentPlanId: number;
     isOnTrial: boolean;
-    trialEndsAt: string;
-    avatar: string;
+    trialEndsAt?: string;
+    avatar?: string;
     createdAt: string;
-    updatedAt: string | null;
+    updatedAt?: string;
+    company?: Company
 };
