@@ -27,6 +27,7 @@ router
     router.delete('/logout', [AuthController, 'logout']).as('auth.logout')
     router.get('/me', [AuthController, 'me']).as('auth.me').use(middleware.auth())
     router.post('/refresh', [AuthController, 'refresh']).as('auth.refresh')
+    router.post('/check', [AuthController, 'check']).as('auth.check')
   })
   .prefix('/api')
 

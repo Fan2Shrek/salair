@@ -83,4 +83,19 @@ export default class AuthController {
       refresh_token: newRefreshToken,
     }
   }
+
+  async check({ request, response }: HttpContext) {
+    const { email } = request.only(['email'])
+
+    if (!email || typeof email !== 'string') {
+      return response.badRequest({ message: 'Invalid email' })
+    }
+
+    const user = await User.findBy('email', email)
+
+    return response.ok({
+      exists: !!user,
+      message: user ? 'Email already used.' : 'Email available.',
+    })
+  }
 }
