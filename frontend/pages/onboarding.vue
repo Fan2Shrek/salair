@@ -35,6 +35,7 @@
     ];
     const activeTab = ref<number>(0);
     const previousTab = ref<number>(0);
+    const onboardingStore = useOnboardingStore();
 
     const direction = computed(() => {
         return activeTab.value > previousTab.value ? 'left' : 'right';
@@ -54,6 +55,11 @@
         }
     }
 
+    function handleLogoClick() {
+        onboardingStore.reset();
+        navigateTo('/')
+    }
+
     onMounted(() => {
         if (!useOnboardingStore().email) {
             navigateTo('/signup');
@@ -71,7 +77,7 @@
             <div class="pt-8 px-8 flex-grow">
                 <div
                     class="flex items-center gap-3 rounded-lg hover:bg-secondary-hover p-2 cursor-pointer w-fit"
-                    @click="navigateTo('/')"
+                    @click="handleLogoClick"
                 >
                     <ULogo class="size-8" alt="Logo Salair" />
                     <p class="text-primary font-semibold text-lg">Salair</p>

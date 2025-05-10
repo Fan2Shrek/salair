@@ -4,6 +4,7 @@
     const router = useRouter()
 
     function handleSubmit() {
+        onboardingStore.reset();
         onboardingStore.email = email.value
         router.push('/onboarding')
     }

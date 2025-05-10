@@ -3,13 +3,40 @@
         nextStep?: () => void;
     }
 
-    const _props = defineProps<StepUserDetailsProps>();
+    const props = defineProps<StepUserDetailsProps>();
 
     const onboardingStore = useOnboardingStore();
+    const { error: toastError } = useToast();
+    const { $api } = useNuxtApp();
 
     const firstName = ref<string>(onboardingStore.firstName || '');
     const lastName = ref<string>(onboardingStore.lastName || '');
     const email = ref<string>(onboardingStore.email || '');
+
+    async function handleSubmit() {
+        if (firstName.value === '') return
+        if (lastName.value === '') return
+        if (email.value === '') return
+
+        try {
+            const { data, error } = await useAuthFetch<{ exists: boolean, message: string }>($api('/api/check'), {
+                method: 'POST',
+                body: { email: email.value }
+            })
+
+            if (data.value && !error.value) {
+                if (data.value.exists) {
+                    toastError('The email already exists', data.value.message)
+                } else {
+                    if (props.nextStep) {
+                        await props.nextStep();
+                    }
+                }
+            }
+        } catch {
+            toastError('An error occured', '')
+        }
+    }
 
     watch([firstName, lastName, email], ([newFirstName, newLastName, newEmail]) => {
         if (newFirstName !== undefined) onboardingStore.firstName = newFirstName;
@@ -53,6 +80,6 @@
             class="w-full"
         />
     </div>
-    <UButton class="w-full mt-6" @click="nextStep">Continuer</UButton>
+    <UButton class="w-full mt-6" @click="handleSubmit">Continuer</UButton>
 </template>
 
