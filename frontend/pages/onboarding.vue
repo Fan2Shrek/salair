@@ -103,7 +103,7 @@
                     <StepUserDetails v-if="activeTab === 0" :next-step="nextStep" />
                     <StepPassword v-else-if="activeTab === 1" :next-step="nextStep" />
                     <StepActivity v-else-if="activeTab === 2" :next-step="nextStep" />
-                    <StepUrssaf v-else-if="activeTab === 3" />
+                    <StepUrssaf v-else-if="activeTab === 3" :next-step="nextStep" />
                     <StepBilling v-else-if="activeTab === 4" />
                 </div>
             </Transition>

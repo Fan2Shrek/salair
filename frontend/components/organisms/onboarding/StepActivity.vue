@@ -8,12 +8,12 @@
         nextStep?: () => void;
     }
 
-    const selectedProStatus = ref<string>();
-    const siret = ref<string>();
-    const tradeName = ref<string>();
-    const activityDomain = ref<string>();
     const props = defineProps<StepActivityProps>();
     const onboardingStore = useOnboardingStore();
+    const selectedProStatus = ref<string>();
+    const siret = ref<string>(onboardingStore.company.siret || '');
+    const tradeName = ref<string>(onboardingStore.company.tradeName || '');
+    const activityDomain = ref<string>(onboardingStore.company.activity || '');
 
     const proStatusOptions = [
         {
@@ -43,15 +43,15 @@
     ];
 
     function handleNextStep() {
-        if (!selectedProStatus.value) return
-        if (!siret.value && selectedProStatus.value !== 'en_reflexion') return
-        if (!tradeName.value) return
-        if (!activityDomain.value) return
+        if (!selectedProStatus.value) return;
+        if (!siret.value && selectedProStatus.value !== 'en_reflexion') return;
+        if (!tradeName.value) return;
+        if (!activityDomain.value) return;
 
-        onboardingStore.company.activity = activityDomain.value
-        onboardingStore.company.tradeName = tradeName.value
-        onboardingStore.company.siret = siret.value ?? '-'
-        onboardingStore.company.status = selectedProStatus.value
+        onboardingStore.company.activity = activityDomain.value;
+        onboardingStore.company.tradeName = tradeName.value;
+        onboardingStore.company.siret = siret.value ?? '-';
+        onboardingStore.company.status = selectedProStatus.value;
 
         if (props.nextStep) {
             props.nextStep();
