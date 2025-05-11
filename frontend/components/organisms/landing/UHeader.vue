@@ -42,6 +42,9 @@
                 <UButton @click="navigateTo('/signup')">{{ $t('general.sign_up') }}</UButton>
             </div>
             <div v-else class="hidden md:flex items-center gap-3">
+                <UButton v-if="authStore.isAuthenticated" variant="secondary" @click="navigateTo('/app/dashboard')"
+                    >Dashboard</UButton
+                >
                 <LogoutButton />
             </div>
 
@@ -95,7 +98,12 @@
                         @click="navigateTo('/login')"
                         >Log in</UButton
                     >
-                    <UButton v-if="!authStore.isAuthenticated" class="w-full" @click="navigateTo('/signup')">Sign in</UButton>
+                    <UButton v-if="authStore.isAuthenticated" variant="secondary" @click="navigateTo('/app/dashboard')"
+                        >Dashboard</UButton
+                    >
+                    <UButton v-if="!authStore.isAuthenticated" class="w-full" @click="navigateTo('/signup')"
+                        >Sign in</UButton
+                    >
                     <LogoutButton v-else />
                 </div>
             </nav>
