@@ -25,7 +25,7 @@
 
 <template>
     <div
-        class="border border-secondary bg-primary rounded-xl p-4 relative cursor-pointer h-full focus:outline-none focus:ring-2 focus:ring-primary flex gap-3"
+        class="border border-secondary bg-primary rounded-xl p-4 relative cursor-pointer h-full focus:outline-none focus:ring-2 focus:ring-primary flex gap-3 pr-8"
         @click="handleChange"
     >
         <div v-if="icon" class="border border-primary bg-primary p-2 rounded-md shadow-xs h-fit w-fit">
