@@ -49,3 +49,32 @@ router
   })
   .use([middleware.auth(), middleware.admin()])
   .prefix('api')
+
+// Companies routes
+router
+  .group(() => {
+    router
+      .get('/companies', [() => import('#controllers/companies_controller'), 'index'])
+      .as('companies.index')
+      .use(middleware.admin())
+    router
+      .get('/companies/:id', [() => import('#controllers/companies_controller'), 'show'])
+      .as('companies.show')
+    router
+      .post('/companies', [() => import('#controllers/companies_controller'), 'store'])
+      .as('companies.store')
+    router
+      .put('/companies/:id', [() => import('#controllers/companies_controller'), 'update'])
+      .as('companies.update')
+    router
+      .delete('/companies/:id', [() => import('#controllers/companies_controller'), 'destroy'])
+      .as('companies.destroy')
+    router
+      .post('/companies/:id/logo', [
+        () => import('#controllers/companies_controller'),
+        'uploadLogo',
+      ])
+      .as('companies.uploadLogo')
+  })
+  .use([middleware.auth()])
+  .prefix('api')
