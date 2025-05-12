@@ -153,7 +153,7 @@ export default class CompaniesController {
 
       return response.ok({ logoUrl })
     } catch (error) {
-      return response.notFound({ message: 'Company not found' })
+      return response.notFound({ message: 'Company not found', error: error })
     }
   }
 }
