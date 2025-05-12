@@ -1,7 +1,9 @@
 {
     "general": {
         "login": "Se connecter",
-        "sign_up": "Nous rejoindre"
+        "sign_up": "Nous rejoindre",
+        "logout": "Déconnexion",
+        "logging_out": "Déconnexion en cours..."
     },
     "header": {
         "navigation": {

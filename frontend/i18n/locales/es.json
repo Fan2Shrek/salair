@@ -1,7 +1,9 @@
 {
     "general": {
         "login": "Iniciar sesión",
-        "sign_up": "Únete a nosotros"
+        "sign_up": "Únete a nosotros",
+        "logout": "Cerrar sesión",
+        "logging_out": "Cerrando sesión..."
     },
     "header": {
         "navigation": {

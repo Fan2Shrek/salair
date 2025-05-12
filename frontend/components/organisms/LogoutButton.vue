@@ -8,6 +8,6 @@
 
 <template>
     <UButton :disabled="authStore.isLoading" @click="handleLogout">
-        {{ authStore.isLoading ? 'Logging out...' : 'Logout' }}
+        {{ authStore.isLoading ? $t('general.logging_out') : $t('general.logout') }}
     </UButton>
 </template>

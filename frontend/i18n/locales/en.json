@@ -1,7 +1,9 @@
 {
     "general": {
         "login": "Log in",
-        "sign_up": "Join us"
+        "sign_up": "Join us",
+        "logout": "Logout",
+        "logging_out": "Logging out..."
     },
     "header": {
         "navigation": {
