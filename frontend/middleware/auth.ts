@@ -9,6 +9,10 @@ export default defineNuxtRouteMiddleware(async (to) => {
         return navigateTo('/login');
     }
 
+    if (authStore.isAuthenticated && to.path !== '/signup') {
+        return navigateTo('/');
+    }
+
     if (authStore.isAuthenticated && to.path === '/login') {
         return navigateTo('/');
     }
