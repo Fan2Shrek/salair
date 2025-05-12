@@ -64,7 +64,6 @@ export default class CompaniesController {
     try {
       const company = await Company.findOrFail(params.id)
 
-      // Check if user is the owner of the company
       if (company.ownerId !== user.id) {
         return response.forbidden({ message: 'You are not authorized to update this company' })
       }
@@ -102,7 +101,6 @@ export default class CompaniesController {
     try {
       const company = await Company.findOrFail(params.id)
 
-      // Check if user is the owner of the company
       if (company.ownerId !== user.id) {
         return response.forbidden({ message: 'You are not authorized to delete this company' })
       }
@@ -124,14 +122,12 @@ export default class CompaniesController {
     try {
       const company = await Company.findOrFail(params.id)
 
-      // Check if user is the owner of the company
       if (company.ownerId !== user.id) {
         return response.forbidden({
           message: 'You are not authorized to upload a logo for this company',
         })
       }
 
-      // Handle logo upload
       const logo = request.file('logo', {
         size: '2mb', // Limit file size to 2MB
         extnames: ['jpg', 'jpeg', 'png', 'webp'], // Allow only image files
@@ -145,17 +141,13 @@ export default class CompaniesController {
         })
       }
 
-      // Generate a unique filename for the logo
       const filename = `${randomUUID()}.${logo.extname}`
       const key = `companies/${company.id}/logos/${filename}`
 
-      // Upload the file to the S3 bucket
       await logo.moveToDisk(key)
 
-      // Generate the public URL for the uploaded file
       const logoUrl = logo.meta.url
 
-      // Update the company with the new logo URL
       company.logoUrl = logoUrl
       await company.save()
 
