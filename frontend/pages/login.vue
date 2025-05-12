@@ -18,7 +18,7 @@
             if (!authStore.user.company) {
                 router.push('/onboarding');
             } else {
-                router.push('/');
+                router.push('/app/dashboard');
             }
         } else {
             if (result.data?.errors) {
