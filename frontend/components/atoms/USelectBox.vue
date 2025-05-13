@@ -10,7 +10,7 @@
 
     interface SelectBoxProps {
         placeholder?: string
-        searchInput: boolean
+        searchInput?: boolean
         icon?: Component | null
         modelValue: any
         multiple?: boolean
@@ -36,7 +36,8 @@
         disabled: false,
         size: 'sm',
         required: false,
-        position: 'bottom-left'
+        position: 'bottom-left',
+        searchInput: false
     });
 
     const emit = defineEmits<{
