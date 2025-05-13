@@ -18,9 +18,11 @@
     const isActive = computed(() => props.to === route.path);
     const isOpen = ref(props.defaultOpen);
 
-    const toggleOpen = () => {
+    const handleClick = () => {
         if (props.collapsible) {
             isOpen.value = !isOpen.value;
+        } else {
+            navigateTo(props.to)
         }
     };
 
@@ -50,7 +52,7 @@
             :is="to && !collapsible ? 'NuxtLink' : 'div'"
             :to="to && !collapsible ? to : undefined"
             :class="[baseClasses, { '!bg-active hover:!bg-secondary-hover': isActive }]"
-            @click="toggleOpen"
+            @click="handleClick"
         >
             <component :is="icon" v-if="icon" class="size-5 text-fg-quaternary" />
             <p
