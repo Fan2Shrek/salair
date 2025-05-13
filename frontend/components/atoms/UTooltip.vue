@@ -157,24 +157,55 @@
     >
         <slot />
 
-        <div
-            v-if="tooltipVisible"
-            ref="tooltipElement"
-            class="fixed z-50 py-2 px-3 bg-black/80 text-white rounded text-sm pointer-events-none transition-opacity duration-150 shadow-md text-center leading-normal"
-            :style="{ maxWidth: maxWidth }"
-            role="tooltip"
-            aria-live="polite"
+        <Transition
+            name="tooltip"
         >
-            {{ text }}
             <div
-                class="absolute w-2 h-2 bg-black/80 rotate-45"
-                :class="{
-                    'bottom-[-4px] left-1/2 -ml-1': position === 'top',
-                    'left-[-4px] top-1/2 -mt-1': position === 'right',
-                    'top-[-4px] left-1/2 -ml-1': position === 'bottom',
-                    'right-[-4px] top-1/2 -mt-1': position === 'left',
-                }"
-            ></div>
-        </div>
+                v-if="tooltipVisible"
+                ref="tooltipElement"
+                class="fixed z-50 py-2 px-3 bg-primary-solid text-white rounded-lg text-xs pointer-events-none shadow-lg text-center tooltip-container"
+                :style="{ maxWidth: maxWidth }"
+                role="tooltip"
+                aria-live="polite"
+            >
+                {{ text }}
+                <div
+                    class="absolute w-2 h-2 bg-primary-solid rotate-45"
+                    :class="{
+                        'bottom-[-4px] left-1/2 -ml-1': position === 'top',
+                        'left-[-4px] top-1/2 -mt-1': position === 'right',
+                        'top-[-4px] left-1/2 -ml-1': position === 'bottom',
+                        'right-[-4px] top-1/2 -mt-1': position === 'left',
+                    }"
+                ></div>
+            </div>
+        </Transition>
     </div>
 </template>
+
+<style scoped>
+.tooltip-container {
+    transform-origin: center;
+    will-change: transform, opacity;
+}
+
+.tooltip-enter-active {
+    transition: all 0.2s ease-out;
+}
+
+.tooltip-leave-active {
+    transition: all 0.15s ease-in;
+}
+
+.tooltip-enter-from,
+.tooltip-leave-to {
+    opacity: 0;
+    transform: scale(0.95);
+}
+
+.tooltip-enter-to,
+.tooltip-leave-from {
+    opacity: 1;
+    transform: scale(1);
+}
+</style>
