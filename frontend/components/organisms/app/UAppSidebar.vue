@@ -52,37 +52,41 @@
                         <p class="text-tertiary text-sm">{{ authStore.user?.email }}</p>
                     </div>
 
-                    <UPopover trigger="click" content-side="right" content-align="end" :content-side-offset="16">
-                        <UButton variant="tertiary" class="group !p-1.5">
-                            <ChevronSelectorIcon
-                                class="size-5 text-fg-quaternary group-hover:text-fg-quaternary-hover transition duration-200"
-                            />
-                        </UButton>
-                        <template #content>
-                            <div class="bg-secondary-alt border border-secondary shadow-lg rounded-xl w-64">
-                                <div
-                                    class="py-1.5 flex flex-col gap-0.5 border border-secondary rounded-t-[11px] rounded-b-2xl bg-primary"
-                                >
-                                    <div class="px-3.5 py-2 flex items-center gap-2">
-                                        <UserIcon class="size-5 text-fg-quaternary" />
-                                        <p class="text-secondary flex-grow font-semibold text-sm">View profile</p>
+                    <div class="absolute top-1.5 right-1.5">
+                        <UPopover trigger="click" content-side="right" content-align="end" :content-side-offset="16">
+                            <UButton variant="tertiary" class="group !p-1.5">
+                                <ChevronSelectorIcon
+                                    class="size-5 text-fg-quaternary group-hover:text-fg-quaternary-hover transition duration-200"
+                                />
+                            </UButton>
+                            <template #content>
+                                <div class="bg-secondary-alt border border-secondary shadow-lg rounded-xl w-64">
+                                    <div
+                                        class="py-1.5 flex flex-col gap-0.5 border border-secondary rounded-t-[11px] rounded-b-2xl bg-primary"
+                                    >
+                                        <div class="px-3.5 py-2 flex items-center gap-2">
+                                            <UserIcon class="size-5 text-fg-quaternary" />
+                                            <p class="text-secondary flex-grow font-semibold text-sm">View profile</p>
+                                        </div>
+                                        <div class="px-3.5 py-2 flex items-center gap-2">
+                                            <SettingsIcon class="size-5 text-fg-quaternary" />
+                                            <p class="text-secondary flex-grow font-semibold text-sm">
+                                                Account settings
+                                            </p>
+                                        </div>
+                                        <div class="px-3.5 py-2 flex items-center gap-2">
+                                            <BookOpenIcon class="size-5 text-fg-quaternary" />
+                                            <p class="text-secondary flex-grow font-semibold text-sm">View profile</p>
+                                        </div>
                                     </div>
                                     <div class="px-3.5 py-2 flex items-center gap-2">
-                                        <SettingsIcon class="size-5 text-fg-quaternary" />
-                                        <p class="text-secondary flex-grow font-semibold text-sm">Account settings</p>
-                                    </div>
-                                    <div class="px-3.5 py-2 flex items-center gap-2">
-                                        <BookOpenIcon class="size-5 text-fg-quaternary" />
-                                        <p class="text-secondary flex-grow font-semibold text-sm">View profile</p>
+                                        <LogoutIcon class="size-5 text-fg-quaternary" />
+                                        <p class="text-secondary flex-grow font-semibold text-sm">Se déconnecter</p>
                                     </div>
                                 </div>
-                                <div class="px-3.5 py-2 flex items-center gap-2">
-                                    <LogoutIcon class="size-5 text-fg-quaternary" />
-                                    <p class="text-secondary flex-grow font-semibold text-sm">Se déconnecter</p>
-                                </div>
-                            </div>
-                        </template>
-                    </UPopover>
+                            </template>
+                        </UPopover>
+                    </div>
                 </div>
             </div>
         </div>
