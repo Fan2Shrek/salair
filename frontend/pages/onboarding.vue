@@ -74,7 +74,7 @@
 
 <template>
     <main class="h-full w-full flex">
-        <section class="max-w-md w-full bg-secondary flex flex-col">
+        <section class="max-w-md w-full bg-secondary flex flex-col fixed h-full z-20">
             <div class="pt-8 px-8 flex-grow">
                 <div
                     class="flex items-center gap-3 rounded-lg hover:bg-secondary-hover p-2 cursor-pointer w-fit"
@@ -95,7 +95,7 @@
                 </div>
             </div>
         </section>
-        <section class="flex-grow h-full pt-40 pb-24 flex flex-col items-center relative">
+        <section class="flex-grow h-full pt-40 pb-24 flex flex-col items-center relative pl-[448px]">
             <UGridBackgroundPattern class="absolute top-0" />
 
             <Transition :name="`slide-${direction}`" mode="out-in">
