@@ -9,9 +9,9 @@
     const _props = defineProps<StepBillingProps>();
     const selectedBillingType = ref<string>();
     const selectedCurrency = ref<string>();
-    const defaultNote = ref<string>();
+    const defaultNote = ref<string>(onboardingStore.company.defaultInvoiceNote || '');
     const logo = ref<File>();
-    const { upload, isSuccess } = useFileUploadProgress();
+    const { upload, isSuccess, responseData } = useFileUploadProgress();
     const { $api } = useNuxtApp();
     const { error: toastError, success: toastSuccess } = useToast();
     const authStore = useAuthStore();
@@ -43,13 +43,20 @@
     ];
 
     async function handleNextStep() {
-        if (!selectedBillingType.value) return;
-        if (!selectedCurrency.value) return;
+        if (!selectedBillingType.value) {
+            toastError('Erreur', 'Veuillez sélectionner un type de facturation');
+            return;
+        }
+        
+        if (!selectedCurrency.value) {
+            toastError('Erreur', 'Veuillez sélectionner une devise');
+            return;
+        }
 
         isLoading.value = true;
 
         try {
-            console.log('Sending values', {
+            const companyData = {
                 siret: onboardingStore.company.siret,
                 activity: onboardingStore.company.activity,
                 tradeName: onboardingStore.company.tradeName,
@@ -59,57 +66,67 @@
                 billingType: selectedBillingType.value,
                 currency: selectedCurrency.value,
                 defaultDueDays: onboardingStore.company.defaultDueDays || 0,
-                defaultInvoiceNote: onboardingStore.company.defaultInvoiceNote || '',
-            });
+                defaultInvoiceNote: defaultNote.value || onboardingStore.company.defaultInvoiceNote || '',
+            };
 
             const { data, error } = await useAuthFetch<Company>($api('/api/companies'), {
                 method: 'POST',
-                body: {
-                    siret: onboardingStore.company.siret,
-                    activity: onboardingStore.company.activity,
-                    tradeName: onboardingStore.company.tradeName,
-                    urssafFrequency: onboardingStore.company.urssafFrequency,
-                    businessStartDate: onboardingStore.company.businessStartDate,
-                    isVatPayer: onboardingStore.company.isVatPayer,
-                    billingType: selectedBillingType.value,
-                    currency: selectedCurrency.value,
-                    defaultDueDays: onboardingStore.company.defaultDueDays,
-                    defaultInvoiceNote: onboardingStore.company.defaultInvoiceNote,
-                },
+                body: companyData,
             });
 
             if (error.value) {
-                toastError('An error occured while creating company', error.value.message);
+                toastError('Une erreur est survenue lors de la création de l\'entreprise', error.value.message);
+                isLoading.value = false;
+                return;
             }
 
             if (data.value && !error.value) {
                 onboardingStore.company.id = data.value.id;
-
-                authStore.user!.company = data.value
+                authStore.user!.company = data.value;
+            } else {
+                throw new Error('Aucune donnée reçue du serveur');
             }
-        } catch {
-            console.error('error');
+        } catch (error) {
+            console.error('Erreur lors de la création de l\'entreprise:', error);
+            toastError('Erreur', 'Une erreur inattendue est survenue');
+            isLoading.value = false;
             return;
         }
 
-        if (logo.value) {
-            upload(logo.value, $api(`/api/companies/${onboardingStore.company.id}/logo`));
-
-            if (isSuccess) {
-                toastSuccess('Logo uploadé', '');
-                isLoading.value = false;
-                navigateTo('/app/dashboard')
-            } else {
-                return;
+        try {
+            if (logo.value) {
+                await upload(logo.value, $api(`/api/companies/${onboardingStore.company.id}/logo`));
+                
+                if (isSuccess.value && responseData.value) {
+                    toastSuccess('Logo uploadé', responseData.value.logoUrl);
+                    authStore.user!.company!.logoUrl = responseData.value.logoUrl as string;
+                }
             }
-        } else {
+            
             isLoading.value = false;
-            navigateTo('/app/dashboard')
+            navigateTo('/app/dashboard');
+        } catch (error) {
+            console.error('Erreur lors du téléchargement du logo:', error);
+            isLoading.value = false;
+            toastError('Erreur', 'Une erreur est survenue lors du téléchargement du logo');
         }
     }
 
-    const handleFileUpload = (file: File) => {
-        logo.value = file;
+    const handleFileUpload = (file: File | null) => {
+        if (file) {
+            if (!file.type.startsWith('image/')) {
+                toastError('Erreur', 'Veuillez sélectionner un fichier image valide');
+                return;
+            }
+            
+            const maxSize = 2 * 1024 * 1024; // 2MB
+            if (file.size > maxSize) {
+                toastError('Erreur', 'La taille du logo ne doit pas dépasser 2MB');
+                return;
+            }
+            
+            logo.value = file;
+        }
     };
 </script>
 
