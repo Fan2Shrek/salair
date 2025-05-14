@@ -87,7 +87,7 @@ export default class UsersController {
       const filename = `${randomUUID()}.${avatarFile.extname}`
       const key = `users/${user.id}/logos/${filename}`
 
-      avatarFile.moveToDisk(key)
+      await avatarFile.moveToDisk(key)
 
       user.avatar = avatarFile.meta.url
       await user.save()

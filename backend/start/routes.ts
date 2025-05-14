@@ -30,7 +30,7 @@ router
     router.post('/check', [AuthController, 'check']).as('auth.check')
     router
       .patch('/me/avatar', [UsersController, 'updateAvatar'])
-      .as('auth.updateAvatar')
+      .as('auth.update_avatar')
       .use(middleware.auth())
   })
   .prefix('/api')
