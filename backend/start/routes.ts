@@ -28,6 +28,10 @@ router
     router.get('/me', [AuthController, 'me']).as('auth.me').use(middleware.auth())
     router.post('/refresh', [AuthController, 'refresh']).as('auth.refresh')
     router.post('/check', [AuthController, 'check']).as('auth.check')
+    router
+      .patch('/me/avatar', [UsersController, 'updateAvatar'])
+      .as('auth.updateAvatar')
+      .use(middleware.auth())
   })
   .prefix('/api')
 
@@ -45,6 +49,7 @@ router
     router.get('/users/:id', [UsersController, 'show'])
     router.post('/users', [UsersController, 'store'])
     router.put('/users/:id', [UsersController, 'update'])
+    router.patch('/users/:id/avatar', [UsersController, 'updateAvatar'])
     router.delete('/users/:id', [UsersController, 'destroy'])
   })
   .use([middleware.auth(), middleware.admin()])
