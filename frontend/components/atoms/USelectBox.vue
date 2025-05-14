@@ -146,7 +146,7 @@
         });
     });
     
-    const baseClasses = 'border bg-primary rounded-lg focus:ring-2 focus:border-transparent focus:outline-none placeholder:text-placeholder shadow-xs w-full';
+    const baseClasses = 'border bg-primary rounded-lg focus:ring-2 focus:border-transparent focus:outline-none placeholder:text-placeholder text-primary shadow-xs w-full';
     
     const variantClasses = {
         default: 'border-primary focus:ring-primary hover:border-secondary',
