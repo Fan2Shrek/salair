@@ -42,6 +42,7 @@
                 <UButton @click="navigateTo('/signup')">{{ $t('general.sign_up') }}</UButton>
             </div>
             <div v-else class="hidden md:flex items-center gap-3">
+                <LanguageSwitcher format="icon" />
                 <UButton v-if="authStore.isAuthenticated" variant="secondary" @click="navigateTo('/app/dashboard')"
                     >Dashboard</UButton
                 >
