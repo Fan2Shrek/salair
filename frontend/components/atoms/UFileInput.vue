@@ -147,6 +147,8 @@
                 return PNGIcon;
             case 'gif':
                 return IMGIcon;
+            case 'pdf':
+                return PDFIcon;
             default:
                 return PDFIcon;
         }
