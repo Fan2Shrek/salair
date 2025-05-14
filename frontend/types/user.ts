@@ -2,8 +2,8 @@ import type Company from "./company";
 
 export default interface User {
     id: number;
-    firstName?: string;
-    lastName?: string;
+    firstName: string;
+    lastName: string;
     email: string;
     role: 'user' | 'admin';
     phoneNumber?: string;
