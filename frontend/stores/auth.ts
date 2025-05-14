@@ -133,7 +133,7 @@ export const useAuthStore = defineStore('auth', {
         async refresh(): Promise<boolean> {
             try {
                 const { $api } = useNuxtApp();
-                const { data, error } = await useFetch<TokenResponse>($api('/api/token/refresh'), {
+                const { data, error } = await useFetch<TokenResponse>($api('/api/refresh'), {
                     body: {
                         refresh_token: this.refreshToken
                     },
