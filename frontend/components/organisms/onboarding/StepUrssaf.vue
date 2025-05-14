@@ -31,7 +31,7 @@
         if (!selectedFrequency.value) return
         if (!businessStartDate.value) return
         
-        onboardingStore.company.businessStartDate = businessStartDate.value.toString()
+        onboardingStore.company.businessStartDate = businessStartDate.value.toISOString()
         onboardingStore.company.urssafFrequency = selectedFrequency.value
         onboardingStore.company.isVatPayer = isVatPayer.value
 
