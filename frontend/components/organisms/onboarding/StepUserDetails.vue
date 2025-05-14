@@ -14,19 +14,19 @@
     const email = ref<string>(onboardingStore.email || '');
 
     async function handleSubmit() {
-        if (firstName.value === '') return
-        if (lastName.value === '') return
-        if (email.value === '') return
+        if (firstName.value === '') return;
+        if (lastName.value === '') return;
+        if (email.value === '') return;
 
         try {
-            const { data, error } = await useAuthFetch<{ exists: boolean, message: string }>($api('/api/check'), {
+            const { data, error } = await useAuthFetch<{ exists: boolean; message: string }>($api('/api/check'), {
                 method: 'POST',
-                body: { email: email.value }
-            })
+                body: { email: email.value },
+            });
 
             if (data.value && !error.value) {
                 if (data.value.exists) {
-                    toastError('The email already exists', data.value.message)
+                    toastError('The email already exists', data.value.message);
                 } else {
                     if (props.nextStep) {
                         await props.nextStep();
@@ -34,7 +34,7 @@
                 }
             }
         } catch {
-            toastError('An error occured', '')
+            toastError('An error occured', '');
         }
     }
 
@@ -51,7 +51,7 @@
     </div>
     <h2 class="font-semibold text-primary text-3xl mt-8 text-center relative">Vos informations</h2>
     <p class="text-tertiary text-center mt-3 relative">Entrez votre nom complet et votre adresse email</p>
-    <div class="max-w-90 mx-auto w-full mt-8 space-y-5 relative">
+    <form class="max-w-90 mx-auto w-full mt-8 space-y-5 relative" @submit.prevent="handleSubmit">
         <UInput
             v-model="firstName"
             type="text"
@@ -79,7 +79,7 @@
             required
             class="w-full"
         />
-    </div>
-    <UButton class="w-full mt-6" @click="handleSubmit">Continuer</UButton>
+        <UButton class="w-full mt-6" type="submit">Continuer</UButton>
+    </form>
 </template>
 

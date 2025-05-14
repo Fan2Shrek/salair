@@ -52,7 +52,7 @@
     <p class="text-tertiary text-center mt-3 relative max-w-90">
         Choisissez un mot de passe sécurisé pour votre compte
     </p>
-    <div class="max-w-90 mx-auto w-full mt-8 space-y-5 relative">
+    <form class="max-w-90 mx-auto w-full mt-8 space-y-5 relative" @submit.prevent="handleNextStep">
         <UInput
             v-model="password"
             type="password"
@@ -71,7 +71,7 @@
             class="w-full"
             required
         />
-    </div>
-    <UButton class="w-full mt-6" @click="handleNextStep">Continuer</UButton>
+        <UButton class="w-full mt-6" type="submit">Continuer</UButton>
+    </form>
 </template>
 

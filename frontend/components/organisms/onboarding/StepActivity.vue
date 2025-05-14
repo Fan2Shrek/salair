@@ -73,7 +73,11 @@
         </div>
     </Transition>
     <Transition name="slide-fade">
-        <div v-show="selectedProStatus" class="mt-8 relative max-w-5xl mx-auto w-full space-y-5">
+        <form
+            v-if="selectedProStatus"
+            class="mt-8 relative max-w-5xl mx-auto w-full space-y-5"
+            @submit.prevent="handleNextStep"
+        >
             <UInput
                 v-if="selectedProStatus !== 'en_reflexion'"
                 v-model="siret"
@@ -97,9 +101,9 @@
                 label="Nom commercial"
                 class="w-full"
             />
-        </div>
+            <UButton v-if="selectedProStatus" class="w-full mt-6" type="submit">Continuer</UButton>
+        </form>
     </Transition>
-    <UButton v-if="selectedProStatus" class="w-full mt-6" @click="handleNextStep">Continuer</UButton>
 </template>
 
 <style scoped>
