@@ -43,17 +43,18 @@
 </script>
 
 <template>
-    <div :class="['w-full flex gap-2', { 'flex-col': orientation === 'vertical' }]">
-        <div v-for="item in items" :key="item.value" class="w-full">
-            <URadioGroupItem
-                :label="item.label"
-                :value="item.value"
-                :description="item.description"
-                :icon="item.icon"
-                :disabled="disabled"
-                :group-value="selectedValue"
-                @update:group-value="selectedValue = $event"
-            />
-        </div>
+    <div :class="['w-full flex items-stretch gap-2', { 'flex-col': orientation === 'vertical' }]">
+        <URadioGroupItem
+            v-for="item in items"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+            :description="item.description"
+            :icon="item.icon"
+            :disabled="disabled"
+            :group-value="selectedValue"
+            @update:group-value="selectedValue = $event"
+        />
     </div>
 </template>
+
