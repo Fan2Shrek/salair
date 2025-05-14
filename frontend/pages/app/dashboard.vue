@@ -2,6 +2,10 @@
     definePageMeta({
         middleware: 'auth',
     });
+
+    useSeoMeta({
+        title: 'Dashboard'
+    })
 </script>
 
 <template>
