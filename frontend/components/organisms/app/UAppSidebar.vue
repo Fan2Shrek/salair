@@ -12,7 +12,7 @@
             <USidebarHeader />
             <USidebarNavigation />
             <div class="px-4 pb-6 w-full">
-                <UUserProfileMenu :user="authStore.user!" />
+                <UUserProfileMenu v-if="authStore.user" :user="authStore.user" />
             </div>
         </div>
     </aside>
