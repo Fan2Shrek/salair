@@ -4,7 +4,6 @@
     import SettingsIcon from '~/components/atoms/icons/SettingsIcon.vue';
     import BookOpenIcon from '~/components/atoms/icons/BookOpenIcon.vue';
     import LogoutIcon from '~/components/atoms/icons/LogoutIcon.vue';
-    import UMenuLink from '~/components/atoms/UMenuLink.vue';
     import type { MenuLinkItem } from '~/components/atoms/UMenuLink.vue';
     import type User from '~/types/user';
 
@@ -12,24 +11,26 @@
         user: User;
     }
 
+    const { t } = useI18n();
+
     const menuLinks: MenuLinkItem[] = [
         {
             icon: UserIcon,
-            label: 'View profile',
+            label: t('user_menu.profile'),
             action: () => {
                 console.log('View profile clicked');
             },
         },
         {
             icon: SettingsIcon,
-            label: 'Account settings',
+            label: t('user_menu.settings'),
             action: () => {
                 console.log('Account settings clicked');
             },
         },
         {
             icon: BookOpenIcon,
-            label: 'Documentation',
+            label: t('user_menu.documentation'),
             action: () => {
                 console.log('Documentation clicked');
             },
@@ -38,14 +39,14 @@
 
     const logoutLink: MenuLinkItem = {
         icon: LogoutIcon,
-        label: 'Se déconnecter',
+        label: t('general.logout'),
         action: async () => {
             const authStore = useAuthStore();
             const { success } = useToast();
 
             navigateTo('/');
             await authStore.logout();
-            success('Déconnexion réussie', "Vous allez être redirigé vers la page d'accueil");
+            success(t('user_menu.logout_success'), t('user_menu.logout_redirect'));
         },
     };
 

@@ -5,6 +5,13 @@
         "logout": "Logout",
         "logging_out": "Logging out..."
     },
+    "user_menu": {
+        "profile": "View profile",
+        "settings": "Account settings",
+        "documentation": "Documentation",
+        "logout_success": "Successfully logged out",
+        "logout_redirect": "You will be redirected to the home page"
+    },
     "header": {
         "navigation": {
             "product": "Product",

@@ -5,6 +5,13 @@
         "logout": "Cerrar sesión",
         "logging_out": "Cerrando sesión..."
     },
+    "user_menu": {
+        "profile": "Ver perfil",
+        "settings": "Configuración de la cuenta",
+        "documentation": "Documentación",
+        "logout_success": "Cierre de sesión exitoso",
+        "logout_redirect": "Serás redirigido a la página de inicio"
+    },
     "header": {
         "navigation": {
             "product": "Producto",

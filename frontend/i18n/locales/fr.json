@@ -5,6 +5,13 @@
         "logout": "Déconnexion",
         "logging_out": "Déconnexion en cours..."
     },
+    "user_menu": {
+        "profile": "Voir le profil",
+        "settings": "Paramètres du compte",
+        "documentation": "Documentation",
+        "logout_success": "Déconnexion réussie",
+        "logout_redirect": "Vous allez être redirigé vers la page d'accueil"
+    },
     "header": {
         "navigation": {
             "product": "Produit",
