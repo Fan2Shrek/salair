@@ -3,7 +3,8 @@
         "login": "Iniciar sesión",
         "sign_up": "Únete a nosotros",
         "logout": "Cerrar sesión",
-        "logging_out": "Cerrando sesión..."
+        "logging_out": "Cerrando sesión...",
+        "search": "Buscar"
     },
     "user_menu": {
         "profile": "Ver perfil",
@@ -126,5 +127,28 @@
         },
         "already_account": "¿Ya tienes una cuenta?"
     },
-    "copyright": "Todos los derechos reservados."
+    "copyright": "Todos los derechos reservados.",
+    "sidebar": {
+        "home": "Inicio",
+        "dashboard": "Panel de control",
+        "settings": "Configuración"
+    },
+    "pricing": {
+        "meta_title": "Precios",
+        "title": "Precios simples y transparentes",
+        "subtitle": "Creemos que Salair debe ser accesible para todas las empresas, sin importar su tamaño.",
+        "billing": {
+            "monthly": "Facturación mensual",
+            "yearly": "Facturación anual"
+        },
+        "plan": {
+            "popular": "Popular",
+            "per_month": "por mes",
+            "per_year": "por año",
+            "features": "CARACTERÍSTICAS",
+            "free_plan_plus": "Todo lo incluido en nuestro plan gratuito, más...",
+            "get_started": "Comenzar",
+            "chat_with_us": "Habla con nosotros"
+        }
+    }
 }

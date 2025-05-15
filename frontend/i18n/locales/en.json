@@ -3,7 +3,8 @@
         "login": "Log in",
         "sign_up": "Join us",
         "logout": "Logout",
-        "logging_out": "Logging out..."
+        "logging_out": "Logging out...",
+        "search": "Search"
     },
     "user_menu": {
         "profile": "View profile",
@@ -126,5 +127,28 @@
         },
         "already_account": "Already have an account?"
     },
-    "copyright": "All rights reserved."
+    "copyright": "All rights reserved.",
+    "sidebar": {
+        "home": "Home",
+        "dashboard": "Dashboard",
+        "settings": "Settings"
+    },
+    "pricing": {
+        "meta_title": "Pricing",
+        "title": "Simple, transparent pricing",
+        "subtitle": "We believe Salair should be accessible to all companies, no matter the size.",
+        "billing": {
+            "monthly": "Monthly billing",
+            "yearly": "Annual billing"
+        },
+        "plan": {
+            "popular": "Popular",
+            "per_month": "per month",
+            "per_year": "per year",
+            "features": "FEATURES",
+            "free_plan_plus": "Everything in our free plan plus...",
+            "get_started": "Get started",
+            "chat_with_us": "Chat with us"
+        }
+    }
 }

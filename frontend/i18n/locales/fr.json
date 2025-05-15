@@ -3,7 +3,8 @@
         "login": "Se connecter",
         "sign_up": "Nous rejoindre",
         "logout": "Déconnexion",
-        "logging_out": "Déconnexion en cours..."
+        "logging_out": "Déconnexion en cours...",
+        "search": "Rechercher"
     },
     "user_menu": {
         "profile": "Voir le profil",
@@ -126,6 +127,29 @@
         },
         "already_account": "Vous avez déjà un compte ?"
     },
-    "copyright": "Tous droits réservés."
+    "copyright": "Tous droits réservés.",
+    "sidebar": {
+        "home": "Accueil",
+        "dashboard": "Tableau de bord",
+        "settings": "Paramètres"
+    },
+    "pricing": {
+        "meta_title": "Tarifs",
+        "title": "Tarification simple et transparente",
+        "subtitle": "Nous croyons que Salair devrait être accessible à toutes les entreprises, quelle que soit leur taille.",
+        "billing": {
+            "monthly": "Facturation mensuelle",
+            "yearly": "Facturation annuelle"
+        },
+        "plan": {
+            "popular": "Populaire",
+            "per_month": "par mois",
+            "per_year": "par an",
+            "features": "FONCTIONNALITÉS",
+            "free_plan_plus": "Tout ce qui est inclus dans notre plan gratuit, plus...",
+            "get_started": "Commencer",
+            "chat_with_us": "Discuter avec nous"
+        }
+    }
 }
 
