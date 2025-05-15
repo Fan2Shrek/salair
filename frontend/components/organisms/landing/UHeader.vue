@@ -44,7 +44,7 @@
             <div v-else class="hidden md:flex items-center gap-3">
                 <LanguageSwitcher format="icon" />
                 <UButton v-if="authStore.isAuthenticated" variant="secondary" @click="navigateTo('/app/dashboard')"
-                    >Dashboard</UButton
+                    >{{ $t('sidebar.dashboard') }}</UButton
                 >
                 <LogoutButton />
             </div>
@@ -87,9 +87,9 @@
         >
             <nav class="flex flex-col space-y-6" aria-label="Navigation mobile">
                 <ul class="flex flex-col space-y-4 py-4">
-                    <li><ULink to="#" variant="secondary" class="text-lg">Product</ULink></li>
-                    <li><ULink to="#" variant="secondary" class="text-lg">About</ULink></li>
-                    <li><ULink to="/pricing" variant="secondary" class="text-lg">Pricing</ULink></li>
+                    <li><ULink to="#" variant="secondary" class="text-lg">{{ $t('header.navigation.product') }}</ULink></li>
+                    <li><ULink to="#" variant="secondary" class="text-lg">{{ $t('header.navigation.about') }}</ULink></li>
+                    <li><ULink to="/pricing" variant="secondary" class="text-lg">{{ $t('header.navigation.pricing') }}</ULink></li>
                 </ul>
                 <div class="flex flex-col space-y-3 pt-4 border-t border-secondary">
                     <UButton
@@ -97,13 +97,13 @@
                         variant="secondary"
                         class="w-full"
                         @click="navigateTo('/login')"
-                        >Log in</UButton
+                        >{{ $t('general.login') }}</UButton
                     >
                     <UButton v-if="authStore.isAuthenticated" variant="secondary" @click="navigateTo('/app/dashboard')"
-                        >Dashboard</UButton
+                        >{{ $t('sidebar.dashboard') }}</UButton
                     >
                     <UButton v-if="!authStore.isAuthenticated" class="w-full" @click="navigateTo('/signup')"
-                        >Sign in</UButton
+                        >{{ $t('general.sign_up') }}</UButton
                     >
                     <LogoutButton v-else />
                 </div>
