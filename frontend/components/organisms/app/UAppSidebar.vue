@@ -5,6 +5,7 @@
     import UUserProfileMenu from '~/components/molecules/app/UUserProfileMenu.vue';
 
     const authStore = useAuthStore();
+    const { t } = useI18n();
 </script>
 
 <template>
@@ -15,7 +16,7 @@
             <div class="px-4 pb-6 w-full space-y-3">
                 <nav class="w-full mt-1 space-y-1">
                     <ul class="w-full">
-                        <USidebarItem title="Settings" :icon="SettingsIcon" to="#" />
+                        <USidebarItem :title="t('sidebar.settings')" :icon="SettingsIcon" to="#" />
                     </ul>
                 </nav>
                 <UUserProfileMenu v-if="authStore.user" :user="authStore.user" />

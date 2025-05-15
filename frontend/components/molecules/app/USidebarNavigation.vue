@@ -2,9 +2,11 @@
     import HomeIcon from '~/components/atoms/icons/HomeIcon.vue';
     import ChartIcon from '~/components/atoms/icons/ChartIcon.vue';
 
+    const { t } = useI18n();
+
     const navLinks = [
         {
-            title: 'Dashboard',
+            title: t('sidebar.dashboard'),
             link: '/app/dashboard',
             icon: ChartIcon,
         },
@@ -15,7 +17,7 @@
     <div class="mt-4 px-4 flex-grow">
         <nav class="w-full">
             <ul class="w-full">
-                <USidebarItem title="Home" :icon="HomeIcon" to="/" />
+                <USidebarItem :title="$t('sidebar.home')" :icon="HomeIcon" to="/" />
             </ul>
         </nav>
         <UDivider class="mt-1" />
