@@ -2,6 +2,7 @@
 export default {
     content: [],
     darkMode: 'class',
+    plugins: [require('@tailwindcss/typography')],
     theme: {
         extend: {
             colors: {
@@ -426,9 +427,9 @@ export default {
                 18: '4.5rem',
                 19: '4.75rem',
                 82: '20.5rem',
-                90: '22.5rem'
+                90: '22.5rem',
             },
         },
     },
-    plugins: [],
 };
+
