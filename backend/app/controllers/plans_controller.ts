@@ -9,17 +9,21 @@ export default class PlansController {
    */
   public async index({ request, response }: HttpContext) {
     try {
-      const billingCycle = request.qs().billingCycle || 'monthly'
+      const billingCycle = request.qs().billingCycle || 'both'
 
-      if (!['monthly', 'yearly'].includes(billingCycle)) {
+      if (!['monthly', 'yearly', 'both'].includes(billingCycle)) {
         return response.badRequest({
-          error: 'Invalid billing cycle. Must be "monthly" or "yearly"',
+          error: 'Invalid billing cycle. Must be "monthly", "yearly", or "both"',
         })
       }
 
-      const plans = await Plan.query()
-        .where('billingCycle', billingCycle)
-        .orderBy('priceCents', 'asc')
+      let plans
+
+      if (billingCycle === 'both') {
+        plans = await Plan.query().orderBy('priceCents', 'asc')
+      } else {
+        plans = await Plan.query().where('billingCycle', billingCycle).orderBy('priceCents', 'asc')
+      }
 
       return response.ok(plans)
     } catch (error) {
