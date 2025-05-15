@@ -23,12 +23,12 @@
 
 <template>
     <div
-        class="p-2 flex items-center gap-2 rounded-md transition duration-100 ease-in-out cursor-pointer"
+        class="group p-2 flex items-center gap-2 rounded-md transition duration-100 ease-in-out cursor-pointer"
         :class="getBgHoverClass(variant)"
         @click="item.action && item.action()"
     >
         <component :is="item.icon" class="size-5 text-fg-quaternary" />
-        <p class="text-secondary flex-grow font-semibold text-sm">
+        <p class="text-secondary group-hover:text-secondary-hover flex-grow font-semibold text-sm">
             {{ item.label }}
         </p>
     </div>
