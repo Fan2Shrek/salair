@@ -56,7 +56,7 @@ export default class extends BaseSeeder {
       {
         name: 'Essentiel',
         slug: 'essential_yearly',
-        description: 'Essentiel - Abonnement annuel pour indépendants organisés',
+        description: 'Abonnement annuel pour indépendants organisés',
         priceCents: 10000,
         currency: 'EUR',
         billingCycle: 'yearly',
@@ -73,7 +73,7 @@ export default class extends BaseSeeder {
       {
         name: 'Pro',
         slug: 'pro_yearly',
-        description: 'Pro - Abonnement annuel pour les pros et les TPE',
+        description: 'Abonnement annuel pour les pros et les TPE',
         priceCents: 19000,
         currency: 'EUR',
         billingCycle: 'yearly',
