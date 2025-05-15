@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import SearchIcon from '~/components/atoms/icons/SearchIcon.vue';
+
+const { t } = useI18n();
 </script>
 
 <template>
@@ -17,7 +19,7 @@ import SearchIcon from '~/components/atoms/icons/SearchIcon.vue';
         :icon="SearchIcon"
         icon-position="leading"
         class="w-full"
-        placeholder="Search"
+        :placeholder="t('general.search')"
       />
     </form>
   </div>
