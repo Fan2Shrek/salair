@@ -23,7 +23,7 @@
                         {{ $t('privacy_page.intro') }}
                     </p>
                 </div>
-                <div class="max-w-prose w-full mx-auto content pb-24">
+                <div class="max-w-prose w-full mx-auto pb-24">
                     <ContentRenderer v-if="data" :value="data" class="content" />
                 </div>
             </section>
@@ -40,7 +40,7 @@
             @apply text-lg;
         }
 
-        h2 {
+        h1 {
             @apply text-primary;
             @apply font-semibold;
             @apply text-3xl;
@@ -50,7 +50,7 @@
             }
         }
 
-        h3 {
+        h2 {
             @apply text-primary;
             @apply font-semibold;
             @apply text-2xl;
