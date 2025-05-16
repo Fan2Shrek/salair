@@ -10,6 +10,7 @@
 **Email:** <contact@salair.fr>
 
 **SIRET:** 89370453600018
+
 **VAT ID:** Not applicable (VAT-exempt under auto-entrepreneur regime)
 
 ## 2. Hosting

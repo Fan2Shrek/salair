@@ -10,6 +10,7 @@
 **Correo electrónico:** <contact@salair.fr>
 
 **Número SIRET:** 89370453600018
+
 **NIF intracomunitario:** No aplicable (exento de IVA bajo régimen de autoemprendimiento)
 
 ## 2. Alojamiento
