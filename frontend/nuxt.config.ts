@@ -73,7 +73,12 @@ export default defineNuxtConfig({
     },
     content: {
         preview: {
-            api: 'https://api.nuxt.studio'
+            api: 'https://api.nuxt.studio',
+            gitInfo: {
+                name: "salair",
+                owner: "nassimlnd",
+                url: "https://github.com/nassimlnd/salair"
+            }
         }
     }
 });
