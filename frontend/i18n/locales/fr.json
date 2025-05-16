@@ -135,7 +135,8 @@
         "terms": "Conditions",
         "privacy": "Confidentialité",
         "cookies": "Cookies",
-        "terms_of_sales": "Conditions de vente"
+        "terms_of_sales": "Conditions de vente",
+        "legal_notice": "Mentions légales"
     },
     "sidebar": {
         "home": "Accueil",

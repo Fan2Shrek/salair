@@ -50,6 +50,9 @@
                         <li>
                             <NuxtLink to="/sales" variant="secondary" class="!text-quaternary">{{ $t('footer.terms_of_sales') }}</NuxtLink>
                         </li>
+                        <li>
+                            <NuxtLink to="/legal" variant="secondary" class="!text-quaternary">{{ $t('footer.legal_notice') }}</NuxtLink>
+                        </li>
                     </ul>
                 </nav>
             </div>
