@@ -17,11 +17,10 @@
         <main class="w-full flex-grow">
             <section class="pt-19 max-w-7xl mx-auto w-full">
                 <div class="my-24 max-w-3xl w-full mx-auto">
-                    <p class="text-brand-secondary font-semibold text-center">Current as of 15 May 2025</p>
-                    <h1 class="text-primary text-5xl font-semibold text-center mt-3">Privacy Policy</h1>
+                    <p class="text-brand-secondary font-semibold text-center">{{ $t('privacy_page.last_updated') }}</p>
+                    <h1 class="text-primary text-5xl font-semibold text-center mt-3">{{ $t('privacy_page.title') }}</h1>
                     <p class="text-tertiary text-xl text-center mt-6">
-                        Your privacy is important to us at Salair. We respect your privacy regarding any information we
-                        may collect from you across our website.
+                        {{ $t('privacy_page.intro') }}
                     </p>
                 </div>
                 <div class="max-w-prose w-full mx-auto content pb-24">

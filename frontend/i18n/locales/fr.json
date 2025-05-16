@@ -128,10 +128,23 @@
         "already_account": "Vous avez déjà un compte ?"
     },
     "copyright": "Tous droits réservés.",
+    "footer": {
+        "stay_updated": "Restez informé",
+        "email_placeholder": "Entrez votre e-mail",
+        "subscribe": "S'abonner",
+        "terms": "Conditions",
+        "privacy": "Confidentialité",
+        "cookies": "Cookies"
+    },
     "sidebar": {
         "home": "Accueil",
         "dashboard": "Tableau de bord",
         "settings": "Paramètres"
+    },
+    "privacy_page": {
+        "last_updated": "À jour au 15 mai 2025",
+        "title": "Politique de Confidentialité",
+        "intro": "Votre vie privée est importante pour nous chez Salair. Nous respectons votre vie privée concernant toutes les informations que nous pouvons collecter auprès de vous sur notre site web."
     },
     "pricing": {
         "meta_title": "Tarifs",

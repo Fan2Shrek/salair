@@ -27,10 +27,10 @@
                     </nav>
                 </div>
                 <div class="space-y-4 max-md:mt-12 max-md:px-4">
-                    <h4 class="font-semibold text-primary text-sm">Stay up to date</h4>
+                    <h4 class="font-semibold text-primary text-sm">{{ $t('footer.stay_updated') }}</h4>
                     <form class="flex items-center gap-4">
-                        <UInput type="email" name="email" placeholder="Enter your email" class="max-md:flex-grow"/>
-                        <UButton size="lg">Subscribe</UButton>
+                        <UInput type="email" name="email" :placeholder="$t('footer.email_placeholder')" class="max-md:flex-grow"/>
+                        <UButton size="lg">{{ $t('footer.subscribe') }}</UButton>
                     </form>
                 </div>
             </div>
@@ -39,13 +39,13 @@
                 <nav>
                     <ul class="flex items-center gap-4">
                         <li>
-                            <NuxtLink to="#" variant="secondary" class="!text-quaternary">Terms</NuxtLink>
+                            <NuxtLink to="#" variant="secondary" class="!text-quaternary">{{ $t('footer.terms') }}</NuxtLink>
                         </li>
                         <li>
-                            <NuxtLink to="#" variant="secondary" class="!text-quaternary">Privacy</NuxtLink>
+                            <NuxtLink to="/privacy" variant="secondary" class="!text-quaternary">{{ $t('footer.privacy') }}</NuxtLink>
                         </li>
                         <li>
-                            <NuxtLink to="/pricing" variant="secondary" class="!text-quaternary ">Cookies</NuxtLink>
+                            <NuxtLink to="#" variant="secondary" class="!text-quaternary">{{ $t('footer.cookies') }}</NuxtLink>
                         </li>
                     </ul>
                 </nav>
