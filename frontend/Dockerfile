@@ -39,11 +39,8 @@ FROM node:${NODE_VERSION}-alpine AS prod
 WORKDIR /app
 
 # Copie uniquement ce qui est nécessaire à l'exécution
-COPY package.json package-lock.json ./
-COPY --from=builder /app/.output .output
 
-# Installer uniquement les dépendances de production
-RUN npm ci --omit=dev
+COPY --from=builder /app/.output .output
 
 # Port exposé (par défaut pour Nuxt)
 EXPOSE 3000
