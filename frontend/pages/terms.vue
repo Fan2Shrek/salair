@@ -17,14 +17,12 @@
         <main class="w-full flex-grow">
             <section class="pt-19 max-w-7xl mx-auto w-full">
                 <div class="my-24 max-w-3xl w-full mx-auto">
-                    <p class="text-brand-secondary font-semibold text-center">Dernière mise à jour : 16 mai 2025</p>
+                    <p class="text-brand-secondary font-semibold text-center">{{ $t('terms_page.last_updated') }}</p>
                     <h1 class="text-primary text-5xl font-semibold text-center mt-3">
-                        Terms and conditions
+                        {{ $t('terms_page.title') }}
                     </h1>
                     <p class="text-tertiary text-xl text-center mt-6">
-                        By accessing our website, you are agreeing to be bound by these terms of service, all applicable
-                        laws and regulations, and agree that you are responsible for compliance with any applicable
-                        local laws.
+                        {{ $t('terms_page.intro') }}
                     </p>
                 </div>
                 <div class="max-w-prose w-full mx-auto content pb-24">

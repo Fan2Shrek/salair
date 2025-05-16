@@ -146,6 +146,11 @@
         "title": "Privacy Policy",
         "intro": "Your privacy is important to us at Salair. We respect your privacy regarding any information we may collect from you across our website."
     },
+    "terms_page": {
+        "last_updated": "Last updated: May 16, 2025",
+        "title": "Terms and Conditions",
+        "intro": "By accessing our website, you are agreeing to be bound by these terms of service, all applicable laws and regulations, and agree that you are responsible for compliance with any applicable local laws."
+    },
     "pricing": {
         "meta_title": "Pricing",
         "title": "Simple, transparent pricing",
