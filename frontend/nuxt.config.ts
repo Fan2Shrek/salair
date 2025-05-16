@@ -13,7 +13,8 @@ export default defineNuxtConfig({
       '@nuxtjs/i18n',
       '@nuxtjs/sitemap',
       '@nuxtjs/robots',
-      '@nuxt/content'
+      '@nuxt/content',
+      '@nuxthq/studio'
     ],
     i18n: {
         baseUrl: 'https://salair.fr',
