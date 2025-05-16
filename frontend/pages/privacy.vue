@@ -1,8 +1,15 @@
 <script setup lang="ts">
     const { locale } = useI18n();
-    const { data } = await useAsyncData(`privacy-${locale.value}`, () =>
-        queryCollection('content').path(`/privacy.${locale.value}`).first()
-    );
+    const data = ref();
+
+    const loadData = async () => {
+        const result = await useAsyncData(`privacy-${locale.value}`, () =>
+            queryCollection('content').path(`/privacy.${locale.value}`).first()
+        );
+        data.value = result.data.value;
+    };
+
+    watch(locale, loadData, { immediate: true });
 </script>
 
 <template>
