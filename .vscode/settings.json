@@ -12,5 +12,6 @@
     "editor.formatOnSave": false,
     "prettier.singleQuote": true,
     "prettier.printWidth": 120,
-    "editor.detectIndentation": true
+    "editor.detectIndentation": true,
+    "css.customData": [".vscode/tailwind.json"]
 }
