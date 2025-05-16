@@ -5,6 +5,7 @@ Salair is committed to protecting your privacy and complying with the EU General
 ## 2. Data Collected
 
 We collect:
+
 - Identification data: name, email, encrypted password
 - Professional data: company name, SIRET number
 - Payment data (via Stripe)
@@ -13,6 +14,7 @@ We collect:
 ## 3. Purpose
 
 Your data is used to:
+
 - Create and manage your account
 - Provide and improve our services
 - Handle billing and support
@@ -21,6 +23,7 @@ Your data is used to:
 ## 4. Legal Basis
 
 Processing is based on:
+
 - Your consent (cookies, contact forms)
 - Contract execution (subscriptions)
 - Legal obligations (accounting, invoicing)
@@ -28,6 +31,7 @@ Processing is based on:
 ## 5. Data Recipients
 
 We may share data with trusted third-party processors:
+
 - **Stripe** (payments)
 - **MinIO** (file storage)
 - Technical providers (hosting, emailing)
@@ -45,12 +49,13 @@ Salair uses encryption, access control, and regular security audits to protect y
 ## 8. Your Rights
 
 You have the right to:
+
 - Access, modify or delete your data
 - Object to or restrict processing
 - Request data portability
 - Withdraw your consent at any time
 
-To exercise your rights, contact: privacy@salair.fr
+To exercise your rights, contact: <privacy@salair.fr>
 
 ## 9. Cookies
 
@@ -58,5 +63,6 @@ Cookies may be used to improve user experience and gather analytics. You can man
 
 ## 10. Contact
 
-Questions? Contact us at privacy@salair.fr  
+Questions? Contact us at <privacy@salair.fr>
+
 For complaints: [CNIL – www.cnil.fr](https://www.cnil.fr)

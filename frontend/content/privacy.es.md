@@ -5,6 +5,7 @@ Salair se compromete a proteger tus datos personales en cumplimiento con el Regl
 ## 2. Datos recogidos
 
 Recogemos los siguientes datos:
+
 - Datos de identificación: nombre, correo electrónico, contraseña cifrada
 - Datos profesionales: empresa, número SIRET
 - Datos de pago (vía Stripe)
@@ -13,6 +14,7 @@ Recogemos los siguientes datos:
 ## 3. Finalidad del tratamiento
 
 Los datos se utilizan para:
+
 - Crear y administrar tu cuenta
 - Proveer y mejorar nuestros servicios
 - Gestionar facturación y asistencia
@@ -21,6 +23,7 @@ Los datos se utilizan para:
 ## 4. Base legal
 
 El tratamiento se basa en:
+
 - Tu consentimiento (formularios, cookies)
 - Ejecución del contrato (suscripciones)
 - Obligaciones legales (contabilidad, impuestos)
@@ -28,6 +31,7 @@ El tratamiento se basa en:
 ## 5. Destinatarios
 
 Tus datos pueden compartirse con proveedores externos de confianza:
+
 - **Stripe** (procesamiento de pagos)
 - **MinIO** (almacenamiento de archivos)
 - Proveedores técnicos (hosting, email)
@@ -45,12 +49,13 @@ Salair aplica medidas técnicas y organizativas como cifrado, control de acceso 
 ## 8. Tus derechos
 
 Tienes derecho a:
+
 - Acceder, corregir o eliminar tus datos
 - Oponerte o limitar el tratamiento
 - Solicitar portabilidad de datos
 - Retirar tu consentimiento
 
-Puedes ejercer tus derechos escribiendo a: privacy@salair.fr
+Puedes ejercer tus derechos escribiendo a: <privacy@salair.fr>
 
 ## 9. Cookies
 
@@ -58,5 +63,6 @@ Utilizamos cookies para mejorar tu experiencia y obtener estadísticas. Puedes a
 
 ## 10. Contacto
 
-Cualquier duda: privacy@salair.fr  
+Cualquier duda: <privacy@salair.fr>
+
 Para reclamaciones: Agencia Española de Protección de Datos – [www.aepd.es](https://www.aepd.es)
