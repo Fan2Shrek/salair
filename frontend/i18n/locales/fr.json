@@ -147,9 +147,14 @@
         "intro": "Votre vie privée est importante pour nous chez Salair. Nous respectons votre vie privée concernant toutes les informations que nous pouvons collecter auprès de vous sur notre site web."
     },
     "terms_page": {
-        "last_updated": "Dernière mise à jour : 16 mai 2025",
+        "last_updated": "À jour au 16 mai 2025",
         "title": "Conditions Générales d'Utilisation",
         "intro": "En accédant à notre site web, vous acceptez d'être lié par ces conditions d'utilisation, toutes les lois et réglementations applicables, et vous reconnaissez être responsable du respect des lois locales applicables."
+    },
+    "cookies_page": {
+        "last_updated": "À jour au 16 mai 2025",
+        "title": "Politique de Cookies",
+        "intro": "Nous utilisons des cookies pour améliorer votre expérience sur ce site web. Voici plus d'informations sur ce que nous faisons avec les données que nous collectons."
     },
     "pricing": {
         "meta_title": "Tarifs",

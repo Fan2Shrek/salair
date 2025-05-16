@@ -147,9 +147,14 @@
         "intro": "Your privacy is important to us at Salair. We respect your privacy regarding any information we may collect from you across our website."
     },
     "terms_page": {
-        "last_updated": "Last updated: May 16, 2025",
+        "last_updated": "Current as of 16 May 2025",
         "title": "Terms and Conditions",
         "intro": "By accessing our website, you are agreeing to be bound by these terms of service, all applicable laws and regulations, and agree that you are responsible for compliance with any applicable local laws."
+    },
+    "cookies_page": {
+        "last_updated": "Current as of 16 May 2025",
+        "title": "Cookie Policy",
+        "intro": "We use some cookies to help improve your experience on this website. Here's some more info about what we do with information we collect."
     },
     "pricing": {
         "meta_title": "Pricing",

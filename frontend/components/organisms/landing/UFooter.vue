@@ -39,13 +39,16 @@
                 <nav>
                     <ul class="flex items-center gap-4">
                         <li>
-                            <NuxtLink to="#" variant="secondary" class="!text-quaternary">{{ $t('footer.terms') }}</NuxtLink>
+                            <NuxtLink to="/terms" variant="secondary" class="!text-quaternary">{{ $t('footer.terms') }}</NuxtLink>
                         </li>
                         <li>
                             <NuxtLink to="/privacy" variant="secondary" class="!text-quaternary">{{ $t('footer.privacy') }}</NuxtLink>
                         </li>
                         <li>
-                            <NuxtLink to="#" variant="secondary" class="!text-quaternary">{{ $t('footer.cookies') }}</NuxtLink>
+                            <NuxtLink to="/cookies" variant="secondary" class="!text-quaternary">{{ $t('footer.cookies') }}</NuxtLink>
+                        </li>
+                        <li>
+                            <NuxtLink to="/sales" variant="secondary" class="!text-quaternary">Terms of sales</NuxtLink>
                         </li>
                     </ul>
                 </nav>
