@@ -15,11 +15,15 @@ Some services are only available through a paid subscription.
 
 ## 3. Pricing
 
-Prices are shown in euros, inclusive of all taxes (VAT).:brSalair may update prices at any time, with prior notice to subscribers.
+Prices are shown in euros, inclusive of all taxes (VAT).
+
+Salair may update prices at any time, with prior notice to subscribers.
 
 ## 4. Payment
 
-Payment is made securely by credit card via Stripe.:brSubscriptions renew automatically unless cancelled by the user before the renewal date.
+Payment is made securely by credit card via Stripe.
+
+Subscriptions renew automatically unless cancelled by the user before the renewal date.
 
 ## 5. Right of withdrawal
 
@@ -27,7 +31,11 @@ In accordance with Article L221-28 of the French Consumer Code, the right of wit
 
 ## 6. Cancellation
 
-Subscriptions can be cancelled at any time from the user dashboard.:brCancellation will take effect at the end of the current billing period.:brSalair may suspend or terminate a user account for non-payment or misuse.
+Subscriptions can be cancelled at any time from the user dashboard.
+
+Cancellation will take effect at the end of the current billing period.
+
+Salair may suspend or terminate a user account for non-payment or misuse.
 
 ## 7. Liability
 
@@ -35,7 +43,7 @@ Salair strives to provide high-quality services, but cannot be held liable for d
 
 ## 8. Personal data
 
-All data is processed in accordance with our [Privacy Policy](https://salair.fr/privacy).
+All data is processed in accordance with our [Privacy Policy](/cookies.en).
 
 ## 9. Governing law
 

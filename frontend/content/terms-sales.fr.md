@@ -15,11 +15,15 @@ Certains services sont payants et accessibles uniquement via un abonnement.
 
 ## 3. Tarifs
 
-Les prix sont indiqués en euros toutes taxes comprises (TTC) sur le site.:brSalair se réserve le droit de modifier ses tarifs à tout moment, avec information préalable aux utilisateurs concernés.
+Les prix sont indiqués en euros toutes taxes comprises (TTC) sur le site.
+
+Salair se réserve le droit de modifier ses tarifs à tout moment, avec information préalable aux utilisateurs concernés.
 
 ## 4. Modalités de paiement
 
-Le paiement s’effectue par carte bancaire via notre prestataire Stripe, de manière sécurisée.:brLes abonnements sont renouvelés automatiquement à l’échéance, sauf résiliation par l’utilisateur.
+Le paiement s’effectue par carte bancaire via notre prestataire Stripe, de manière sécurisée.
+
+Les abonnements sont renouvelés automatiquement à l’échéance, sauf résiliation par l’utilisateur.
 
 ## 5. Droit de rétractation
 
@@ -27,7 +31,11 @@ Conformément à l’article L221-28 du Code de la consommation, le droit de ré
 
 ## 6. Résiliation
 
-L’abonnement peut être résilié à tout moment depuis l’espace utilisateur.:brLa résiliation prendra effet à la fin de la période d’abonnement en cours.:brSalair peut suspendre ou résilier un compte en cas de non-paiement ou d’utilisation abusive.
+L’abonnement peut être résilié à tout moment depuis l’espace utilisateur.
+
+La résiliation prendra effet à la fin de la période d’abonnement en cours.
+
+Salair peut suspendre ou résilier un compte en cas de non-paiement ou d’utilisation abusive.
 
 ## 7. Responsabilités
 
