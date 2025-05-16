@@ -134,7 +134,8 @@
         "subscribe": "Subscribe",
         "terms": "Terms",
         "privacy": "Privacy",
-        "cookies": "Cookies"
+        "cookies": "Cookies",
+        "terms_of_sales": "Terms of sales"
     },
     "sidebar": {
         "home": "Home",
@@ -155,6 +156,11 @@
         "last_updated": "Current as of 16 May 2025",
         "title": "Cookie Policy",
         "intro": "We use some cookies to help improve your experience on this website. Here's some more info about what we do with information we collect."
+    },
+    "sales_page": {
+        "last_updated": "Current as of 16 May 2025",
+        "title": "Terms and Conditions of Sale",
+        "intro": "By accessing our website or making a purchase, you agree to be bound by these Terms and Conditions of Sale, all applicable laws and regulations, and acknowledge that you are responsible for compliance with any relevant local laws."
     },
     "pricing": {
         "meta_title": "Pricing",

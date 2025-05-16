@@ -134,7 +134,8 @@
         "subscribe": "S'abonner",
         "terms": "Conditions",
         "privacy": "Confidentialité",
-        "cookies": "Cookies"
+        "cookies": "Cookies",
+        "terms_of_sales": "Conditions de vente"
     },
     "sidebar": {
         "home": "Accueil",
@@ -155,6 +156,11 @@
         "last_updated": "À jour au 16 mai 2025",
         "title": "Politique de Cookies",
         "intro": "Nous utilisons des cookies pour améliorer votre expérience sur ce site web. Voici plus d'informations sur ce que nous faisons avec les données que nous collectons."
+    },
+    "sales_page": {
+        "last_updated": "À jour au 16 mai 2025",
+        "title": "Conditions Générales de Vente",
+        "intro": "En accédant à notre site web ou en effectuant un achat, vous acceptez d'être lié par ces Conditions Générales de Vente, toutes les lois et réglementations applicables, et vous reconnaissez être responsable du respect des lois locales pertinentes."
     },
     "pricing": {
         "meta_title": "Tarifs",

@@ -48,7 +48,7 @@
                             <NuxtLink to="/cookies" variant="secondary" class="!text-quaternary">{{ $t('footer.cookies') }}</NuxtLink>
                         </li>
                         <li>
-                            <NuxtLink to="/sales" variant="secondary" class="!text-quaternary">Terms of sales</NuxtLink>
+                            <NuxtLink to="/sales" variant="secondary" class="!text-quaternary">{{ $t('footer.terms_of_sales') }}</NuxtLink>
                         </li>
                     </ul>
                 </nav>

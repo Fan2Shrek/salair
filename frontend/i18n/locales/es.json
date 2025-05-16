@@ -134,7 +134,8 @@
         "subscribe": "Suscribirse",
         "terms": "Términos",
         "privacy": "Privacidad",
-        "cookies": "Cookies"
+        "cookies": "Cookies",
+        "terms_of_sales": "Términos de venta"
     },
     "sidebar": {
         "home": "Inicio",
@@ -155,6 +156,11 @@
         "last_updated": "Actualizado el 16 de mayo de 2025",
         "title": "Política de Cookies",
         "intro": "Utilizamos algunas cookies para ayudar a mejorar su experiencia en este sitio web. Aquí hay más información sobre lo que hacemos con la información que recopilamos."
+    },
+    "sales_page": {
+        "last_updated": "Actualizado el 16 de mayo de 2025",
+        "title": "Términos y Condiciones de Venta",
+        "intro": "Al acceder a nuestro sitio web o realizar una compra, usted acepta estar sujeto a estos Términos y Condiciones de Venta, todas las leyes y regulaciones aplicables, y reconoce que es responsable del cumplimiento de cualquier ley local relevante."
     },
     "pricing": {
         "meta_title": "Precios",
