@@ -162,6 +162,11 @@
         "title": "Terms and Conditions of Sale",
         "intro": "By accessing our website or making a purchase, you agree to be bound by these Terms and Conditions of Sale, all applicable laws and regulations, and acknowledge that you are responsible for compliance with any relevant local laws."
     },
+    "legal_page": {
+        "last_updated": "Current as of 16 May 2025",
+        "title": "Legal Notice",
+        "intro": "This website is published by Salair, responsible for its content. Accessing and using this site implies full acceptance of this legal notice. For any questions, please contact us at contact{'@'}salair.fr."
+    },
     "pricing": {
         "meta_title": "Pricing",
         "title": "Simple, transparent pricing",

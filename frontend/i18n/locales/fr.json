@@ -162,6 +162,11 @@
         "title": "Conditions Générales de Vente",
         "intro": "En accédant à notre site web ou en effectuant un achat, vous acceptez d'être lié par ces Conditions Générales de Vente, toutes les lois et réglementations applicables, et vous reconnaissez être responsable du respect des lois locales pertinentes."
     },
+    "legal_page": {
+        "last_updated": "À jour au 16 mai 2025",
+        "title": "Mentions Légales",
+        "intro": "Ce site web est édité par Salair, responsable de son contenu. L'accès et l'utilisation de ce site impliquent l'acceptation pleine et entière de cette mention légale. Pour toute question, merci de nous contacter à contact{'@'}salair.fr."
+    },
     "pricing": {
         "meta_title": "Tarifs",
         "title": "Tarification simple et transparente",

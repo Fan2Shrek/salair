@@ -162,6 +162,11 @@
         "title": "Términos y Condiciones de Venta",
         "intro": "Al acceder a nuestro sitio web o realizar una compra, usted acepta estar sujeto a estos Términos y Condiciones de Venta, todas las leyes y regulaciones aplicables, y reconoce que es responsable del cumplimiento de cualquier ley local relevante."
     },
+    "legal_page": {
+        "last_updated": "Actualizado el 16 de mayo de 2025",
+        "title": "Aviso Legal",
+        "intro": "Este sitio web está publicado por Salair, responsable de su contenido. El acceso y uso de este sitio implica la aceptación completa de este aviso legal. Para cualquier consulta, contáctenos en contact{'@'}salair.fr."
+    },
     "pricing": {
         "meta_title": "Precios",
         "title": "Precios simples y transparentes",
