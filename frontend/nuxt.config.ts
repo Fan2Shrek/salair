@@ -14,7 +14,6 @@ export default defineNuxtConfig({
       '@nuxtjs/sitemap',
       '@nuxtjs/robots',
       '@nuxt/content',
-      '@nuxthq/studio'
     ],
     i18n: {
         baseUrl: 'https://salair.fr',
@@ -71,5 +70,10 @@ export default defineNuxtConfig({
     },
     routeRules: {
         '/doc/**': { robots: false }
+    },
+    content: {
+        preview: {
+            api: 'https://api.nuxt.studio'
+        }
     }
 });
