@@ -1,6 +1,6 @@
 ## 1. Objeto
 
-Estos términos regulan el acceso y uso del sitio web https://salair.fr y los servicios relacionados.
+Estos términos regulan el acceso y uso del sitio web <https://salair.fr> y los servicios relacionados.
 
 ## 2. Aceptación
 

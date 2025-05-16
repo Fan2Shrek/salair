@@ -17,4 +17,4 @@ De acuerdo con el RGPD, estas cookies están exentas de consentimiento al ser in
 
 ## 5. Contacto
 
-Si tienes alguna duda sobre esta política, escríbenos a: privacy@salair.fr
+Si tienes alguna duda sobre esta política, escríbenos a: <privacy@salair.fr>

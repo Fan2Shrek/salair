@@ -17,4 +17,4 @@ Conformément à la réglementation (CNIL / RGPD), ces cookies sont exemptés de
 
 ## 5. Contact
 
-Pour toute question relative à cette politique, vous pouvez nous écrire à : privacy@salair.fr
+Pour toute question relative à cette politique, vous pouvez nous écrire à : <privacy@salair.fr>

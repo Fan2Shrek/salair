@@ -1,6 +1,6 @@
 ## 1. Purpose
 
-These Terms of Use govern access to and use of the website https://salair.fr and its associated services.
+These Terms of Use govern access to and use of the website <https://salair.fr> and its associated services.
 
 ## 2. Acceptance
 

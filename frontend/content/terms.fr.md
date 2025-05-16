@@ -1,6 +1,6 @@
 ## 1. Objet
 
-Les présentes CGU encadrent l’accès et l’utilisation du site https://salair.fr ainsi que des services associés.
+Les présentes CGU encadrent l’accès et l’utilisation du site <https://salair.fr> ainsi que des services associés.
 
 ## 2. Acceptation des conditions
 

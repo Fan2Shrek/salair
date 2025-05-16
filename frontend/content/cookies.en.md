@@ -17,4 +17,4 @@ In compliance with GDPR, these cookies are exempt from consent as they are essen
 
 ## 5. Contact
 
-If you have any questions about this policy, contact us at: privacy@salair.fr
+If you have any questions about this policy, contact us at: <privacy@salair.fr>
