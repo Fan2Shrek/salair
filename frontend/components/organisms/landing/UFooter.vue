@@ -13,7 +13,7 @@
                         <p class="text-primary font-semibold text-lg">Salair</p>
                     </div>
                     <nav>
-                        <ul class="w-full flex items-center gap-8">
+                        <ul class="w-full flex flex-wrap items-center gap-x-8 gap-y-4">
                             <li>
                                 <ULink to="#" variant="secondary">{{ $t('header.navigation.product') }}</ULink>
                             </li>
@@ -37,7 +37,7 @@
             <div class="mt-16 pt-8 flex max-md:flex-col-reverse md:justify-between max-md:gap-4 border-t border-secondary max-md:px-4">
                 <p class="text-quaternary">© {{ new Date().getFullYear() }} Salair. {{ $t('copyright') }}</p>
                 <nav>
-                    <ul class="flex items-center gap-4">
+                    <ul class="flex flex-wrap items-center gap-x-4 gap-y-2">
                         <li>
                             <NuxtLink to="/terms" variant="secondary" class="!text-quaternary">{{ $t('footer.terms') }}</NuxtLink>
                         </li>
