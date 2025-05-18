@@ -10,37 +10,38 @@
 
     const props = defineProps<StepActivityProps>();
     const onboardingStore = useOnboardingStore();
+    const { t } = useI18n();
     const selectedProStatus = ref<string>();
     const siret = ref<string>(onboardingStore.company.siret || '');
     const tradeName = ref<string>(onboardingStore.company.tradeName || '');
     const activityDomain = ref<string>(onboardingStore.company.activity || '');
 
-    const proStatusOptions = [
+    const proStatusOptions = computed(() => [
         {
-            label: 'Auto-entrepreneur',
+            label: t('onboarding.activity.status_options.auto_entrepreneur.label'),
             value: 'autoentrepreneur',
-            description: 'Statut simplifié, plafond de CA',
+            description: t('onboarding.activity.status_options.auto_entrepreneur.description'),
             icon: BuildingIcon,
         },
         {
-            label: 'SASU',
+            label: t('onboarding.activity.status_options.sasu.label'),
             value: 'sasu',
-            description: 'Société unipersonnelle à responsabilité',
+            description: t('onboarding.activity.status_options.sasu.description'),
             icon: BriefcaseIcon,
         },
         {
-            label: 'EURL',
+            label: t('onboarding.activity.status_options.eurl.label'),
             value: 'eurl',
-            description: 'Entreprise unipersonnelle à responsabilité',
+            description: t('onboarding.activity.status_options.eurl.description'),
             icon: FileIcon,
         },
         {
             value: 'en_reflexion',
-            label: 'En réflexion',
-            description: 'Je suis en train de créer mon activité',
+            label: t('onboarding.activity.status_options.in_progress.label'),
+            description: t('onboarding.activity.status_options.in_progress.description'),
             icon: HelpCircleIcon,
         },
-    ];
+    ]);
 
     function handleNextStep() {
         if (!selectedProStatus.value) return;
@@ -63,9 +64,9 @@
     <div class="bg-primary p-3.5 rounded-xl border border-primary shadow-xs h-fit w-fit mx-auto relative">
         <BuildingIcon class="text-fg-secondary size-7" />
     </div>
-    <h2 class="font-semibold text-primary text-3xl mt-8 text-center relative">Votre activité</h2>
+    <h2 class="font-semibold text-primary text-3xl mt-8 text-center relative">{{ t('onboarding.activity.title') }}</h2>
     <p class="text-tertiary text-center mt-3 relative max-w-90 mx-auto">
-        Précisez votre statut, votre SIRET et votre domaine
+        {{ t('onboarding.activity.subtitle') }}
     </p>
     <Transition name="slide-fade">
         <div v-if="!selectedProStatus" class="mt-8 relative max-w-5xl mx-auto w-full">
@@ -82,26 +83,26 @@
                 v-if="selectedProStatus !== 'en_reflexion'"
                 v-model="siret"
                 type="text"
-                placeholder="SIRET"
-                label="Siret"
-                hint-text="Le siret doit contenir 14 chiffres."
+                :placeholder="t('onboarding.activity.form.siret.placeholder')"
+                :label="t('onboarding.activity.form.siret.label')"
+                :hint-text="t('onboarding.activity.form.siret.hint')"
                 class="w-full"
             />
             <UInput
                 v-model="activityDomain"
                 type="text"
-                placeholder="Domaine d'activité (ex: Informatique)"
-                label="Domaine d'activité"
+                :placeholder="t('onboarding.activity.form.activity.placeholder')"
+                :label="t('onboarding.activity.form.activity.label')"
                 class="w-full"
             />
             <UInput
                 v-model="tradeName"
                 type="text"
-                placeholder="Nom commercial"
-                label="Nom commercial"
+                :placeholder="t('onboarding.activity.form.trade_name.placeholder')"
+                :label="t('onboarding.activity.form.trade_name.label')"
                 class="w-full"
             />
-            <UButton v-if="selectedProStatus" class="w-full mt-6" type="submit">Continuer</UButton>
+            <UButton v-if="selectedProStatus" class="w-full mt-6" type="submit">{{ t('general.continue') }}</UButton>
         </form>
     </Transition>
 </template>

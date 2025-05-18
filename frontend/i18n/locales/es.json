@@ -4,7 +4,10 @@
         "sign_up": "Únete a nosotros",
         "logout": "Cerrar sesión",
         "logging_out": "Cerrando sesión...",
-        "search": "Buscar"
+        "search": "Buscar",
+        "continue": "Continuar",
+        "error": "Error",
+        "error_occurred": "Se ha producido un error"
     },
     "user_menu": {
         "profile": "Ver perfil",
@@ -184,6 +187,143 @@
             "free_plan_plus": "Todo lo incluido en nuestro plan gratuito, más...",
             "get_started": "Comenzar",
             "chat_with_us": "Habla con nosotros"
+        }
+    },
+    "onboarding": {
+        "user_details": {
+            "title": "Tu información",
+            "subtitle": "Ingresa tu nombre completo y dirección de email",
+            "form": {
+                "first_name": {
+                    "label": "Nombre",
+                    "placeholder": "Introduce tu nombre"
+                },
+                "last_name": {
+                    "label": "Apellido",
+                    "placeholder": "Introduce tu apellido"
+                },
+                "email": {
+                    "label": "Email",
+                    "placeholder": "Introduce tu email"
+                },
+                "email_exists": "El email ya existe"
+            }
+        },
+        "password": {
+            "title": "Contraseña",
+            "subtitle": "Elige una contraseña segura para tu cuenta",
+            "form": {
+                "password": {
+                    "label": "Contraseña",
+                    "placeholder": "Introduce tu contraseña"
+                },
+                "confirm_password": {
+                    "label": "Confirmar contraseña",
+                    "placeholder": "Confirma tu contraseña"
+                }
+            }
+        },
+        "activity": {
+            "title": "Tu actividad",
+            "subtitle": "Especifica tu estado, número de registro y área de actividad",
+            "status_options": {
+                "auto_entrepreneur": {
+                    "label": "Autónomo",
+                    "description": "Estado simplificado, límite de ingresos"
+                },
+                "sasu": {
+                    "label": "SASU",
+                    "description": "Sociedad unipersonal de responsabilidad limitada"
+                },
+                "eurl": {
+                    "label": "EURL",
+                    "description": "Empresa unipersonal de responsabilidad limitada"
+                },
+                "in_progress": {
+                    "label": "En reflexión",
+                    "description": "Estoy en proceso de crear mi actividad"
+                }
+            },
+            "form": {
+                "siret": {
+                    "label": "Número de registro",
+                    "placeholder": "Número de registro",
+                    "hint": "El número de registro debe contener 14 dígitos."
+                },
+                "activity": {
+                    "label": "Sector de actividad",
+                    "placeholder": "Sector de actividad (ej: Informática)"
+                },
+                "trade_name": {
+                    "label": "Nombre comercial",
+                    "placeholder": "Nombre comercial"
+                }
+            }
+        },
+        "urssaf": {
+            "title": "Declaraciones fiscales",
+            "subtitle": "Indica la frecuencia de tus declaraciones",
+            "frequency_options": {
+                "monthly": {
+                    "label": "Mensual",
+                    "description": "Declaro todos los meses"
+                },
+                "quarterly": {
+                    "label": "Trimestral",
+                    "description": "Cada 3 meses"
+                },
+                "unknown": {
+                    "label": "No lo sé",
+                    "description": "Quiero ser guiado más adelante"
+                }
+            },
+            "form": {
+                "business_start_date": {
+                    "label": "Fecha de inicio de actividad"
+                },
+                "is_vat_payer": {
+                    "label": "¿Estás sujeto al IVA?"
+                }
+            }
+        },
+        "billing": {
+            "title": "Preferencias de facturación",
+            "subtitle": "Configura tus primeras preferencias de facturación",
+            "billing_type_options": {
+                "ht": {
+                    "label": "Sin IVA",
+                    "description": "Para los sujetos al IVA"
+                },
+                "ttc": {
+                    "label": "Con IVA",
+                    "description": "Para autónomos no sujetos al IVA"
+                }
+            },
+            "form": {
+                "currency": {
+                    "label": "Moneda predeterminada",
+                    "placeholder": "Elige tu moneda predeterminada"
+                },
+                "default_note": {
+                    "label": "Nota predeterminada",
+                    "placeholder": "Gracias por tu confianza. Pago a realizar en 30 días."
+                },
+                "logo": {
+                    "label": "Logo de la empresa",
+                    "errors": {
+                        "invalid_image": "Por favor, selecciona un archivo de imagen válido",
+                        "file_too_large": "El tamaño del archivo no debe exceder los 2 MB"
+                    },
+                    "upload_success": "Logo subido"
+                },
+                "errors": {
+                    "select_billing_type": "Por favor, selecciona un tipo de facturación",
+                    "select_currency": "Por favor, selecciona una moneda",
+                    "company_creation_error": "Se ha producido un error al crear la empresa",
+                    "unexpected_error": "Se ha producido un error inesperado",
+                    "logo_upload_error": "Se ha producido un error al subir el logo"
+                }
+            }
         }
     }
 }

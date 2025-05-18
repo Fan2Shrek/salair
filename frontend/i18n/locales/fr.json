@@ -4,7 +4,10 @@
         "sign_up": "Nous rejoindre",
         "logout": "Déconnexion",
         "logging_out": "Déconnexion en cours...",
-        "search": "Rechercher"
+        "search": "Rechercher",
+        "continue": "Continuer",
+        "error": "Erreur",
+        "error_occurred": "Une erreur est survenue"
     },
     "user_menu": {
         "profile": "Voir le profil",
@@ -184,6 +187,143 @@
             "free_plan_plus": "Tout ce qui est inclus dans notre plan gratuit, plus...",
             "get_started": "Commencer",
             "chat_with_us": "Discuter avec nous"
+        }
+    },
+    "onboarding": {
+        "user_details": {
+            "title": "Vos informations",
+            "subtitle": "Entrez votre nom complet et votre adresse email",
+            "form": {
+                "first_name": {
+                    "label": "Prénom",
+                    "placeholder": "Entrez votre prénom"
+                },
+                "last_name": {
+                    "label": "Nom",
+                    "placeholder": "Entrez votre nom"
+                },
+                "email": {
+                    "label": "Email",
+                    "placeholder": "Entrez votre email"
+                },
+                "email_exists": "L'email existe déjà"
+            }
+        },
+        "password": {
+            "title": "Mot de passe",
+            "subtitle": "Choisissez un mot de passe sécurisé pour votre compte",
+            "form": {
+                "password": {
+                    "label": "Mot de passe",
+                    "placeholder": "Entrez votre mot de passe"
+                },
+                "confirm_password": {
+                    "label": "Confirmation du mot de passe",
+                    "placeholder": "Confirmez votre mot de passe"
+                }
+            }
+        },
+        "activity": {
+            "title": "Votre activité",
+            "subtitle": "Précisez votre statut, votre SIRET et votre domaine",
+            "status_options": {
+                "auto_entrepreneur": {
+                    "label": "Auto-entrepreneur",
+                    "description": "Statut simplifié, plafond de CA"
+                },
+                "sasu": {
+                    "label": "SASU",
+                    "description": "Société unipersonnelle à responsabilité"
+                },
+                "eurl": {
+                    "label": "EURL",
+                    "description": "Entreprise unipersonnelle à responsabilité"
+                },
+                "in_progress": {
+                    "label": "En réflexion",
+                    "description": "Je suis en train de créer mon activité"
+                }
+            },
+            "form": {
+                "siret": {
+                    "label": "Siret",
+                    "placeholder": "SIRET",
+                    "hint": "Le siret doit contenir 14 chiffres."
+                },
+                "activity": {
+                    "label": "Domaine d'activité",
+                    "placeholder": "Domaine d'activité (ex: Informatique)"
+                },
+                "trade_name": {
+                    "label": "Nom commercial",
+                    "placeholder": "Nom commercial"
+                }
+            }
+        },
+        "urssaf": {
+            "title": "Déclarations URSSAF",
+            "subtitle": "Indiquez la fréquence de vos déclarations",
+            "frequency_options": {
+                "monthly": {
+                    "label": "Mensuelle",
+                    "description": "Je déclare tous les mois"
+                },
+                "quarterly": {
+                    "label": "Trimestrielle",
+                    "description": "Tous les 3 mois"
+                },
+                "unknown": {
+                    "label": "Je ne sais pas",
+                    "description": "Je veux être guidé(e) plus tard"
+                }
+            },
+            "form": {
+                "business_start_date": {
+                    "label": "Date de début d'activité"
+                },
+                "is_vat_payer": {
+                    "label": "Êtes vous assujetti à la TVA ?"
+                }
+            }
+        },
+        "billing": {
+            "title": "Préférences de facturation",
+            "subtitle": "Configurez vos premières préférences de facturation",
+            "billing_type_options": {
+                "ht": {
+                    "label": "HT",
+                    "description": "Pour les assujettis à la TVA"
+                },
+                "ttc": {
+                    "label": "TTC",
+                    "description": "Pour les auto-entrepreneurs non redevables"
+                }
+            },
+            "form": {
+                "currency": {
+                    "label": "Devise par défaut",
+                    "placeholder": "Choisir votre devise par défaut"
+                },
+                "default_note": {
+                    "label": "Note par défaut",
+                    "placeholder": "Merci pour votre confiance. Paiement à effectuer sous 30 jours."
+                },
+                "logo": {
+                    "label": "Logo de l'entreprise",
+                    "errors": {
+                        "invalid_image": "Veuillez sélectionner un fichier image valide",
+                        "file_too_large": "La taille du fichier ne doit pas dépasser 2 Mo"
+                    },
+                    "upload_success": "Logo uploadé"
+                },
+                "errors": {
+                    "select_billing_type": "Veuillez sélectionner un type de facturation",
+                    "select_currency": "Veuillez sélectionner une devise",
+                    "company_creation_error": "Une erreur est survenue lors de la création de l'entreprise",
+                    "unexpected_error": "Une erreur inattendue est survenue",
+                    "logo_upload_error": "Une erreur est survenue lors du téléchargement du logo"
+                }
+            }
         }
     }
 }

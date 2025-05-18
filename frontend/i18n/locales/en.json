@@ -4,7 +4,10 @@
         "sign_up": "Join us",
         "logout": "Logout",
         "logging_out": "Logging out...",
-        "search": "Search"
+        "search": "Search",
+        "continue": "Continue",
+        "error": "Error",
+        "error_occurred": "An error occurred"
     },
     "user_menu": {
         "profile": "View profile",
@@ -184,6 +187,143 @@
             "free_plan_plus": "Everything in our free plan plus...",
             "get_started": "Get started",
             "chat_with_us": "Chat with us"
+        }
+    },
+    "onboarding": {
+        "user_details": {
+            "title": "Your information",
+            "subtitle": "Enter your full name and email address",
+            "form": {
+                "first_name": {
+                    "label": "First name",
+                    "placeholder": "Enter your first name"
+                },
+                "last_name": {
+                    "label": "Last name",
+                    "placeholder": "Enter your last name"
+                },
+                "email": {
+                    "label": "Email",
+                    "placeholder": "Enter your email"
+                },
+                "email_exists": "The email already exists"
+            }
+        },
+        "password": {
+            "title": "Password",
+            "subtitle": "Choose a secure password for your account",
+            "form": {
+                "password": {
+                    "label": "Password",
+                    "placeholder": "Enter your password"
+                },
+                "confirm_password": {
+                    "label": "Confirm password",
+                    "placeholder": "Confirm your password"
+                }
+            }
+        },
+        "activity": {
+            "title": "Your business",
+            "subtitle": "Specify your status, registration number and business area",
+            "status_options": {
+                "auto_entrepreneur": {
+                    "label": "Self-employed",
+                    "description": "Simplified status, revenue limit"
+                },
+                "sasu": {
+                    "label": "SASU",
+                    "description": "Single person limited liability company"
+                },
+                "eurl": {
+                    "label": "EURL",
+                    "description": "Single member limited liability company"
+                },
+                "in_progress": {
+                    "label": "Thinking about it",
+                    "description": "I am in the process of creating my business"
+                }
+            },
+            "form": {
+                "siret": {
+                    "label": "Business ID",
+                    "placeholder": "Registration number",
+                    "hint": "The registration number should contain 14 digits."
+                },
+                "activity": {
+                    "label": "Business area",
+                    "placeholder": "Business area (e.g. IT)"
+                },
+                "trade_name": {
+                    "label": "Business name",
+                    "placeholder": "Business name"
+                }
+            }
+        },
+        "urssaf": {
+            "title": "Tax declarations",
+            "subtitle": "Indicate the frequency of your declarations",
+            "frequency_options": {
+                "monthly": {
+                    "label": "Monthly",
+                    "description": "I declare every month"
+                },
+                "quarterly": {
+                    "label": "Quarterly",
+                    "description": "Every 3 months"
+                },
+                "unknown": {
+                    "label": "I don't know yet",
+                    "description": "I want to be guided later"
+                }
+            },
+            "form": {
+                "business_start_date": {
+                    "label": "Business start date"
+                },
+                "is_vat_payer": {
+                    "label": "Are you VAT registered?"
+                }
+            }
+        },
+        "billing": {
+            "title": "Billing preferences",
+            "subtitle": "Configure your initial billing preferences",
+            "billing_type_options": {
+                "ht": {
+                    "label": "Excluding VAT",
+                    "description": "For VAT registered businesses"
+                },
+                "ttc": {
+                    "label": "Including VAT",
+                    "description": "For freelancers not liable for VAT"
+                }
+            },
+            "form": {
+                "currency": {
+                    "label": "Default currency",
+                    "placeholder": "Choose your default currency"
+                },
+                "default_note": {
+                    "label": "Default note",
+                    "placeholder": "Thank you for your trust. Payment due within 30 days."
+                },
+                "logo": {
+                    "label": "Company logo",
+                    "errors": {
+                        "invalid_image": "Please select a valid image file",
+                        "file_too_large": "File size should not exceed 2MB"
+                    },
+                    "upload_success": "Logo uploaded"
+                },
+                "errors": {
+                    "select_billing_type": "Please select a billing type",
+                    "select_currency": "Please select a currency",
+                    "company_creation_error": "An error occurred while creating the company",
+                    "unexpected_error": "An unexpected error occurred",
+                    "logo_upload_error": "An error occurred while uploading the logo"
+                }
+            }
         }
     }
 }

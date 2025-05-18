@@ -8,6 +8,7 @@
     const onboardingStore = useOnboardingStore();
     const authStore = useAuthStore();
     const { error: toastError } = useToast();
+    const { t } = useI18n();
 
     const password = ref<string>(onboardingStore.password);
     const passwordConfirm = ref<string>('');
@@ -34,11 +35,11 @@
                     }
                 } else {
                     if (error) {
-                        toastError('An error occured', error);
+                        toastError(t('general.error_occurred'), error);
                     }
                 }
             } catch {
-                toastError('An error occured', '');
+                toastError(t('general.error_occurred'), '');
             }
         }
     }
@@ -48,17 +49,17 @@
     <div class="bg-primary p-3.5 rounded-xl border border-primary shadow-xs h-fit w-fit mx-auto relative">
         <PasscodeIcon class="text-fg-secondary size-7" />
     </div>
-    <h2 class="font-semibold text-primary text-3xl mt-8 text-center relative">Mot de passe</h2>
+    <h2 class="font-semibold text-primary text-3xl mt-8 text-center relative">{{ t('onboarding.password.title') }}</h2>
     <p class="text-tertiary text-center mt-3 relative max-w-90">
-        Choisissez un mot de passe sécurisé pour votre compte
+        {{ t('onboarding.password.subtitle') }}
     </p>
     <form class="max-w-90 mx-auto w-full mt-8 space-y-5 relative" @submit.prevent="handleNextStep">
         <UInput
             v-model="password"
             type="password"
             name="password"
-            placeholder="Enter your password"
-            label="Password"
+            :placeholder="t('onboarding.password.form.password.placeholder')"
+            :label="t('onboarding.password.form.password.label')"
             class="w-full"
             required
         />
@@ -66,12 +67,12 @@
             v-model="passwordConfirm"
             type="password"
             name="passwordConfirm"
-            placeholder="Confirm your password"
-            label="Confirm password"
+            :placeholder="t('onboarding.password.form.confirm_password.placeholder')"
+            :label="t('onboarding.password.form.confirm_password.label')"
             class="w-full"
             required
         />
-        <UButton class="w-full mt-6" type="submit">Continuer</UButton>
+        <UButton class="w-full mt-6" type="submit">{{ t('general.continue') }}</UButton>
     </form>
 </template>
 
