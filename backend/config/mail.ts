@@ -12,7 +12,7 @@ const mailConfig = defineConfig({
   mailers: {
     mailgun: transports.mailgun({
       key: env.get('MAILGUN_API_KEY'),
-      baseUrl: 'https://api.mailgun.net/v3',
+      baseUrl: 'https://api.eu.mailgun.net/v3',
       domain: env.get('MAILGUN_DOMAIN'),
     }),
   },
