@@ -6,9 +6,9 @@ export default class InboundMailsController {
     const data = request.all()
 
     const inboudMail = await InboundMail.create({
-      from: data.from,
+      from: data.sender,
       subject: data.subject,
-      to: data.to || data['To'] || 'unknown',
+      to: data.recipient,
       text: data['body-plain'],
       html: data['html-plain'],
     })
