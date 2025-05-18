@@ -9,9 +9,12 @@
 
 const AuthController = () => import('#controllers/auth_controller')
 const PlansController = () => import('#controllers/plans_controller')
+const UsersController = () => import('#controllers/users_controller')
+const CompaniesController = () => import('#controllers/companies_controller')
+
 import router from '@adonisjs/core/services/router'
 import { middleware } from './kernel.js'
-const UsersController = () => import('#controllers/users_controller')
+const InboudMailsController = () => import('#controllers/inboud_mails_controller')
 
 router.get('/', async () => {
   return {
@@ -59,21 +62,13 @@ router
 router
   .group(() => {
     router
-      .get('/companies', [() => import('#controllers/companies_controller'), 'index'])
+      .get('/companies', [CompaniesController, 'index'])
       .as('companies.index')
       .use(middleware.admin())
-    router
-      .get('/companies/:id', [() => import('#controllers/companies_controller'), 'show'])
-      .as('companies.show')
-    router
-      .post('/companies', [() => import('#controllers/companies_controller'), 'store'])
-      .as('companies.store')
-    router
-      .put('/companies/:id', [() => import('#controllers/companies_controller'), 'update'])
-      .as('companies.update')
-    router
-      .delete('/companies/:id', [() => import('#controllers/companies_controller'), 'destroy'])
-      .as('companies.destroy')
+    router.get('/companies/:id', [CompaniesController, 'show']).as('companies.show')
+    router.post('/companies', [CompaniesController, 'store']).as('companies.store')
+    router.put('/companies/:id', [CompaniesController, 'update']).as('companies.update')
+    router.delete('/companies/:id', [CompaniesController, 'destroy']).as('companies.destroy')
     router
       .post('/companies/:id/logo', [
         () => import('#controllers/companies_controller'),
@@ -83,3 +78,7 @@ router
   })
   .use([middleware.auth()])
   .prefix('api')
+
+// Mailgun
+
+router.post('/webhooks/mailgun/inbound', [InboudMailsController, 'receive'])
