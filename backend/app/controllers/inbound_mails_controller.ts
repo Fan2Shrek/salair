@@ -8,7 +8,7 @@ export default class InboundMailsController {
     const inboudMail = await InboundMail.create({
       from: data.from,
       subject: data.subject,
-      to: data.to,
+      to: data.to || data['To'] || 'unknown',
       text: data['body-plain'],
       html: data['html-plain'],
     })
