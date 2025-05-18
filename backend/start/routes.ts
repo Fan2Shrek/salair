@@ -11,10 +11,10 @@ const AuthController = () => import('#controllers/auth_controller')
 const PlansController = () => import('#controllers/plans_controller')
 const UsersController = () => import('#controllers/users_controller')
 const CompaniesController = () => import('#controllers/companies_controller')
+const InboundMailsController = () => import('#controllers/inbound_mails_controller')
 
 import router from '@adonisjs/core/services/router'
 import { middleware } from './kernel.js'
-const InboudMailsController = () => import('#controllers/inboud_mails_controller')
 
 router.get('/', async () => {
   return {
@@ -81,4 +81,4 @@ router
 
 // Mailgun
 
-router.post('/webhooks/mailgun/inbound', [InboudMailsController, 'receive'])
+router.post('/webhooks/mailgun/inbound', [InboundMailsController, 'receive'])
