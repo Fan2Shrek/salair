@@ -146,6 +146,21 @@
         "dashboard": "Tableau de bord",
         "settings": "Paramètres"
     },
+    "settings": {
+        "tabs": {
+            "details": "Mes informations",
+            "password": "Mot de passe",
+            "billing": "Facturation"
+        },
+        "personal_info": {
+            "title": "Informations personnelles",
+            "description": "Mettez à jour votre photo et vos informations personnelles ici."
+        },
+        "buttons": {
+            "cancel": "Annuler",
+            "save": "Enregistrer"
+        }
+    },
     "privacy_page": {
         "last_updated": "À jour au 15 mai 2025",
         "title": "Politique de Confidentialité",

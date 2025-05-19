@@ -146,6 +146,21 @@
         "dashboard": "Panel de control",
         "settings": "Configuración"
     },
+    "settings": {
+        "tabs": {
+            "details": "Mis datos",
+            "password": "Contraseña",
+            "billing": "Facturación"
+        },
+        "personal_info": {
+            "title": "Información personal",
+            "description": "Actualiza tu foto y datos personales aquí."
+        },
+        "buttons": {
+            "cancel": "Cancelar",
+            "save": "Guardar"
+        }
+    },
     "privacy_page": {
         "last_updated": "Actualizado el 15 de mayo de 2025",
         "title": "Política de Privacidad",

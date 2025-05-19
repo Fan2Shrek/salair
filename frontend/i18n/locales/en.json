@@ -146,6 +146,21 @@
         "dashboard": "Dashboard",
         "settings": "Settings"
     },
+    "settings": {
+        "tabs": {
+            "details": "My details",
+            "password": "Password",
+            "billing": "Billing"
+        },
+        "personal_info": {
+            "title": "Personal info",
+            "description": "Update your photo and personal details here."
+        },
+        "buttons": {
+            "cancel": "Cancel",
+            "save": "Save"
+        }
+    },
     "privacy_page": {
         "last_updated": "Current as of 15 May 2025",
         "title": "Privacy Policy",
