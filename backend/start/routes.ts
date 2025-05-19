@@ -12,6 +12,7 @@ const PlansController = () => import('#controllers/plans_controller')
 const UsersController = () => import('#controllers/users_controller')
 const CompaniesController = () => import('#controllers/companies_controller')
 const InboundMailsController = () => import('#controllers/inbound_mails_controller')
+const MeController = () => import('#controllers/me_controller')
 
 import router from '@adonisjs/core/services/router'
 import { middleware } from './kernel.js'
@@ -56,6 +57,15 @@ router
     router.delete('/users/:id', [UsersController, 'destroy'])
   })
   .use([middleware.auth(), middleware.admin()])
+  .prefix('api')
+
+// Users routes for role user
+router
+  .group(() => {
+    router.put('/me', [MeController, 'update'])
+    router.post('/me/avatar', [MeController, 'updateAvatar'])
+  })
+  .use([middleware.auth()])
   .prefix('api')
 
 // Companies routes

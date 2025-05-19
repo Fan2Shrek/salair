@@ -1,51 +1,14 @@
 import type { HttpContext } from '@adonisjs/core/http'
-import User from '#models/user'
 import { randomUUID } from 'node:crypto'
 
-export default class UsersController {
+export default class MeController {
   /**
-   * Affiche une liste de tous les utilisateurs
+   * Met à jour l'utilisateur connecté
    */
-  async index({ response }: HttpContext) {
-    const users = await User.query()
-    return response.ok(users)
-  }
-
-  /**
-   * Affiche un utilisateur spécifique
-   */
-  async show({ params, response }: HttpContext) {
-    try {
-      const user = await User.findOrFail(params.id)
-      return response.ok(user)
-    } catch (error) {
-      return response.notFound({ message: 'Utilisateur non trouvé' })
-    }
-  }
-
-  /**
-   * Crée un nouvel utilisateur
-   */
-  async store({ request, response }: HttpContext) {
-    const userData = request.only(['firstName', 'lastName', 'email', 'password', 'phoneNumber'])
+  async update({ request, response, auth }: HttpContext) {
+    const user = auth.user!
 
     try {
-      const user = await User.create(userData)
-      return response.created(user)
-    } catch (error) {
-      return response.badRequest({
-        message: "Impossible de créer l'utilisateur",
-        error: error.message,
-      })
-    }
-  }
-
-  /**
-   * Met à jour un utilisateur existant
-   */
-  async update({ params, request, response }: HttpContext) {
-    try {
-      const user = await User.findOrFail(params.id)
       const userData = request.only([
         'firstName',
         'lastName',
@@ -93,20 +56,6 @@ export default class UsersController {
       await user.save()
 
       return response.ok({ user, avatar_url: user.avatar })
-    } catch (error) {
-      return response.notFound({ message: 'Utilisateur non trouvé' })
-    }
-  }
-
-  /**
-   * Supprime un utilisateur
-   */
-  async destroy({ params, response }: HttpContext) {
-    try {
-      const user = await User.findOrFail(params.id)
-      await user.delete()
-
-      return response.noContent()
     } catch (error) {
       return response.notFound({ message: 'Utilisateur non trouvé' })
     }
