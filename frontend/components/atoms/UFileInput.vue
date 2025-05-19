@@ -246,7 +246,7 @@
             :key="file.name + file.size"
             class="mt-3 rounded-xl border border-secondary bg-primary p-3 flex gap-3"
         >
-            <PDFIcon />
+            <component :is="getIconForFile(file)" />
             <div class="flex-grow">
                 <p class="mb-0.5 text-secondary font-medium text-sm">{{ file.name }}</p>
                 <div class="flex items-center gap-2 h-3">
