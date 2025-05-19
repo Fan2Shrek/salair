@@ -1,5 +1,5 @@
 <script setup lang="ts">
-    interface TabItem {
+    export interface TabItem {
         name: string;
         label: string;
     }
@@ -107,7 +107,7 @@
                 variantClasses[variant],
                 sizeClasses[variant][size],
                 activeClasses(variant, activeTab.name === item.name),
-                { 'w-full': fullWidth },
+                { 'w-fit': fullWidth },
             ]"
             @click="handleTabClick(item, index)"
         >
