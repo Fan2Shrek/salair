@@ -34,6 +34,10 @@
             label: t('settings.tabs.billing'),
             name: 'billing',
         },
+        {
+            label: t('settings.tabs.appearance'),
+            name: 'appearance',
+        },
     ];
 
     const isSaveable = computed(() => {

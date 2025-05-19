@@ -150,7 +150,8 @@
         "tabs": {
             "details": "My details",
             "password": "Password",
-            "billing": "Billing"
+            "billing": "Billing",
+            "appearance": "Appearance"
         },
         "personal_info": {
             "title": "Personal info",
@@ -355,3 +356,4 @@
         }
     }
 }
+

@@ -150,7 +150,8 @@
         "tabs": {
             "details": "Mes informations",
             "password": "Mot de passe",
-            "billing": "Facturation"
+            "billing": "Facturation",
+            "appearance": "Apparence"
         },
         "personal_info": {
             "title": "Informations personnelles",
