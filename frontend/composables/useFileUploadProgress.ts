@@ -10,7 +10,7 @@ export function useFileUploadProgress() {
         return new Promise<void>((resolve, reject) => {
             const xhr = new XMLHttpRequest();
             const formData = new FormData();
-            formData.append('logo', file);
+            formData.append('file', file);
 
             isUploading.value = true;
             isSuccess.value = false;
