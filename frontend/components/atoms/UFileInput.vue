@@ -31,28 +31,21 @@
     const selectedFile = ref<File | null>(null);
     const selectedFiles = ref<File[]>([]);
 
-    // Stockage des IDs de fichiers pour pouvoir les retrouver
     const fileIds = ref(new Map<File, string>());
 
-    // Suivi de progression par fichier
     const fileProgresses = ref<Map<string, { progress: number; currentSize: number; totalSize: number }>>(new Map());
 
-    // Simuler l'upload d'un fichier
     const simulateUpload = (file: File) => {
-        // Générer un ID unique pour ce fichier
         const fileId = `${file.name}-${file.size}-${Date.now()}`;
 
-        // Stocker l'ID pour ce fichier
         fileIds.value.set(file, fileId);
 
-        // Initialiser les données de progression pour ce fichier
         fileProgresses.value.set(fileId, {
             progress: 0,
             currentSize: 0,
             totalSize: file.size,
         });
 
-        // Simuler une progression d'upload
         const interval = setInterval(() => {
             const fileData = fileProgresses.value.get(fileId);
             if (fileData && fileData.progress < 100) {
@@ -70,16 +63,13 @@
         const input = event.target as HTMLInputElement;
         if (input.files && input.files.length > 0) {
             if (_props.multiple) {
-                // Pour plusieurs fichiers
                 selectedFiles.value = Array.from(input.files);
                 emit('update:file', selectedFiles.value);
 
-                // Simuler l'upload pour chaque fichier
                 selectedFiles.value.forEach((file) => {
                     simulateUpload(file);
                 });
             } else {
-                // Pour un seul fichier
                 selectedFile.value = input.files[0];
                 emit('update:file', selectedFile.value);
                 simulateUpload(selectedFile.value);
@@ -121,7 +111,6 @@
                 selectedFiles.value = Array.from(e.dataTransfer.files);
                 emit('update:file', selectedFiles.value);
 
-                // Simuler l'upload pour chaque fichier
                 selectedFiles.value.forEach((file) => {
                     simulateUpload(file);
                 });
@@ -154,7 +143,7 @@
         }
     };
 
-    const baseClasses = ['border border-secondary rounded-xl p-3 bg-primary cursor-pointer'];
+    const baseClasses = ['border border-secondary rounded-xl p-3 bg-primary cursor-pointer w-full'];
 
     const formatFileSize = (bytes: number): string => {
         if (bytes === 0) return '0 B';
@@ -163,118 +152,121 @@
         return `${parseFloat((bytes / Math.pow(1024, i)).toFixed(2))} ${sizes[i]}`;
     };
 
-    // Obtenir les données de progression pour un fichier
     const getFileProgress = (file: File) => {
-        // Récupérer l'ID stocké pour ce fichier
         const fileId = fileIds.value.get(file);
         if (fileId && fileProgresses.value.has(fileId)) {
             return fileProgresses.value.get(fileId)!;
         }
-        // Fallback si l'ID n'existe pas
         return { progress: 0, currentSize: 0, totalSize: file.size };
     };
 </script>
 
 <template>
-    <div
-        :class="baseClasses"
-        @click="handleClick"
-        @dragenter="handleDragEnter"
-        @dragleave="handleDragLeave"
-        @dragover="handleDragOver"
-        @drop="handleDrop"
-    >
-        <input
-            ref="fileInput"
-            type="file"
-            class="hidden"
-            :accept="accept"
-            :multiple="multiple"
-            @change="handleFileSelect"
-        />
+    <div class="w-full">
+        <div
+            :class="baseClasses"
+            @click="handleClick"
+            @dragenter="handleDragEnter"
+            @dragleave="handleDragLeave"
+            @dragover="handleDragOver"
+            @drop="handleDrop"
+        >
+            <input
+                ref="fileInput"
+                type="file"
+                class="hidden"
+                :accept="accept"
+                :multiple="multiple"
+                @change="handleFileSelect"
+            />
 
-        <div class="flex flex-col items-center justify-center">
-            <div class="mb-3 p-2.5 rounded-lg bg-primary border border-primary shadow-xs">
-                <UploadCloudIcon class="size-5 text-fg-secondary" />
-            </div>
+            <div class="flex flex-col items-center justify-center">
+                <div class="mb-3 p-2.5 rounded-lg bg-primary border border-primary shadow-xs">
+                    <UploadCloudIcon class="size-5 text-fg-secondary" />
+                </div>
 
-            <div class="text-center">
-                <p class="text-sm font-semibold text-brand-secondary">
-                    {{ label }} <span class="font-normal text-tertiary">{{ dragText }}</span>
-                </p>
-                <p class="mt-1 text-sm text-tertiary">{{ formatText }} {{ maxSizeText }}</p>
-            </div>
-        </div>
-    </div>
-
-    <div v-if="selectedFile && !multiple" class="mt-3 rounded-xl border border-secondary bg-primary p-3 flex gap-3">
-        <component :is="getIconForFile(selectedFile)" />
-        <div class="flex-grow">
-            <p class="mb-0.5 text-secondary font-medium text-sm">{{ selectedFile.name }}</p>
-            <div class="flex items-center gap-2 h-3">
-                <p class="text-tertiary text-sm">
-                    {{ formatFileSize(getFileProgress(selectedFile).currentSize) }} of
-                    {{ formatFileSize(getFileProgress(selectedFile).totalSize) }}
-                </p>
-                <UDivider orientation="vertical" class="h-full" />
-                <div class="flex items-center gap-1">
-                    <CheckCircleIcon
-                        v-if="getFileProgress(selectedFile).progress === 100"
-                        class="size-4 text-fg-success-primary"
-                    />
-                    <UploadCloudIcon v-else class="size-4 text-fg-quaternary" />
-                    <p
-                        class="text-sm font-medium"
-                        :class="
-                            getFileProgress(selectedFile).progress === 100 ? 'text-success-primary' : 'text-quaternary'
-                        "
-                    >
-                        {{ getFileProgress(selectedFile).progress === 100 ? 'Complete' : 'Uploading...' }}
+                <div class="text-center">
+                    <p class="text-sm font-semibold text-brand-secondary">
+                        {{ label }} <span class="font-normal text-tertiary">{{ dragText }}</span>
                     </p>
+                    <p class="mt-1 text-sm text-tertiary">{{ formatText }} {{ maxSizeText }}</p>
                 </div>
             </div>
-            <div class="flex items-center gap-3">
-                <UProgress :value="getFileProgress(selectedFile).progress" />
-                <p>{{ getFileProgress(selectedFile).progress }}%</p>
-            </div>
         </div>
-    </div>
 
-    <template v-if="multiple && selectedFiles.length > 0">
-        <div
-            v-for="file in selectedFiles"
-            :key="file.name + file.size"
-            class="mt-3 rounded-xl border border-secondary bg-primary p-3 flex gap-3"
-        >
-            <component :is="getIconForFile(file)" />
+        <div v-if="selectedFile && !multiple" class="mt-3 rounded-xl border border-secondary bg-primary p-3 flex gap-3">
+            <component :is="getIconForFile(selectedFile)" />
             <div class="flex-grow">
-                <p class="mb-0.5 text-secondary font-medium text-sm">{{ file.name }}</p>
+                <p class="mb-0.5 text-secondary font-medium text-sm">{{ selectedFile.name }}</p>
                 <div class="flex items-center gap-2 h-3">
                     <p class="text-tertiary text-sm">
-                        {{ formatFileSize(getFileProgress(file).currentSize) }} of
-                        {{ formatFileSize(getFileProgress(file).totalSize) }}
+                        {{ formatFileSize(getFileProgress(selectedFile).currentSize) }} of
+                        {{ formatFileSize(getFileProgress(selectedFile).totalSize) }}
                     </p>
                     <UDivider orientation="vertical" class="h-full" />
                     <div class="flex items-center gap-1">
                         <CheckCircleIcon
-                            v-if="getFileProgress(file).progress === 100"
+                            v-if="getFileProgress(selectedFile).progress === 100"
                             class="size-4 text-fg-success-primary"
                         />
                         <UploadCloudIcon v-else class="size-4 text-fg-quaternary" />
                         <p
                             class="text-sm font-medium"
-                            :class="getFileProgress(file).progress === 100 ? 'text-success-primary' : 'text-quaternary'"
+                            :class="
+                                getFileProgress(selectedFile).progress === 100
+                                    ? 'text-fg-success-primary'
+                                    : 'text-quaternary'
+                            "
                         >
-                            {{ getFileProgress(file).progress === 100 ? 'Complete' : 'Uploading...' }}
+                            {{ getFileProgress(selectedFile).progress === 100 ? 'Complete' : 'Uploading...' }}
                         </p>
                     </div>
                 </div>
                 <div class="flex items-center gap-3">
-                    <UProgress :value="getFileProgress(file).progress" />
-                    <p>{{ getFileProgress(file).progress }}%</p>
+                    <UProgress :value="getFileProgress(selectedFile).progress" />
+                    <p class="text-secondary">{{ getFileProgress(selectedFile).progress }}%</p>
                 </div>
             </div>
         </div>
-    </template>
+
+        <template v-if="multiple && selectedFiles.length > 0">
+            <div
+                v-for="file in selectedFiles"
+                :key="file.name + file.size"
+                class="mt-3 rounded-xl border border-secondary bg-primary p-3 flex gap-3"
+            >
+                <component :is="getIconForFile(file)" />
+                <div class="flex-grow">
+                    <p class="mb-0.5 text-secondary font-medium text-sm">{{ file.name }}</p>
+                    <div class="flex items-center gap-2 h-3">
+                        <p class="text-tertiary text-sm">
+                            {{ formatFileSize(getFileProgress(file).currentSize) }} of
+                            {{ formatFileSize(getFileProgress(file).totalSize) }}
+                        </p>
+                        <UDivider orientation="vertical" class="h-full" />
+                        <div class="flex items-center gap-1">
+                            <CheckCircleIcon
+                                v-if="getFileProgress(file).progress === 100"
+                                class="size-4 text-fg-success-primary"
+                            />
+                            <UploadCloudIcon v-else class="size-4 text-fg-quaternary" />
+                            <p
+                                class="text-sm font-medium"
+                                :class="
+                                    getFileProgress(file).progress === 100 ? 'text-fg-success-primary' : 'text-quaternary'
+                                "
+                            >
+                                {{ getFileProgress(file).progress === 100 ? 'Complete' : 'Uploading...' }}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <UProgress :value="getFileProgress(file).progress" />
+                        <p class="text-secondary">{{ getFileProgress(file).progress }}%</p>
+                    </div>
+                </div>
+            </div>
+        </template>
+    </div>
 </template>
 
