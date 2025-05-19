@@ -24,7 +24,7 @@ export async function useAuthFetch<T>(url: string, options: UseFetchOptions<T> =
         const refreshed = await authStore.refresh();
 
         if (refreshed) {
-            response = await useFetch(url, finalOptions);
+            response = await useAuthFetch(url, finalOptions);
         } else {
             await authStore.logout();
             navigateTo('/login');
