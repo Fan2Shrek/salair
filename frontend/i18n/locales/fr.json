@@ -154,7 +154,20 @@
         },
         "personal_info": {
             "title": "Informations personnelles",
-            "description": "Mettez à jour votre photo et vos informations personnelles ici."
+            "description": "Mettez à jour votre photo et vos informations personnelles ici.",
+            "form": {
+                "name": {
+                    "label": "Nom"
+                },
+                "email": {
+                    "label": "Email"
+                },
+                "photo": {
+                    "label": "Votre photo",
+                    "tooltip": "Téléchargez une photo de profil",
+                    "description": "Cette photo sera affichée sur votre profil."
+                }
+            }
         },
         "buttons": {
             "cancel": "Annuler",

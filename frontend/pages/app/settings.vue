@@ -1,7 +1,7 @@
 <script setup lang="ts">
     import SearchIcon from '~/components/atoms/icons/SearchIcon.vue';
     import type { TabItem } from '~/components/molecules/UTabs.vue';
-import type User from '~/types/user';
+    import type User from '~/types/user';
 
     definePageMeta({
         middleware: 'auth',
@@ -83,8 +83,8 @@ import type User from '~/types/user';
 
             if (data.value && !error.value) {
                 toastSuccess('Bravo!', 'Votre profil a bien été mis à jour !');
-                
-                authStore.user = data.value
+
+                authStore.user = data.value;
             }
         }
 
@@ -126,7 +126,7 @@ import type User from '~/types/user';
                             <form class="mt-6 w-full space-y-6" @submit.prevent="handleSubmit">
                                 <div class="flex gap-8">
                                     <div class="min-w-52 max-w-72 w-full flex gap-0.5">
-                                        <label class="text-sm text-primary font-semibold">Name</label>
+                                        <label class="text-sm text-primary font-semibold">{{ t('settings.personal_info.form.name.label') }}</label>
                                         <span class="text-brand-tertiary font-semibold text-sm">*</span>
                                     </div>
                                     <div class="flex gap-6 max-w-lg w-full">
@@ -137,7 +137,7 @@ import type User from '~/types/user';
                                 <UDivider class="w-full" orientation="horizontal" />
                                 <div class="flex gap-8">
                                     <div class="min-w-52 max-w-72 w-full flex gap-0.5">
-                                        <label class="text-sm text-primary font-semibold">Email</label>
+                                        <label class="text-sm text-primary font-semibold">{{ t('settings.personal_info.form.email.label') }}</label>
                                         <span class="text-brand-tertiary font-semibold text-sm">*</span>
                                     </div>
                                     <div class="flex gap-6 max-w-lg w-full">
@@ -148,12 +148,12 @@ import type User from '~/types/user';
                                 <div class="flex gap-8">
                                     <div class="min-w-52 max-w-72 w-full">
                                         <div class="flex gap-1 items-center">
-                                            <label class="text-sm text-primary font-semibold">Your photo</label>
-                                            <UTooltip text="Tooltip d'help">
+                                            <label class="text-sm text-primary font-semibold">{{ t('settings.personal_info.form.photo.label') }}</label>
+                                            <UTooltip :text="t('settings.personal_info.form.photo.tooltip')">
                                                 <HelpCircleIcon class="size-4 text-fg-quaternary" />
                                             </UTooltip>
                                         </div>
-                                        <p class="text-tertiary text-sm">This will be displayed on your profile.</p>
+                                        <p class="text-tertiary text-sm">{{ t('settings.personal_info.form.photo.description') }}</p>
                                     </div>
                                     <div class="flex gap-6 max-w-lg w-full">
                                         <UAvatar

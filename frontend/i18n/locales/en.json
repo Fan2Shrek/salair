@@ -154,7 +154,20 @@
         },
         "personal_info": {
             "title": "Personal info",
-            "description": "Update your photo and personal details here."
+            "description": "Update your photo and personal details here.",
+            "form": {
+                "name": {
+                    "label": "Name"
+                },
+                "email": {
+                    "label": "Email"
+                },
+                "photo": {
+                    "label": "Your photo",
+                    "tooltip": "Upload a profile photo",
+                    "description": "This will be displayed on your profile."
+                }
+            }
         },
         "buttons": {
             "cancel": "Cancel",
