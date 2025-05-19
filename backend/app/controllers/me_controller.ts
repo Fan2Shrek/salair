@@ -20,6 +20,7 @@ export default class MeController {
 
       user.merge(userData)
       await user.save()
+      await user.load('company')
 
       return response.ok(user)
     } catch (error) {
