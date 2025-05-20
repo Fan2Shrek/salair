@@ -3,17 +3,17 @@ export default defineNuxtConfig({
     compatibilityDate: '2024-11-01',
     devtools: { enabled: true },
     modules: [
-      '@nuxt/eslint',
-      '@nuxt/image',
-      '@nuxtjs/tailwindcss',
-      '@pinia/nuxt',
-      'pinia-plugin-persistedstate/nuxt',
-      '@nuxtjs/color-mode',
-      '@nuxtjs/google-fonts',
-      '@nuxtjs/i18n',
-      '@nuxtjs/sitemap',
-      '@nuxtjs/robots',
-      '@nuxt/content',
+        '@nuxt/eslint',
+        '@nuxt/image',
+        '@nuxtjs/tailwindcss',
+        '@pinia/nuxt',
+        'pinia-plugin-persistedstate/nuxt',
+        '@nuxtjs/color-mode',
+        '@nuxtjs/google-fonts',
+        '@nuxtjs/i18n',
+        '@nuxtjs/sitemap',
+        '@nuxtjs/robots',
+        '@nuxt/content',
     ],
     i18n: {
         baseUrl: 'https://salair.fr',
@@ -26,7 +26,7 @@ export default defineNuxtConfig({
         bundle: {
             optimizeTranslationDirective: false,
         },
-        strategy: "no_prefix"
+        strategy: 'no_prefix',
     },
     tailwindcss: {
         exposeConfig: true,
@@ -59,26 +59,28 @@ export default defineNuxtConfig({
         download: true,
         preload: true,
         families: {
-            "DM Sans": {
-                "ital,opsz,wght": "0,9..40,100..1000;1,9..40,100..1000"
+            'DM Sans': {
+                'ital,opsz,wght': '0,9..40,100..1000;1,9..40,100..1000',
             },
         },
     },
-    site: { 
-        url: 'https://salair.fr', 
-        name: 'Salair - Gérez votre activité de freelance, sans prise de tête' 
+    site: {
+        url: 'https://salair.fr',
+        name: 'Salair - Gérez votre activité de freelance, sans prise de tête',
     },
     routeRules: {
-        '/doc/**': { robots: false }
+        '/doc/**': { robots: false },
+        '/app/**': { robots: false },
+        '/onboarding': { robots: false },
     },
     content: {
         preview: {
             api: 'https://api.nuxt.studio',
             gitInfo: {
-                name: "salair",
-                owner: "nassimlnd",
-                url: "https://github.com/nassimlnd/salair"
-            }
-        }
-    }
+                name: 'salair',
+                owner: 'nassimlnd',
+                url: 'https://github.com/nassimlnd/salair',
+            },
+        },
+    },
 });
