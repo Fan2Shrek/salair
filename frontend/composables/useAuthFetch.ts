@@ -5,7 +5,6 @@ export async function useAuthFetch<T>(url: string, options: UseFetchOptions<T> =
 
     const authStore = useAuthStore();
     const finalOptions = (): UseFetchOptions<T> => {
-        // Création dynamique des options avec le token actuel
         const headers = {
             'Authorization': `Bearer ${authStore.accessToken}`
         };

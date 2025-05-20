@@ -5,6 +5,7 @@ export function useFileUploadProgress() {
     const isSuccess = ref(false);
     const isError = ref(false);
     const responseData = ref<any>(null);
+    const statusCode = ref();
 
     const upload = (file: File, url: string) => {
         return new Promise<void>((resolve, reject) => {
@@ -17,6 +18,7 @@ export function useFileUploadProgress() {
             isError.value = false;
             progress.value = 0;
             responseData.value = null;
+            statusCode.value = null;
 
             xhr.upload.onprogress = (e) => {
                 if (e.lengthComputable) {
@@ -26,6 +28,8 @@ export function useFileUploadProgress() {
 
             xhr.onload = () => {
                 isUploading.value = false;
+                statusCode.value = xhr.status;
+
                 if (xhr.status >= 200 && xhr.status < 300) {
                     isSuccess.value = true;
                     try {
@@ -52,5 +56,6 @@ export function useFileUploadProgress() {
         });
     };
 
-    return { upload, progress, isUploading, isSuccess, isError, responseData };
+    return { upload, progress, isUploading, isSuccess, isError, responseData, statusCode };
 }
+
