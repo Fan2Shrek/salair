@@ -58,6 +58,7 @@ services:
 
     storage:
         image: minio/minio
+        restart: always
         ports:
             - '9000:9000'
             - '8900:8900'
