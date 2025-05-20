@@ -19,7 +19,7 @@ import { middleware } from './kernel.js'
 
 router.get('/', async () => {
   return {
-    hello: 'world',
+    hello: 'Bonjour pied (<a href="https://github.com/Fan2Shrek">Le bg ultime</a>',
   }
 })
 
