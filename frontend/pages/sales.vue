@@ -42,7 +42,7 @@
             @apply text-base md:text-lg;
         }
 
-        h2 {
+        h1 {
             @apply text-primary;
             @apply font-semibold;
             @apply text-2xl md:text-3xl;
@@ -53,16 +53,20 @@
             }
         }
 
-        h3 {
+        h2 {
             @apply text-primary;
             @apply font-semibold;
             @apply text-xl md:text-2xl;
             @apply pt-6 md:pt-8;
             @apply pb-3 md:pb-4;
+
+            a {
+                @apply no-underline;
+            }
         }
 
         ol {
-            @apply pl-5 md:pl-0;
+            @apply pl-5;
             
             li {
                 @apply list-decimal;
@@ -73,7 +77,7 @@
         }
 
         ul {
-            @apply pl-5 md:pl-0;
+            @apply pl-5;
             
             li {
                 @apply list-disc;

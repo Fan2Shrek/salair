@@ -57,10 +57,14 @@
             @apply text-xl md:text-2xl;
             @apply pt-6 md:pt-8;
             @apply pb-3 md:pb-4;
+
+            a {
+                @apply no-underline;
+            }
         }
 
         ol {
-            @apply pl-5 md:pl-0;
+            @apply pl-5;
             
             li {
                 @apply list-decimal;
@@ -71,7 +75,7 @@
         }
 
         ul {
-            @apply pl-5 md:pl-0;
+            @apply pl-5;
             
             li {
                 @apply list-disc;
