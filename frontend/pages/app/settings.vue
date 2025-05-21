@@ -7,15 +7,23 @@
         middleware: 'auth',
     });
 
+    // Types
+    type ColorModePreference = 'system' | 'light' | 'dark';
+
+    // Composables
     const authStore = useAuthStore();
+    const { error: toastError, success: toastSuccess } = useToast();
+    const { upload, isSuccess, responseData } = useFileUploadProgress();
+    const { $api } = useNuxtApp();
     const { t } = useI18n();
+
+    // Refs
     const firstName = ref<string>(authStore.user?.firstName || '');
     const lastName = ref<string>(authStore.user?.lastName || '');
     const email = ref<string>(authStore.user?.email || '');
     const avatar = ref<File>();
-    const { error: toastError, success: toastSuccess } = useToast();
-    const { upload, isSuccess, responseData } = useFileUploadProgress();
-    const { $api } = useNuxtApp();
+
+    const colorMode = useColorMode();
 
     useSeoMeta({
         title: t('sidebar.settings'),
@@ -66,7 +74,7 @@
         }
     }
 
-    async function handleSubmit() {
+    async function handleSaveDetails() {
         if (!isSaveable.value) return;
 
         if (
@@ -100,6 +108,8 @@
             }
         }
     }
+
+    async function handleSaveAppearance() {}
 </script>
 
 <template>
@@ -122,15 +132,17 @@
                                 </div>
                                 <div class="flex items-center gap-3">
                                     <UButton variant="secondary">{{ t('settings.buttons.cancel') }}</UButton>
-                                    <UButton :disabled="!isSaveable" @click="handleSubmit">{{
+                                    <UButton :disabled="!isSaveable" @click="handleSaveDetails">{{
                                         t('settings.buttons.save')
                                     }}</UButton>
                                 </div>
                             </div>
-                            <form class="mt-6 w-full space-y-6" @submit.prevent="handleSubmit">
+                            <form class="mt-6 w-full space-y-6" @submit.prevent="handleSaveDetails">
                                 <div class="flex gap-8">
                                     <div class="min-w-52 max-w-72 w-full flex gap-0.5">
-                                        <label class="text-sm text-primary font-semibold">{{ t('settings.personal_info.form.name.label') }}</label>
+                                        <label class="text-sm text-primary font-semibold">{{
+                                            t('settings.personal_info.form.name.label')
+                                        }}</label>
                                         <span class="text-brand-tertiary font-semibold text-sm">*</span>
                                     </div>
                                     <div class="flex gap-6 max-w-lg w-full">
@@ -141,7 +153,9 @@
                                 <UDivider class="w-full" orientation="horizontal" />
                                 <div class="flex gap-8">
                                     <div class="min-w-52 max-w-72 w-full flex gap-0.5">
-                                        <label class="text-sm text-primary font-semibold">{{ t('settings.personal_info.form.email.label') }}</label>
+                                        <label class="text-sm text-primary font-semibold">{{
+                                            t('settings.personal_info.form.email.label')
+                                        }}</label>
                                         <span class="text-brand-tertiary font-semibold text-sm">*</span>
                                     </div>
                                     <div class="flex gap-6 max-w-lg w-full">
@@ -152,12 +166,16 @@
                                 <div class="flex gap-8">
                                     <div class="min-w-52 max-w-72 w-full">
                                         <div class="flex gap-1 items-center">
-                                            <label class="text-sm text-primary font-semibold">{{ t('settings.personal_info.form.photo.label') }}</label>
+                                            <label class="text-sm text-primary font-semibold">{{
+                                                t('settings.personal_info.form.photo.label')
+                                            }}</label>
                                             <UTooltip :text="t('settings.personal_info.form.photo.tooltip')">
                                                 <HelpCircleIcon class="size-4 text-fg-quaternary" />
                                             </UTooltip>
                                         </div>
-                                        <p class="text-tertiary text-sm">{{ t('settings.personal_info.form.photo.description') }}</p>
+                                        <p class="text-tertiary text-sm">
+                                            {{ t('settings.personal_info.form.photo.description') }}
+                                        </p>
                                     </div>
                                     <div class="flex gap-6 max-w-lg w-full">
                                         <UAvatar
@@ -171,6 +189,36 @@
                                             :text="authStore.user!.firstName[0] + authStore.user!.lastName[0]"
                                         />
                                         <UFileInput class="w-full" @update:file="handleUpload" />
+                                    </div>
+                                </div>
+                                <UDivider class="w-full" orientation="horizontal" />
+                            </form>
+                        </section>
+                    </template>
+                    <template #appearance>
+                        <section class="mt-8 w-full">
+                            <div class="w-full flex pb-5 border-b border-secondary">
+                                <div class="space-y-0.5 flex-grow">
+                                    <h2 class="text-primary font-semibold text-lg">Appearance</h2>
+                                    <p class="text-tertiary text-sm">Change how your dashboard looks and feels.</p>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <UButton variant="secondary">{{ t('settings.buttons.cancel') }}</UButton>
+                                    <UButton :disabled="!isSaveable" @click="handleSaveAppearance">{{
+                                        t('settings.buttons.save')
+                                    }}</UButton>
+                                </div>
+                            </div>
+                            <form class="mt-6 w-full space-y-6" @submit.prevent="handleSaveAppearance">
+                                <div class="flex gap-8">
+                                    <div class="min-w-52 max-w-72 w-full flex flex-col">
+                                        <label class="text-sm text-primary font-semibold">Display preference</label>
+                                        <p class="text-sm text-tertiary">Switch between light and dark modes.</p>
+                                    </div>
+                                    <div class="flex gap-6 max-w-lg w-full">
+                                        <ClientOnly>
+                                            <UColorModeSwitch v-model="colorMode.preference as ColorModePreference" />
+                                        </ClientOnly>
                                     </div>
                                 </div>
                                 <UDivider class="w-full" orientation="horizontal" />
