@@ -130,6 +130,35 @@
         },
         "already_account": "Vous avez déjà un compte ?"
     },
+    "forgot_password": {
+        "meta_title": "Mot de passe oublié",
+        "title": "Mot de passe oublié ?",
+        "subtitle": "Pas de souci, nous vous enverrons les instructions de récupération.",
+        "form": {
+            "email_label": "Email",
+            "email_placeholder": "Entrez votre email",
+            "submit": "Réinitialiser le mot de passe",
+            "email_required": "Veuillez saisir votre adresse email",
+            "email_invalid": "Veuillez saisir une adresse email valide"
+        },
+        "back_to_login": "Retour à la connexion",
+        "email_sent": {
+            "title": "Vérifiez votre email",
+            "subtitle": "Nous avons envoyé un lien de réinitialisation du mot de passe à",
+            "didnt_receive": "Vous n'avez pas reçu l'email ?",
+            "resend": "Cliquez pour renvoyer",
+            "sending": "Envoi en cours...",
+            "open_email_app": "Ouvrir l'application email"
+        },
+        "toast": {
+            "success_title": "Demande envoyée",
+            "success_message": "Nous vous avons envoyé un email avec les instructions",
+            "error_title": "Problème",
+            "error_message": "Une erreur s'est produite lors de la demande de réinitialisation du mot de passe",
+            "network_error_title": "Erreur",
+            "network_error_message": "Échec de la connexion au serveur. Veuillez réessayer."
+        }
+    },
     "copyright": "Tous droits réservés.",
     "footer": {
         "stay_updated": "Restez informé",

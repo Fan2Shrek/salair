@@ -130,6 +130,35 @@
         },
         "already_account": "Already have an account?"
     },
+    "forgot_password": {
+        "meta_title": "Forgot password",
+        "title": "Forgot password?",
+        "subtitle": "No worries, we'll send you reset instructions.",
+        "form": {
+            "email_label": "Email",
+            "email_placeholder": "Enter your email",
+            "submit": "Reset password",
+            "email_required": "Please enter your email address",
+            "email_invalid": "Please enter a valid email address"
+        },
+        "back_to_login": "Back to login",
+        "email_sent": {
+            "title": "Check your email",
+            "subtitle": "We sent a password reset link to",
+            "didnt_receive": "Didn't receive the email?",
+            "resend": "Click to resend",
+            "sending": "Sending...",
+            "open_email_app": "Open email app"
+        },
+        "toast": {
+            "success_title": "Request sent",
+            "success_message": "We've sent you an email with instructions",
+            "error_title": "Problem",
+            "error_message": "An error occurred while requesting password reset",
+            "network_error_title": "Error",
+            "network_error_message": "Failed to connect to the server. Please try again."
+        }
+    },
     "copyright": "All rights reserved.",
     "footer": {
         "stay_updated": "Stay up to date",
