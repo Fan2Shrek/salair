@@ -94,5 +94,11 @@ router
   .prefix('api')
 
 // Mailgun
-
 router.post('/webhooks/mailgun/inbound', [InboundMailsController, 'receive'])
+router
+  .group(() => {
+    router
+      .get('/mails', [InboundMailsController, 'index'])
+      .use([middleware.auth(), middleware.admin()])
+  })
+  .prefix('api')

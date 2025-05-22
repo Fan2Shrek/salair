@@ -35,4 +35,13 @@ export default class InboundMailsController {
 
     return response.ok({ success: true })
   }
+
+  async index({ request, response }: HttpContext) {
+    const page = request.input('page', 1)
+    const limit = request.input('limit', 10)
+
+    const mails = await InboundMail.query().paginate(page, limit)
+
+    return response.ok(mails)
+  }
 }
