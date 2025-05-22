@@ -7,6 +7,7 @@ import * as crypto from 'node:crypto'
 import { generateSixDigitCode } from '#utils/number'
 import hash from '@adonisjs/core/services/hash'
 import PasswordReset from '#models/password_reset'
+import mail from '@adonisjs/mail/services/main'
 
 export default class AuthController {
   async register({ request, auth }: HttpContext) {
@@ -142,15 +143,15 @@ export default class AuthController {
         expiresAt: DateTime.now().plus({ minutes: 15 }),
       })
 
-      return response.ok({ code })
+      await mail.send((message) => {
+        message
+          .to(user.email)
+          .from('Salair <noreply@salair.fr>')
+          .subject('Demande de réinitialisation de mot de passe')
+          .htmlView('mails/reset_password', { code, user: user })
+      })
 
-      // await mail.send((message) => {
-      //   message
-      //     .to(user.email)
-      //     .from('Salair <noreply@salair.fr>')
-      //     .subject('Demande de réinitialisation de mot de passe')
-      //     .text(`Votre code de réinitialisation : ${code}`)
-      // })
+      return response.ok({})
     } else {
       return response.badRequest({ message: 'Inexistant user' })
     }

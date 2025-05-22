@@ -102,3 +102,7 @@ router
       .use([middleware.auth(), middleware.admin()])
   })
   .prefix('api')
+
+router.get('/test', ({ view }) => {
+  return view.render('mails/reset_password', { code: 123456, user: { firstName: 'Nassim' } })
+})
