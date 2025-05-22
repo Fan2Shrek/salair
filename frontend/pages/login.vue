@@ -76,7 +76,7 @@
                                 {{ $t('login.form.remember_me') }}
                             </label>
                         </div>
-                        <ULink size="sm" to="#">{{ $t('login.form.forgot_password') }}</ULink>
+                        <ULink size="sm" to="/forgot-password">{{ $t('login.form.forgot_password') }}</ULink>
                     </div>
                     <UButton class="mt-5 sm:mt-6 w-full justify-center" type="submit">{{
                         $t('login.form.submit')
