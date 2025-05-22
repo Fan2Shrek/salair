@@ -36,6 +36,10 @@ router
       .patch('/me/avatar', [UsersController, 'updateAvatar'])
       .as('auth.update_avatar')
       .use(middleware.auth())
+
+    router.post('/reset-password', [AuthController, 'reset'])
+    router.post('/reset-password/verify', [AuthController, 'verifyReset'])
+    router.put('/reset-password/update', [AuthController, 'changePasswordAfterReset'])
   })
   .prefix('/api')
 

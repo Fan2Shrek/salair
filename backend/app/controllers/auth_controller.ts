@@ -4,6 +4,9 @@ import { loginValidator, registerValidator } from '#validators/auth'
 import type { HttpContext } from '@adonisjs/core/http'
 import { DateTime } from 'luxon'
 import * as crypto from 'node:crypto'
+import { generateSixDigitCode } from '#utils/number'
+import hash from '@adonisjs/core/services/hash'
+import PasswordReset from '#models/password_reset'
 
 export default class AuthController {
   async register({ request, auth }: HttpContext) {
@@ -116,5 +119,109 @@ export default class AuthController {
       exists: !!user,
       message: user ? 'Email already used.' : 'Email available.',
     })
+  }
+
+  async reset({ request, response }: HttpContext) {
+    const { email } = request.only(['email'])
+
+    if (!email || typeof email !== 'string') {
+      return response.badRequest({ message: 'Invalid email' })
+    }
+
+    const user = await User.findBy('email', email)
+
+    if (user) {
+      const code = generateSixDigitCode()
+      const hashedCode = await hash.use('scrypt').make(code)
+
+      await PasswordReset.query().where('email', email).where('used', false).delete()
+
+      await PasswordReset.create({
+        email,
+        code: hashedCode,
+        expiresAt: DateTime.now().plus({ minutes: 15 }),
+      })
+
+      return response.ok({ code })
+
+      // await mail.send((message) => {
+      //   message
+      //     .to(user.email)
+      //     .from('Salair <noreply@salair.fr>')
+      //     .subject('Demande de réinitialisation de mot de passe')
+      //     .text(`Votre code de réinitialisation : ${code}`)
+      // })
+    } else {
+      return response.badRequest({ message: 'Inexistant user' })
+    }
+  }
+
+  async verifyReset({ request, response }: HttpContext) {
+    const { email, code } = request.only(['email', 'code'])
+
+    if (!email || !code || typeof email !== 'string' || typeof code !== 'string') {
+      return response.badRequest({ message: 'Bad request' })
+    }
+
+    const passwordReset = await PasswordReset.query()
+      .where('email', email)
+      .where('used', false)
+      .firstOrFail()
+
+    if (!passwordReset) {
+      return response.badRequest('No password reset request detected for this email')
+    }
+
+    const isValid = await hash.use('scrypt').verify(passwordReset.code, code)
+
+    if (isValid) {
+      return response.ok({ message: 'Code valid' })
+    } else {
+      return response.badRequest({ message: 'Code invalid' })
+    }
+  }
+
+  async changePasswordAfterReset({ request, response }: HttpContext) {
+    const { email, code, password } = request.only(['email', 'password', 'code'])
+
+    if (
+      !email ||
+      !code ||
+      !password ||
+      typeof email !== 'string' ||
+      typeof code !== 'string' ||
+      typeof password !== 'string'
+    ) {
+      return response.badRequest({ message: 'Bad request' })
+    }
+
+    const passwordReset = await PasswordReset.query()
+      .where('email', email)
+      .where('used', false)
+      .first()
+
+    if (!passwordReset) {
+      return response.badRequest({ message: 'No password reset request detected for this email' })
+    }
+
+    const isValid = await hash.use('scrypt').verify(passwordReset.code, code)
+
+    if (!isValid) {
+      return response.badRequest({ message: 'Code invalid' })
+    }
+
+    const user = await User.findBy('email', email)
+
+    if (user) {
+      user.password = password
+      await user.save()
+
+      passwordReset.used = true
+      await passwordReset.save()
+
+      return response.ok({ user })
+    } else {
+      return response.badRequest({ message: 'No user found with this email' })
+    }
   }
 }
