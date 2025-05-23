@@ -27,5 +27,5 @@
 </script>
 
 <template>
-    <UButton @click="openEmailApp">{{ t('forgot_password.email_sent.open_email_app') }}</UButton>
+    <UButton variant="secondary" @click="openEmailApp">{{ t('forgot_password.email_sent.open_email_app') }}</UButton>
 </template>
