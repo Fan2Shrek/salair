@@ -135,28 +135,54 @@
         "title": "Forgot password?",
         "subtitle": "No worries, we'll send you reset instructions.",
         "form": {
+            "email_required": "Email is required",
+            "email_invalid": "Please enter a valid email address",
             "email_label": "Email",
             "email_placeholder": "Enter your email",
-            "submit": "Reset password",
-            "email_required": "Please enter your email address",
-            "email_invalid": "Please enter a valid email address"
+            "submit": "Reset password"
         },
         "back_to_login": "Back to login",
         "email_sent": {
             "title": "Check your email",
-            "subtitle": "We sent a password reset link to",
+            "subtitle": "We've sent a verification code to",
             "didnt_receive": "Didn't receive the email?",
             "resend": "Click to resend",
             "sending": "Sending...",
             "open_email_app": "Open email app"
         },
+        "new_password": {
+            "title": "Set new password",
+            "subtitle": "Your new password must be different to previously used passwords.",
+            "password_label": "Password",
+            "password_placeholder": "••••••••",
+            "confirm_password_label": "Confirm password",
+            "passwords_match": "Passwords match",
+            "password_invalid": "Password does not meet security criteria",
+            "passwords_dont_match": "Passwords do not match",
+            "password_update_error": "An error occurred while updating the password",
+            "submit": "Reset password"
+        },
+        "success": {
+            "title": "Password updated successfully",
+            "subtitle": "Your password has been successfully reset. Click below to log in magically.",
+            "password_updated": "Password updated!",
+            "password_updated_message": "Your password has been successfully updated.",
+            "login_success": "Login successful!",
+            "login_success_message": "Welcome back!",
+            "login_error": "Login failed",
+            "login_error_message": "An error occurred during login"
+        },
+        "verify": {
+            "submit": "Verify",
+            "error": "Invalid verification code"
+        },
         "toast": {
-            "success_title": "Request sent",
-            "success_message": "We've sent you an email with instructions",
-            "error_title": "Problem",
-            "error_message": "An error occurred while requesting password reset",
-            "network_error_title": "Error",
-            "network_error_message": "Failed to connect to the server. Please try again."
+            "success_title": "Email sent",
+            "success_message": "Check your email for reset instructions",
+            "error_title": "Error",
+            "error_message": "Failed to send reset email",
+            "network_error_title": "Network Error",
+            "network_error_message": "Please check your connection and try again"
         }
     },
     "copyright": "All rights reserved.",

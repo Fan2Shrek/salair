@@ -135,28 +135,54 @@
         "title": "¿Contraseña olvidada?",
         "subtitle": "No te preocupes, te enviaremos las instrucciones de recuperación.",
         "form": {
+            "email_required": "El email es requerido",
+            "email_invalid": "Por favor, introduce una dirección de email válida",
             "email_label": "Email",
             "email_placeholder": "Introduce tu email",
-            "submit": "Restablecer contraseña",
-            "email_required": "Por favor, introduce tu dirección de email",
-            "email_invalid": "Por favor, introduce una dirección de email válida"
+            "submit": "Restablecer contraseña"
         },
         "back_to_login": "Volver al inicio de sesión",
         "email_sent": {
             "title": "Revisa tu email",
-            "subtitle": "Hemos enviado un enlace de restablecimiento de contraseña a",
+            "subtitle": "Hemos enviado un código de verificación a",
             "didnt_receive": "¿No recibiste el email?",
-            "resend": "Haz clic para reenviar",
+            "resend": "Hacer clic para reenviar",
             "sending": "Enviando...",
             "open_email_app": "Abrir aplicación de email"
         },
+        "new_password": {
+            "title": "Establecer nueva contraseña",
+            "subtitle": "Tu nueva contraseña debe ser diferente a las contraseñas utilizadas anteriormente.",
+            "password_label": "Contraseña",
+            "password_placeholder": "••••••••",
+            "confirm_password_label": "Confirmar contraseña",
+            "passwords_match": "Las contraseñas coinciden",
+            "password_invalid": "La contraseña no cumple con los criterios de seguridad",
+            "passwords_dont_match": "Las contraseñas no coinciden",
+            "password_update_error": "Se produjo un error al actualizar la contraseña",
+            "submit": "Restablecer contraseña"
+        },
+        "success": {
+            "title": "Contraseña actualizada exitosamente",
+            "subtitle": "Tu contraseña ha sido restablecida exitosamente. Haz clic abajo para iniciar sesión automáticamente.",
+            "password_updated": "¡Contraseña modificada!",
+            "password_updated_message": "Tu contraseña ha sido actualizada exitosamente.",
+            "login_success": "¡Inicio de sesión exitoso!",
+            "login_success_message": "¡Bienvenido de nuevo!",
+            "login_error": "Error de inicio de sesión",
+            "login_error_message": "Se produjo un error durante el inicio de sesión"
+        },
+        "verify": {
+            "submit": "Verificar",
+            "error": "Código de verificación inválido"
+        },
         "toast": {
-            "success_title": "Solicitud enviada",
-            "success_message": "Te hemos enviado un email con las instrucciones",
-            "error_title": "Problema",
-            "error_message": "Se produjo un error al solicitar el restablecimiento de contraseña",
-            "network_error_title": "Error",
-            "network_error_message": "Error al conectar con el servidor. Por favor, inténtalo de nuevo."
+            "success_title": "Email enviado",
+            "success_message": "Revisa tu email para las instrucciones de restablecimiento",
+            "error_title": "Error",
+            "error_message": "Falló el envío del email de restablecimiento",
+            "network_error_title": "Error de red",
+            "network_error_message": "Por favor verifica tu conexión e inténtalo de nuevo"
         }
     },
     "copyright": "Todos los derechos reservados.",
