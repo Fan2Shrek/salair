@@ -72,6 +72,7 @@ export default defineNuxtConfig({
         '/doc/**': { robots: false },
         '/app/**': { robots: false },
         '/onboarding': { robots: false },
+        '/forgot-password': { robots: false }
     },
     content: {
         preview: {
