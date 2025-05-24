@@ -24,10 +24,10 @@
             <nav class="hidden md:block flex-grow mx-4" aria-label="Navigation principale">
                 <ul class="flex items-center gap-6">
                     <li>
-                        <ULink to="#" variant="secondary">{{ $t('header.navigation.product') }}</ULink>
+                        <ULink to="/product" variant="secondary">{{ $t('header.navigation.product') }}</ULink>
                     </li>
                     <li>
-                        <ULink to="#" variant="secondary">{{ $t('header.navigation.about') }}</ULink>
+                        <ULink to="/about" variant="secondary">{{ $t('header.navigation.about') }}</ULink>
                     </li>
                     <li>
                         <ULink to="/pricing" variant="secondary">{{ $t('header.navigation.pricing') }}</ULink>
