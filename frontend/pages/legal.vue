@@ -1,5 +1,5 @@
 <script setup lang="ts">
-    const { locale } = useI18n();
+    const { locale, t } = useI18n();
     const data = ref();
 
     const loadData = async () => {
@@ -10,6 +10,11 @@
     };
 
     watch(locale, loadData, { immediate: true });
+    
+    useSeoMeta({
+        title: computed(() => t('legal_page.title')),
+        description: computed(() => t('legal_page.intro'))
+    });
 </script>
 
 <template>
