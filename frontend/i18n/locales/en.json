@@ -9,6 +9,38 @@
         "error": "Error",
         "error_occurred": "An error occurred"
     },
+    "about": {
+        "title_small": "About us",
+        "title": "Making administration simple for independents",
+        "subtitle": "We are a team dedicated to helping freelancers focus on their profession, not on paperwork.",
+        "discover_platform": "Discover the platform",
+        "get_started": "Get started",
+        "mission": {
+            "title": "Our mission: simplify the life of freelancers",
+            "description": "Salair centralizes everything a freelancer needs: invoicing, tax declarations, payments, and soon... simplified payroll and hiring."
+        },
+        "invoicing": {
+            "title": "Fast and intuitive invoicing",
+            "description": "Create and send your invoices in a few clicks, without hassle.",
+            "feature1": "Custom templates & automatic numbering",
+            "feature2": "Email sending + automatic reminders",
+            "feature3": "Online payment via Stripe or bank transfer"
+        },
+        "tax": {
+            "title": "Stress-free tax declarations",
+            "description": "Manage your monthly or quarterly declarations with peace of mind.",
+            "feature1": "Automatic estimation of your contributions",
+            "feature2": "Smart deadline reminders",
+            "feature3": "History of your declarations and payments"
+        },
+        "activity": {
+            "title": "Your activity at a glance",
+            "description": "Track your income, thresholds, and obligations in real-time.",
+            "feature1": "Monthly and annual view of your revenue",
+            "feature2": "Tracking of VAT & ACRE franchise thresholds",
+            "feature3": "Visualization of received and upcoming payments"
+        }
+    },
     "user_menu": {
         "profile": "View profile",
         "settings": "Account settings",

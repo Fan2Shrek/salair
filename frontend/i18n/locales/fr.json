@@ -9,6 +9,38 @@
         "error": "Erreur",
         "error_occurred": "Une erreur est survenue"
     },
+    "about": {
+        "title_small": "À propos de nous",
+        "title": "Rendre l'administratif simple pour les indépendants",
+        "subtitle": "Nous sommes une équipe dédiée à aider les freelances à se concentrer sur leur métier, pas sur la paperasse.",
+        "discover_platform": "Découvrir la plateforme",
+        "get_started": "Commencer",
+        "mission": {
+            "title": "Notre mission : simplifier la vie des freelances",
+            "description": "Salair centralise tout ce dont un freelance a besoin : facturation, URSSAF, paiements, et bientôt... paie et embauche simplifiées."
+        },
+        "invoicing": {
+            "title": "Facturation rapide et intuitive",
+            "description": "Créez et envoyez vos factures en quelques clics, sans prise de tête.",
+            "feature1": "Modèles personnalisés & numérotation automatique",
+            "feature2": "Envoi par email + relance automatique",
+            "feature3": "Paiement en ligne via Stripe ou virement"
+        },
+        "tax": {
+            "title": "URSSAF sans stress",
+            "description": "Gérez vos déclarations mensuelles ou trimestrielles en toute sérénité.",
+            "feature1": "Estimation automatique de vos cotisations",
+            "feature2": "Rappels intelligents à l'échéance",
+            "feature3": "Historique de vos déclarations et paiements"
+        },
+        "activity": {
+            "title": "Votre activité en un clin d'œil",
+            "description": "Suivez vos revenus, plafonds et obligations en temps réel.",
+            "feature1": "Vue mensuelle et annuelle de votre chiffre d'affaires",
+            "feature2": "Suivi des plafonds de franchise de TVA & ACRE",
+            "feature3": "Visualisation des paiements reçus et à venir"
+        }
+    },
     "user_menu": {
         "profile": "Voir le profil",
         "settings": "Paramètres du compte",

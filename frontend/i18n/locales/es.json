@@ -9,6 +9,38 @@
         "error": "Error",
         "error_occurred": "Se ha producido un error"
     },
+    "about": {
+        "title_small": "Sobre nosotros",
+        "title": "Simplificando la administración para independientes",
+        "subtitle": "Somos un equipo dedicado a ayudar a los freelancers a concentrarse en su profesión, no en el papeleo.",
+        "discover_platform": "Descubrir la plataforma",
+        "get_started": "Comenzar",
+        "mission": {
+            "title": "Nuestra misión: simplificar la vida de los freelancers",
+            "description": "Salair centraliza todo lo que necesita un freelancer: facturación, declaraciones fiscales, pagos y próximamente... nóminas y contratación simplificadas."
+        },
+        "invoicing": {
+            "title": "Facturación rápida e intuitiva",
+            "description": "Crea y envía tus facturas en pocos clics, sin complicaciones.",
+            "feature1": "Plantillas personalizadas y numeración automática",
+            "feature2": "Envío por email + recordatorios automáticos",
+            "feature3": "Pago en línea vía Stripe o transferencia bancaria"
+        },
+        "tax": {
+            "title": "Declaraciones fiscales sin estrés",
+            "description": "Gestiona tus declaraciones mensuales o trimestrales con tranquilidad.",
+            "feature1": "Estimación automática de tus cotizaciones",
+            "feature2": "Recordatorios inteligentes de vencimientos",
+            "feature3": "Historial de tus declaraciones y pagos"
+        },
+        "activity": {
+            "title": "Tu actividad de un vistazo",
+            "description": "Sigue tus ingresos, umbrales y obligaciones en tiempo real.",
+            "feature1": "Vista mensual y anual de tu facturación",
+            "feature2": "Seguimiento de umbrales de franquicia de IVA y ayudas",
+            "feature3": "Visualización de pagos recibidos y próximos"
+        }
+    },
     "user_menu": {
         "profile": "Ver perfil",
         "settings": "Configuración de la cuenta",
