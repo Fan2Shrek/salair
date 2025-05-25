@@ -251,7 +251,7 @@
                             </h3>
                             <p class="text-tertiary text-lg text-center">{{ $t('faq.more_questions.subtitle') }}</p>
                         </div>
-                        <UButton class="mt-8 mx-auto">{{ $t('faq.more_questions.button') }}</UButton>
+                        <UButton class="mt-8 mx-auto" @click="navigateTo('/contact')">{{ $t('faq.more_questions.button') }}</UButton>
                     </div>
                 </div>
             </section>
