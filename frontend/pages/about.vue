@@ -3,7 +3,11 @@
     import ClipboardCheckIcon from '~/components/atoms/icons/ClipboardCheckIcon.vue';
     import ReceiptCheckIcon from '~/components/atoms/icons/ReceiptCheckIcon.vue';
     
-    useI18n();
+    const { t } = useI18n();
+    
+    useSeoMeta({
+        title: () => `${t('about.title_small')}`,
+    });
 </script>
 
 <template>
