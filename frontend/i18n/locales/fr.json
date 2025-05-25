@@ -441,6 +441,33 @@
                 }
             }
         }
+    },
+    "contact": {
+        "meta_title": "Contact",
+        "title": "Contactez-nous",
+        "heading": "Entrez en contact",
+        "intro": "Nous serions ravis d'avoir de vos nouvelles. Veuillez remplir ce formulaire.",
+        "form": {
+            "first_name": "Prénom",
+            "last_name": "Nom",
+            "email": "Email",
+            "phone": "Numéro de téléphone",
+            "message": "Message",
+            "privacy_agreement": "Vous acceptez notre politique de confidentialité.",
+            "submit": "Envoyer le message",
+            "errors": {
+                "incomplete_form": "Formulaire incomplet",
+                "fill_required_fields": "Veuillez remplir tous les champs obligatoires",
+                "submission_error": "Erreur de soumission",
+                "form_error_message": "Une erreur est survenue lors de l'envoi du formulaire",
+                "technical_error": "Erreur technique",
+                "try_again_later": "Un problème est survenu, veuillez réessayer plus tard"
+            },
+            "success": {
+                "title": "Message envoyé",
+                "message": "Votre demande de contact a été émise avec succès"
+            }
+        }
     }
 }
 

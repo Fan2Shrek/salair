@@ -441,6 +441,33 @@
                 }
             }
         }
+    },
+    "contact": {
+        "meta_title": "Contact",
+        "title": "Contact us",
+        "heading": "Get in touch",
+        "intro": "We'd love to hear from you. Please fill out this form.",
+        "form": {
+            "first_name": "First name",
+            "last_name": "Last name",
+            "email": "Email",
+            "phone": "Phone number",
+            "message": "Message",
+            "privacy_agreement": "You agree to our friendly privacy policy.",
+            "submit": "Send message",
+            "errors": {
+                "incomplete_form": "Incomplete form",
+                "fill_required_fields": "Please fill in all required fields",
+                "submission_error": "Submission error",
+                "form_error_message": "An error occurred while sending the form",
+                "technical_error": "Technical error",
+                "try_again_later": "A problem occurred, please try again later"
+            },
+            "success": {
+                "title": "Message sent",
+                "message": "Your contact request was successfully submitted"
+            }
+        }
     }
 }
 

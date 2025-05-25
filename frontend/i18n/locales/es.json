@@ -441,5 +441,32 @@
                 }
             }
         }
+    },
+    "contact": {
+        "meta_title": "Contacto",
+        "title": "Contáctanos",
+        "heading": "Ponte en contacto",
+        "intro": "Nos encantaría saber de ti. Por favor, rellena este formulario.",
+        "form": {
+            "first_name": "Nombre",
+            "last_name": "Apellido",
+            "email": "Email",
+            "phone": "Número de teléfono",
+            "message": "Mensaje",
+            "privacy_agreement": "Aceptas nuestra política de privacidad.",
+            "submit": "Enviar mensaje",
+            "errors": {
+                "incomplete_form": "Formulario incompleto",
+                "fill_required_fields": "Por favor, rellene todos los campos obligatorios",
+                "submission_error": "Error de envío",
+                "form_error_message": "Ha ocurrido un error al enviar el formulario",
+                "technical_error": "Error técnico",
+                "try_again_later": "Ha ocurrido un problema, por favor inténtelo más tarde"
+            },
+            "success": {
+                "title": "Mensaje enviado",
+                "message": "Su solicitud de contacto ha sido enviada con éxito"
+            }
+        }
     }
 }
