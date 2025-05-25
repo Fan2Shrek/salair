@@ -39,6 +39,7 @@ export default defineConfig({
     () => import('@adonisjs/drive/drive_provider'),
     () => import('@adonisjs/mail/mail_provider'),
     () => import('@adonisjs/core/providers/edge_provider'),
+    () => import('@adonisjs/static/static_provider'),
   ],
 
   /*
@@ -78,6 +79,10 @@ export default defineConfig({
   metaFiles: [
     {
       pattern: 'resources/views/**/*.edge',
+      reloadServer: false,
+    },
+    {
+      pattern: 'public/**',
       reloadServer: false,
     },
   ],
