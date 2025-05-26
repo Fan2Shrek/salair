@@ -70,7 +70,7 @@
                         </div>
                     </div>
                     <img
-                        class="md:w-1/2 max-md:px-4 max-h-140 h-full object-cover"
+                        class="md:w-1/2 max-md:px-4 max-h-60 md:max-h-140 h-full object-cover"
                         src="https://storage.salair.fr/salair/public/about_1.jpg"
                     />
                 </div>
@@ -103,7 +103,7 @@
                         </div>
                     </div>
                     <img
-                        class="md:w-1/2 max-md:px-4 max-h-140 h-full object-cover"
+                        class="md:w-1/2 max-md:px-4 max-h-60 md:max-h-140 h-full object-cover"
                         src="https://storage.salair.fr/salair/public/about_2.jpg"
                     />
                 </div>
@@ -140,7 +140,7 @@
                         </div>
                     </div>
                     <img
-                        class="md:w-1/2 max-md:px-4 max-h-140 h-full object-cover"
+                        class="md:w-1/2 max-md:px-4 max-h-60 md:max-h-140 h-full object-cover"
                         src="https://storage.salair.fr/salair/public/about_3.jpg"
                     />
                 </div>
