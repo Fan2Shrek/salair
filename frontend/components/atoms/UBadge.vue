@@ -70,6 +70,7 @@
             roundedClasses[size][variant],
         ]"
     >
+        <div v-if="icon === 'dot'" :class="['rounded-full m-px size-1.5 animate-ping absolute', dotClasses[color]]" />
         <div v-if="icon === 'dot'" :class="['rounded-full m-px size-1.5', dotClasses[color]]" />
         <slot />
     </div>
