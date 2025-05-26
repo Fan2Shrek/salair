@@ -3,6 +3,15 @@ import { newsletterValidator } from '#validators/newsletter'
 import type { HttpContext } from '@adonisjs/core/http'
 
 export default class NewslettersController {
+  async index({ request, response }: HttpContext) {
+    const page = request.input('page', 1)
+    const limit = request.input('limit', 10)
+
+    const subscribers = await NewsletterSubscriber.query().paginate(page, limit)
+
+    return response.ok(subscribers)
+  }
+
   async store({ request, response }: HttpContext) {
     const { email } = await request.validateUsing(newsletterValidator)
 

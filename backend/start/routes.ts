@@ -115,6 +115,9 @@ router
 // Newsletter routes
 router
   .group(() => {
+    router
+      .get('/newsletter', [NewslettersController, 'index'])
+      .use([middleware.auth(), middleware.admin()])
     router.post('/newsletter', [NewslettersController, 'store'])
   })
   .prefix('api')
