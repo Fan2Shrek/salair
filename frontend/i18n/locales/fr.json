@@ -474,6 +474,15 @@
         "success": "Merci pour votre inscription !",
         "error": "Une erreur est survenue lors de l'inscription",
         "network_error": "Erreur de connexion, veuillez réessayer"
+    },
+    "error_page": {
+        "404_title": "Nous ne trouvons pas cette page",
+        "404_subtitle": "La page que vous recherchez n'existe pas ou a été déplacée.",
+        "500_title": "Erreur interne du serveur",
+        "500_subtitle": "Une erreur est survenue mais ne vous inquiétez pas, ce n'est pas de votre faute.",
+        "unknown_status": "Code de statut inconnu",
+        "go_back": "Retour",
+        "go_home": "Accueil"
     }
 }
 

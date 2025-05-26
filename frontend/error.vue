@@ -3,6 +3,7 @@
     import ArrowLeftIcon from './components/atoms/icons/ArrowLeftIcon.vue';
 
     const _router = useRouter();
+    const { t } = useI18n();
 
     const props = defineProps<{
         error: NuxtError;
@@ -16,7 +17,7 @@
         if (Object.keys(titleByStatusCode).includes(props.error.statusCode.toString())) {
             return titleByStatusCode[props.error.statusCode];
         } else {
-            return 'Unknown status code';
+            return t('error_page.unknown_status');
         }
     });
 
@@ -24,18 +25,18 @@
         if (Object.keys(subtitleByStatusCode).includes(props.error.statusCode.toString())) {
             return subtitleByStatusCode[props.error.statusCode];
         } else {
-            return 'Unknown status code';
+            return t('error_page.unknown_status');
         }
     });
 
     const titleByStatusCode: Record<number, string> = {
-        404: 'We can’t find this page',
-        500: 'Internal server error',
+        404: t('error_page.404_title'),
+        500: t('error_page.500_title'),
     };
 
     const subtitleByStatusCode: Record<number, string> = {
-        404: "The page you are looking for doesn't exist or has been moved.",
-        500: "An error occured but don't worry this is not your fault.",
+        404: t('error_page.404_subtitle'),
+        500: t('error_page.500_subtitle'),
     };
 </script>
 
@@ -52,9 +53,9 @@
             </div>
             <div class="mt-12 flex gap-3">
                 <UButton :icon="ArrowLeftIcon" icon-position="leading" variant="secondary" @click="$router.back()"
-                    >Go back</UButton
+                    >{{ $t('error_page.go_back') }}</UButton
                 >
-                <UButton @click="$router.push('/')">Go home</UButton>
+                <UButton @click="$router.push('/')">{{ $t('error_page.go_home') }}</UButton>
             </div>
         </section>
     </main>

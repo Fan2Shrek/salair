@@ -474,6 +474,15 @@
         "success": "Thank you for subscribing!",
         "error": "An error occurred during subscription",
         "network_error": "Connection error, please try again"
+    },
+    "error_page": {
+        "404_title": "We can't find this page",
+        "404_subtitle": "The page you are looking for doesn't exist or has been moved.",
+        "500_title": "Internal server error",
+        "500_subtitle": "An error occurred but don't worry this is not your fault.",
+        "unknown_status": "Unknown status code",
+        "go_back": "Go back",
+        "go_home": "Go home"
     }
 }
 
