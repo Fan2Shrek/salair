@@ -468,6 +468,12 @@
                 "message": "Votre demande de contact a été émise avec succès"
             }
         }
+    },
+    "newsletter": {
+        "validation_error": "L'email saisi n'est pas correct",
+        "success": "Merci pour votre inscription !",
+        "error": "Une erreur est survenue lors de l'inscription",
+        "network_error": "Erreur de connexion, veuillez réessayer"
     }
 }
 

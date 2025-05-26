@@ -1,4 +1,6 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+    const { email, isLoading, handleFormSubmit } = useNewsletter()
+</script>
 
 <template>
     <footer class="w-full pt-12 md:pt-16 pb-12 bg-secondary">
@@ -28,9 +30,9 @@
                 </div>
                 <div class="space-y-4 max-md:mt-12 max-md:px-4">
                     <h4 class="font-semibold text-primary text-sm">{{ $t('footer.stay_updated') }}</h4>
-                    <form class="flex items-center gap-4">
-                        <UInput type="email" name="email" :placeholder="$t('footer.email_placeholder')" class="max-md:flex-grow"/>
-                        <UButton size="lg">{{ $t('footer.subscribe') }}</UButton>
+                    <form class="flex items-center gap-4" @submit.prevent="handleFormSubmit">
+                        <UInput v-model="email" type="email" name="email" :placeholder="$t('footer.email_placeholder')" class="max-md:flex-grow"/>
+                        <UButton size="lg" type="submit" :disabled="isLoading">{{ $t('footer.subscribe') }}</UButton>
                     </form>
                 </div>
             </div>

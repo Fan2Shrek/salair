@@ -468,6 +468,12 @@
                 "message": "Your contact request was successfully submitted"
             }
         }
+    },
+    "newsletter": {
+        "validation_error": "The email entered is not correct",
+        "success": "Thank you for subscribing!",
+        "error": "An error occurred during subscription",
+        "network_error": "Connection error, please try again"
     }
 }
 

@@ -468,5 +468,11 @@
                 "message": "Su solicitud de contacto ha sido enviada con éxito"
             }
         }
+    },
+    "newsletter": {
+        "validation_error": "El email ingresado no es correcto",
+        "success": "¡Gracias por suscribirse!",
+        "error": "Ha ocurrido un error durante la suscripción",
+        "network_error": "Error de conexión, por favor inténtelo de nuevo"
     }
 }
