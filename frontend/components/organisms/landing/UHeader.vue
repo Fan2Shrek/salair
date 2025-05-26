@@ -87,8 +87,8 @@
         >
             <nav class="flex flex-col space-y-6" aria-label="Navigation mobile">
                 <ul class="flex flex-col space-y-4 py-4">
-                    <li><ULink to="#" variant="secondary" class="text-lg">{{ $t('header.navigation.product') }}</ULink></li>
-                    <li><ULink to="#" variant="secondary" class="text-lg">{{ $t('header.navigation.about') }}</ULink></li>
+                    <li><ULink to="/product" variant="secondary" class="text-lg">{{ $t('header.navigation.product') }}</ULink></li>
+                    <li><ULink to="/about" variant="secondary" class="text-lg">{{ $t('header.navigation.about') }}</ULink></li>
                     <li><ULink to="/pricing" variant="secondary" class="text-lg">{{ $t('header.navigation.pricing') }}</ULink></li>
                 </ul>
                 <div class="flex flex-col space-y-3 pt-4 border-t border-secondary">

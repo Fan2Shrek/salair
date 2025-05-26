@@ -17,10 +17,10 @@
                     <nav>
                         <ul class="w-full flex flex-wrap items-center gap-x-8 gap-y-4">
                             <li>
-                                <ULink to="#" variant="secondary">{{ $t('header.navigation.product') }}</ULink>
+                                <ULink to="/product" variant="secondary">{{ $t('header.navigation.product') }}</ULink>
                             </li>
                             <li>
-                                <ULink to="#" variant="secondary">{{ $t('header.navigation.about') }}</ULink>
+                                <ULink to="/about" variant="secondary">{{ $t('header.navigation.about') }}</ULink>
                             </li>
                             <li>
                                 <ULink to="/pricing" variant="secondary">{{ $t('header.navigation.pricing') }}</ULink>
