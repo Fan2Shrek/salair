@@ -16,6 +16,7 @@ const MeController = () => import('#controllers/me_controller')
 
 import router from '@adonisjs/core/services/router'
 import { middleware } from './kernel.js'
+const ContactsController = () => import('#controllers/contacts_controller')
 
 router.get('/', async () => {
   return {
@@ -100,5 +101,13 @@ router
     router
       .get('/mails', [InboundMailsController, 'index'])
       .use([middleware.auth(), middleware.admin()])
+  })
+  .prefix('api')
+
+// Contact routes
+
+router
+  .group(() => {
+    router.post('/contact', [ContactsController, 'receive'])
   })
   .prefix('api')
