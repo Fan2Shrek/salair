@@ -47,4 +47,11 @@ export default await Env.create(new URL('../', import.meta.url), {
   */
   MAILGUN_API_KEY: Env.schema.string(),
   MAILGUN_DOMAIN: Env.schema.string(),
+
+  /*
+  |----------------------------------------------------------
+  | Variables for configuring the github
+  |----------------------------------------------------------
+  */
+  GITHUB_TOKEN: Env.schema.string(),
 })
