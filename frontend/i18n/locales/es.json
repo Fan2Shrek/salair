@@ -52,7 +52,8 @@
         "navigation": {
             "product": "Producto",
             "about": "Acerca de",
-            "pricing": "Precios"
+            "pricing": "Precios",
+            "blog": "Blog"
         }
     },
     "landing": {
