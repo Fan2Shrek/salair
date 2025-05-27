@@ -30,8 +30,13 @@ Une facture doit contenir les éléments suivants :
 ## 2. Exemple de facture
 
 Facture n°2025-001
-Émise le : 26/05/2025Client : Jean Dupont
+
+Émise le : 26/05/2025
+
+Client : Jean Dupont
+
 Service : Création de site vitrine
+
 Montant : 800 € (TVA non applicable, art. 293 B du CGI)
 
 ## 3. Astuce Salair 💡
