@@ -30,7 +30,6 @@ export default class BlogArticlesController {
     })
 
     blogArticle.related('author').associate(user)
-
     blogArticle.save()
 
     return response.ok(blogArticle)
@@ -39,13 +38,13 @@ export default class BlogArticlesController {
   async show({ response, params }: HttpContext) {
     const slug = params.slug
 
-    console.log('Requesting article with slug:', slug)
-
     const article = await BlogArticle.query()
       .where('slug', slug)
       .where('status', 'published')
       .where('visible', true)
       .first()
+
+    await article?.load('author')
 
     if (!article) {
       return response.badRequest({
