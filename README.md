@@ -3,8 +3,6 @@
 **Salair** est une plateforme SaaS conçue pour accompagner les **freelances** et **autoentrepreneurs** dans la gestion complète de leur activité.  
 Facturation, déclarations URSSAF, paiements en ligne, suivi client : tout est centralisé et automatisé.
 
----
-
 ## 🚀 Fonctionnalités principales
 
 -   🧾 Création de factures personnalisables
@@ -14,7 +12,6 @@ Facturation, déclarations URSSAF, paiements en ligne, suivi client : tout est c
 -   📅 Déclarations URSSAF mensuelles ou trimestrielles
 -   📁 Stockage sécurisé des documents (MinIO)
 
----
 
 ## 🛠 Stack technique
 
@@ -24,7 +21,6 @@ Facturation, déclarations URSSAF, paiements en ligne, suivi client : tout est c
 -   **Stockage fichiers**: MinIO (self-hosted S3)
 -   **Paiement**: Stripe
 
----
 
 ## 📦 Installation (dev)
 
@@ -66,7 +62,6 @@ npm run test
 -   [ ] Mode TPE (employeurs) avec paie simplifiée
 -   [ ] Application mobile
 
----
 
 ## 🔒 Sécurité & conformité
 
@@ -75,14 +70,11 @@ npm run test
 -   Conformité RGPD
 -   Logs d'audit
 
----
 
 ## 🤝 Contribution
 
 Les contributions sont les bienvenues !  
 Crée une issue ou une pull request, et n'oublie pas de respecter le style de code défini dans le projet.
-
----
 
 ## 📄 Licence
 
