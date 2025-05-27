@@ -19,6 +19,9 @@ export default class BlogArticle extends BaseModel {
   @column()
   declare authorId: number
 
+  @column()
+  declare mainPicture: string
+
   @belongsTo(() => User, { foreignKey: 'authorId' })
   declare author: BelongsTo<typeof User>
 

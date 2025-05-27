@@ -7,7 +7,8 @@ export default class extends BaseSeeder {
       slug: 'facture-autoentrepreneur',
       visible: true,
       status: 'published',
-      authorId: 1,
+      authorId: 7,
+      mainPicture: 'https://storage.salair.fr/salair/public/image-facture-autoentrepreneur.jpg',
     })
   }
 }

@@ -9,8 +9,8 @@ export default class extends BaseSchema {
       table.string('slug').notNullable()
       table.enum('status', ['draft', 'published', 'archived']).notNullable()
       table.boolean('visible').notNullable().defaultTo(false)
-
       table.integer('author_id').notNullable().references('id').inTable('users')
+      table.string('main_picture').nullable()
 
       table.timestamp('created_at')
       table.timestamp('updated_at')
