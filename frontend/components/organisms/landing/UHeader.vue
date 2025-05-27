@@ -23,14 +23,8 @@
 
             <nav class="hidden md:block flex-grow mx-4" aria-label="Navigation principale">
                 <ul class="flex items-center gap-6">
-                    <li>
-                        <ULink to="/product" variant="secondary">{{ $t('header.navigation.product') }}</ULink>
-                    </li>
-                    <li>
-                        <ULink to="/about" variant="secondary">{{ $t('header.navigation.about') }}</ULink>
-                    </li>
-                    <li>
-                        <ULink to="/pricing" variant="secondary">{{ $t('header.navigation.pricing') }}</ULink>
+                    <li v-for="link in navigation" :key="link.label">
+                        <ULink :to="link.to" variant="secondary">{{ $t(link.label) }}</ULink>
                     </li>
                 </ul>
             </nav>
@@ -87,9 +81,9 @@
         >
             <nav class="flex flex-col space-y-6" aria-label="Navigation mobile">
                 <ul class="flex flex-col space-y-4 py-4">
-                    <li><ULink to="/product" variant="secondary" class="text-lg">{{ $t('header.navigation.product') }}</ULink></li>
-                    <li><ULink to="/about" variant="secondary" class="text-lg">{{ $t('header.navigation.about') }}</ULink></li>
-                    <li><ULink to="/pricing" variant="secondary" class="text-lg">{{ $t('header.navigation.pricing') }}</ULink></li>
+                    <li v-for="link in navigation" :key="link.label">
+                        <ULink :to="link.to" variant="secondary" class="text-lg">{{ $t(link.label) }}</ULink>
+                    </li>
                 </ul>
                 <div class="flex flex-col space-y-3 pt-4 border-t border-secondary">
                     <UButton
