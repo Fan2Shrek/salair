@@ -1,10 +1,13 @@
 import type { ArticlesCollectionItem } from "@nuxt/content"
+import type User from "~/types/user"
 
 type BlogArticleMetadata = {
     id: number
     slug: string
     status: 'draw' | 'published' | 'archived'
     visible: boolean
+    mainPicture: string
+    author: User
     createdAt: string
     updatedAt: string
 }
