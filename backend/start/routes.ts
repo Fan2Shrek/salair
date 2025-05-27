@@ -16,6 +16,7 @@ const MeController = () => import('#controllers/me_controller')
 
 import router from '@adonisjs/core/services/router'
 import { middleware } from './kernel.js'
+const BlogArticlesController = () => import('#controllers/blog_articles_controller')
 const NewslettersController = () => import('#controllers/newsletters_controller')
 const ContactsController = () => import('#controllers/contacts_controller')
 
@@ -119,5 +120,17 @@ router
       .get('/newsletter', [NewslettersController, 'index'])
       .use([middleware.auth(), middleware.admin()])
     router.post('/newsletter', [NewslettersController, 'store'])
+  })
+  .prefix('api')
+
+// Blog articles routes
+router
+  .group(() => {
+    router.get('/blog/metadata', [BlogArticlesController, 'index'])
+    router.get('/blog/files', [BlogArticlesController, 'files'])
+    router
+      .post('/blog/article', [BlogArticlesController, 'store'])
+      .use([middleware.auth(), middleware.admin()])
+    router.get('/blog/:slug', [BlogArticlesController, 'show'])
   })
   .prefix('api')
