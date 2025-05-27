@@ -13,9 +13,7 @@ tags:
 readingTime: 4
 ---
 
-Créer une facture en tant qu’autoentrepreneur est **obligatoire dès le premier client**.
-
-Voici les étapes pour générer une facture conforme aux obligations légales.
+Créer une facture en tant qu’autoentrepreneur est **obligatoire dès le premier client**. :br Voici les étapes pour générer une facture conforme aux obligations légales.
 
 ## 1. Mentions obligatoires
 
