@@ -75,6 +75,24 @@ export default class extends BaseSeeder {
         trialEndsAt: DateTime.now().minus({ days: 5 }),
         avatar: 'avatar-5.png',
       },
+      {
+        firstName: 'Nassim',
+        lastName: 'LOUNADI',
+        email: 'nassim.admin@mail.com',
+        password: 'password',
+        role: 'admin',
+        isVerified: true,
+        isOnTrial: false,
+      },
+      {
+        firstName: 'Nassim',
+        lastName: 'LOUNADI',
+        email: 'nassim@mail.com',
+        password: 'password',
+        role: 'user',
+        isVerified: true,
+        isOnTrial: false,
+      },
     ])
   }
 }
