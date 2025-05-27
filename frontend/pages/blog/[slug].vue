@@ -21,7 +21,7 @@
     <NuxtLayout name="landing">
         <main class="w-full flex-grow">
             <section class="pt-19 w-full">
-                <div v-if="content" class="my-12 md:my-24 max-w-3xl w-full mx-auto px-4 md:px-0 max-w-7xl mx-auto w-full">
+                <div v-if="content" class="my-12 md:my-24 max-w-3xl w-full mx-auto px-4 md:px-0">
                     <p class="text-brand-secondary font-semibold text-center">
                         Last update:
                         {{ d(new Date(metadata?.updatedAt!), { year: 'numeric', month: 'long', day: 'numeric' }) }}
