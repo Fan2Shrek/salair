@@ -60,6 +60,7 @@ npm run test
 -   [x] MVP Freelance : facturation + URSSAF + paiement
 -   [ ] Intégration automatique des seuils/plafonds autoentrepreneur
 -   [ ] Mode TPE (employeurs) avec paie simplifiée
+-   [ ] Extension navigateur
 -   [ ] Application mobile
 
 
