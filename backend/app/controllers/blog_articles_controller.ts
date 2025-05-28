@@ -29,6 +29,12 @@ export default class BlogArticlesController {
     const data = await request.validateUsing(blogArticleValidator)
     const user = auth.user!
 
+    const files = await GithubService.listArticlesFiles()
+
+    if (!files.includes(data.slug)) {
+      return response.notFound({ message: "We don't find the corresponding article" })
+    }
+
     const blogArticle = await BlogArticle.create({
       slug: data.slug,
       visible: data.visible,
