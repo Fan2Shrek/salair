@@ -32,24 +32,24 @@
         @keydown.enter="navigateToArticle(article.slug)"
         @keydown.space.prevent="navigateToArticle(article.slug)"
     >
-        <div class="overflow-hidden rounded-lg w-fit">
+        <div class="overflow-hidden rounded-lg w-full">
             <img
                 v-if="article.mainPicture"
                 :src="article.mainPicture"
                 :alt="`Image de l'article: ${article.slug}`"
-                class="object-cover w-full min-w-80 transition-transform duration-300 ease-in-out group-hover:scale-105"
+                class="object-cover w-full min-w-80 max-w-80 max-h-[213px] transition-transform duration-300 ease-in-out group-hover:scale-105"
                 loading="lazy"
             />
             <div
                 v-else
-                class="w-full min-w-80 h-[213px] bg-tertiary rounded-2xl flex items-center justify-center"
+                class="w-full min-w-80 max-w-80 h-[213px] bg-tertiary rounded-2xl flex items-center justify-center"
                 aria-label="Aucune image disponible"
             >
                 <p class="text-quaternary text-lg">{{ $t('blog.no_image') }}</p>
             </div>
         </div>
 
-        <div class="">
+        <div class="w-full">
             <p class="text-brand-secondary text-sm font-semibold">
                 {{ formatAuthorName(article) }} • {{ formatDate(article.updatedAt) }}
             </p>
