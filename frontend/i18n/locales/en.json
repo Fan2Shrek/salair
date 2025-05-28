@@ -476,6 +476,37 @@
         "error": "An error occurred during subscription",
         "network_error": "Connection error, please try again"
     },
+    "blog": {
+        "hero": {
+            "subtitle": "Our blog",
+            "title": "Stories and interviews",
+            "description": "Subscribe to learn about new product features, the latest in technology, solutions, and updates."
+        },
+        "newsletter": {
+            "privacy_notice": "We care about your data in our privacy policy.",
+            "placeholder": "Enter your email",
+            "submit": "Get started"
+        },
+        "recent": {
+            "title": "Recent blog posts",
+            "error": "Error loading recent articles",
+            "error_description": "Please try again later",
+            "empty": "No recent articles available"
+        },
+        "all_articles": {
+            "title": "All blog posts",
+            "error": "Error loading articles",
+            "error_description": "Please try again later",
+            "empty": "No articles available"
+        },
+        "featured": {
+            "description_placeholder": "Article description"
+        },
+        "article": {
+            "description_placeholder": "Article preview"
+        },
+        "no_image": "No image available"
+    },
     "error_page": {
         "404_title": "We can't find this page",
         "404_subtitle": "The page you are looking for doesn't exist or has been moved.",

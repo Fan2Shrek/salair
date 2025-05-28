@@ -476,6 +476,37 @@
         "error": "Une erreur est survenue lors de l'inscription",
         "network_error": "Erreur de connexion, veuillez réessayer"
     },
+    "blog": {
+        "hero": {
+            "subtitle": "Notre blog",
+            "title": "Histoires et interviews",
+            "description": "Abonnez-vous pour découvrir les nouvelles fonctionnalités, les dernières technologies, solutions et mises à jour."
+        },
+        "newsletter": {
+            "privacy_notice": "Nous respectons vos données dans notre politique de confidentialité.",
+            "placeholder": "Entrez votre email",
+            "submit": "Commencer"
+        },
+        "recent": {
+            "title": "Articles récents",
+            "error": "Erreur de chargement des articles récents",
+            "error_description": "Veuillez réessayer plus tard",
+            "empty": "Aucun article récent disponible"
+        },
+        "all_articles": {
+            "title": "Tous les articles",
+            "error": "Erreur de chargement des articles",
+            "error_description": "Veuillez réessayer plus tard",
+            "empty": "Aucun article disponible"
+        },
+        "featured": {
+            "description_placeholder": "Description de l'article"
+        },
+        "article": {
+            "description_placeholder": "Aperçu de l'article"
+        },
+        "no_image": "Aucune image disponible"
+    },
     "error_page": {
         "404_title": "Nous ne trouvons pas cette page",
         "404_subtitle": "La page que vous recherchez n'existe pas ou a été déplacée.",
