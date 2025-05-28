@@ -27,10 +27,10 @@
                         Last update:
                         {{ d(new Date(metadata?.updatedAt!), { year: 'numeric', month: 'long', day: 'numeric' }) }}
                     </p>
-                    <h1 class="text-primary text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-semibold text-center mt-3 leading-tight">
+                    <h1 class="text-primary text-2xl sm:text-3xl md:text-4xl font-semibold text-center mt-3 leading-tight">
                         {{ content?.title }}
                     </h1>
-                    <p class="text-tertiary text-base sm:text-lg md:text-xl lg:text-2xl text-center mt-4 sm:mt-6 max-w-3xl mx-auto leading-relaxed">
+                    <p class="text-tertiary text-base sm:text-lg md:text-xl text-center mt-4 sm:mt-6 max-w-3xl mx-auto leading-relaxed">
                         {{ content?.description }}
                     </p>
                 </div>
@@ -45,7 +45,7 @@
                 </div>
                 
                 <!-- Content section -->
-                <div class="max-w-none sm:max-w-prose lg:max-w-4xl w-full mx-auto pb-8 sm:pb-12 lg:pb-24 px-4 sm:px-6 lg:px-8 mt-8 sm:mt-12 lg:mt-24">
+                <div class="max-w-prose w-full mx-auto pb-8 sm:pb-12 lg:pb-24 px-4 sm:px-6 lg:px-8 mt-8 sm:mt-12 lg:mt-24">
                     <ContentRenderer v-if="content" :value="content" class="content pb-8 sm:pb-12" />
                     
                     <!-- Author section -->
