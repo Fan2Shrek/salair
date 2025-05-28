@@ -9,7 +9,7 @@ export default class BlogArticlesController {
     const order = request.input('order', 'desc')
 
     const articles = await BlogArticle.query()
-      .where('status', 'published')
+      .apply((scopes) => scopes.published())
       .orderBy('createdAt', order)
       .limit(limit)
       .preload('author', (authorQuery) => {
@@ -27,17 +27,14 @@ export default class BlogArticlesController {
 
   async store({ request, response, auth }: HttpContext) {
     const data = await request.validateUsing(blogArticleValidator)
-
     const user = auth.user!
 
     const blogArticle = await BlogArticle.create({
       slug: data.slug,
       visible: data.visible,
       status: data.status,
+      authorId: user.id,
     })
-
-    blogArticle.related('author').associate(user)
-    blogArticle.save()
 
     return response.ok(blogArticle)
   }
@@ -46,15 +43,13 @@ export default class BlogArticlesController {
     const slug = params.slug
 
     const article = await BlogArticle.query()
+      .apply((scopes) => scopes.published())
       .where('slug', slug)
-      .where('status', 'published')
-      .where('visible', true)
+      .preload('author')
       .first()
 
-    await article?.load('author')
-
     if (!article) {
-      return response.badRequest({
+      return response.notFound({
         message: 'The requested article does not exist or is not published',
       })
     }
@@ -64,8 +59,7 @@ export default class BlogArticlesController {
 
   async slugs() {
     const slugs = await BlogArticle.query()
-      .where('status', 'published')
-      .where('visible', true)
+      .apply((scopes) => scopes.published())
       .select('slug')
 
     return slugs
