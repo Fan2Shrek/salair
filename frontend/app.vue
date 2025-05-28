@@ -26,7 +26,7 @@
             lang: i18nHead.value.htmlAttrs.lang,
             dir: 'ltr',
         },
-        link: [{ rel: 'icon', href: '/favicon.ico' }, ...(i18nHead.value.link || [])],
+        link: [{ rel: 'icon', href: '/favicon.png' }, ...(i18nHead.value.link || [])],
     });
 </script>
 
