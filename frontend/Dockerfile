@@ -1,5 +1,5 @@
 # Utiliser une version légère et sécurisée de Node.js
-ARG NODE_VERSION=22.14.0
+ARG NODE_VERSION=22
 
 # Étape 1 : Développement
 FROM node:${NODE_VERSION}-alpine AS dev
