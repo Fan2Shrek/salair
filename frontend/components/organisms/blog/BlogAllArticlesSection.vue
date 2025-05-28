@@ -13,8 +13,8 @@
 </script>
 
 <template>
-    <section class="my-24 max-w-7xl w-full mx-auto px-4 pb-4">
-        <h2 class="text-primary font-semibold text-2xl mb-8">
+    <section class="my-12 md:my-24 max-w-7xl w-full mx-auto px-4 pb-4">
+        <h2 class="text-primary font-semibold text-xl md:text-2xl mb-6 md:mb-8">
             {{ t('blog.all_articles.title') }}
         </h2>
 

@@ -24,7 +24,7 @@
 
 <template>
     <article
-        class="bg-primary group cursor-pointer max-w-96 w-full"
+        class="bg-primary group cursor-pointer w-full"
         tabindex="0"
         role="article"
         :aria-label="`Lire l'article: ${article.slug}`"
@@ -36,7 +36,7 @@
             <img
                 :src="article.mainPicture || 'https://storage.salair.fr/salair/public/placeholder.jpg'"
                 :alt="`Image de l'article: ${article.slug}`"
-                class="object-cover w-full h-64 transition-transform duration-300 ease-in-out group-hover:scale-105"
+                class="object-cover w-full h-48 md:h-56 lg:h-64 transition-transform duration-300 ease-in-out group-hover:scale-105"
                 loading="lazy"
             />
         </div>

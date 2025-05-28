@@ -4,17 +4,17 @@
 
 <template>
     <section class="pt-19 max-w-7xl mx-auto w-full">
-        <div class="my-24 px-4">
+        <div class="my-12 md:my-24 px-4">
             <p class="text-brand-secondary font-semibold text-center">{{ $t('blog.hero.subtitle') }}</p>
-            <h1 class="text-primary text-5xl font-semibold text-center mt-3">
+            <h1 class="text-primary text-3xl md:text-5xl font-semibold text-center mt-3">
                 {{ $t('blog.hero.title') }}
             </h1>
-            <p class="text-tertiary text-xl text-center mt-6 max-w-3xl mx-auto">
+            <p class="text-tertiary text-lg md:text-xl text-center mt-6 max-w-3xl mx-auto">
                 {{ $t('blog.hero.description') }}
             </p>
 
             <form
-                class="flex gap-4 mx-auto max-w-120 mt-12"
+                class="flex flex-col sm:flex-row gap-4 mx-auto max-w-120 mt-8 md:mt-12"
                 role="form"
                 aria-label="Newsletter subscription"
                 @submit.prevent="handleFormSubmit"
@@ -29,7 +29,7 @@
                     class="flex-1"
                     autocomplete="email"
                 />
-                <UButton class="h-fit whitespace-nowrap" type="submit" :disabled="isLoading" :loading="isLoading">
+                <UButton class="h-fit whitespace-nowrap sm:w-auto w-full" type="submit" :disabled="isLoading" :loading="isLoading">
                     {{ $t('blog.newsletter.submit') }}
                 </UButton>
             </form>

@@ -37,12 +37,12 @@
                 v-if="article.mainPicture"
                 :src="article.mainPicture"
                 :alt="`Image de l'article: ${article.slug}`"
-                class="object-cover w-full max-h-[395px] transition-transform duration-300 ease-in-out group-hover:scale-110"
+                class="object-cover w-full h-48 md:h-64 lg:max-h-[395px] transition-transform duration-300 ease-in-out group-hover:scale-110"
                 loading="lazy"
             />
             <div
                 v-else
-                class="w-full h-[395px] bg-tertiary rounded-2xl flex items-center justify-center"
+                class="w-full h-48 md:h-64 lg:h-[395px] bg-tertiary rounded-2xl flex items-center justify-center"
                 aria-label="Aucune image disponible"
             >
                 <p class="text-quaternary text-lg">{{ $t('blog.no_image') }}</p>
@@ -53,10 +53,10 @@
             <p class="text-brand-secondary text-sm font-semibold">
                 {{ formatAuthorName(article) }} • {{ formatDate(article.updatedAt) }}
             </p>
-            <h3 class="text-lg font-semibold text-primary transition-colors">
+            <h3 class="text-lg md:text-xl font-semibold text-primary transition-colors">
                 {{ article.title }}
             </h3>
-            <p class="text-tertiary">
+            <p class="text-tertiary text-sm md:text-base">
                 {{ article.description }}
             </p>
         </div>

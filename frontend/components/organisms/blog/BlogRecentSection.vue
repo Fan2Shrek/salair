@@ -15,8 +15,8 @@ import VerticalBlogArticleCard from './VerticalBlogArticleCard.vue';
 </script>
 
 <template>
-    <section class="w-full max-w-7xl mx-auto px-4">
-        <h2 class="font-semibold text-2xl text-primary mb-8">
+    <section class="w-full max-w-7xl mx-auto px-4 mb-12 md:mb-16">
+        <h2 class="font-semibold text-xl md:text-2xl text-primary mb-6 md:mb-8">
             {{ t('blog.recent.title') }}
         </h2>
 
@@ -27,10 +27,10 @@ import VerticalBlogArticleCard from './VerticalBlogArticleCard.vue';
             <p class="text-tertiary text-sm mt-2">{{ t('blog.recent.error_description') }}</p>
         </div>
 
-        <div v-else-if="articles.length > 0" class="flex gap-8">
+        <div v-else-if="articles.length > 0" class="flex flex-col lg:flex-row gap-8">
             <BlogFeaturedArticle v-if="articles[0]" :article="articles[0]" />
 
-            <div v-if="articles.length > 1" class="flex flex-col gap-8">
+            <div v-if="articles.length > 1" class="flex flex-col gap-6 lg:gap-8">
                 <VerticalBlogArticleCard v-for="article in articles.slice(1)" :key="article.id" :article="article" />
             </div>
         </div>
