@@ -477,6 +477,10 @@
         "network_error": "Erreur de connexion, veuillez réessayer"
     },
     "blog": {
+        "meta": {
+            "title": "Blog",
+            "description": "Découvrez des articles, conseils et ressources pour freelances et entrepreneurs. Tout ce qu'il faut savoir sur la gestion d'entreprise, la facturation et l'administration."
+        },
         "hero": {
             "subtitle": "Notre blog",
             "title": "Histoires et interviews",

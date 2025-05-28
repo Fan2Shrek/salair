@@ -476,6 +476,41 @@
         "error": "Ha ocurrido un error durante la suscripción",
         "network_error": "Error de conexión, por favor inténtelo de nuevo"
     },
+    "blog": {
+        "meta": {
+            "title": "Blog",
+            "description": "Descubre artículos, consejos y recursos para freelancers y emprendedores. Todo lo que necesitas saber sobre gestión empresarial, facturación y administración."
+        },
+        "hero": {
+            "subtitle": "Blog",
+            "title": "Recursos y consejos para freelancers",
+            "description": "Suscríbete para aprender sobre nuevas funcionalidades del producto, las últimas tecnologías, soluciones y actualizaciones."
+        },
+        "newsletter": {
+            "privacy_notice": "Al suscribirte, aceptas nuestra política de privacidad.",
+            "placeholder": "Introduce tu dirección de email",
+            "submit": "Comenzar"
+        },
+        "recent": {
+            "title": "Artículos recientes",
+            "error": "Error al cargar los artículos recientes",
+            "error_description": "No se pudieron cargar los artículos recientes. Por favor, inténtalo de nuevo más tarde.",
+            "empty": "No hay artículos recientes disponibles"
+        },
+        "all_articles": {
+            "title": "Todos los artículos",
+            "error": "Error al cargar los artículos",
+            "error_description": "No se pudieron cargar los artículos. Por favor, inténtalo de nuevo más tarde.",
+            "empty": "No hay artículos disponibles"
+        },
+        "featured": {
+            "description_placeholder": "Descripción del artículo"
+        },
+        "article": {
+            "description_placeholder": "Descripción del artículo"
+        },
+        "no_image": "No hay imagen disponible"
+    },
     "error_page": {
         "404_title": "No podemos encontrar esta página",
         "404_subtitle": "La página que buscas no existe o ha sido movida.",
