@@ -4,6 +4,7 @@ import {
   changePasswordValidator,
   loginValidator,
   registerValidator,
+  resetValidator,
   verifyResetValidator,
 } from '#validators/auth'
 import type { HttpContext } from '@adonisjs/core/http'
@@ -128,38 +129,33 @@ export default class AuthController {
   }
 
   async reset({ request, response }: HttpContext) {
-    const { email } = request.only(['email'])
-
-    if (!email || typeof email !== 'string') {
-      return response.badRequest({ message: 'Invalid email' })
-    }
+    const { email } = await request.validateUsing(resetValidator)
 
     const user = await User.findBy('email', email)
-
-    if (user) {
-      const code = generateSixDigitCode()
-      const hashedCode = await hash.use('scrypt').make(code)
-
-      await PasswordReset.query().where('email', email).where('used', false).delete()
-
-      await PasswordReset.create({
-        email,
-        code: hashedCode,
-        expiresAt: DateTime.now().plus({ minutes: 15 }),
-      })
-
-      await mail.send((message) => {
-        message
-          .to(user.email)
-          .from('Salair <noreply@salair.fr>')
-          .subject('Demande de réinitialisation de mot de passe')
-          .htmlView('mails/reset_password', { code, user: user })
-      })
-
-      return response.ok({})
-    } else {
+    if (!user) {
       return response.badRequest({ message: 'Inexistant user' })
     }
+
+    const code = generateSixDigitCode()
+    const hashedCode = await hash.use('scrypt').make(code)
+
+    await PasswordReset.query().where('email', email).where('used', false).delete()
+
+    await PasswordReset.create({
+      email,
+      code: hashedCode,
+      expiresAt: DateTime.now().plus({ minutes: 15 }),
+    })
+
+    await mail.send((message) => {
+      message
+        .to(user.email)
+        .from('Salair <noreply@salair.fr>')
+        .subject('Demande de réinitialisation de mot de passe')
+        .htmlView('mails/reset_password', { code, user })
+    })
+
+    return response.ok({})
   }
 
   async verifyReset({ request, response }: HttpContext) {
