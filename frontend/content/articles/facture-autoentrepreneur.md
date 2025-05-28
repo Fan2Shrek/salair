@@ -43,7 +43,7 @@ Montant : 800 € (TVA non applicable, art. 293 B du CGI)
 
 Avec **Salair**, vous pouvez créer vos factures en 30 secondes, avec toutes les mentions légales automatiquement intégrées.
 
-👉 Essayez gratuitement sur [salair.app](https://salair.app)
+👉 Essayez gratuitement sur [salair.fr](https://salair.fr)
 
 ---
 
