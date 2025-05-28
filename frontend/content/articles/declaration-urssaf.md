@@ -1,10 +1,12 @@
 ---
-title: "Comment déclarer son chiffre d’affaires à l’URSSAF ?"
-slug: "declaration-urssaf"
-description: "Déclarer son chiffre d'affaires à l'URSSAF est une obligation mensuelle ou trimestrielle pour les autoentrepreneurs. Voici comment faire simplement et éviter les erreurs."
+title: Comment déclarer son chiffre d’affaires à l’URSSAF ?
+slug: declaration-urssaf
+description: Déclarer son chiffre d'affaires à l'URSSAF est une obligation
+  mensuelle ou trimestrielle pour les autoentrepreneurs. Voici comment faire
+  simplement et éviter les erreurs.
 date: 2025-05-28
-author: "Nassim Lounadi"
-cover: "/images/blog/declaration-urssaf.jpg"
+author: Nassim Lounadi
+cover: /images/blog/declaration-urssaf.jpg
 tags:
   - urssaf
   - autoentrepreneur

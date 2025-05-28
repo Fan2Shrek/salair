@@ -1,10 +1,10 @@
 ---
 title: "Plafond de chiffre d'affaires en autoentreprise : ce qu'il faut savoir"
-slug: "plafond-autoentrepreneur"
-description: "Quels sont les plafonds à ne pas dépasser en micro-entreprise en 2025 ? Ce guide vous explique les seuils à respecter et leurs conséquences."
+slug: plafond-autoentrepreneur
+description: Quels sont les plafonds à ne pas dépasser en micro-entreprise en
+  2025 ? Ce guide vous explique les seuils à respecter et leurs conséquences.
 date: 2025-05-28
-author: "Nassim Lounadi"
-cover: "/images/blog/plafond-autoentrepreneur.jpg"
+author: Nassim Lounadi
 tags:
   - autoentreprise
   - plafond
@@ -22,11 +22,11 @@ Lorsque vous êtes autoentrepreneur, vous bénéficiez d’un régime simplifié
 
 En 2025, les plafonds sont les suivants :
 
-| Activité                        | Plafond annuel de CA |
-|--------------------------------|----------------------|
-| Vente de marchandises          | 188 700 €            |
-| Prestation de service BIC      | 77 700 €             |
-| Prestation de service BNC      | 77 700 €             |
+| Activité                  | Plafond annuel de CA |
+| ------------------------- | -------------------- |
+| Vente de marchandises     | 188 700 €            |
+| Prestation de service BIC | 77 700 €             |
+| Prestation de service BNC | 77 700 €             |
 
 ⚠️ Ces seuils incluent **l'ensemble des factures émises**, même si elles ne sont pas encore encaissées.
 
@@ -40,8 +40,7 @@ En 2025, les plafonds sont les suivants :
 
 ## Suivi automatique avec Salair 💡
 
-Salair suit **automatiquement votre chiffre d'affaires** mois par mois, et vous alerte si vous approchez des seuils.  
-Vous êtes ainsi toujours en règle, **sans calculs manuels**.
+Salair suit **automatiquement votre chiffre d'affaires** mois par mois, et vous alerte si vous approchez des seuils. :br Vous êtes ainsi toujours en règle, **sans calculs manuels**.
 
 ---
 
@@ -54,4 +53,4 @@ Vous êtes ainsi toujours en règle, **sans calculs manuels**.
 
 ## Vous avez des questions ?
 
-N’hésitez pas à nous contacter via [contact@salair.app](mailto:contact@salair.app), ou à tester notre outil gratuitement pendant 14 jours.
+N’hésitez pas à nous contacter via <contact@salair.app>, ou à tester notre outil gratuitement pendant 14 jours.

@@ -1,10 +1,12 @@
 ---
 title: "Autoentrepreneur : faut-il un compte bancaire professionnel ?"
-slug: "compte-bancaire-autoentrepreneur"
-description: "Beaucoup de freelances se demandent s’ils doivent ouvrir un compte bancaire dédié à leur activité. Voici ce que dit la loi, et les bonnes pratiques à adopter."
+slug: compte-bancaire-autoentrepreneur
+description: Beaucoup de freelances se demandent s’ils doivent ouvrir un compte
+  bancaire dédié à leur activité. Voici ce que dit la loi, et les bonnes
+  pratiques à adopter.
 date: 2025-05-28
-author: "Nassim Lounadi"
-cover: "/images/blog/compte-bancaire.jpg"
+author: Nassim Lounadi
+cover: /images/blog/compte-bancaire.jpg
 tags:
   - autoentrepreneur
   - banque
@@ -22,11 +24,11 @@ Pas forcément. En tant qu’autoentrepreneur, la loi impose **un compte dédié
 
 ## Quelles sont les options ?
 
-| Option                | Avantages                                          | Inconvénients            |
-|-----------------------|---------------------------------------------------|---------------------------|
-| Compte personnel dédié | Gratuit, simple                                   | Pas considéré comme “pro” |
-| Compte pro classique   | Services adaptés (virements pro, TPE...)         | Payant (10–30 €/mois)     |
-| Néobanques pro         | Rapide à ouvrir, pas cher (Shine, Qonto, etc.)   | Services parfois limités  |
+| Option                 | Avantages                                      | Inconvénients             |
+| ---------------------- | ---------------------------------------------- | ------------------------- |
+| Compte personnel dédié | Gratuit, simple                                | Pas considéré comme “pro” |
+| Compte pro classique   | Services adaptés (virements pro, TPE...)       | Payant (10–30 €/mois)     |
+| Néobanques pro         | Rapide à ouvrir, pas cher (Shine, Qonto, etc.) | Services parfois limités  |
 
 ---
 
@@ -44,11 +46,11 @@ Même si ce n’est pas obligatoire dès le départ, **ouvrir un compte séparé
 
 ## En résumé
 
-| Situation                        | Obligatoire ?        |
-|----------------------------------|----------------------|
-| Moins de 10 000 €/an             | ❌ Non               |
-| Plus de 10 000 € 2 années de suite | ✅ Oui              |
-| Toujours conseillé pour la gestion | ✅ Recommandé       |
+| Situation                          | Obligatoire ? |
+| ---------------------------------- | ------------- |
+| Moins de 10 000 €/an               | ❌ Non         |
+| Plus de 10 000 € 2 années de suite | ✅ Oui         |
+| Toujours conseillé pour la gestion | ✅ Recommandé  |
 
 ---
 
