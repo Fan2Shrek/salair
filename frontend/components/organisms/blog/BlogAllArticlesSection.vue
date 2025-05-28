@@ -13,7 +13,7 @@
 </script>
 
 <template>
-    <section class="mt-24 max-w-6xl w-full mx-auto px-4 pb-4">
+    <section class="mt-24 max-w-7xl w-full mx-auto px-4 pb-4">
         <h2 class="text-primary font-semibold text-2xl mb-8">
             {{ t('blog.all_articles.title') }}
         </h2>

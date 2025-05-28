@@ -42,7 +42,7 @@ export function useBlog() {
         const { $api } = useNuxtApp();
 
         try {
-            const { data, error } = await useAuthFetch<BlogArticle[]>($api('/api/blog?limit=3&order=recents'), {
+            const { data, error } = await useAuthFetch<BlogArticle[]>($api('/api/blog?limit=3&order=desc'), {
                 method: 'GET',
             });
 
@@ -67,10 +67,8 @@ export function useBlog() {
         ]);
     };
 
-    // Computed pour le premier article récent
     const featuredArticle = computed(() => recentArticles.value[0] || null);
 
-    // Computed pour vérifier si on a des données
     const hasArticles = computed(() => articles.value.length > 0);
     const hasRecentArticles = computed(() => recentArticles.value.length > 0);
 
