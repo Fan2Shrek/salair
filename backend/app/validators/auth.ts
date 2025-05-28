@@ -33,3 +33,10 @@ export const changePasswordValidator = vine.compile(
     password,
   })
 )
+
+export const verifyResetValidator = vine.compile(
+  vine.object({
+    email: vine.string().email().normalizeEmail(),
+    code: vine.string().fixedLength(6),
+  })
+)

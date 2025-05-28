@@ -1,6 +1,11 @@
 import RefreshToken from '#models/refresh_token'
 import User from '#models/user'
-import { changePasswordValidator, loginValidator, registerValidator } from '#validators/auth'
+import {
+  changePasswordValidator,
+  loginValidator,
+  registerValidator,
+  verifyResetValidator,
+} from '#validators/auth'
 import type { HttpContext } from '@adonisjs/core/http'
 import { DateTime } from 'luxon'
 import * as crypto from 'node:crypto'
@@ -158,28 +163,24 @@ export default class AuthController {
   }
 
   async verifyReset({ request, response }: HttpContext) {
-    const { email, code } = request.only(['email', 'code'])
-
-    if (!email || !code || typeof email !== 'string' || typeof code !== 'string') {
-      return response.badRequest({ message: 'Bad request' })
-    }
+    const { email, code } = await request.validateUsing(verifyResetValidator)
 
     const passwordReset = await PasswordReset.query()
       .where('email', email)
       .where('used', false)
-      .firstOrFail()
+      .first()
 
     if (!passwordReset) {
-      return response.badRequest('No password reset request detected for this email')
+      return response.badRequest({ message: 'No password reset request detected for this email' })
     }
 
-    const isValid = await hash.use('scrypt').verify(passwordReset.code, code)
+    const isCodeValid = await hash.use('scrypt').verify(passwordReset.code, code)
 
-    if (isValid) {
-      return response.ok({ message: 'Code valid' })
-    } else {
+    if (!isCodeValid) {
       return response.badRequest({ message: 'Code invalid' })
     }
+
+    return response.ok({ message: 'Code valid' })
   }
 
   async changePasswordAfterReset({ request, response }: HttpContext) {
