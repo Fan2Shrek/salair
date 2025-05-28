@@ -13,12 +13,12 @@ const UsersController = () => import('#controllers/users_controller')
 const CompaniesController = () => import('#controllers/companies_controller')
 const InboundMailsController = () => import('#controllers/inbound_mails_controller')
 const MeController = () => import('#controllers/me_controller')
-
-import router from '@adonisjs/core/services/router'
-import { middleware } from './kernel.js'
 const BlogArticlesController = () => import('#controllers/blog_articles_controller')
 const NewslettersController = () => import('#controllers/newsletters_controller')
 const ContactsController = () => import('#controllers/contacts_controller')
+
+import router from '@adonisjs/core/services/router'
+import { middleware } from './kernel.js'
 
 router.get('/', async () => {
   return {
@@ -126,8 +126,9 @@ router
 // Blog articles routes
 router
   .group(() => {
-    router.get('/blog/metadata', [BlogArticlesController, 'index'])
+    router.get('/blog', [BlogArticlesController, 'index'])
     router.get('/blog/files', [BlogArticlesController, 'files'])
+    router.get('/blog/slugs', [BlogArticlesController, 'slugs'])
     router
       .post('/blog/article', [BlogArticlesController, 'store'])
       .use([middleware.auth(), middleware.admin()])

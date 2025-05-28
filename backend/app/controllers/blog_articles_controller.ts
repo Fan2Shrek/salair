@@ -4,10 +4,17 @@ import { blogArticleValidator } from '#validators/blog_article'
 import type { HttpContext } from '@adonisjs/core/http'
 
 export default class BlogArticlesController {
-  async index({}: HttpContext) {
+  async index({ request }: HttpContext) {
+    const limit = request.input('limit', 10)
+    const order = request.input('order', 'desc')
+
     const articles = await BlogArticle.query()
       .where('status', 'published')
-      .select(['slug', 'status', 'visible'])
+      .orderBy('createdAt', order)
+      .limit(limit)
+      .preload('author', (authorQuery) => {
+        authorQuery.select(['firstName', 'lastName', 'email'])
+      })
 
     return articles
   }
@@ -53,5 +60,14 @@ export default class BlogArticlesController {
     }
 
     return response.ok(article)
+  }
+
+  async slugs() {
+    const slugs = await BlogArticle.query()
+      .where('status', 'published')
+      .where('visible', true)
+      .select('slug')
+
+    return slugs
   }
 }
