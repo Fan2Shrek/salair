@@ -1,5 +1,6 @@
 import BlogArticle from '#models/blog_article'
 import { GithubService } from '#services/github_service'
+import { parseFrontmatter } from '#utils/markdown'
 import { blogArticleValidator } from '#validators/blog_article'
 import type { HttpContext } from '@adonisjs/core/http'
 
@@ -30,12 +31,18 @@ export default class BlogArticlesController {
     const user = auth.user!
 
     const files = await GithubService.listArticlesFiles()
-
     if (!files.includes(data.slug)) {
       return response.notFound({ message: "We don't find the corresponding article" })
     }
 
+    const fileName = `frontend/content/articles/${data.slug}.md`
+    const fileContent = await GithubService.getFileContent(fileName)
+
+    const frontmatter = parseFrontmatter(fileContent)
+
     const blogArticle = await BlogArticle.create({
+      title: frontmatter.title,
+      description: frontmatter.description,
       slug: data.slug,
       visible: data.visible,
       status: data.status,

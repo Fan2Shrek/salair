@@ -54,10 +54,10 @@
                 {{ formatAuthorName(article) }} • {{ formatDate(article.updatedAt) }}
             </p>
             <h3 class="text-lg font-semibold text-primary transition-colors">
-                {{ article.slug }}
+                {{ article.title }}
             </h3>
             <p class="text-tertiary">
-                {{ $t('blog.featured.description_placeholder') }}
+                {{ article.description }}
             </p>
         </div>
     </article>

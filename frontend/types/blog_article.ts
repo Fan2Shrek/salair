@@ -2,6 +2,8 @@ import type User from "./user"
 
 export type BlogArticle = {
     id: number
+    title: string
+    description: string
     slug: string
     status: 'draw' | 'published' | 'archived'
     visible: boolean
