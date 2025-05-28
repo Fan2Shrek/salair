@@ -1,21 +1,10 @@
 import type { ArticlesCollectionItem } from "@nuxt/content"
-import type User from "~/types/user"
-
-type BlogArticleMetadata = {
-    id: number
-    slug: string
-    status: 'draw' | 'published' | 'archived'
-    visible: boolean
-    mainPicture: string
-    author: User
-    createdAt: string
-    updatedAt: string
-}
+import type { BlogArticle } from "~/types/blog_article";
 
 export function useBlogArticle(slug: string) {
     const { error: toastError, success: _toastSuccess } = useToast()
 
-    const metadata = ref<BlogArticleMetadata>()
+    const metadata = ref<BlogArticle>()
     const content = ref<ArticlesCollectionItem | null>();
 
     const loadContent = async () => {
@@ -30,7 +19,7 @@ export function useBlogArticle(slug: string) {
         const { $api } = useNuxtApp()
 
         try {
-            const { data, error } = await useAuthFetch<BlogArticleMetadata>($api(`/api/blog/${slug}`), {
+            const { data, error } = await useAuthFetch<BlogArticle>($api(`/api/blog/${slug}`), {
                 method: 'GET'
             })
 
