@@ -2,6 +2,7 @@ import RefreshToken from '#models/refresh_token'
 import User from '#models/user'
 import {
   changePasswordValidator,
+  checkValidator,
   loginValidator,
   registerValidator,
   resetValidator,
@@ -114,11 +115,7 @@ export default class AuthController {
   }
 
   async check({ request, response }: HttpContext) {
-    const { email } = request.only(['email'])
-
-    if (!email || typeof email !== 'string') {
-      return response.badRequest({ message: 'Invalid email' })
-    }
+    const { email } = await request.validateUsing(checkValidator)
 
     const user = await User.findBy('email', email)
 

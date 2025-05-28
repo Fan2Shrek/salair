@@ -70,3 +70,9 @@ export const resetValidator = vine.compile(
       }),
   })
 )
+
+export const checkValidator = vine.compile(
+  vine.object({
+    email: vine.string().email().normalizeEmail(),
+  })
+)
