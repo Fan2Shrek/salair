@@ -10,6 +10,7 @@
 
     const props = defineProps<StepActivityProps>();
     const onboardingStore = useOnboardingStore();
+    const { validateSiret } = useFormValidation();
     const { t } = useI18n();
     const selectedProStatus = ref<string>();
     const siret = ref<string>(onboardingStore.company.siret || '');
@@ -45,7 +46,12 @@
 
     function handleNextStep() {
         if (!selectedProStatus.value) return;
-        if (!siret.value && selectedProStatus.value !== 'en_reflexion') return;
+        if (selectedProStatus.value !== 'en_reflexion') {
+            if (!siret.value) return;
+            if (!validateSiret(siret.value)) {
+                return;
+            }
+        }
         if (!tradeName.value) return;
         if (!activityDomain.value) return;
 
