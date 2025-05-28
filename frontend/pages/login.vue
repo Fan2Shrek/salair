@@ -6,6 +6,7 @@
     const authStore = useAuthStore();
     const router = useRouter();
     const { error } = useToast();
+    const { handleAuthError } = useErrorHandler()
 
     const email = ref('');
     const password = ref('');
@@ -22,10 +23,7 @@
             }
         } else {
             if (result.data?.errors) {
-                if (result.data.errors[0].message === 'Invalid user credentials') {
-                    error('Une erreur est survenue', 'Votre email ou mot de passe est incorrect');
-                    return;
-                }
+                handleAuthError(result.data.errors[0].message)
             }
 
             error('Une erreur est survenue', result.error);
