@@ -53,7 +53,7 @@
             <p class="text-brand-secondary text-sm font-semibold">
                 {{ formatAuthorName(article) }} • {{ formatDate(article.updatedAt) }}
             </p>
-            <h3 class="text-lg font-semibold text-primary group-hover:text-brand-secondary transition-colors">
+            <h3 class="text-lg font-semibold text-primary transition-colors">
                 {{ article.slug }}
             </h3>
             <p class="text-tertiary">
