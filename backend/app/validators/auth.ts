@@ -25,3 +25,11 @@ export const loginValidator = vine.compile(
     password,
   })
 )
+
+export const changePasswordValidator = vine.compile(
+  vine.object({
+    email: vine.string().email().normalizeEmail(),
+    code: vine.string().fixedLength(6),
+    password,
+  })
+)
