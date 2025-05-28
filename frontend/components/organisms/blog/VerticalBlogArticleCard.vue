@@ -56,10 +56,10 @@
             <h3
                 class="text-lg font-semibold text-primary line-clamp-2 mt-2"
             >
-                {{ article.slug }}
+                {{ article.title }}
             </h3>
             <p class="text-tertiary text-sm line-clamp-3 mt-1">
-                {{ $t('blog.article.description_placeholder') }}
+                {{ article.description }}
             </p>
         </div>
     </article>
