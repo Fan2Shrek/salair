@@ -86,5 +86,10 @@ export default defineNuxtConfig({
     },
     nitro: {
         compressPublicAssets: true
+    },
+    sitemap: {
+        sources: [
+            '/api/__sitemap__/urls',
+        ]
     }
 });
