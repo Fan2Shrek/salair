@@ -26,6 +26,13 @@ router.get('/', async () => {
   }
 })
 
+// Healthcheck routes
+router.get('/api/health', () => {
+  return {
+    running: true,
+  }
+})
+
 // Authentication routes
 router
   .group(() => {

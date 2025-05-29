@@ -44,6 +44,12 @@ services:
             - app_network
         depends_on:
             - db
+        healthcheck:
+            test: ["CMD", "curl", "-f", "http://localhost:3333/api/health"]
+            interval: 1m30s
+            timeout: 30s
+            retries: 5
+            start_period: 30s
 
     db:
         image: postgres:17
