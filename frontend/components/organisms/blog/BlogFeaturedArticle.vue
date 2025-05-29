@@ -33,7 +33,7 @@
         @keydown.space.prevent="navigateToArticle(article.slug)"
     >
         <div class="overflow-hidden rounded-2xl">
-            <img
+            <NuxtImg
                 v-if="article.mainPicture"
                 :src="article.mainPicture"
                 :alt="`Image de l'article: ${article.slug}`"

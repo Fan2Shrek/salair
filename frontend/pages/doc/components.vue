@@ -436,7 +436,7 @@
                         <UTable selectable :columns="columns" :data="users" @row-click="handleRowClick">
                             <template #cell-name="{ row }">
                                 <div class="flex items-center gap-2">
-                                    <img :src="row.avatar as string" class="w-8 h-8 rounded-full" />
+                                    <NuxtImg :src="row.avatar as string" class="w-8 h-8 rounded-full" />
                                     <div>
                                         <p class="text-primary font-medium">{{ row.name }}</p>
                                         <p>@{{ (row.name as string).split(' ')[0].toLowerCase() }}</p>
@@ -454,7 +454,7 @@
                         <UTable selectable :columns="columns" :data="[]" @row-click="handleRowClick">
                             <template #cell-name="{ row }">
                                 <div class="flex items-center gap-2">
-                                    <img :src="row.avatar as string" class="w-8 h-8 rounded-full" />
+                                    <NuxtImg :src="row.avatar as string" class="w-8 h-8 rounded-full" />
                                     <div>
                                         <p class="text-primary font-medium">{{ row.name }}</p>
                                         <p>@{{ (row.name as string).split(' ')[0].toLowerCase() }}</p>

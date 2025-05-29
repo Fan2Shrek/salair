@@ -18,7 +18,7 @@
     };
 
     const formatDate = (dateString: string) => {
-        return d(new Date(dateString), { month: 'short', year: 'numeric', day: 'numeric'});
+        return d(new Date(dateString), { month: 'short', year: 'numeric', day: 'numeric' });
     };
 </script>
 
@@ -33,7 +33,7 @@
         @keydown.space.prevent="navigateToArticle(article.slug)"
     >
         <div class="overflow-hidden rounded-lg w-full sm:w-auto flex-shrink-0">
-            <img
+            <NuxtImg
                 v-if="article.mainPicture"
                 :src="article.mainPicture"
                 :alt="`Image de l'article: ${article.slug}`"
@@ -53,9 +53,7 @@
             <p class="text-brand-secondary text-sm font-semibold">
                 {{ formatAuthorName(article) }} • {{ formatDate(article.updatedAt) }}
             </p>
-            <h3
-                class="text-base md:text-lg font-semibold text-primary line-clamp-2 mt-2"
-            >
+            <h3 class="text-base md:text-lg font-semibold text-primary line-clamp-2 mt-2">
                 {{ article.title }}
             </h3>
             <p class="text-tertiary text-sm line-clamp-3 mt-1">

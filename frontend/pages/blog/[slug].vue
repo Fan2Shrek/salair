@@ -27,35 +27,41 @@
                         Last update:
                         {{ d(new Date(metadata?.updatedAt!), { year: 'numeric', month: 'long', day: 'numeric' }) }}
                     </p>
-                    <h1 class="text-primary text-2xl sm:text-3xl md:text-4xl font-semibold text-center mt-3 leading-tight">
+                    <h1
+                        class="text-primary text-2xl sm:text-3xl md:text-4xl font-semibold text-center mt-3 leading-tight"
+                    >
                         {{ content?.title }}
                     </h1>
-                    <p class="text-tertiary text-base sm:text-lg md:text-xl text-center mt-4 sm:mt-6 max-w-3xl mx-auto leading-relaxed">
+                    <p
+                        class="text-tertiary text-base sm:text-lg md:text-xl text-center mt-4 sm:mt-6 max-w-3xl mx-auto leading-relaxed"
+                    >
                         {{ content?.description }}
                     </p>
                 </div>
-                
+
                 <!-- Main image -->
                 <div v-if="metadata?.mainPicture" class="w-full px-4 sm:px-6 lg:px-8 mb-8 sm:mb-12 lg:mb-16">
-                    <img
+                    <NuxtImg
                         :src="metadata.mainPicture"
                         :alt="content?.title"
                         class="max-h-96 sm:max-h-120 lg:max-h-160 mx-auto object-cover max-w-full w-full rounded-lg shadow-lg"
                     />
                 </div>
-                
+
                 <!-- Content section -->
-                <div class="max-w-prose w-full mx-auto pb-8 sm:pb-12 lg:pb-24 px-4 sm:px-6 lg:px-8 mt-8 sm:mt-12 lg:mt-24">
+                <div
+                    class="max-w-prose w-full mx-auto pb-8 sm:pb-12 lg:pb-24 px-4 sm:px-6 lg:px-8 mt-8 sm:mt-12 lg:mt-24"
+                >
                     <ContentRenderer v-if="content" :value="content" class="content pb-8 sm:pb-12" />
-                    
+
                     <!-- Author section -->
                     <div v-if="metadata" class="pt-6 sm:pt-8 border-t border-secondary">
                         <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 items-start sm:items-center">
                             <div class="flex gap-3 items-center w-full sm:w-auto">
-                                <UAvatar 
-                                    v-if="metadata.author.avatar" 
-                                    size="lg" 
-                                    :image-src="metadata.author.avatar" 
+                                <UAvatar
+                                    v-if="metadata.author.avatar"
+                                    size="lg"
+                                    :image-src="metadata.author.avatar"
                                     class="flex-shrink-0"
                                 />
                                 <UAvatar
@@ -77,11 +83,15 @@
             </section>
             <section v-else class="pt-16 sm:pt-19 w-full">
                 <!-- Loading skeletons -->
-                <USkeleton class="my-8 sm:my-12 lg:my-24 max-w-4xl w-full mx-auto px-4 sm:px-6 lg:px-8 h-48 sm:h-60 lg:h-72"></USkeleton>
+                <USkeleton
+                    class="my-8 sm:my-12 lg:my-24 max-w-4xl w-full mx-auto px-4 sm:px-6 lg:px-8 h-48 sm:h-60 lg:h-72"
+                ></USkeleton>
                 <div class="w-full px-4 sm:px-6 lg:px-8 mb-8 sm:mb-12 lg:mb-16">
                     <USkeleton class="max-w-full mx-auto w-full h-48 sm:h-96 lg:h-160 rounded-lg" />
                 </div>
-                <USkeleton class="max-w-none sm:max-w-prose lg:max-w-4xl w-full mx-auto h-96 sm:h-120 lg:h-160 mt-8 sm:mt-12 lg:mt-24 px-4 sm:px-6 lg:px-8" />
+                <USkeleton
+                    class="max-w-none sm:max-w-prose lg:max-w-4xl w-full mx-auto h-96 sm:h-120 lg:h-160 mt-8 sm:mt-12 lg:mt-24 px-4 sm:px-6 lg:px-8"
+                />
             </section>
         </main>
     </NuxtLayout>

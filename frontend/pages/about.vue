@@ -2,9 +2,9 @@
     import ChartIcon from '~/components/atoms/icons/ChartIcon.vue';
     import ClipboardCheckIcon from '~/components/atoms/icons/ClipboardCheckIcon.vue';
     import ReceiptCheckIcon from '~/components/atoms/icons/ReceiptCheckIcon.vue';
-    
+
     const { t } = useI18n();
-    
+
     useSeoMeta({
         title: () => `${t('about.title_small')}`,
     });
@@ -69,7 +69,7 @@
                             </div>
                         </div>
                     </div>
-                    <img
+                    <NuxtImg
                         class="md:w-1/2 max-md:px-4 max-h-60 md:max-h-140 h-full object-cover"
                         src="https://storage.salair.fr/salair/public/about_1.jpg"
                     />
@@ -80,7 +80,9 @@
                             <div class="space-y-5">
                                 <UFeaturedIcon :icon="ClipboardCheckIcon" color="brand" size="lg" />
                                 <div class="space-y-4">
-                                    <h3 class="text-primary font-semibold text-2xl md:text-3xl">{{ $t('about.tax.title') }}</h3>
+                                    <h3 class="text-primary font-semibold text-2xl md:text-3xl">
+                                        {{ $t('about.tax.title') }}
+                                    </h3>
                                     <p class="md:text-lg text-tertiary self-stretch">
                                         {{ $t('about.tax.description') }}
                                     </p>
@@ -102,7 +104,7 @@
                             </div>
                         </div>
                     </div>
-                    <img
+                    <NuxtImg
                         class="md:w-1/2 max-md:px-4 max-h-60 md:max-h-140 h-full object-cover"
                         src="https://storage.salair.fr/salair/public/about_2.jpg"
                     />
@@ -139,7 +141,7 @@
                             </div>
                         </div>
                     </div>
-                    <img
+                    <NuxtImg
                         class="md:w-1/2 max-md:px-4 max-h-60 md:max-h-140 h-full object-cover"
                         src="https://storage.salair.fr/salair/public/about_3.jpg"
                     />

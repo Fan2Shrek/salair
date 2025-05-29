@@ -18,7 +18,7 @@
     };
 
     const formatDate = (dateString: string) => {
-        return d(new Date(dateString), { month: 'short', year: 'numeric', day: 'numeric'});
+        return d(new Date(dateString), { month: 'short', year: 'numeric', day: 'numeric' });
     };
 </script>
 
@@ -33,7 +33,7 @@
         @keydown.space.prevent="navigateToArticle(article.slug)"
     >
         <div class="overflow-hidden rounded-lg mb-4">
-            <img
+            <NuxtImg
                 :src="article.mainPicture || 'https://storage.salair.fr/salair/public/placeholder.jpg'"
                 :alt="`Image de l'article: ${article.slug}`"
                 class="object-cover w-full h-48 md:h-56 lg:h-64 transition-transform duration-300 ease-in-out group-hover:scale-105"
@@ -45,9 +45,7 @@
             <p class="text-brand-secondary text-sm font-semibold">
                 {{ formatAuthorName(article) }} • {{ formatDate(article.updatedAt) }}
             </p>
-            <h3
-                class="text-lg font-semibold text-primary line-clamp-2"
-            >
+            <h3 class="text-lg font-semibold text-primary line-clamp-2">
                 {{ article.title }}
             </h3>
             <p class="text-tertiary text-sm line-clamp-3">
