@@ -1,4 +1,4 @@
-[![Release & Deploy to Production](https://github.com/nassimlnd/salair/actions/workflows/release.yml/badge.svg)](https://github.com/nassimlnd/salair/actions/workflows/release.yml)
+[![Release & Deploy to Production](https://github.com/nassimlnd/salair/actions/workflows/release.yml/badge.svg?event=workflow_dispatch)](https://github.com/nassimlnd/salair/actions/workflows/release.yml)
 
 # Salair
 
