@@ -111,6 +111,6 @@ jobs:
             sed -i "s|registry.nassimlounadi.fr/nassimlnd/salair-frontend:.*|$FRONTEND_DIGEST|" docker-stack.yml
             sed -i "s|registry.nassimlounadi.fr/nassimlnd/salair-backend:.*|$BACKEND_DIGEST|" docker-stack.yml
 
-            docker stack deploy -c docker-stack.yml salair
+            docker stack deploy --with-registry-auth -c docker-stack.yml salair
             docker image prune -f
           EOF
