@@ -88,8 +88,8 @@ jobs:
           ssh $SSH_USER@$SSH_HOST << EOF
             cd ~/www/salair/
 
-            sed -i "s/salair-frontend:.*/salair-frontend:\$IMAGE_TAG/" docker-stack.yml
-            sed -i "s/salair-backend:.*/salair-backend:\$IMAGE_TAG/" docker-stack.yml
+            sed -i "s|\(salair-frontend:\).*|\1$IMAGE_TAG|" docker-stack.yml
+            sed -i "s|\(salair-backend:\).*|\1$IMAGE_TAG|" docker-stack.yml
 
             docker stack deploy -c docker-stack.yml salair
             docker image prune -f
