@@ -4,6 +4,8 @@ FROM node:${NODE_VERSION}-alpine AS main
 
 WORKDIR /app
 
+RUN apk add --no-cache curl
+
 COPY package.json package-lock.json /app/
 
 RUN npm install
