@@ -29,6 +29,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - uses: docker/build-push-action@v4
+        id: build
         with:
           context: ./frontend/
           file: ./frontend/Dockerfile
@@ -38,12 +39,6 @@ jobs:
           target: prod
           cache-from: type=registry,ref=${{ env.REGISTRY }}/nassimlnd/salair-frontend:buildcache
           cache-to: type=registry,ref=${{ env.REGISTRY }}/nassimlnd/salair-frontend:buildcache,mode=max
-
-      - name: Get image digest
-        id: get_digest
-        run: |
-          DIGEST=$(docker buildx imagetools inspect ${{ env.REGISTRY }}/nassimlnd/salair-frontend:${{ env.IMAGE_TAG }} --format '{{index .Manifest "digest"}}')
-          echo "digest=$DIGEST" >> $GITHUB_OUTPUT
 
   build_backend:
     name: 'Build and push backend'
@@ -62,6 +57,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - uses: docker/build-push-action@v4
+        id: build
         with:
           context: ./backend/
           file: ./backend/Dockerfile
@@ -72,12 +68,6 @@ jobs:
           cache-from: type=registry,ref=${{ env.REGISTRY }}/nassimlnd/salair-backend:buildcache
           cache-to: type=registry,ref=${{ env.REGISTRY }}/nassimlnd/salair-backend:buildcache,mode=max
       
-      - name: Get image digest
-        id: get_digest
-        run: |
-          DIGEST=$(docker buildx imagetools inspect ${{ env.REGISTRY }}/nassimlnd/salair-backend:${{ env.IMAGE_TAG }} --format '{{index .Manifest "digest"}}')
-          echo "digest=$DIGEST" >> $GITHUB_OUTPUT
-
   deploy:
     name: 'Deploy to VPS'
     runs-on: ubuntu-latest
@@ -90,6 +80,9 @@ jobs:
           ssh-private-key: ${{ secrets.VPS_SSH_KEY }}
 
       - name: Debug digest values
+        env:
+          FRONTEND_DIGEST: registry.nassimlounadi.fr/nassimlnd/salair-frontend@${{ needs.build_frontend.outputs.digest }}
+          BACKEND_DIGEST: registry.nassimlounadi.fr/nassimlnd/salair-backend@${{ needs.build_backend.outputs.digest }}
         run: |
           echo "Frontend digest: $FRONTEND_DIGEST"
           echo "Backend digest: $BACKEND_DIGEST"
