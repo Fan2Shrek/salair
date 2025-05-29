@@ -1,0 +1,62 @@
+name: Release & Deploy to Production
+
+on:
+  workflow_dispatch:
+    inputs:
+      bump:
+        description: 'Version increment'
+        required: true
+        default: 'patch'
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+
+env:
+  REGISTRY: registry.nassimlounadi.fr
+
+jobs:
+  version:
+    runs-on: ubuntu-latest
+    outputs:
+      tag: ${{ steps.bump.outputs.new_tag }}
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Get latest tag
+        id: latest
+        run: |
+          TAG=$(git describe --tags --abbrev=0 || echo "v0.0.0")
+          echo "latest_tag=$TAG" >> $GITHUB_OUTPUT
+
+      - name: Compute next version
+        id: bump
+        run: |
+          old=${{ steps.latest.outputs.latest_tag }}
+          ver=${old#v}
+          IFS='.' read -r major minor patch <<< "$ver"
+
+          case "${{ github.event.inputs.bump }}" in
+            major) major=$((major + 1)); minor=0; patch=0 ;;
+            minor) minor=$((minor + 1)); patch=0 ;;
+            patch) patch=$((patch + 1)) ;;
+          esac
+
+          new_tag="v$major.$minor.$patch"
+
+          git config user.name "Nassim LOUNADI"
+          git config user.email "ton.email@gmail.com"
+          git tag "$new_tag"
+          git push https://nassimlnd:${{ secrets.PERSONAL_GITHUB_TOKEN }}@github.com/${{ github.repository }} "$new_tag"
+
+          echo "new_tag=$new_tag" >> $GITHUB_OUTPUT
+
+  build_and_deploy:
+    needs: version
+    uses: ./.github/workflows/deploy-tagged.yml
+    with:
+      tag: ${{ needs.version.outputs.tag }}
+    secrets: inherit

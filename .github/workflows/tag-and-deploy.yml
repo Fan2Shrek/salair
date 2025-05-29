@@ -1,9 +1,6 @@
 name: Auto version, build and deploy (PROD)
 
-on:
-  push:
-    branches:
-      - main
+on: workflow_dispatch
 
 concurrency:
   group: auto-tag-deploy

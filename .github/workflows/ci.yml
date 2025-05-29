@@ -1,0 +1,27 @@
+name: CI - Build and Test
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      # Tu peux ici ajouter :
+      # - lint
+      # - tests unitaires
+      # - build dry-run
+      - name: Frontend build check
+        run: |
+          cd frontend
+          npm install
+          npm run build
+
+      - name: Backend build check
+        run: |
+          cd backend
+          npm install
+          npm run build
