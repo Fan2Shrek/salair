@@ -36,6 +36,11 @@ jobs:
           cache-from: type=registry,ref=${{ env.REGISTRY }}/nassimlnd/salair-frontend:buildcache
           cache-to: type=registry,ref=${{ env.REGISTRY }}/nassimlnd/salair-frontend:buildcache,mode=max
 
+      - name: Get digest of frontend image
+        id: meta
+        run: |
+          echo "digest=${{ steps.push.outputs.digest }}" >> $GITHUB_OUTPUT
+
   build_backend:
     runs-on: ubuntu-latest
     steps:
@@ -60,6 +65,11 @@ jobs:
           cache-from: type=registry,ref=${{ env.REGISTRY }}/nassimlnd/salair-backend:buildcache
           cache-to: type=registry,ref=${{ env.REGISTRY }}/nassimlnd/salair-backend:buildcache,mode=max
 
+      - name: Get digest of backend image
+        id: meta
+        run: |
+          echo "digest=${{ steps.push.outputs.digest }}" >> $GITHUB_OUTPUT
+
   deploy:
     runs-on: ubuntu-latest
     needs: [build_frontend, build_backend]
@@ -82,14 +92,16 @@ jobs:
         env:
           SSH_HOST: ${{ secrets.VPS_HOST }}
           SSH_USER: ${{ secrets.VPS_USER }}
-          IMAGE_TAG: ${{ env.IMAGE_TAG }}
+          FRONTEND_DIGEST: registry.nassimlounadi.fr/nassimlnd/salair-frontend@${{ needs.build_frontend.outputs.digest }}
+          BACKEND_DIGEST: registry.nassimlounadi.fr/nassimlnd/salair-backend@${{ needs.build_backend.outputs.digest }}
+
         run: |
           echo "StrictHostKeyChecking no" >> ~/.ssh/config
           ssh $SSH_USER@$SSH_HOST << EOF
             cd ~/www/salair/
 
-            sed -i "s|\(salair-frontend:\).*|\1$IMAGE_TAG|" docker-stack.yml
-            sed -i "s|\(salair-backend:\).*|\1$IMAGE_TAG|" docker-stack.yml
+            sed -i "s|registry.nassimlounadi.fr/nassimlnd/salair-frontend:.*|$FRONTEND_DIGEST|" docker-stack.yml
+            sed -i "s|registry.nassimlounadi.fr/nassimlnd/salair-backend:.*|$BACKEND_DIGEST|" docker-stack.yml
 
             docker stack deploy -c docker-stack.yml salair
             docker image prune -f
