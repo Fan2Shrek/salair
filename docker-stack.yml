@@ -1,0 +1,113 @@
+services:
+    frontend:
+        image: registry.nassimlounadi.fr/nassimlnd/salair-frontend:latest
+        environment:
+            NUXT_PUBLIC_API_URL: ${NUXT_PUBLIC_API_URL}
+        networks:
+            - app_network
+        ports:
+            - target: 3000
+              published: 3298
+              protocol: tcp
+        deploy:
+            replicas: 2
+            restart_policy:
+                condition: on-failure
+            resources:
+                limits:
+                    cpus: '0.25'
+                    memory: 256M
+        depends_on:
+            - backend
+
+    backend:
+        image: registry.nassimlounadi.fr/nassimlnd/salair-backend:latest
+        ports:
+            - target: 3333
+              published: 3299
+              protocol: tcp
+        environment:
+            DB_HOST: ${DB_HOST}
+            DB_USER: ${DB_USER}
+            DB_PASSWORD: ${DB_PASSWORD}
+            DB_DATABASE: ${DB_DATABASE}
+            DB_PORT: ${DB_PORT}
+            HOST: ${HOST}
+            TZ: ${TZ}
+            PORT: ${PORT}
+            LOG_LEVEL: ${LOG_LEVEL}
+            APP_KEY: ${APP_KEY}
+            NODE_ENV: ${NODE_ENV}
+            SESSION_DRIVER: ${SESSION_DRIVER}
+            DRIVE_DISK: ${DRIVE_DISK}
+            AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+            AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+            AWS_REGION: ${AWS_REGION}
+            S3_BUCKET: ${S3_BUCKET}
+            S3_ENDPOINT: ${S3_ENDPOINT}
+            MAILGUN_API_KEY: ${MAILGUN_API_KEY}
+            MAILGUN_DOMAIN: ${MAILGUN_DOMAIN}
+            GITHUB_TOKEN: ${GITHUB_TOKEN}
+        networks:
+            - app_network
+        depends_on:
+            - db
+        deploy:
+            replicas: 3
+            restart_policy:
+                condition: on-failure
+            resources:
+                limits:
+                    cpus: '0.5'
+                    memory: 512M
+
+
+    db:
+        image: postgres:17
+        volumes:
+            - db_data:/var/lib/postgresql/data
+        environment:
+            POSTGRES_USER: ${DB_USER}
+            POSTGRES_PASSWORD: ${DB_PASSWORD}
+            POSTGRES_DB: ${DB_DATABASE}
+        networks:
+            - app_network
+        deploy:
+            placement:
+                constraints: [node.role == manager]
+
+    storage:
+        image: minio/minio
+        ports:
+            - target: 9000
+              published: 9000
+              protocol: tcp
+              mode: host
+            - target: 8900
+              published: 8900
+              protocol: tcp
+              mode: host
+        environment:
+            MINIO_ROOT_USER: minio
+            MINIO_ROOT_PASSWORD: password
+        volumes:
+            - 'minio:/data/minio'
+        command: 'minio server /data/minio --console-address ":8900"'
+        healthcheck:
+            test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+            retries: 3
+            timeout: 5s
+        networks:
+            - app_network
+        deploy:
+            placement:
+                constraints: [node.role == manager]
+
+networks:
+    app_network:
+        driver: overlay
+
+volumes:
+    db_data:
+    minio:
+        driver: local
