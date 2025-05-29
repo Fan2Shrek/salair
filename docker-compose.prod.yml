@@ -1,23 +1,23 @@
 services:
     frontend:
-        platform: linux/amd64
         image: registry.nassimlounadi.fr/nassimlnd/salair-frontend:latest
-        restart: always
         environment:
             NUXT_PUBLIC_API_URL: ${NUXT_PUBLIC_API_URL}
-        networks:
-            - app_network
         ports:
-            - "3298:3000"
+            - '3298:3000'
         depends_on:
             - backend
+        networks:
+            - app_network
+        restart: on-failure
+        deploy:
+            resources:
+                limits:
+                    cpus: '0.25'
+                    memory: 256M
 
     backend:
-        platform: linux/amd64
         image: registry.nassimlounadi.fr/nassimlnd/salair-backend:latest
-        restart: always
-        ports:
-            - "3299:3333"
         environment:
             DB_HOST: ${DB_HOST}
             DB_USER: ${DB_USER}
@@ -40,20 +40,21 @@ services:
             MAILGUN_API_KEY: ${MAILGUN_API_KEY}
             MAILGUN_DOMAIN: ${MAILGUN_DOMAIN}
             GITHUB_TOKEN: ${GITHUB_TOKEN}
-        networks:
-            - app_network
+        ports:
+            - '3299:3333'
         depends_on:
             - db
-        healthcheck:
-            test: ["CMD", "curl", "-f", "http://localhost:3333/api/health"]
-            interval: 1m30s
-            timeout: 30s
-            retries: 5
-            start_period: 30s
+        networks:
+            - app_network
+        restart: on-failure
+        deploy:
+            resources:
+                limits:
+                    cpus: '0.5'
+                    memory: 512M
 
     db:
         image: postgres:17
-        restart: always
         volumes:
             - db_data:/var/lib/postgresql/data
         environment:
@@ -62,10 +63,10 @@ services:
             POSTGRES_DB: ${DB_DATABASE}
         networks:
             - app_network
+        restart: unless-stopped
 
     storage:
         image: minio/minio
-        restart: always
         ports:
             - '9000:9000'
             - '8900:8900'
@@ -73,22 +74,20 @@ services:
             MINIO_ROOT_USER: minio
             MINIO_ROOT_PASSWORD: password
         volumes:
-            - 'minio:/data/minio'
-        command: 'minio server /data/minio --console-address ":8900"'
+            - minio:/data/minio
+        command: minio server /data/minio --console-address ":8900"
         healthcheck:
-            test:
-                - CMD
-                - curl
-                - '-f'
-                - 'http://localhost:9000/minio/health/live'
+            test: ['CMD', 'curl', '-f', 'http://localhost:9000/minio/health/live']
             retries: 3
             timeout: 5s
-            
-networks:
-    app_network:
-        driver: bridge
+        networks:
+            - app_network
+        restart: unless-stopped
 
 volumes:
     db_data:
     minio:
-        driver: local
+
+networks:
+    app_network:
+        driver: bridge
