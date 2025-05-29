@@ -1,3 +1,5 @@
+[![Release & Deploy to Production](https://github.com/nassimlnd/salair/actions/workflows/release.yml/badge.svg)](https://github.com/nassimlnd/salair/actions/workflows/release.yml)
+
 # Salair
 
 **Salair** est une plateforme SaaS conçue pour accompagner les **freelances** et **autoentrepreneurs** dans la gestion complète de leur activité.  
