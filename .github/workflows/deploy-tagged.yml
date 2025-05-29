@@ -82,6 +82,12 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.VPS_SSH_KEY }}
 
+      - name: Debug digest values
+        run: |
+          echo "Frontend digest: $FRONTEND_DIGEST"
+          echo "Backend digest: $BACKEND_DIGEST"
+
+
       - name: Copy updated stack file to VPS
         env:
           SSH_HOST: ${{ secrets.VPS_HOST }}
