@@ -13,7 +13,10 @@ env:
 
 jobs:
   build_frontend:
+    name: 'Build and push frontend'
     runs-on: ubuntu-latest
+    outputs:
+      digest: ${{ steps.build.outputs.digest }}
     steps:
       - uses: actions/checkout@v3
 
@@ -42,7 +45,10 @@ jobs:
           echo "digest=${{ steps.push.outputs.digest }}" >> $GITHUB_OUTPUT
 
   build_backend:
+    name: 'Build and push backend'
     runs-on: ubuntu-latest
+    outputs:
+      digest: ${{ steps.build.outputs.digest }}
     steps:
       - uses: actions/checkout@v3
 
@@ -65,12 +71,8 @@ jobs:
           cache-from: type=registry,ref=${{ env.REGISTRY }}/nassimlnd/salair-backend:buildcache
           cache-to: type=registry,ref=${{ env.REGISTRY }}/nassimlnd/salair-backend:buildcache,mode=max
 
-      - name: Get digest of backend image
-        id: meta
-        run: |
-          echo "digest=${{ steps.push.outputs.digest }}" >> $GITHUB_OUTPUT
-
   deploy:
+    name: 'Deploy to VPS'
     runs-on: ubuntu-latest
     needs: [build_frontend, build_backend]
     steps:
