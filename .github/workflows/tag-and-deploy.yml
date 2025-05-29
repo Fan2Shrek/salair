@@ -9,6 +9,9 @@ concurrency:
   group: auto-tag-deploy
   cancel-in-progress: true
 
+permissions:
+  contents: write
+
 jobs:
   auto_tag:
     name: Auto-tag new version
