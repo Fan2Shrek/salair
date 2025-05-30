@@ -13,4 +13,12 @@ export class User extends AggregateRoot<Properties> {
   constructor(props: Properties) {
     super(props)
   }
+
+  getIdentifier(): UserIdentifier {
+    return this.props.id
+  }
+
+  getPassword(): HashedPassword {
+    return this.props.password
+  }
 }
