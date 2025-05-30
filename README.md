@@ -74,6 +74,19 @@ npm run test
 -   Logs d'audit
 
 
+## 🏗️ Architecture
+
+Le backend de Salair est en cours de migration d'une architecture MVC classique vers une architecture hexagonale (ports et adapters).
+
+### Pourquoi une architecture hexagonale ?
+
+- **Testabilité améliorée** : La logique métier peut être testée de manière isolée
+- **Maintenabilité accrue** : Séparation claire des préoccupations
+- **Flexibilité** : Les composants externes peuvent être remplacés sans affecter la logique métier
+- **Pérennité** : L'application devient plus résistante aux changements de frameworks ou de services externes
+
+Pour plus d'informations sur cette migration, consultez le [guide détaillé de migration](backend/docs/hexagonal-architecture-migration.md).
+
 ## 🤝 Contribution
 
 Les contributions sont les bienvenues !  
