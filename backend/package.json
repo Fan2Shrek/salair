@@ -31,7 +31,8 @@
     "#tests/*": "./tests/*.js",
     "#config/*": "./config/*.js",
     "#utils/*": "./utils/*.js",
-    "#shared/*": "./app/shared/*.js"
+    "#shared/*": "./app/shared/*.js",
+    "#contexts/*": "./app/contexts/*.js"
   },
   "devDependencies": {
     "@adonisjs/assembler": "^7.8.2",
