@@ -30,7 +30,8 @@
     "#start/*": "./start/*.js",
     "#tests/*": "./tests/*.js",
     "#config/*": "./config/*.js",
-    "#utils/*": "./utils/*.js"
+    "#utils/*": "./utils/*.js",
+    "#shared/*": "./app/shared/*.js"
   },
   "devDependencies": {
     "@adonisjs/assembler": "^7.8.2",
@@ -65,7 +66,8 @@
     "edge.js": "^6.2.1",
     "luxon": "^3.6.1",
     "pg": "^8.14.1",
-    "reflect-metadata": "^0.2.2"
+    "reflect-metadata": "^0.2.2",
+    "uuid": "^11.1.0"
   },
   "hotHook": {
     "boundaries": [
