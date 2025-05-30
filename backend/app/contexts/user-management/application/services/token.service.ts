@@ -6,13 +6,13 @@ import { Identifier } from '#shared/domain/identifier'
 export class TokenService {
   constructor(private accessTokenRepository: AccessTokenRepository) {}
 
-  generate(_userId: UserIdentifier): AccessToken {
+  async generate(_userId: UserIdentifier): Promise<AccessToken> {
     const accessToken = new AccessToken({
       id: Identifier.generate(),
       token: '',
     })
 
-    this.accessTokenRepository.save(accessToken)
+    await this.accessTokenRepository.save(accessToken)
 
     return accessToken
   }

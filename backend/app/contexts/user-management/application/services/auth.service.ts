@@ -31,7 +31,7 @@ export class AuthService {
       throw new InvalidCredentialsException()
     }
 
-    const accessToken = this.tokenService.generate(user.getIdentifier())
+    const accessToken = await this.tokenService.generate(user.getIdentifier())
 
     return {
       accessToken: accessToken.props.token,
