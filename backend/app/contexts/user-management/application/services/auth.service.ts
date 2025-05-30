@@ -4,12 +4,14 @@ import { InvalidCredentialsException } from '#contexts/user-management/applicati
 import { PasswordHashingContract } from '#contexts/user-management/application/contracts/password_hashing.contract'
 import { TokenService } from '#contexts/user-management/application/services/token.service'
 import { AuthenticationResponseDTO } from '#contexts/user-management/application/dtos/authentication_response.dto'
+import { RefreshTokenService } from '#contexts/user-management/application/services/refresh_token.service'
 
 export class AuthService {
   constructor(
     private userRepository: UserRepository,
     private passwordHashingContract: PasswordHashingContract,
-    private tokenService: TokenService
+    private tokenService: TokenService,
+    private refreshTokenService: RefreshTokenService
   ) {}
 
   async authenticate(payload: AuthenticationRequestDTO): Promise<AuthenticationResponseDTO> {
@@ -32,10 +34,11 @@ export class AuthService {
     }
 
     const accessToken = await this.tokenService.generate(user.getIdentifier())
+    const refreshToken = await this.refreshTokenService.generate(user.getIdentifier())
 
     return {
       accessToken: accessToken.props.token,
-      refreshToken: '',
+      refreshToken: refreshToken.props.token,
     }
   }
 }
