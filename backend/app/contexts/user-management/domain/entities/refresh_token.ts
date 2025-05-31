@@ -16,4 +16,8 @@ export class RefreshToken extends Entity<Properties> {
   getToken(): string {
     return this.props.token
   }
+
+  getUserId(): UserIdentifier {
+    return this.props.userId
+  }
 }

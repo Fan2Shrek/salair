@@ -11,14 +11,16 @@ const AuthFinder = withAuthFinder(() => hash.use('scrypt'), {
 })
 
 export default class UserModel extends compose(BaseModel, AuthFinder) {
+  static table = 'users'
+
   @column({ isPrimary: true })
-  declare id: number
+  declare id: string
 
   @column()
-  declare firstName: string | null
+  declare firstName: string
 
   @column()
-  declare lastName: string | null
+  declare lastName: string
 
   @column()
   declare email: string

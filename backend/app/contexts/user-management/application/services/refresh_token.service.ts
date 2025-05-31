@@ -2,7 +2,9 @@ import { UserIdentifier } from '#contexts/user-management/domain/value-objects/u
 import { RefreshToken } from '#contexts/user-management/domain/entities/refresh_token'
 import { Identifier } from '#shared/domain/identifier'
 import { RefreshTokenRepository } from '#contexts/user-management/application/repositories/refresh_token.repository'
+import { inject } from '@adonisjs/core'
 
+@inject()
 export class RefreshTokenService {
   constructor(private refreshTokenRepository: RefreshTokenRepository) {}
 

@@ -5,7 +5,9 @@ import { PasswordHashingContract } from '#contexts/user-management/application/c
 import { AuthenticationResponseDTO } from '#contexts/user-management/application/dtos/authentication_response.dto'
 import { RefreshTokenService } from '#contexts/user-management/application/services/refresh_token.service'
 import { AccessTokenManagerContract } from '#contexts/user-management/application/contracts/access_token_manager.contract'
+import { inject } from '@adonisjs/core'
 
+@inject()
 export class AuthService {
   constructor(
     private userRepository: UserRepository,

@@ -5,7 +5,7 @@ import { AuthenticationRequestDTO } from '#contexts/user-management/application/
 
 @inject()
 export default class AuthenticateWithEmailPasswordController {
-  constructor(private useCase: AuthenticationWithEmailPasswordUseCase) {}
+  constructor(protected useCase: AuthenticationWithEmailPasswordUseCase) {}
 
   async execute({ request, response }: HttpContext) {
     const payload = request.only(['email', 'password'])
@@ -13,8 +13,8 @@ export default class AuthenticateWithEmailPasswordController {
 
     try {
       await this.useCase.execute(dto)
-    } catch {
-      console.error('Unable to retrieve authentication request', request)
+    } catch (error) {
+      console.error('Unable to retrieve authentication request', error)
       response.internalServerError('Unable to retrieve authentication request')
     }
   }
