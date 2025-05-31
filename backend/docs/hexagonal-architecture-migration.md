@@ -123,7 +123,7 @@ Example: Converting the User model to a domain entity
 
 **Current User model:**
 ```typescript
-// app/models/user.ts
+// app/models/user.model.ts
 import { column, BaseModel } from '@adonisjs/lucid/orm'
 import { DateTime } from 'luxon'
 
@@ -146,7 +146,7 @@ export default class User extends BaseModel {
 
 **New domain entity:**
 ```typescript
-// app/shared/domain/entities/user.ts
+// app/shared/domain/entities/user.model.ts
 import { DateTime } from 'luxon'
 
 export class User {

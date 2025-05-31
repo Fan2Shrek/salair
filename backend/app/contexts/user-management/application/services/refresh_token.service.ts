@@ -6,10 +6,13 @@ import { RefreshTokenRepository } from '#contexts/user-management/application/re
 export class RefreshTokenService {
   constructor(private refreshTokenRepository: RefreshTokenRepository) {}
 
-  async generate(_userId: UserIdentifier): Promise<RefreshToken> {
+  async generate(userId: UserIdentifier): Promise<RefreshToken> {
+    const token = ''
+
     const refreshToken = new RefreshToken({
       id: Identifier.generate(),
-      token: '',
+      token: token,
+      userId: userId,
     })
 
     await this.refreshTokenRepository.save(refreshToken)
