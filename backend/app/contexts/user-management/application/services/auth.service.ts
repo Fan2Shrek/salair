@@ -2,7 +2,7 @@ import { AuthenticationRequestDTO } from '#contexts/user-management/application/
 import { UserRepository } from '#contexts/user-management/application/repositories/user.repository'
 import { InvalidCredentialsException } from '#contexts/user-management/application/exceptions/invalid_credentials.exception'
 import { PasswordHashingContract } from '#contexts/user-management/application/contracts/password_hashing.contract'
-import { TokenService } from '#contexts/user-management/application/services/token.service'
+import { AccessTokenService } from '#contexts/user-management/application/services/access_token.service'
 import { AuthenticationResponseDTO } from '#contexts/user-management/application/dtos/authentication_response.dto'
 import { RefreshTokenService } from '#contexts/user-management/application/services/refresh_token.service'
 
@@ -10,7 +10,7 @@ export class AuthService {
   constructor(
     private userRepository: UserRepository,
     private passwordHashingContract: PasswordHashingContract,
-    private tokenService: TokenService,
+    private accessTokenService: AccessTokenService,
     private refreshTokenService: RefreshTokenService
   ) {}
 
@@ -33,7 +33,7 @@ export class AuthService {
       throw new InvalidCredentialsException()
     }
 
-    const accessToken = await this.tokenService.generate(user.getIdentifier())
+    const accessToken = await this.accessTokenService.generate(user.getIdentifier())
     const refreshToken = await this.refreshTokenService.generate(user.getIdentifier())
 
     return {

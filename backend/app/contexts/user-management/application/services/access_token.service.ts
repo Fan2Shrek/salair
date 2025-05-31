@@ -3,7 +3,7 @@ import { UserIdentifier } from '#contexts/user-management/domain/value-objects/u
 import { AccessToken } from '#contexts/user-management/domain/entities/access_token'
 import { Identifier } from '#shared/domain/identifier'
 
-export class TokenService {
+export class AccessTokenService {
   constructor(private accessTokenRepository: AccessTokenRepository) {}
 
   async generate(_userId: UserIdentifier): Promise<AccessToken> {
