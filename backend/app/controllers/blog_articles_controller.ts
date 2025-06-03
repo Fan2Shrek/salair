@@ -9,21 +9,17 @@ export default class BlogArticlesController {
     const limit = request.input('limit', 10)
     const order = request.input('order', 'desc')
 
-    const articles = await BlogArticle.query()
+    return BlogArticle.query()
       .apply((scopes) => scopes.published())
       .orderBy('createdAt', order)
       .limit(limit)
       .preload('author', (authorQuery) => {
         authorQuery.select(['firstName', 'lastName', 'email'])
       })
-
-    return articles
   }
 
   async files({}: HttpContext) {
-    const files = await GithubService.listArticlesFiles()
-
-    return files
+    return await GithubService.listArticlesFiles()
   }
 
   async store({ request, response, auth }: HttpContext) {
@@ -71,10 +67,8 @@ export default class BlogArticlesController {
   }
 
   async slugs() {
-    const slugs = await BlogArticle.query()
+    return BlogArticle.query()
       .apply((scopes) => scopes.published())
       .select('slug')
-
-    return slugs
   }
 }
