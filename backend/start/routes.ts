@@ -7,6 +7,8 @@
 |
 */
 
+const ArticlesAdminsController = () => import('#controllers/admin/articles_admins_controller')
+
 const AuthController = () => import('#controllers/auth_controller')
 const PlansController = () => import('#controllers/plans_controller')
 const UsersController = () => import('#controllers/users_controller')
@@ -142,3 +144,19 @@ router
     router.get('/blog/:slug', [BlogArticlesController, 'show'])
   })
   .prefix('api')
+
+/*
+ * Admin routes
+ */
+
+router
+  .group(() => {
+    // Articles routes
+    router.group(() => {
+      router.get('/articles', [ArticlesAdminsController, 'index'])
+      router.post('/', [ArticlesAdminsController, 'store'])
+      router.delete('/:id', [ArticlesAdminsController, 'delete'])
+    })
+  })
+  .prefix('api')
+  .use([middleware.auth(), middleware.admin()])
