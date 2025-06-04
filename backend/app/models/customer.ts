@@ -1,14 +1,20 @@
 import { DateTime } from 'luxon'
-import { BaseModel, belongsTo, column } from '@adonisjs/lucid/orm'
+import { BaseModel, beforeCreate, belongsTo, column } from '@adonisjs/lucid/orm'
 import type { BelongsTo } from '@adonisjs/lucid/types/relations'
 import User from './user.js'
+import { v7 } from 'uuid'
 
 export default class Customer extends BaseModel {
   @column({ isPrimary: true })
-  declare id: number
+  declare id: string
+
+  @beforeCreate()
+  static generateId(customer: Customer) {
+    customer.id = v7()
+  }
 
   @column()
-  declare userId: number
+  declare userId: string
 
   @column()
   declare companyName: string

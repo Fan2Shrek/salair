@@ -1,11 +1,17 @@
-import { BaseModel, column } from '@adonisjs/lucid/orm'
+import { BaseModel, beforeCreate, column } from '@adonisjs/lucid/orm'
+import { v7 } from 'uuid'
 
 export default class InvoiceItem extends BaseModel {
   @column({ isPrimary: true })
-  declare id: number
+  declare id: string
+
+  @beforeCreate()
+  static generateId(invoiceItem: InvoiceItem) {
+    invoiceItem.id = v7()
+  }
 
   @column()
-  declare invoiceId: number
+  declare invoiceId: string
 
   @column()
   declare description: string

@@ -1,14 +1,20 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column, belongsTo } from '@adonisjs/lucid/orm'
+import { BaseModel, column, belongsTo, beforeCreate } from '@adonisjs/lucid/orm'
 import type { BelongsTo } from '@adonisjs/lucid/types/relations'
 import User from './user.js'
+import { v7 } from 'uuid'
 
 export default class RefreshToken extends BaseModel {
   @column({ isPrimary: true })
-  declare id: number
+  declare id: string
+
+  @beforeCreate()
+  static generateId(token: RefreshToken) {
+    token.id = v7()
+  }
 
   @column()
-  declare userId: number
+  declare userId: string
 
   @column()
   declare token: string

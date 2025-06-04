@@ -1,12 +1,15 @@
 import { BaseSeeder } from '@adonisjs/lucid/seeders'
 import Company from '#models/company'
 import { DateTime } from 'luxon'
+import User from '#models/user'
 
 export default class extends BaseSeeder {
   async run() {
+    const users = await User.query().select('id')
+
     await Company.createMany([
       {
-        ownerId: 1, // Sophie Dubois
+        ownerId: users[0].id, // Sophie Dubois
         status: 'active',
         siret: '12345678901234',
         activity: 'Développement informatique',
@@ -21,7 +24,7 @@ export default class extends BaseSeeder {
         defaultInvoiceNote: 'Merci pour votre confiance.',
       },
       {
-        ownerId: 2, // Thomas Martin
+        ownerId: users[1].id, // Thomas Martin
         status: 'active',
         siret: '23456789012345',
         activity: 'Design graphique',
@@ -36,7 +39,7 @@ export default class extends BaseSeeder {
         defaultInvoiceNote: 'Paiement à réception de facture.',
       },
       {
-        ownerId: 3, // Emma Bernard
+        ownerId: users[2].id, // Emma Bernard
         status: 'pending',
         siret: '34567890123456',
         activity: 'Consultant marketing',
@@ -51,7 +54,7 @@ export default class extends BaseSeeder {
         defaultInvoiceNote: 'TVA non applicable, art. 293 B du CGI.',
       },
       {
-        ownerId: 4, // Lucas Petit
+        ownerId: users[3].id, // Lucas Petit
         status: 'inactive',
         siret: '45678901234567',
         activity: 'Photographe',
@@ -66,7 +69,7 @@ export default class extends BaseSeeder {
         defaultInvoiceNote: "Entreprise dispensée d'immatriculation au RCS et au RM.",
       },
       {
-        ownerId: 5, // Chloé Moreau
+        ownerId: users[4].id, // Chloé Moreau
         status: 'active',
         siret: '56789012345678',
         activity: 'Rédaction web',

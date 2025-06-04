@@ -5,9 +5,9 @@ export default class extends BaseSchema {
 
   async up() {
     this.schema.createTable(this.tableName, (table) => {
-      table.increments('id').primary()
-      table.integer('user_id').references('id').inTable('users').notNullable()
-      table.integer('plan_id').references('id').inTable('plans').notNullable()
+      table.uuid('id').primary()
+      table.uuid('user_id').references('id').inTable('users').notNullable()
+      table.uuid('plan_id').references('id').inTable('plans').notNullable()
       table.string('stripe_subscription_id').notNullable()
       table.enum('status', ['active', 'trialing', 'canceled', 'past_due']).notNullable()
       table.timestamp('started_at').notNullable()

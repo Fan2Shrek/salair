@@ -1,9 +1,15 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column } from '@adonisjs/lucid/orm'
+import { BaseModel, beforeCreate, column } from '@adonisjs/lucid/orm'
+import { v7 } from 'uuid'
 
 export default class NewsletterSubscriber extends BaseModel {
   @column({ isPrimary: true })
-  declare id: number
+  declare id: string
+
+  @beforeCreate()
+  static generateId(subscriber: NewsletterSubscriber) {
+    subscriber.id = v7()
+  }
 
   @column() declare email: string
 

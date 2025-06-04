@@ -1,19 +1,25 @@
 import { DateTime } from 'luxon'
-import { BaseModel, belongsTo, column, hasMany } from '@adonisjs/lucid/orm'
+import { BaseModel, beforeCreate, belongsTo, column, hasMany } from '@adonisjs/lucid/orm'
 import Customer from './customer.js'
 import type { BelongsTo, HasMany } from '@adonisjs/lucid/types/relations'
 import User from './user.js'
 import InvoiceItem from './invoice_item.js'
+import { v7 } from 'uuid'
 
 export default class Invoice extends BaseModel {
   @column({ isPrimary: true })
-  declare id: number
+  declare id: string
+
+  @beforeCreate()
+  static generateId(invoice: Invoice) {
+    invoice.id = v7()
+  }
 
   @column()
-  declare userId: number
+  declare userId: string
 
   @column()
-  declare customerId: number
+  declare customerId: string
 
   @column()
   declare invoiceNumber: string

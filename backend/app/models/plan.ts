@@ -1,11 +1,17 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column, hasMany } from '@adonisjs/lucid/orm'
+import { BaseModel, beforeCreate, column, hasMany } from '@adonisjs/lucid/orm'
 import Subscription from './subscription.js'
 import type { HasMany } from '@adonisjs/lucid/types/relations'
+import { v7 } from 'uuid'
 
 export default class Plan extends BaseModel {
   @column({ isPrimary: true })
-  declare id: number
+  declare id: string
+
+  @beforeCreate()
+  static generateId(plan: Plan) {
+    plan.id = v7()
+  }
 
   @column()
   declare name: string

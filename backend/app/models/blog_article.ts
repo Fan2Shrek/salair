@@ -1,11 +1,17 @@
 import { DateTime } from 'luxon'
-import { BaseModel, belongsTo, column, scope } from '@adonisjs/lucid/orm'
+import { BaseModel, beforeCreate, belongsTo, column, scope } from '@adonisjs/lucid/orm'
 import User from './user.js'
 import type { BelongsTo } from '@adonisjs/lucid/types/relations'
+import { v7 } from 'uuid'
 
 export default class BlogArticle extends BaseModel {
   @column({ isPrimary: true })
-  declare id: number
+  declare id: string
+
+  @beforeCreate()
+  static generateId(article: BlogArticle) {
+    article.id = v7()
+  }
 
   @column()
   declare title: string
@@ -23,7 +29,7 @@ export default class BlogArticle extends BaseModel {
   declare visible: boolean
 
   @column()
-  declare authorId: number
+  declare authorId: string
 
   @column()
   declare mainPicture: string

@@ -1,18 +1,24 @@
 import { DateTime } from 'luxon'
-import { BaseModel, belongsTo, column } from '@adonisjs/lucid/orm'
+import { BaseModel, beforeCreate, belongsTo, column } from '@adonisjs/lucid/orm'
 import User from './user.js'
 import type { BelongsTo } from '@adonisjs/lucid/types/relations'
 import Plan from './plan.js'
+import { v7 } from 'uuid'
 
 export default class Subscription extends BaseModel {
   @column({ isPrimary: true })
-  declare id: number
+  declare id: string
+
+  @beforeCreate()
+  static generateId(subscription: Subscription) {
+    subscription.id = v7()
+  }
 
   @column()
-  declare userId: number
+  declare userId: string
 
   @column()
-  declare planId: number
+  declare planId: string
 
   @column()
   declare stripeSubscriptionId: string
