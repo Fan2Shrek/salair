@@ -37,6 +37,9 @@ export default class User extends compose(BaseModel, AuthFinder) {
   @column()
   declare isVerified: boolean
 
+  @column()
+  declare status: 'active' | 'inactive' | 'suspended'
+
   @column.dateTime()
   declare lastLoginAt: DateTime
 
