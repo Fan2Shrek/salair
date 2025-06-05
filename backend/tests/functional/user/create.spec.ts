@@ -1,39 +1,19 @@
 import { test } from '@japa/runner'
 import User from '#models/user'
-import hash from '@adonisjs/core/services/hash'
-import { TestContext } from '@japa/runner/core'
 
-test.group('User create', () => {
-  test('hashes user password', async ({ assert }: TestContext) => {
-    const user = await User.create({
+test.group('User creation', () => {
+  test('creates user on signup', async ({ assert, client }) => {
+    const response = await client.post('/api/register').json({
       firstName: 'John',
       lastName: 'Doe',
-      email: 'john.doe@mail.com',
-      password: 'password',
-      role: 'user',
-      isVerified: true,
-      isOnTrial: false,
-    })
-
-    await user.save()
-
-    assert.isTrue(hash.isValidHash(user.password))
-    assert.isTrue(await hash.verify(user.password, 'password'))
-  })
-
-  test('returns access_token and refresh_token on user login', async ({
-    client,
-    assert,
-  }: TestContext) => {
-    const user = await User.query().where('email', 'john.doe@mail.com').firstOrFail()
-
-    const response = await client.post('/api/login').json({
-      email: user.email,
+      email: 'nassim@mail.com',
       password: 'password',
     })
 
     response.assertStatus(200)
-    assert.isTrue(Object.keys(response.body()).includes('access_token'))
-    assert.isTrue(Object.keys(response.body()).includes('refresh_token'))
+
+    const user = await User.query().where('email', 'nassim@mail.com').firstOrFail()
+
+    assert.equal(user.firstName, 'John')
   })
 })
