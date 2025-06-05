@@ -52,8 +52,8 @@ export const useAuthStore = defineStore('auth', {
                 });
 
                 if (data.value && !error.value) {
-                    this.accessToken = data.value.access_token
-                    this.refreshToken = data.value.refresh_token
+                    this.accessToken = data.value.access_token;
+                    this.refreshToken = data.value.refresh_token;
 
                     await this.fetchUser();
                     return { success: true };
@@ -62,7 +62,7 @@ export const useAuthStore = defineStore('auth', {
                 return {
                     success: false,
                     error: error.value?.message || 'Login failed',
-                    data: error.value?.data
+                    data: error.value?.data,
                 };
             } catch (error) {
                 console.error('Login error:', error);
@@ -72,8 +72,18 @@ export const useAuthStore = defineStore('auth', {
             }
         },
 
-        async register({ firstName, lastName, email, password }: { firstName: string, lastName: string, email: string, password: string }) {
-            this.isLoading = true
+        async register({
+            firstName,
+            lastName,
+            email,
+            password,
+        }: {
+            firstName: string;
+            lastName: string;
+            email: string;
+            password: string;
+        }) {
+            this.isLoading = true;
 
             try {
                 const { $api } = useNuxtApp();
@@ -84,13 +94,13 @@ export const useAuthStore = defineStore('auth', {
                         firstName,
                         lastName,
                         email,
-                        password
-                    }
-                })
+                        password,
+                    },
+                });
 
                 if (data.value && !error.value) {
-                    this.accessToken = data.value.access_token
-                    this.refreshToken = data.value.refresh_token
+                    this.accessToken = data.value.access_token;
+                    this.refreshToken = data.value.refresh_token;
 
                     await this.fetchUser();
                     return { success: true };
@@ -99,12 +109,12 @@ export const useAuthStore = defineStore('auth', {
                 return {
                     success: false,
                     error: error.value?.message || 'Register failed',
-                    data: error.value?.data
+                    data: error.value?.data,
                 };
             } catch {
                 return { success: false, error: 'Authentication failed' };
             } finally {
-                this.isLoading = false
+                this.isLoading = false;
             }
         },
 
@@ -117,6 +127,9 @@ export const useAuthStore = defineStore('auth', {
                 await useAuthFetch($api('/api/logout'), {
                     method: 'DELETE',
                     credentials: 'include',
+                    body: {
+                        refreshToken: this.refreshToken,
+                    },
                 });
 
                 this.user = null;
@@ -129,25 +142,25 @@ export const useAuthStore = defineStore('auth', {
                 this.isLoading = false;
             }
         },
-        
+
         async refresh(): Promise<boolean> {
             try {
                 const { $api } = useNuxtApp();
                 const { data, error } = await useFetch<TokenResponse>($api('/api/refresh'), {
                     body: {
-                        refresh_token: this.refreshToken
+                        refresh_token: this.refreshToken,
                     },
                     method: 'POST',
                     credentials: 'include',
                 });
 
                 if (data.value && !error.value) {
-                    this.accessToken = data.value.access_token
-                    this.refreshToken = data.value.refresh_token
+                    this.accessToken = data.value.access_token;
+                    this.refreshToken = data.value.refresh_token;
 
-                    return true
+                    return true;
                 } else {
-                    return false
+                    return false;
                 }
             } catch {
                 return false;
@@ -157,4 +170,3 @@ export const useAuthStore = defineStore('auth', {
 
     persist: true,
 });
-
