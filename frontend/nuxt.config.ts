@@ -71,6 +71,7 @@ export default defineNuxtConfig({
     routeRules: {
         '/doc/**': { robots: false },
         '/app/**': { robots: false },
+        '/admin/**': { robots: false },
         '/onboarding': { robots: false },
         '/forgot-password': { robots: false },
     },
