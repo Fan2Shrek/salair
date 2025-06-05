@@ -8,7 +8,7 @@ import { defineConfig } from '@adonisjs/core/http'
  * and by the "encryption" module.
  *
  * The encryption module will fail to decrypt data if the key is lost or
- * changed. Therefore it is recommended to keep the app key secure.
+ * changed. Therefore, it is recommended to keep the app key secure.
  */
 export const appKey = new Secret(env.get('APP_KEY'))
 
@@ -26,7 +26,7 @@ export const http = defineConfig({
   useAsyncLocalStorage: true,
 
   /**
-   * Manage cookies configuration. The settings for the session id cookie are
+   * Manage cookie configuration. The settings for the session id cookie are
    * defined inside the "config/session.ts" file.
    */
   cookie: {
