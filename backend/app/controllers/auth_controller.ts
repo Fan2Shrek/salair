@@ -79,10 +79,12 @@ export default class AuthController {
       .where('user_id', user.id)
       .where('token', refreshTokenString)
       .where('is_revoked', false)
-      .firstOrFail()
+      .first()
 
-    refreshToken.isRevoked = true
-    await refreshToken.save()
+    if (refreshToken) {
+      refreshToken.isRevoked = true
+      await refreshToken.save()
+    }
 
     return { message: 'success' }
   }
