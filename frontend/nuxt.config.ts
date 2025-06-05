@@ -72,7 +72,7 @@ export default defineNuxtConfig({
         '/doc/**': { robots: false },
         '/app/**': { robots: false },
         '/onboarding': { robots: false },
-        '/forgot-password': { robots: false }
+        '/forgot-password': { robots: false },
     },
     content: {
         preview: {
@@ -85,11 +85,9 @@ export default defineNuxtConfig({
         },
     },
     nitro: {
-        compressPublicAssets: true
+        compressPublicAssets: true,
     },
     sitemap: {
-        sources: [
-            '/api/__sitemap__/urls',
-        ]
-    }
+        sources: ['/api/__sitemap__/urls'],
+    },
 });
