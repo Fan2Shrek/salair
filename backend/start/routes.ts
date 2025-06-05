@@ -40,7 +40,7 @@ router
   .group(() => {
     router.post('/register', [AuthController, 'register']).as('auth.register')
     router.post('/login', [AuthController, 'login']).as('auth.login')
-    router.delete('/logout', [AuthController, 'logout']).as('auth.logout')
+    router.delete('/logout', [AuthController, 'logout']).as('auth.logout').use(middleware.auth())
     router.get('/me', [AuthController, 'me']).as('auth.me').use(middleware.auth())
     router.post('/refresh', [AuthController, 'refresh']).as('auth.refresh')
     router.post('/check', [AuthController, 'check']).as('auth.check')

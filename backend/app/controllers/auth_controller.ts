@@ -65,8 +65,24 @@ export default class AuthController {
     }
   }
 
-  async logout({ auth }: HttpContext) {
+  async logout({ request, response, auth }: HttpContext) {
+    const user = auth.user!
     await auth.use('api').invalidateToken()
+
+    const { refreshToken: refreshTokenString } = request.only(['refreshToken'])
+
+    if (!refreshTokenString) {
+      return response.badRequest({ message: 'Refresh token is required' })
+    }
+
+    const refreshToken = await RefreshToken.query()
+      .where('user_id', user.id)
+      .where('token', refreshTokenString)
+      .where('is_revoked', false)
+      .firstOrFail()
+
+    refreshToken.isRevoked = true
+    await refreshToken.save()
 
     return { message: 'success' }
   }
