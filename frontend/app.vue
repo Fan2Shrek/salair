@@ -26,7 +26,18 @@
             lang: i18nHead.value.htmlAttrs.lang,
             dir: 'ltr',
         },
-        link: [{ rel: 'icon', href: '/favicon.png' }, ...(i18nHead.value.link || [])],
+        link: [
+            { rel: 'icon', href: '/favicon.png' },
+            { rel: 'icon', type: 'image/png', sizes: '72x72', href: '/logo-72.png' },
+            { rel: 'icon', type: 'image/png', sizes: '128x128', href: '/logo-128.png' },
+            { rel: 'icon', type: 'image/png', sizes: '144x144', href: '/logo-144.png' },
+            { rel: 'icon', type: 'image/png', sizes: '192x192', href: '/logo-192.png' },
+            { rel: 'icon', type: 'image/png', sizes: '512x512', href: '/logo-512.png' },
+            { rel: 'apple-touch-icon', sizes: '192x192', href: '/logo-192.png' },
+            { rel: 'apple-touch-icon', sizes: '512x512', href: '/logo-512.png' },
+            { rel: 'manifest', href: '/site.webmanifest' },
+            ...(i18nHead.value.link || []),
+        ],
     });
 </script>
 
