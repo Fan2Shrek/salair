@@ -18,6 +18,7 @@ const MeController = () => import('#controllers/me_controller')
 const BlogArticlesController = () => import('#controllers/blog_articles_controller')
 const NewslettersController = () => import('#controllers/newsletters_controller')
 const ContactsController = () => import('#controllers/contacts_controller')
+const HealthChecksController = () => import('#controllers/health_checks_controller')
 
 import router from '@adonisjs/core/services/router'
 import { middleware } from './kernel.js'
@@ -29,11 +30,7 @@ router.get('/', async () => {
 })
 
 // Healthcheck routes
-router.get('/api/health', () => {
-  return {
-    running: true,
-  }
-})
+router.get('/api/health', [HealthChecksController])
 
 // Authentication routes
 router
