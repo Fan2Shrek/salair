@@ -37,7 +37,15 @@
             </div>
             <div v-else class="hidden md:flex items-center gap-3">
                 <LanguageSwitcher format="icon" />
-                <UButton v-if="authStore.isAuthenticated" variant="secondary" @click="navigateTo('/app/dashboard')"
+                <UButton
+                    v-if="authStore.isAuthenticated"
+                    variant="secondary"
+                    @click="
+                        () => {
+                            if (authStore.user?.role === 'admin') return navigateTo('/admin/dashboard');
+                            return navigateTo('/app/dashboard');
+                        }
+                    "
                     >{{ $t('sidebar.dashboard') }}</UButton
                 >
                 <LogoutButton />
@@ -93,12 +101,15 @@
                         @click="navigateTo('/login')"
                         >{{ $t('general.login') }}</UButton
                     >
-                    <UButton v-if="authStore.isAuthenticated" variant="secondary" @click="navigateTo('/app/dashboard')"
+                    <UButton
+                        v-if="authStore.isAuthenticated"
+                        variant="secondary"
+                        @click="navigateTo('/app/dashboard')"
                         >{{ $t('sidebar.dashboard') }}</UButton
                     >
-                    <UButton v-if="!authStore.isAuthenticated" class="w-full" @click="navigateTo('/signup')"
-                        >{{ $t('general.sign_up') }}</UButton
-                    >
+                    <UButton v-if="!authStore.isAuthenticated" class="w-full" @click="navigateTo('/signup')">{{
+                        $t('general.sign_up')
+                    }}</UButton>
                     <LogoutButton v-else />
                 </div>
             </nav>

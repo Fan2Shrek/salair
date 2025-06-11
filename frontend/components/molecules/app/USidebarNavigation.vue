@@ -11,7 +11,7 @@
         return authStore.user?.role === 'admin';
     });
 
-    const navLinks = [
+    const clientNavLinks = [
         {
             title: t('sidebar.dashboard'),
             link: '/app/dashboard',
@@ -19,11 +19,21 @@
         },
     ];
 
-    const adminLinks = [
+    const adminNavLinks = [
+        {
+            title: 'Dashboard',
+            link: '/admin/dashboard',
+            icon: ChartIcon,
+        },
         {
             title: 'Articles',
             link: '/admin/articles',
             icon: FileIcon,
+        },
+        {
+            title: 'Users',
+            link: '/admin/users',
+            icon: HomeIcon,
         },
     ];
 </script>
@@ -36,15 +46,16 @@
             </ul>
         </nav>
         <UDivider class="mt-1" />
-        <nav class="w-full mt-1 space-y-1">
-            <ul v-for="navLink in navLinks" :key="navLink.title" class="w-full">
+        
+        <nav v-if="!isAdmin" class="w-full mt-1 space-y-1">
+            <ul v-for="navLink in clientNavLinks" :key="navLink.title" class="w-full">
                 <USidebarItem :title="navLink.title" :icon="navLink.icon" :to="navLink.link" />
             </ul>
         </nav>
-        <UDivider v-if="isAdmin" class="mt-1" />
+        
         <nav v-if="isAdmin" class="w-full mt-1 space-y-1">
-            <ul v-for="link in adminLinks" :key="link.title" class="w-full">
-                <USidebarItem :title="link.title" :icon="link.icon" :to="link.link" />
+            <ul v-for="navLink in adminNavLinks" :key="navLink.title" class="w-full">
+                <USidebarItem :title="navLink.title" :icon="navLink.icon" :to="navLink.link" />
             </ul>
         </nav>
     </div>
