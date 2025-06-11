@@ -20,7 +20,10 @@ export default class MeController {
 
       user.merge(userData)
       await user.save()
-      await user.load('company')
+
+      if (user.role !== 'admin') {
+        await user.load('company')
+      }
 
       return response.ok(user)
     } catch (error) {

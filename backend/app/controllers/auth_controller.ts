@@ -94,7 +94,9 @@ export default class AuthController {
       return response.status(401).send({ message: 'JWT not valid or missing' })
     }
 
-    await auth.user.load('company')
+    if (auth.user.role !== 'admin') {
+      await auth.user.load('company')
+    }
 
     return auth.user
   }
