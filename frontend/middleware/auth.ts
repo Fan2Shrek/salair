@@ -17,11 +17,11 @@ export default defineNuxtRouteMiddleware(async (to) => {
         return navigateTo('/');
     }
 
-    if (authStore.isAuthenticated && !authStore.user?.company && to.path === '/signup') {
+    if (authStore.isAuthenticated && !authStore.user?.company && authStore.user?.role !== 'admin' && to.path === '/signup') {
         return navigateTo('/onboarding')
     }
 
-    if (authStore.isAuthenticated && !authStore.user?.company) {
+    if (authStore.isAuthenticated && !authStore.user?.company && authStore.user?.role !== 'admin') {
         return navigateTo('/onboarding')
     }
 });

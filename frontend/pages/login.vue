@@ -16,7 +16,9 @@
         const result = await authStore.login(email.value, password.value);
 
         if (result.success) {
-            if (!authStore.user.company) {
+            if (authStore.user?.role === 'admin') {
+                router.push('/admin/dashboard');
+            } else if (!authStore.user?.company) {
                 router.push('/onboarding');
             } else {
                 router.push('/app/dashboard');

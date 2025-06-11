@@ -66,6 +66,11 @@
             navigateTo('/signup');
         }
 
+        if (authStore.user && authStore.user.role === 'admin') {
+            navigateTo('/admin/dashboard');
+            return;
+        }
+
         if (authStore.user && !authStore.user.company) {
             activeTab.value = 2
         }
