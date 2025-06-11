@@ -234,6 +234,25 @@
         "dashboard": "Tableau de bord",
         "settings": "Paramètres"
     },
+    "admin": {
+        "dashboard": {
+            "title": "Dashboard",
+            "subtitle": "Vue d'ensemble de la plateforme",
+            "stats": {
+                "users": "Utilisateurs",
+                "total_users": "Total des utilisateurs",
+                "companies": "Entreprises",
+                "total_companies": "Total des entreprises",
+                "articles": "Articles",
+                "total_articles": "Total des articles"
+            }
+        },
+        "users": {
+            "title": "Gestion des utilisateurs",
+            "subtitle": "Gérez les comptes utilisateurs de la plateforme",
+            "coming_soon": "Fonctionnalité en cours de développement"
+        }
+    },
     "settings": {
         "tabs": {
             "details": "Mes informations",

@@ -234,6 +234,25 @@
         "dashboard": "Dashboard",
         "settings": "Settings"
     },
+    "admin": {
+        "dashboard": {
+            "title": "Dashboard",
+            "subtitle": "Platform overview",
+            "stats": {
+                "users": "Users",
+                "total_users": "Total users",
+                "companies": "Companies",
+                "total_companies": "Total companies",
+                "articles": "Articles",
+                "total_articles": "Total articles"
+            }
+        },
+        "users": {
+            "title": "User Management",
+            "subtitle": "Manage platform user accounts",
+            "coming_soon": "Feature under development"
+        }
+    },
     "settings": {
         "tabs": {
             "details": "My details",
