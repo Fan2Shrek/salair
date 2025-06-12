@@ -1,7 +1,7 @@
 import type User from "./user"
 
 export type BlogArticle = {
-    id: number
+    id: string
     title: string
     description: string
     slug: string
