@@ -17,7 +17,7 @@
         icon?: Component | string | null;
         variant?: 'primary' | 'secondary' | 'tertiary';
         size?: 'sm' | 'md' | 'lg' | 'xl';
-        handler: (row: TableData) => void;
+        handler: (row: TableData) => void | Promise<void>;
         disabled?: (row: TableData) => boolean;
         visible?: (row: TableData) => boolean;
     }
@@ -162,7 +162,24 @@
 
     function executeAction(action: TableAction, row: TableData) {
         if (action.disabled && action.disabled(row)) return;
-        action.handler(row);
+                
+        try {
+            const result = action.handler(row);
+            
+            // Check if the result is a Promise (async action)
+            if (result && typeof result.then === 'function') {
+                result
+                    .catch((error) => {
+                        console.error(`Error executing action ${action.key}:`, error);
+                        // You can emit an error event here if needed
+                        // emit('action-error', { action, row, error });
+                    })
+            }
+        } catch (error) {
+            console.error(`Error executing action ${action.key}:`, error);
+            // You can emit an error event here if needed
+            // emit('action-error', { action, row, error });
+        }
     }
 
     function isActionVisible(action: TableAction, row: TableData): boolean {
