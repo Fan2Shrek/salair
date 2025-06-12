@@ -13,6 +13,7 @@
         modelValue?: string | number;
         icon?: Component | string | null;
         iconPosition?: 'leading' | 'trailing';
+        disabled?: boolean;
     }
 
     const _props = withDefaults(defineProps<InputProps>(), {
@@ -67,12 +68,14 @@
                     sizeClasses[size],
                     { 'pl-10': icon && iconPosition === 'leading' },
                     { 'pr-10': icon && iconPosition === 'trailing' },
+                    { 'cursor-not-allowed opacity-50': disabled },
                 ]"
                 :type="type"
                 :placeholder="placeholder"
                 :name="name"
                 :value="modelValue"
                 :required="required"
+                :disabled="disabled"
                 @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)"
             />
             <component
@@ -86,3 +89,4 @@
         </p>
     </div>
 </template>
+
