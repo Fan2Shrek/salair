@@ -1,10 +1,12 @@
 <script lang="ts" setup>
     import DownloadIcon from '~/components/atoms/icons/DownloadIcon.vue';
+    import EditIcon from '~/components/atoms/icons/EditIcon.vue';
     import FilterLinesIcon from '~/components/atoms/icons/FilterLinesIcon.vue';
+    import GlobeIcon from '~/components/atoms/icons/GlobeIcon.vue';
     import HomeIcon from '~/components/atoms/icons/HomeIcon.vue';
     import PlusIcon from '~/components/atoms/icons/PlusIcon.vue';
     import SearchIcon from '~/components/atoms/icons/SearchIcon.vue';
-import TrashIcon from '~/components/atoms/icons/TrashIcon.vue';
+    import TrashIcon from '~/components/atoms/icons/TrashIcon.vue';
     import type { Column, TableAction } from '~/components/organisms/UTable.vue';
     import useArticles from '~/composables/admin/useArticles';
 
@@ -16,7 +18,7 @@ import TrashIcon from '~/components/atoms/icons/TrashIcon.vue';
         title: 'Articles',
     });
 
-    const { articles, loadContent } = useArticles();
+    const { articles, loadContent, publish } = useArticles();
     const articlesColumns: Column[] = [
         {
             key: 'id',
@@ -38,17 +40,26 @@ import TrashIcon from '~/components/atoms/icons/TrashIcon.vue';
 
     const actions: TableAction[] = [
         {
-            key: 'test',
-            label: 'Test',
-            icon: HomeIcon,
+            key: 'edit',
+            label: 'Modifier',
+            icon: EditIcon,
             handler: (row) => console.log(row),
         },
         {
             key: 'delete',
-            label: 'Delete',
+            label: 'Supprimer',
             icon: TrashIcon,
-            handler: (row) => alert(`Delete ${row.id}`)
-        }
+            handler: (row) => alert(`Delete ${row.id}`),
+        },
+        {
+            key: 'publish',
+            label: 'Publier',
+            icon: GlobeIcon,
+            handler: async (row) => {
+                await publish(row.id as string);
+            },
+            visible: (row) => row.status !== 'published'
+        },
     ];
 
     onMounted(async () => {
@@ -106,7 +117,13 @@ import TrashIcon from '~/components/atoms/icons/TrashIcon.vue';
                         >Filtres</UButton
                     >
                 </section>
-                <UTable class="mt-8" :columns="articlesColumns" :data="articles?.data || []" :actions="actions" actions-display="dropdown">
+                <UTable
+                    class="mt-8"
+                    :columns="articlesColumns"
+                    :data="articles?.data || []"
+                    :actions="actions"
+                    actions-display="dropdown"
+                >
                     <template #cell-status="{ row }">
                         <UBadge
                             class="w-fit"
