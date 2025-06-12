@@ -5,7 +5,7 @@ export type BlogArticle = {
     title: string
     description: string
     slug: string
-    status: 'draw' | 'published' | 'archived'
+    status: 'draft' | 'published' | 'archived'
     visible: boolean
     mainPicture: string
     author: User
