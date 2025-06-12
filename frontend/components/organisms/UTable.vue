@@ -10,7 +10,6 @@
         width?: string;
     }
 
-    // Generic type for table data
     type TableData = Record<string, unknown>;
 
     interface TableProps {
@@ -36,16 +35,13 @@
         (e: 'selection-change', selectedRows: TableData[]): void;
     }>();
 
-    // Selected rows state
     const selectedRows = ref<TableData[]>([]);
     const allSelected = ref(false);
 
-    // Check if a row is selected
     const isRowSelected = (row: TableData) => {
         return selectedRows.value.some((selectedRow) => JSON.stringify(selectedRow) === JSON.stringify(row));
     };
 
-    // Toggle selection of a row
     const toggleRowSelection = (row: TableData, _event: Event) => {
         const index = selectedRows.value.findIndex(
             (selectedRow) => JSON.stringify(selectedRow) === JSON.stringify(row)
@@ -61,7 +57,6 @@
         updateAllSelectedState();
     };
 
-    // Toggle selection of all rows
     const toggleAllRows = () => {
         if (allSelected.value) {
             selectedRows.value = [];
@@ -73,12 +68,10 @@
         emit('selection-change', selectedRows.value);
     };
 
-    // Update the allSelected state based on the current selection
     const updateAllSelectedState = () => {
         allSelected.value = selectedRows.value.length === props.data.length;
     };
 
-    // Reset selection when data changes
     watch(
         () => props.data,
         () => {
@@ -104,7 +97,6 @@
 
     const cellClasses = computed(() => ['px-6 py-4 text-sm text-tertiary']);
 
-    // Sort functionality
     const sortColumn = ref<string | null>(null);
     const sortDirection = ref<'asc' | 'desc'>('asc');
 
@@ -123,12 +115,10 @@
                 return aValue.localeCompare(String(bValue)) * direction;
             }
 
-            // For number comparison
             if (typeof aValue === 'number' && typeof bValue === 'number') {
                 return (aValue > bValue ? 1 : -1) * direction;
             }
 
-            // For other types, convert to string and compare
             return String(aValue).localeCompare(String(bValue)) * direction;
         });
     });
