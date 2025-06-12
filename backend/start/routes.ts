@@ -155,5 +155,5 @@ router
       router.delete('/:id', [ArticlesAdminsController, 'delete'])
     })
   })
-  .prefix('api')
+  .prefix('api/admin')
   .use([middleware.auth(), middleware.admin()])
