@@ -1,13 +1,19 @@
 <script lang="ts" setup>
     import DownloadIcon from '~/components/atoms/icons/DownloadIcon.vue';
     import FilterLinesIcon from '~/components/atoms/icons/FilterLinesIcon.vue';
+    import HomeIcon from '~/components/atoms/icons/HomeIcon.vue';
     import PlusIcon from '~/components/atoms/icons/PlusIcon.vue';
     import SearchIcon from '~/components/atoms/icons/SearchIcon.vue';
-    import type { Column } from '~/components/organisms/UTable.vue';
+import TrashIcon from '~/components/atoms/icons/TrashIcon.vue';
+    import type { Column, TableAction } from '~/components/organisms/UTable.vue';
     import useArticles from '~/composables/admin/useArticles';
 
     definePageMeta({
         middleware: 'admin',
+    });
+
+    useSeoMeta({
+        title: 'Articles',
     });
 
     const { articles, loadContent } = useArticles();
@@ -28,6 +34,21 @@
             key: 'status',
             label: 'Status',
         },
+    ];
+
+    const actions: TableAction[] = [
+        {
+            key: 'test',
+            label: 'Test',
+            icon: HomeIcon,
+            handler: (row) => console.log(row),
+        },
+        {
+            key: 'delete',
+            label: 'Delete',
+            icon: TrashIcon,
+            handler: (row) => alert(`Delete ${row.id}`)
+        }
     ];
 
     onMounted(async () => {
@@ -62,7 +83,9 @@
                             <p class="text-tertiary">Gérez et organisez tous les articles du blog.</p>
                         </div>
                         <div class="flex items-center gap-3">
-                            <UButton variant="secondary" :icon="DownloadIcon" icon-position="leading" disabled>Export</UButton>
+                            <UButton variant="secondary" :icon="DownloadIcon" icon-position="leading" disabled
+                                >Export</UButton
+                            >
                             <UButton :icon="PlusIcon" icon-position="leading" disabled>Ajouter un article</UButton>
                         </div>
                     </div>
@@ -83,13 +106,21 @@
                         >Filtres</UButton
                     >
                 </section>
-                <UTable class="mt-8" :columns="articlesColumns" :data="articles?.data || []">
+                <UTable class="mt-8" :columns="articlesColumns" :data="articles?.data || []" :actions="actions" actions-display="dropdown">
                     <template #cell-status="{ row }">
                         <UBadge
                             class="w-fit"
                             size="sm"
                             variant="badge"
-                            :color="row.status === 'published' ? 'success' : row.status === 'draft' ? 'warning' : row.status === 'archived' ? 'error' : undefined"
+                            :color="
+                                row.status === 'published'
+                                    ? 'success'
+                                    : row.status === 'draft'
+                                      ? 'warning'
+                                      : row.status === 'archived'
+                                        ? 'error'
+                                        : undefined
+                            "
                         >
                             {{ row.status === 'published' ? 'Published' : undefined }}
                             {{ row.status === 'draft' ? 'Draft' : undefined }}

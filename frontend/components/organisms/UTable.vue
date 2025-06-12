@@ -2,6 +2,7 @@
     import ArrowDownIcon from '~/components/atoms/icons/ArrowDownIcon.vue';
     import ArrowUpIcon from '~/components/atoms/icons/ArrowUpIcon.vue';
     import ChevronSelectorIcon from '~/components/atoms/icons/ChevronSelectorIcon.vue';
+    import DotsVerticalIcon from '~/components/atoms/icons/DotsVerticalIcon.vue';
 
     export interface Column {
         key: string;
@@ -10,11 +11,24 @@
         width?: string;
     }
 
+    export interface TableAction {
+        key: string;
+        label: string;
+        icon?: Component | string | null;
+        variant?: 'primary' | 'secondary' | 'tertiary';
+        size?: 'sm' | 'md' | 'lg' | 'xl';
+        handler: (row: TableData) => void;
+        disabled?: (row: TableData) => boolean;
+        visible?: (row: TableData) => boolean;
+    }
+
     type TableData = Record<string, unknown>;
 
     interface TableProps {
         columns: Column[];
         data: TableData[];
+        actions?: TableAction[];
+        actionsDisplay?: 'icons' | 'dropdown';
         loading?: boolean;
         striped?: boolean;
         hoverable?: boolean;
@@ -28,6 +42,8 @@
         hoverable: true,
         bordered: false,
         selectable: false,
+        actions: () => [],
+        actionsDisplay: 'icons',
     });
 
     const emit = defineEmits<{
@@ -143,6 +159,21 @@
 
         return sortDirection.value === 'asc' ? ArrowUpIcon : ArrowDownIcon;
     }
+
+    function executeAction(action: TableAction, row: TableData) {
+        if (action.disabled && action.disabled(row)) return;
+        action.handler(row);
+    }
+
+    function isActionVisible(action: TableAction, row: TableData): boolean {
+        return action.visible ? action.visible(row) : true;
+    }
+
+    function isActionDisabled(action: TableAction, row: TableData): boolean {
+        return action.disabled ? action.disabled(row) : false;
+    }
+
+    const hasActions = computed(() => props.actions && props.actions.length > 0);
 </script>
 
 <template>
@@ -174,6 +205,7 @@
                                 <component :is="getSortIcon(column)" v-if="column.sortable" class="w-4 h-4" />
                             </div>
                         </th>
+                        <th v-if="hasActions" :class="[headerCellClasses]"></th>
                     </tr>
                 </thead>
                 <tbody v-if="!loading && data.length > 0" :class="bodyClasses">
@@ -197,11 +229,82 @@
                                 {{ row[column.key] }}
                             </slot>
                         </td>
+                        <td v-if="hasActions" :class="[cellClasses]" @click.stop>
+                            <div v-if="actionsDisplay === 'icons'" class="flex items-center justify-center gap-0.5">
+                                <UTooltip
+                                    v-for="action in props.actions"
+                                    :key="action.key"
+                                    :delay-duration="0"
+                                    :text="action.label"
+                                >
+                                    <UButton
+                                        v-show="isActionVisible(action, row)"
+                                        :variant="action.variant || 'tertiary'"
+                                        class="hover:!bg-tertiary"
+                                        :size="action.size || 'sm'"
+                                        :disabled="isActionDisabled(action, row)"
+                                        :icon="action.icon"
+                                        @click="executeAction(action, row)"
+                                    />
+                                </UTooltip>
+                            </div>
+
+                            <div v-else-if="actionsDisplay === 'dropdown'" class="flex items-center justify-center">
+                                <UPopover
+                                    trigger="click"
+                                    content-side="bottom"
+                                    content-align="end"
+                                    :content-side-offset="8"
+                                    :teleport="true"
+                                >
+                                    <UButton
+                                        variant="tertiary"
+                                        size="sm"
+                                        :icon="DotsVerticalIcon"
+                                        class="hover:!bg-tertiary"
+                                    />
+                                    <template #content>
+                                        <div class="bg-primary border border-secondary shadow-lg rounded-lg w-48 py-1">
+                                            <div
+                                                v-for="action in props.actions"
+                                                v-show="isActionVisible(action, row)"
+                                                :key="action.key"
+                                                class="px-1"
+                                            >
+                                                <div
+                                                    class="px-3 py-2 flex items-center gap-3 group hover:bg-primary-hover transition-colors rounded-md cursor-pointer text-sm"
+                                                    :class="{
+                                                        'opacity-50 cursor-not-allowed': isActionDisabled(action, row),
+                                                    }"
+                                                    @click="
+                                                        !isActionDisabled(action, row) && executeAction(action, row)
+                                                    "
+                                                >
+                                                    <component
+                                                        :is="action.icon"
+                                                        v-if="action.icon"
+                                                        class="size-4 text-fg-quaternary group-hover:text-fg-quaternary-hover flex-shrink-0"
+                                                    />
+                                                    <span
+                                                        class="text-secondary group-hover:text-secondary-hover font-medium"
+                                                    >
+                                                        {{ action.label }}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </template>
+                                </UPopover>
+                            </div>
+                        </td>
                     </tr>
                 </tbody>
                 <tbody v-else-if="loading">
                     <tr>
-                        <td :colspan="selectable ? columns.length + 1 : columns.length" class="px-4 py-8 text-center">
+                        <td
+                            :colspan="(selectable ? 1 : 0) + columns.length + (hasActions ? 1 : 0)"
+                            class="px-4 py-8 text-center"
+                        >
                             <ULoading />
                         </td>
                     </tr>
@@ -209,7 +312,7 @@
                 <tbody v-else>
                     <tr>
                         <td
-                            :colspan="selectable ? columns.length + 1 : columns.length"
+                            :colspan="(selectable ? 1 : 0) + columns.length + (hasActions ? 1 : 0)"
                             class="px-4 py-8 text-center text-gray-500 dark:text-gray-400"
                         >
                             No data available
@@ -220,3 +323,4 @@
         </div>
     </ClientOnly>
 </template>
+
