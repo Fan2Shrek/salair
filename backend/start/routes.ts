@@ -151,7 +151,8 @@ router
     // Articles routes
     router.group(() => {
       router.get('/articles', [ArticlesAdminsController, 'index'])
-      router.post('/', [ArticlesAdminsController, 'store'])
+      router.post('/articles', [ArticlesAdminsController, 'store'])
+      router.put('/articles/:id', [ArticlesAdminsController, 'update'])
       router.delete('/:id', [ArticlesAdminsController, 'delete'])
     })
   })
