@@ -26,6 +26,22 @@ export default class ArticlesAdminsController {
     return response.created(article)
   }
 
+  async update({ request, response }: HttpContext) {
+    const id = request.param('id')
+    const data = request.only(['slug', 'title', 'description', 'status'])
+
+    const article = await BlogArticle.find(id)
+
+    if (!article) {
+      return response.notFound()
+    }
+
+    article.merge(data)
+    await article.save()
+
+    return response.ok(article)
+  }
+
   async delete({ request, response }: HttpContext) {
     const id = request.input('id', { required: true })
 
