@@ -7,11 +7,11 @@ export default class ArticlesAdminsController {
     const limit = request.input('limit', 10)
     const page = request.input('page', 1)
 
-    return BlogArticle.query()
+    return await BlogArticle.query()
       .preload('author', (authorQuery) => {
-        authorQuery.select(['id', 'firstName', 'lastName', 'email'])
+        return authorQuery.select(['id', 'firstName', 'lastName', 'email'])
       })
-      .paginate(limit, page)
+      .paginate(page, limit)
   }
 
   async store({ request, response }: HttpContext) {
