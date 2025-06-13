@@ -1,5 +1,8 @@
+import env from '#start/env'
 import type { HttpContext } from '@adonisjs/core/http'
 import { randomUUID } from 'node:crypto'
+
+const PUBLIC_BUCKET_URL = env.get('PUBLIC_BUCKET_URL')
 
 export default class MeController {
   /**
@@ -56,7 +59,9 @@ export default class MeController {
 
       await avatarFile.moveToDisk(key)
 
-      user.avatar = avatarFile.meta.url
+      const fileUrl = `${PUBLIC_BUCKET_URL}/${key}`
+
+      user.avatar = fileUrl
       await user.save()
 
       return response.ok({ user, avatar_url: user.avatar })
