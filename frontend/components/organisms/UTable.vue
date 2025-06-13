@@ -190,7 +190,7 @@
         try {
             const result = action.handler(row);
 
-            if (rowIndex) {
+            if (rowIndex !== undefined) {
                 closePopover(rowIndex)
             }
             
