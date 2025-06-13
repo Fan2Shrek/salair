@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+    import AlertCircleIcon from '~/components/atoms/icons/AlertCircleIcon.vue';
     import DownloadIcon from '~/components/atoms/icons/DownloadIcon.vue';
     import EditIcon from '~/components/atoms/icons/EditIcon.vue';
     import FilterLinesIcon from '~/components/atoms/icons/FilterLinesIcon.vue';
@@ -20,23 +21,7 @@
     });
 
     const { articles, loadContent, publish, archive, deleteArticle } = useArticles();
-
-    // État pour la modal de suppression
-    const isDeleteModalOpen = ref(false);
-    const articleToDelete = ref<any>(null);
-
-    // Fonctions pour gérer la modal de suppression
-    const closeDeleteModal = () => {
-        isDeleteModalOpen.value = false;
-        articleToDelete.value = null;
-    };
-
-    const confirmDelete = async () => {
-        if (articleToDelete.value) {
-            await deleteArticle(articleToDelete.value.id);
-            closeDeleteModal();
-        }
-    };
+    const { isDeleteModalOpen, openDeleteModal, closeDeleteModal, confirmDelete } = useDeleteModal();
 
     const articlesColumns: Column[] = [
         {
@@ -69,10 +54,7 @@
             key: 'delete',
             label: 'Supprimer',
             icon: TrashIcon,
-            handler: (row) => {
-                articleToDelete.value = row;
-                isDeleteModalOpen.value = true;
-            },
+            handler: (row) => openDeleteModal(row),
         },
         {
             key: 'publish',
@@ -179,24 +161,21 @@
 
             <!-- Modal de suppression -->
             <UBaseModal :is-open="isDeleteModalOpen" @close="closeDeleteModal">
-                <div class="p-8 space-y-6">
-                    <div class="space-y-2">
-                        <h2 class="text-xl font-semibold text-primary">Supprimer l'article</h2>
-                        <p class="text-tertiary">
-                            Êtes-vous sûr de vouloir supprimer l'article 
-                            <span class="font-medium text-primary">"{{ articleToDelete?.title }}"</span> ?
-                        </p>
-                        <p class="text-sm text-error">
-                            Cette action est irréversible et supprimera définitivement l'article.
+                <div class="px-6 pt-6">
+                    <UFeaturedIcon :icon="AlertCircleIcon" size="lg" color="error" />
+                    <div class="space-y-0.5 mt-4">
+                        <h3 class="font-semibold text-primary">Supprimer l'article</h3>
+                        <p class="text-tertiary text-sm">
+                            Êtes-vous sûr de vouloir supprimer cet article ? Cette action est irréversible.
                         </p>
                     </div>
-                    <div class="flex gap-3 justify-end">
-                        <UButton variant="secondary" @click="closeDeleteModal">
-                            Annuler
-                        </UButton>
-                        <UButton class="bg-red-600 hover:bg-red-700 text-white" @click="confirmDelete">
-                            Supprimer définitivement
-                        </UButton>
+                </div>
+                <div class="pt-8">
+                    <div class="flex items-center justify-between gap-3 px-6 pb-6">
+                        <UButton variant="secondary" class="w-full" @click="closeDeleteModal">Cancel</UButton>
+                        <UButton class="w-full" @click="confirmDelete((item) => deleteArticle(item.id))"
+                            >Confirm</UButton
+                        >
                     </div>
                 </div>
             </UBaseModal>
