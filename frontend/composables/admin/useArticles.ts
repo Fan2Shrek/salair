@@ -22,7 +22,7 @@ export default function useBlog() {
         }
     }
 
-    const publish = async (articleId: string) => {
+    const publish = async (articleId: BlogArticle["id"]) => {
         try {
             const { data, error } = await useAuthFetch<BlogArticle>($api(`/api/admin/articles/${articleId}`), {
                 method: 'PUT',
@@ -33,6 +33,29 @@ export default function useBlog() {
 
             if (data.value && !error.value) {
                 toast.success("L'article a bien été publié", `L'article ${data.value.slug} a bien été publié.`)
+                await loadContent();
+            }
+
+            if (error.value) {
+                toast.error('An error occured', error.value.message)
+            }
+        } catch {
+            toast.error('An error occured', '')
+        }
+    }
+
+    const archive = async (articleId: BlogArticle["id"]) => {
+        try {
+            const { data, error } = await useAuthFetch<BlogArticle>($api(`/api/admin/articles/${articleId}`), {
+                method: 'PUT',
+                body: {
+                    status: 'archived'
+                }
+            });
+
+            if (data.value && !error.value) {
+                toast.success("L'article a bien été archivé", `L'article ${data.value.slug} a bien été archivé.`)
+                await loadContent();
             }
 
             if (error.value) {
@@ -46,6 +69,7 @@ export default function useBlog() {
     return {
         articles,
         loadContent,
-        publish
+        publish,
+        archive
     }
 }

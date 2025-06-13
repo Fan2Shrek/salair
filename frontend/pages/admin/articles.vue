@@ -2,6 +2,7 @@
     import DownloadIcon from '~/components/atoms/icons/DownloadIcon.vue';
     import EditIcon from '~/components/atoms/icons/EditIcon.vue';
     import FilterLinesIcon from '~/components/atoms/icons/FilterLinesIcon.vue';
+    import FolderIcon from '~/components/atoms/icons/FolderIcon.vue';
     import GlobeIcon from '~/components/atoms/icons/GlobeIcon.vue';
     import HomeIcon from '~/components/atoms/icons/HomeIcon.vue';
     import PlusIcon from '~/components/atoms/icons/PlusIcon.vue';
@@ -18,7 +19,7 @@
         title: 'Articles',
     });
 
-    const { articles, loadContent, publish } = useArticles();
+    const { articles, loadContent, publish, archive } = useArticles();
     const articlesColumns: Column[] = [
         {
             key: 'id',
@@ -35,6 +36,7 @@
         {
             key: 'status',
             label: 'Status',
+            sortable: true,
         },
     ];
 
@@ -58,7 +60,16 @@
             handler: async (row) => {
                 await publish(row.id as string);
             },
-            visible: (row) => row.status !== 'published'
+            visible: (row) => row.status !== 'published',
+        },
+        {
+            key: 'archive',
+            label: 'Archiver',
+            icon: FolderIcon,
+            handler: async (row) => {
+                await archive(row.id as string);
+            },
+            visible: (row) => row.status === 'published',
         },
     ];
 
