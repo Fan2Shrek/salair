@@ -22,7 +22,7 @@
     }>();
 
     const baseClasses =
-        'flex items-center justify-center font-semibold gap-1 rounded-lg transition focus:ring-1 focus:ring-primary ring-offset-2 focus:outline-none ring-offset-transparent [&_svg]:size-5';
+        'flex items-center justify-center font-semibold gap-1 rounded-lg transition focus:ring-1 focus:ring-primary ring-offset-2 focus:outline-none ring-offset-transparent [&_svg]:size-5 [&_svg]:transition-colors [&_svg]:duration-200 [&_svg]:ease-in-out';
 
     const sizeClasses = {
         sm: 'px-3 py-2 text-sm',
