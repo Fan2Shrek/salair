@@ -300,7 +300,7 @@
                                                     <component
                                                         :is="action.icon"
                                                         v-if="action.icon"
-                                                        class="size-4 text-fg-quaternary group-hover:text-fg-quaternary-hover flex-shrink-0"
+                                                        class="size-4 text-fg-quaternary group-hover:text-fg-quaternary-hover flex-shrink-0 transition-colors duration-200 ease-in-out"
                                                     />
                                                     <span
                                                         class="text-secondary group-hover:text-secondary-hover font-medium"
