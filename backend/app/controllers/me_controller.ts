@@ -1,5 +1,6 @@
 import env from '#start/env'
 import type { HttpContext } from '@adonisjs/core/http'
+import drive from '@adonisjs/drive/services/main'
 import { randomUUID } from 'node:crypto'
 
 const PUBLIC_BUCKET_URL = env.get('PUBLIC_BUCKET_URL')
@@ -39,6 +40,7 @@ export default class MeController {
    */
   async updateAvatar({ auth, request, response }: HttpContext) {
     const user = auth.user!
+    const disk = drive.use('s3')
 
     try {
       const avatarFile = request.file('file', {
@@ -52,6 +54,11 @@ export default class MeController {
             'Invalid file. Please provide a valid image file (jpg, jpeg, png, webp) under 2MB.',
           errors: avatarFile?.errors || [],
         })
+      }
+
+      if (user.avatar) {
+        const key = user.avatar.split(PUBLIC_BUCKET_URL + '/')[1]
+        await disk.delete(key)
       }
 
       const filename = `${randomUUID()}.${avatarFile.extname}`
