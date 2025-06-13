@@ -19,7 +19,25 @@
         title: 'Articles',
     });
 
-    const { articles, loadContent, publish, archive } = useArticles();
+    const { articles, loadContent, publish, archive, deleteArticle } = useArticles();
+
+    // État pour la modal de suppression
+    const isDeleteModalOpen = ref(false);
+    const articleToDelete = ref<any>(null);
+
+    // Fonctions pour gérer la modal de suppression
+    const closeDeleteModal = () => {
+        isDeleteModalOpen.value = false;
+        articleToDelete.value = null;
+    };
+
+    const confirmDelete = async () => {
+        if (articleToDelete.value) {
+            await deleteArticle(articleToDelete.value.id);
+            closeDeleteModal();
+        }
+    };
+
     const articlesColumns: Column[] = [
         {
             key: 'id',
@@ -51,7 +69,10 @@
             key: 'delete',
             label: 'Supprimer',
             icon: TrashIcon,
-            handler: (row) => alert(`Delete ${row.id}`),
+            handler: (row) => {
+                articleToDelete.value = row;
+                isDeleteModalOpen.value = true;
+            },
         },
         {
             key: 'publish',
@@ -75,8 +96,6 @@
 
     onMounted(async () => {
         await loadContent();
-
-        console.log(articles.value);
     });
 </script>
 
@@ -157,6 +176,30 @@
                     </template>
                 </UTable>
             </section>
+
+            <!-- Modal de suppression -->
+            <UBaseModal :is-open="isDeleteModalOpen" @close="closeDeleteModal">
+                <div class="p-8 space-y-6">
+                    <div class="space-y-2">
+                        <h2 class="text-xl font-semibold text-primary">Supprimer l'article</h2>
+                        <p class="text-tertiary">
+                            Êtes-vous sûr de vouloir supprimer l'article 
+                            <span class="font-medium text-primary">"{{ articleToDelete?.title }}"</span> ?
+                        </p>
+                        <p class="text-sm text-error">
+                            Cette action est irréversible et supprimera définitivement l'article.
+                        </p>
+                    </div>
+                    <div class="flex gap-3 justify-end">
+                        <UButton variant="secondary" @click="closeDeleteModal">
+                            Annuler
+                        </UButton>
+                        <UButton class="bg-red-600 hover:bg-red-700 text-white" @click="confirmDelete">
+                            Supprimer définitivement
+                        </UButton>
+                    </div>
+                </div>
+            </UBaseModal>
         </main>
     </NuxtLayout>
 </template>

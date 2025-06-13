@@ -66,10 +66,28 @@ export default function useBlog() {
         }
     }
 
+    const deleteArticle = async (articleId: BlogArticle["id"]) => {
+        try {
+            const { error } = await useAuthFetch($api(`/api/admin/articles/${articleId}`), {
+                method: 'DELETE'
+            });
+
+            if (!error.value) {
+                toast.success("L'article a bien été supprimé", "L'article a bien été supprimé définitivement.")
+                await loadContent();
+            } else {
+                toast.error('An error occured', error.value.message)
+            }
+        } catch {
+            toast.error('An error occured', '')
+        }
+    }
+
     return {
         articles,
         loadContent,
         publish,
-        archive
+        archive,
+        deleteArticle
     }
 }
