@@ -53,6 +53,7 @@
 
     const selectedRows = ref<TableData[]>([]);
     const allSelected = ref(false);
+    const popovers = ref<Record<string, any>>({})
 
     const isRowSelected = (row: TableData) => {
         return selectedRows.value.some((selectedRow) => JSON.stringify(selectedRow) === JSON.stringify(row));
@@ -160,25 +161,47 @@
         return sortDirection.value === 'asc' ? ArrowUpIcon : ArrowDownIcon;
     }
 
-    function executeAction(action: TableAction, row: TableData) {
+    function getPopoverRef(rowIndex: number) {
+        return (el: any) => {
+            if (el) {
+                popovers.value[`popover-${rowIndex}`] = el;
+            }
+        }
+    }
+
+    function closePopover(rowIndex: number) {
+        const popover = popovers.value[`popover-${rowIndex}`]
+        if (popover && popover.close) {
+            popover.close();
+        }
+    }
+
+    function _closeAllPopovers() {
+        Object.values(popovers.value).forEach(popover => {
+            if (popover && popover.close) {
+                popover.close();
+            }
+        })
+    }
+
+    function executeAction(action: TableAction, row: TableData, rowIndex: number) {
         if (action.disabled && action.disabled(row)) return;
                 
         try {
             const result = action.handler(row);
+
+            if (rowIndex) {
+                closePopover(rowIndex)
+            }
             
-            // Check if the result is a Promise (async action)
             if (result && typeof result.then === 'function') {
                 result
                     .catch((error) => {
                         console.error(`Error executing action ${action.key}:`, error);
-                        // You can emit an error event here if needed
-                        // emit('action-error', { action, row, error });
                     })
             }
         } catch (error) {
             console.error(`Error executing action ${action.key}:`, error);
-            // You can emit an error event here if needed
-            // emit('action-error', { action, row, error });
         }
     }
 
@@ -261,13 +284,14 @@
                                         :size="action.size || 'sm'"
                                         :disabled="isActionDisabled(action, row)"
                                         :icon="action.icon"
-                                        @click="executeAction(action, row)"
+                                        @click="executeAction(action, row, rowIndex)"
                                     />
                                 </UTooltip>
                             </div>
 
                             <div v-else-if="actionsDisplay === 'dropdown'" class="flex items-center justify-center">
                                 <UPopover
+                                    :ref="getPopoverRef(rowIndex)"
                                     trigger="click"
                                     content-side="bottom"
                                     content-align="end"
@@ -294,7 +318,7 @@
                                                         'opacity-50 cursor-not-allowed': isActionDisabled(action, row),
                                                     }"
                                                     @click="
-                                                        !isActionDisabled(action, row) && executeAction(action, row)
+                                                        !isActionDisabled(action, row) && executeAction(action, row, rowIndex)
                                                     "
                                                 >
                                                     <component
