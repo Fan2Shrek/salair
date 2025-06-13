@@ -1,11 +1,9 @@
-import env from '#start/env'
+import { AvatarService } from '#services/avatar_service'
 import type { HttpContext } from '@adonisjs/core/http'
-import drive from '@adonisjs/drive/services/main'
-import { randomUUID } from 'node:crypto'
-
-const PUBLIC_BUCKET_URL = env.get('PUBLIC_BUCKET_URL')
 
 export default class MeController {
+  private avatarService = new AvatarService()
+
   /**
    * Met à jour l'utilisateur connecté
    */
@@ -40,38 +38,28 @@ export default class MeController {
    */
   async updateAvatar({ auth, request, response }: HttpContext) {
     const user = auth.user!
-    const disk = drive.use('s3')
 
     try {
       const avatarFile = request.file('file', {
-        size: '2mb', // Limit file size to 2MB
-        extnames: ['jpg', 'jpeg', 'png', 'webp'], // Allow only image files
+        size: '2mb',
+        extnames: ['jpg', 'jpeg', 'png', 'webp'],
       })
 
-      if (!avatarFile || !avatarFile.isValid) {
+      if (!avatarFile) {
+        return response.badRequest({ message: 'File is required' })
+      }
+
+      const validation = this.avatarService.validateAvatarFile(avatarFile)
+      if (!validation.isValid) {
         return response.badRequest({
-          message:
-            'Invalid file. Please provide a valid image file (jpg, jpeg, png, webp) under 2MB.',
-          errors: avatarFile?.errors || [],
+          message: validation.message,
+          errors: validation.errors,
         })
       }
 
-      if (user.avatar) {
-        const key = user.avatar.split(PUBLIC_BUCKET_URL + '/')[1]
-        await disk.delete(key)
-      }
+      const avatarUrl = await this.avatarService.updateUserAvatar(user, avatarFile)
 
-      const filename = `${randomUUID()}.${avatarFile.extname}`
-      const key = `users/${user.id}/logos/${filename}`
-
-      await avatarFile.moveToDisk(key)
-
-      const fileUrl = `${PUBLIC_BUCKET_URL}/${key}`
-
-      user.avatar = fileUrl
-      await user.save()
-
-      return response.ok({ user, avatar_url: user.avatar })
+      return response.ok({ message: 'Avatar updated', user, avatar_url: avatarUrl })
     } catch (error) {
       return response.notFound({ message: 'Utilisateur non trouvé' })
     }
