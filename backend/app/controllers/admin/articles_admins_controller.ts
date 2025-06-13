@@ -43,7 +43,13 @@ export default class ArticlesAdminsController {
   }
 
   async delete({ request, response }: HttpContext) {
-    const id = request.input('id', { required: true })
+    const id = request.param('id')
+
+    if (!id) {
+      return response.badRequest({
+        message: 'Id is required to delete an object.',
+      })
+    }
 
     const article = await BlogArticle.query().where('id', id).first()
 

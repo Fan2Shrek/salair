@@ -153,7 +153,7 @@ router
       router.get('/articles', [ArticlesAdminsController, 'index'])
       router.post('/articles', [ArticlesAdminsController, 'store'])
       router.put('/articles/:id', [ArticlesAdminsController, 'update'])
-      router.delete('/:id', [ArticlesAdminsController, 'delete'])
+      router.delete('/articles/:id', [ArticlesAdminsController, 'delete'])
     })
   })
   .prefix('api/admin')
