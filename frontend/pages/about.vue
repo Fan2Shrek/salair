@@ -71,7 +71,7 @@
                     </div>
                     <NuxtImg
                         class="md:w-1/2 max-md:px-4 max-h-60 md:max-h-140 h-full object-cover"
-                        src="/static/about_1.jpg"
+                        src="https://storage.salair.fr/static/about_1.jpg"
                     />
                 </div>
                 <div class="md:flex flex-row-reverse w-full md:max-h-140 h-full max-md:space-y-10">
@@ -106,7 +106,7 @@
                     </div>
                     <NuxtImg
                         class="md:w-1/2 max-md:px-4 max-h-60 md:max-h-140 h-full object-cover"
-                        src="/static/about_2.jpg"
+                        src="https://storage.salair.fr/static/about_2.jpg"
                     />
                 </div>
                 <div class="md:flex w-full md:max-h-140 h-full max-md:space-y-10">
@@ -143,7 +143,7 @@
                     </div>
                     <NuxtImg
                         class="md:w-1/2 max-md:px-4 max-h-60 md:max-h-140 h-full object-cover"
-                        src="/static/about_3.jpg"
+                        src="https://storage.salair.fr/static/about_3.jpg"
                     />
                 </div>
             </section>
