@@ -15,6 +15,7 @@ import { generateSixDigitCode } from '#utils/number'
 import hash from '@adonisjs/core/services/hash'
 import PasswordReset from '#models/password_reset'
 import mail from '@adonisjs/mail/services/main'
+import { authenticator } from 'otplib'
 
 export default class AuthController {
   async register({ request, auth }: HttpContext) {
@@ -42,13 +43,18 @@ export default class AuthController {
     }
   }
 
-  async login({ request, auth }: HttpContext) {
+  async login({ request, auth, response }: HttpContext) {
     const { email, password } = await request.validateUsing(loginValidator)
     const user = await User.verifyCredentials(email, password)
+
+    if (user.isTwoFactorEnabled) {
+      return response.ok({ twoFactorRequired: true })
+    }
 
     const accessToken = await auth.use('api').createToken(user, ['*'], {
       expiresIn: '10 minutes',
     })
+
     const refreshTokenString = crypto.randomBytes(40).toString('hex')
     await RefreshToken.create({
       userId: user.id,
@@ -59,10 +65,48 @@ export default class AuthController {
     user.lastLoginAt = DateTime.local()
     await user.save()
 
-    return {
+    return response.ok({
       access_token: accessToken.value?.release(),
       refresh_token: refreshTokenString,
+    })
+  }
+
+  async verify2fa({ request, response, auth }: HttpContext) {
+    const { email, token: totpToken } = request.only(['email', 'token'])
+
+    const user = await User.findBy('email', email)
+    if (!user) {
+      return response.unauthorized({ message: 'User not found' })
     }
+
+    if (!user.isTwoFactorEnabled || !user.twoFactorSecret) {
+      return response.badRequest({ message: '2FA is not enabled for this user.' })
+    }
+
+    const isValid = authenticator.verify({ token: totpToken, secret: user.twoFactorSecret })
+
+    if (!isValid) {
+      return response.unauthorized({ message: 'Invalid 2FA token.' })
+    }
+
+    const accessToken = await auth.use('api').createToken(user, ['*'], {
+      expiresIn: '10 minutes',
+    })
+
+    const refreshTokenString = crypto.randomBytes(40).toString('hex')
+    await RefreshToken.create({
+      userId: user.id,
+      token: refreshTokenString,
+      expiresAt: DateTime.now().plus({ days: 30 }),
+    })
+
+    user.lastLoginAt = DateTime.local()
+    await user.save()
+
+    return response.ok({
+      access_token: accessToken.value?.release(),
+      refresh_token: refreshTokenString,
+    })
   }
 
   async logout({ request, response, auth }: HttpContext) {

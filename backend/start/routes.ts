@@ -22,6 +22,7 @@ const HealthChecksController = () => import('#controllers/health_checks_controll
 
 import router from '@adonisjs/core/services/router'
 import { middleware } from './kernel.js'
+const TwoFactorAuthController = () => import('#controllers/two_factor_auth_controller')
 
 router.get('/', async () => {
   return {
@@ -37,6 +38,7 @@ router
   .group(() => {
     router.post('/register', [AuthController, 'register']).as('auth.register')
     router.post('/login', [AuthController, 'login']).as('auth.login')
+    router.post('/login/verify-2fa', [AuthController, 'verify2fa']).as('auth.login.verify2fa')
     router.delete('/logout', [AuthController, 'logout']).as('auth.logout').use(middleware.auth())
     router.get('/me', [AuthController, 'me']).as('auth.me').use(middleware.auth())
     router.post('/refresh', [AuthController, 'refresh']).as('auth.refresh')
@@ -77,6 +79,10 @@ router
   .group(() => {
     router.put('/me', [MeController, 'update'])
     router.post('/me/avatar', [MeController, 'updateAvatar'])
+
+    router.post('/2fa/generate', [TwoFactorAuthController, 'generate'])
+    router.post('/2fa/enable', [TwoFactorAuthController, 'enable'])
+    router.post('/2fa/disable', [TwoFactorAuthController, 'disable'])
   })
   .use([middleware.auth()])
   .prefix('api')
