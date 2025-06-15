@@ -61,6 +61,12 @@ export default class User extends compose(BaseModel, AuthFinder) {
   @column()
   declare avatar: string
 
+  @column()
+  declare twoFactorSecret: string | null
+
+  @column()
+  declare isTwoFactorEnabled: boolean
+
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime
 

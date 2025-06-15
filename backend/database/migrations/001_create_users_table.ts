@@ -17,6 +17,8 @@ export default class extends BaseSchema {
       table.boolean('is_on_trial').defaultTo(false)
       table.timestamp('trial_ends_at').nullable()
       table.string('avatar').nullable()
+      table.string('two_factor_secret').nullable()
+      table.boolean('is_two_factor_enabled').notNullable().defaultTo(false)
       table.enum('role', ['user', 'admin']).notNullable().defaultTo('user')
 
       table.timestamp('last_login_at').nullable()
