@@ -118,19 +118,24 @@ export const useAuthStore = defineStore('auth', {
             }
         },
 
-        async logout() {
+        async logout(makeHttpRequest = true) {
             this.isLoading = true;
 
             try {
-                const { $api } = useNuxtApp();
+                if (makeHttpRequest) {
+                    const { $api } = useNuxtApp();
 
-                await useAuthFetch($api('/api/logout'), {
-                    method: 'DELETE',
-                    credentials: 'include',
-                    body: {
-                        refreshToken: this.refreshToken,
-                    },
-                });
+                    await useFetch($api('/api/logout'), {
+                        method: 'DELETE',
+                        credentials: 'include',
+                        headers: {
+                            'Authorization': `Bearer ${this.accessToken }`
+                        },
+                        body: {
+                            refreshToken: this.refreshToken,
+                        },
+                    });
+                }
 
                 this.user = null;
                 this.accessToken = null;
@@ -138,6 +143,7 @@ export const useAuthStore = defineStore('auth', {
                 this.isAuthenticated = false;
             } catch (error) {
                 console.error(error);
+                this.$reset();
             } finally {
                 this.isLoading = false;
             }
@@ -170,3 +176,4 @@ export const useAuthStore = defineStore('auth', {
 
     persist: true,
 });
+
