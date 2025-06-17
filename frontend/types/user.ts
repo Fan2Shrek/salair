@@ -16,4 +16,5 @@ export default interface User {
     createdAt: string;
     updatedAt?: string;
     company?: Company
+    isTwoFactorEnabled: boolean
 };
