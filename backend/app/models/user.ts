@@ -61,7 +61,7 @@ export default class User extends compose(BaseModel, AuthFinder) {
   @column()
   declare avatar: string
 
-  @column()
+  @column({ serializeAs: null })
   declare twoFactorSecret: string | null
 
   @column()
