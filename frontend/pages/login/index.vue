@@ -26,9 +26,9 @@
         } else {
             if (result.data?.errors) {
                 handleAuthError(result.data.errors[0].message)
-            }
 
-            error('Une erreur est survenue', result.error);
+                error('Une erreur est survenue', result.error);
+            }
         }
     };
 </script>
