@@ -62,7 +62,7 @@
     }
 
     onMounted(() => {
-        if (!useOnboardingStore().email) {
+        if (!useOnboardingStore().email && !useAuthStore().user) {
             navigateTo('/signup');
         }
 
