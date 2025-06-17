@@ -1,6 +1,8 @@
 import { defineStore } from 'pinia';
 import type User from '~/types/user';
-import type TokenResponse from '~/types/token_response';
+import type { RefreshResponseDto } from '~/types/dtos/refresh_response.dto';
+import type { LoginResponseDto } from '~/types/dtos/login_response.dto';
+import type { RegisterResponseDto } from '~/types/dtos/register_response.dto';
 
 export const useAuthStore = defineStore('auth', {
     state: () => ({
@@ -45,18 +47,26 @@ export const useAuthStore = defineStore('auth', {
             try {
                 const { $api } = useNuxtApp();
 
-                const { data, error } = await useFetch<TokenResponse>($api('/api/login'), {
+                const { data, error } = await useFetch<LoginResponseDto>($api('/api/login'), {
                     method: 'POST',
                     body: { email, password },
                     credentials: 'include',
                 });
 
                 if (data.value && !error.value) {
-                    this.accessToken = data.value.access_token;
-                    this.refreshToken = data.value.refresh_token;
+                    if (data.value.twoFactorRequired) {
+                        useTwoFactorStore().email = email
+                        navigateTo('/login/two-factor')
+                        return { success: false }
+                    }
 
-                    await this.fetchUser();
-                    return { success: true };
+                    if (data.value.access_token && data.value.refresh_token) {
+                        this.accessToken = data.value.access_token;
+                        this.refreshToken = data.value.refresh_token;
+
+                        await this.fetchUser();
+                        return { success: true };
+                    }
                 }
 
                 return {
@@ -88,7 +98,7 @@ export const useAuthStore = defineStore('auth', {
             try {
                 const { $api } = useNuxtApp();
 
-                const { data, error } = await useAuthFetch<TokenResponse>($api('/api/register'), {
+                const { data, error } = await useAuthFetch<RegisterResponseDto>($api('/api/register'), {
                     method: 'POST',
                     body: {
                         firstName,
@@ -129,7 +139,7 @@ export const useAuthStore = defineStore('auth', {
                         method: 'DELETE',
                         credentials: 'include',
                         headers: {
-                            'Authorization': `Bearer ${this.accessToken }`
+                            Authorization: `Bearer ${this.accessToken}`,
                         },
                         body: {
                             refreshToken: this.refreshToken,
@@ -152,7 +162,7 @@ export const useAuthStore = defineStore('auth', {
         async refresh(): Promise<boolean> {
             try {
                 const { $api } = useNuxtApp();
-                const { data, error } = await useFetch<TokenResponse>($api('/api/refresh'), {
+                const { data, error } = await useFetch<RefreshResponseDto>($api('/api/refresh'), {
                     body: {
                         refresh_token: this.refreshToken,
                     },
