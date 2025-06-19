@@ -19,6 +19,8 @@ export const use2FA = () => {
     const verificationToken = ref<string>();
     
     const setup2FA = async () => {
+        if (showQrCodeModal.value) return
+        
         isLoading.value = true
         try {
             const { data, error } = await useAuthFetch<Generate2FADto>($api('/api/2fa/generate'), {
