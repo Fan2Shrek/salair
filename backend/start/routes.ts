@@ -61,19 +61,6 @@ router
   })
   .prefix('/api')
 
-// Users routes
-router
-  .group(() => {
-    router.get('/users', [UsersController, 'index'])
-    router.get('/users/:id', [UsersController, 'show'])
-    router.post('/users', [UsersController, 'store'])
-    router.put('/users/:id', [UsersController, 'update'])
-    router.patch('/users/:id/avatar', [UsersController, 'updateAvatar'])
-    router.delete('/users/:id', [UsersController, 'destroy'])
-  })
-  .use([middleware.auth(), middleware.admin()])
-  .prefix('api')
-
 // Users routes for role user
 router
   .group(() => {
@@ -160,6 +147,16 @@ router
       router.post('/articles', [ArticlesAdminsController, 'store'])
       router.put('/articles/:id', [ArticlesAdminsController, 'update'])
       router.delete('/articles/:id', [ArticlesAdminsController, 'delete'])
+    })
+
+    // Users routes
+    router.group(() => {
+      router.get('/users', [UsersController, 'index'])
+      router.get('/users/:id', [UsersController, 'show'])
+      router.post('/users', [UsersController, 'store'])
+      router.put('/users/:id', [UsersController, 'update'])
+      router.patch('/users/:id/avatar', [UsersController, 'updateAvatar'])
+      router.delete('/users/:id', [UsersController, 'destroy'])
     })
   })
   .prefix('api/admin')
