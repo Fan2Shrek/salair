@@ -45,7 +45,7 @@
             name: 'appearance',
         },
         {
-            label: 'Security',
+            label: t('settings.tabs.security'),
             name: 'security',
         },
     ];
@@ -138,8 +138,10 @@
                         <section class="mt-8 w-full">
                             <div class="w-full flex pb-5 border-b border-secondary">
                                 <div class="space-y-0.5 flex-grow">
-                                    <h2 class="text-primary font-semibold text-lg">Appearance</h2>
-                                    <p class="text-tertiary text-sm">Change how your dashboard looks and feels.</p>
+                                    <h2 class="text-primary font-semibold text-lg">
+                                        {{ t('settings.appearance.title') }}
+                                    </h2>
+                                    <p class="text-tertiary text-sm">{{ t('settings.appearance.description') }}</p>
                                 </div>
                                 <div class="flex items-center gap-3">
                                     <UButton variant="secondary">{{ t('settings.buttons.cancel') }}</UButton>
@@ -151,8 +153,8 @@
                             <form class="mt-6 w-full space-y-6" @submit.prevent="handleSaveAppearance">
                                 <div class="flex gap-8">
                                     <div class="min-w-52 max-w-72 w-full flex flex-col">
-                                        <label class="text-sm text-primary font-semibold">Display preference</label>
-                                        <p class="text-sm text-tertiary">Switch between light and dark modes.</p>
+                                        <label class="text-sm text-primary font-semibold">{{ t('settings.appearance.display_preference.label') }}</label>
+                                        <p class="text-sm text-tertiary">{{ t('settings.appearance.display_preference.description') }}</p>
                                     </div>
                                     <div class="flex gap-6 max-w-lg w-full">
                                         <ClientOnly>
@@ -168,9 +170,9 @@
                         <section class="mt-8 w-full">
                             <div class="w-full flex pb-5 border-b border-secondary">
                                 <div class="space-y-0.5 flex-grow">
-                                    <h2 class="text-primary font-semibold text-lg">Security</h2>
+                                    <h2 class="text-primary font-semibold text-lg">{{ t('settings.security.title') }}</h2>
                                     <p class="text-tertiary text-sm">
-                                        Manage your account security settings including two-factor authentication.
+                                        {{ t('settings.security.description') }}
                                     </p>
                                 </div>
                                 <div class="flex items-center gap-3">
@@ -183,8 +185,8 @@
                             <form class="mt-6 w-full space-y-6" @submit.prevent="handleSaveAppearance">
                                 <div class="flex gap-8">
                                     <div class="min-w-52 max-w-72 w-full flex flex-col">
-                                        <label class="text-sm text-primary font-semibold">Two factor authentication</label>
-                                        <p class="text-sm text-tertiary">Manage the 2FA.</p>
+                                        <label class="text-sm text-primary font-semibold">{{ t('settings.security.two_factor.label') }}</label>
+                                        <p class="text-sm text-tertiary">{{ t('settings.security.two_factor.description') }}</p>
                                     </div>
                                     <div class="flex gap-6 max-w-lg w-full">
                                         <U2FAModal />
