@@ -258,7 +258,8 @@
             "details": "My details",
             "password": "Password",
             "billing": "Billing",
-            "appearance": "Appearance"
+            "appearance": "Appearance",
+            "security": "Security"
         },
         "personal_info": {
             "title": "Personal info",
