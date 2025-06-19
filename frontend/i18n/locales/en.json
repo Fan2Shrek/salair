@@ -278,6 +278,31 @@
                 }
             }
         },
+        "appearance": {
+            "title": "Appearance",
+            "description": "Change how your dashboard looks and feels.",
+            "display_preference": {
+                "label": "Display preference",
+                "description": "Switch between light and dark modes."
+            }
+        },
+        "security": {
+            "title": "Security",
+            "description": "Manage your account security settings including two-factor authentication.",
+            "two_factor": {
+                "label": "Two factor authentication",
+                "description": "Manage the 2FA."
+            }
+        },
+        "two_factor": {
+            "enable": "Enable",
+            "disable": "Disable",
+            "setup_title": "Set up two-factor authentication",
+            "setup_description": "Enhance your account security by scanning this QR code with your authenticator app and entering the verification code below.",
+            "verification_code": "Verification code",
+            "cancel": "Cancel",
+            "confirm": "Confirm"
+        },
         "buttons": {
             "cancel": "Cancel",
             "save": "Save"

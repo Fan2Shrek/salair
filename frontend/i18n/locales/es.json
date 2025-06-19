@@ -278,6 +278,31 @@
                 }
             }
         },
+        "appearance": {
+            "title": "Apariencia",
+            "description": "Cambia cómo se ve y se siente tu panel de control.",
+            "display_preference": {
+                "label": "Preferencia de visualización",
+                "description": "Alterna entre los modos claro y oscuro."
+            }
+        },
+        "security": {
+            "title": "Seguridad",
+            "description": "Gestiona la configuración de seguridad de tu cuenta, incluyendo la autenticación de dos factores.",
+            "two_factor": {
+                "label": "Autenticación de dos factores",
+                "description": "Gestiona la 2FA."
+            }
+        },
+        "two_factor": {
+            "enable": "Activar",
+            "disable": "Desactivar",
+            "setup_title": "Configurar autenticación de dos factores",
+            "setup_description": "Mejora la seguridad de tu cuenta escaneando este código QR con tu aplicación de autenticación e ingresando el código de verificación a continuación.",
+            "verification_code": "Código de verificación",
+            "cancel": "Cancelar",
+            "confirm": "Confirmar"
+        },
         "buttons": {
             "cancel": "Cancelar",
             "save": "Guardar"

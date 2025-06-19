@@ -278,6 +278,31 @@
                 }
             }
         },
+        "appearance": {
+            "title": "Apparence",
+            "description": "Changez l'apparence de votre tableau de bord.",
+            "display_preference": {
+                "label": "Préférence d'affichage",
+                "description": "Basculez entre les modes clair et sombre."
+            }
+        },
+        "security": {
+            "title": "Sécurité",
+            "description": "Gérez les paramètres de sécurité de votre compte, y compris l'authentification à deux facteurs.",
+            "two_factor": {
+                "label": "Authentification à deux facteurs",
+                "description": "Gérez la 2FA."
+            }
+        },
+        "two_factor": {
+            "enable": "Activer",
+            "disable": "Désactiver",
+            "setup_title": "Configurer l'authentification à deux facteurs",
+            "setup_description": "Renforcez la sécurité de votre compte en scannant ce code QR avec votre application d'authentification et en saisissant le code de vérification ci-dessous.",
+            "verification_code": "Code de vérification",
+            "cancel": "Annuler",
+            "confirm": "Confirmer"
+        },
         "buttons": {
             "cancel": "Annuler",
             "save": "Enregistrer"
