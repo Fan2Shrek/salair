@@ -20,4 +20,23 @@ export default class UserAdminsController {
 
     return response.ok(user)
   }
+
+  async suspend({ response, params }: HttpContext) {
+    const id = params.id
+
+    if (!id) {
+      return response.badRequest({ message: 'The id is required.' })
+    }
+
+    const user = await User.query().where('id', id).first()
+
+    if (!user) {
+      return response.notFound()
+    }
+
+    user.status = 'suspended'
+    await user.save()
+
+    return response.ok(user)
+  }
 }

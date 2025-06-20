@@ -22,6 +22,7 @@ const HealthChecksController = () => import('#controllers/health_checks_controll
 
 import router from '@adonisjs/core/services/router'
 import { middleware } from './kernel.js'
+const UserAdminsController = () => import('#controllers/admin/user_admins_controller')
 const TwoFactorAuthController = () => import('#controllers/two_factor_auth_controller')
 
 router.get('/', async () => {
@@ -157,6 +158,7 @@ router
       router.put('/users/:id', [UsersController, 'update'])
       router.patch('/users/:id/avatar', [UsersController, 'updateAvatar'])
       router.delete('/users/:id', [UsersController, 'destroy'])
+      router.post('/suspend/:id', [UserAdminsController, 'suspend'])
     })
   })
   .prefix('api/admin')
