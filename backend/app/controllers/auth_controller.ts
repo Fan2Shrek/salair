@@ -47,6 +47,10 @@ export default class AuthController {
     const { email, password } = await request.validateUsing(loginValidator)
     const user = await User.verifyCredentials(email, password)
 
+    if (user.status === 'suspended') {
+      return response.forbidden({ message: 'Account suspended' })
+    }
+
     if (user.isTwoFactorEnabled) {
       return response.ok({ twoFactorRequired: true })
     }
