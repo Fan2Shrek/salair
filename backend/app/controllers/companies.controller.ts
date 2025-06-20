@@ -93,7 +93,7 @@ export default class CompaniesController {
   }
 
   /**
-   * Delete a company
+   * Delete a company (soft delete)
    */
   async destroy({ params, response, auth }: HttpContext) {
     const user = auth.user!

@@ -14,6 +14,11 @@ const AuthFinder = withAuthFinder(() => hash.use('scrypt'), {
 })
 
 export default class User extends compose(BaseModel, AuthFinder) {
+  // Use softDeletes mixin
+  static $with = {
+    softDeletes: true,
+  }
+
   @column({ isPrimary: true })
   declare id: string
 
@@ -69,6 +74,9 @@ export default class User extends compose(BaseModel, AuthFinder) {
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   declare updatedAt: DateTime | null
+
+  @column.dateTime()
+  declare deletedAt: DateTime | null
 
   @hasOne(() => Company, { foreignKey: 'ownerId' })
   declare company: HasOne<typeof Company>

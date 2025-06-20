@@ -114,7 +114,7 @@ export default class UsersAdminController {
   }
 
   /**
-   * Supprime un utilisateur
+   * Supprime un utilisateur (soft delete)
    */
   async destroy({ params, response }: HttpContext) {
     try {

@@ -1,10 +1,11 @@
 import { DateTime } from 'luxon'
-import { BaseModel, beforeCreate, belongsTo, column } from '@adonisjs/lucid/orm'
+import { beforeCreate, belongsTo, column } from '@adonisjs/lucid/orm'
 import User from './user.js'
 import type { BelongsTo } from '@adonisjs/lucid/types/relations'
 import { v7 } from 'uuid'
+import SoftDeletableModel from './base/soft_deletable_model.js'
 
-export default class Company extends BaseModel {
+export default class Company extends SoftDeletableModel {
   @column({ isPrimary: true })
   declare id: string
 
@@ -57,6 +58,9 @@ export default class Company extends BaseModel {
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   declare updatedAt: DateTime
+
+  @column.dateTime()
+  declare deletedAt: DateTime | null
 
   @belongsTo(() => User, { foreignKey: 'ownerId' })
   declare owner: BelongsTo<typeof User>

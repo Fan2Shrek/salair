@@ -1,12 +1,13 @@
 import { DateTime } from 'luxon'
-import { BaseModel, beforeCreate, belongsTo, column, hasMany } from '@adonisjs/lucid/orm'
+import { beforeCreate, belongsTo, column, hasMany } from '@adonisjs/lucid/orm'
 import Customer from './customer.js'
 import type { BelongsTo, HasMany } from '@adonisjs/lucid/types/relations'
 import User from './user.js'
 import InvoiceItem from './invoice_item.js'
 import { v7 } from 'uuid'
+import SoftDeletableModel from './base/soft_deletable_model.js'
 
-export default class Invoice extends BaseModel {
+export default class Invoice extends SoftDeletableModel {
   @column({ isPrimary: true })
   declare id: string
 
@@ -59,4 +60,7 @@ export default class Invoice extends BaseModel {
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   declare updatedAt: DateTime
+
+  @column.dateTime()
+  declare deletedAt: DateTime | null
 }
