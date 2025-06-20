@@ -9,7 +9,14 @@ export const useUserService = () => {
         })
     }
 
+    const suspend = async (id: string) => {
+        return await useAuthFetch<User>($api(`/api/admin/suspend/${id}`), {
+            method: 'POST'
+        })
+    }
+
     return {
-        getAll
+        getAll,
+        suspend
     }
 }

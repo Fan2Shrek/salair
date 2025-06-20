@@ -10,7 +10,7 @@ export const useUsers = () => {
     const toast = useToast()
 
     // Services
-    const { getAll } = useUserService()
+    const { getAll, suspend } = useUserService()
 
     // Functions
     const fetchUsers = async () => {
@@ -29,9 +29,27 @@ export const useUsers = () => {
         }
     }
 
+    const suspendUser = async (id: string) => {
+        isLoading.value = true
+
+        try {
+            const { data, error } = await suspend(id)
+
+            if (data.value && !error.value) {
+                toast.success(`The account ${data.value.email} has been suspended`, '')
+                await fetchUsers();
+            } else if (error.value) {
+                toast.error('An error occured', error.value.message)
+            }
+        } catch (error: any) {
+            toast.error('An error occured', error)
+        }
+    }
+
     return {
         users,
 
         fetchUsers,
+        suspendUser
     }
 }

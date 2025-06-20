@@ -1,9 +1,11 @@
 <script setup lang="ts">
     import DownloadIcon from '~/components/atoms/icons/DownloadIcon.vue';
+    import EditIcon from '~/components/atoms/icons/EditIcon.vue';
     import FilterLinesIcon from '~/components/atoms/icons/FilterLinesIcon.vue';
     import PlusIcon from '~/components/atoms/icons/PlusIcon.vue';
     import SearchIcon from '~/components/atoms/icons/SearchIcon.vue';
-    import type { Column } from '~/components/organisms/UTable.vue';
+    import SlashOctogonIcon from '~/components/atoms/icons/SlashOctogonIcon.vue';
+    import type { Column, TableAction } from '~/components/organisms/UTable.vue';
     import { useUsers } from '~/composables/admin/useUsers';
 
     definePageMeta({
@@ -17,28 +19,48 @@
         },
         {
             key: 'firstName',
-            label: 'First name'
+            label: 'First name',
         },
         {
             key: 'lastName',
-            label: 'Last name'
+            label: 'Last name',
         },
         {
             key: 'email',
-            label: 'Email'
+            label: 'Email',
         },
         {
             key: 'role',
             label: 'Role',
-            sortable: true
-        }
+            sortable: true,
+        },
+        {
+            key: 'status',
+            label: 'Status',
+        },
     ];
 
-    const { fetchUsers, users } = useUsers();
+    const actions: TableAction[] = [
+        {
+            key: 'edit',
+            label: 'Modifier',
+            icon: EditIcon,
+            handler: (row) => console.log(row),
+        },
+        {
+            key: 'suspend',
+            label: 'Suspendre',
+            icon: SlashOctogonIcon,
+            handler: (row) => suspendUser(row.id as string),
+            visible: (row) => row.status !== 'suspended',
+        },
+    ];
+
+    const { fetchUsers, users, suspendUser } = useUsers();
 
     onMounted(async () => {
         await fetchUsers();
-    })
+    });
 </script>
 
 <template>
@@ -86,22 +108,42 @@
                         >Filtres</UButton
                     >
                 </section>
-                <UTable class="mt-8" :columns="usersColumns" :data="users || []" actions-display="dropdown">
+                <UTable
+                    class="mt-8"
+                    :columns="usersColumns"
+                    :data="users || []"
+                    :actions="actions"
+                    actions-display="dropdown"
+                >
                     <template #cell-role="{ row }">
                         <UBadge
                             class="w-fit"
                             size="sm"
                             variant="badge"
-                            :color="
-                                row.role === 'admin'
-                                    ? 'error'
-                                    : row.role === 'user'
-                                      ? 'success'
-                                      : undefined
-                            "
+                            :color="row.role === 'admin' ? 'error' : row.role === 'user' ? 'success' : undefined"
                         >
                             {{ row.role === 'admin' ? 'Administrator' : undefined }}
                             {{ row.role === 'user' ? 'User' : undefined }}
+                        </UBadge>
+                    </template>
+                    <template #cell-status="{ row }">
+                        <UBadge
+                            class="w-fit"
+                            size="sm"
+                            variant="pill"
+                            :color="
+                                row.status === 'inactive'
+                                    ? 'warning'
+                                    : row.status === 'active'
+                                      ? 'success'
+                                      : row.status === 'suspended'
+                                        ? 'error'
+                                        : undefined
+                            "
+                        >
+                            {{ row.status === 'active' ? 'Active' : undefined }}
+                            {{ row.status === 'inactive' ? 'Inactive' : undefined }}
+                            {{ row.status === 'suspended' ? 'Suspended' : undefined }}
                         </UBadge>
                     </template>
                 </UTable>
