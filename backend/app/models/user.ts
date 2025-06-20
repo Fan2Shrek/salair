@@ -1,19 +1,20 @@
 import { DateTime } from 'luxon'
 import hash from '@adonisjs/core/services/hash'
 import { compose } from '@adonisjs/core/helpers'
-import { BaseModel, beforeCreate, column, hasOne, scope } from '@adonisjs/lucid/orm'
+import { BaseModel, beforeCreate, column, hasOne } from '@adonisjs/lucid/orm'
 import { withAuthFinder } from '@adonisjs/auth/mixins/lucid'
 import { DbAccessTokensProvider } from '@adonisjs/auth/access_tokens'
 import Company from './company.js'
 import type { HasOne } from '@adonisjs/lucid/types/relations'
 import { v7 as randomUUID } from 'uuid'
+import { WithSoftDeletes } from './mixins/with_soft_deletes.js'
 
 const AuthFinder = withAuthFinder(() => hash.use('scrypt'), {
   uids: ['email'],
   passwordColumnName: 'password',
 })
 
-export default class User extends compose(BaseModel, AuthFinder) {
+export default class User extends compose(BaseModel, AuthFinder, WithSoftDeletes) {
   @column({ isPrimary: true })
   declare id: string
 
@@ -77,62 +78,4 @@ export default class User extends compose(BaseModel, AuthFinder) {
   declare company: HasOne<typeof Company>
 
   static accessTokens = DbAccessTokensProvider.forModel(User)
-
-  /**
-   * Soft deletes the model by setting deletedAt to the current time.
-   */
-  async softDelete(): Promise<void> {
-    this.deletedAt = DateTime.now()
-    await this.save()
-  }
-
-  /**
-   * Restores a soft-deleted model by setting deletedAt to null.
-   */
-  async restore(): Promise<void> {
-    this.deletedAt = null
-    await this.save()
-  }
-
-  /**
-   * Check if the current model is soft deleted
-   */
-  isTrashed(): boolean {
-    return this.deletedAt !== null
-  }
-
-  /**
-   * Override the delete method to use softDelete instead
-   */
-  async delete(): Promise<void> {
-    return this.softDelete()
-  }
-
-  /**
-   * Force delete the model (hard delete)
-   */
-  async forceDelete(): Promise<void> {
-    return super.delete()
-  }
-
-  /**
-   * Scope to exclude soft deleted records
-   */
-  static withoutTrashed = scope((query: any) => {
-    query.whereNull('deleted_at')
-  })
-
-  /**
-   * Scope to include all records
-   */
-  static withTrashed = scope(() => {
-    // Ne fait rien de spécifique pour inclure tous les enregistrements
-  })
-
-  /**
-   * Scope to only include soft deleted records
-   */
-  static onlyTrashed = scope((query: any) => {
-    query.whereNotNull('deleted_at')
-  })
 }

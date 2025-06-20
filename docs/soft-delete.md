@@ -9,19 +9,21 @@ Au lieu de supprimer définitivement les données de la base de données, le sof
 
 ## Architecture
 
-### Approche générale
+### Approche par mixin
 
-Nous utilisons une classe de base abstraite `SoftDeletableModel` qui étend `BaseModel` d'AdonisJS. Cette classe fournit des méthodes communes pour gérer le soft delete :
+Nous utilisons un mixin TypeScript `WithSoftDeletes` qui peut être combiné avec d'autres mixins via la fonction `compose`. Ce mixin ajoute toutes les fonctionnalités de soft delete à n'importe quel modèle:
 
 1. `softDelete()` - Marque l'enregistrement comme supprimé (définit `deletedAt` à la date courante)
 2. `restore()` - Restaure un enregistrement supprimé (définit `deletedAt` à null)
 3. `isTrashed()` - Vérifie si un enregistrement est supprimé
 4. `delete()` - Surcharge la méthode de suppression standard pour faire un soft delete
 5. `forceDelete()` - Supprime définitivement l'enregistrement (hard delete)
+6. Scopes: `withoutTrashed`, `withTrashed`, `onlyTrashed`
 
-### Cas particulier: Le modèle User
+### Implémentation pour les modèles simples et complexes
 
-Pour le modèle `User`, qui utilise déjà la fonction `compose()` avec `BaseModel` et `AuthFinder`, nous avons implémenté les méthodes de soft delete directement dans la classe plutôt que d'hériter de `SoftDeletableModel`. Cette implémentation offre exactement les mêmes fonctionnalités, mais permet de conserver la composition avec `AuthFinder` pour l'authentification.
+- **Modèles simples**: Pour la plupart des modèles, nous utilisons une classe abstraite `SoftDeletableModel` qui étend `BaseModel` avec notre mixin `WithSoftDeletes`.
+- **Modèle User**: Pour le modèle `User`, qui utilise déjà la fonction `compose()` avec `BaseModel` et `AuthFinder`, nous intégrons directement notre mixin dans la composition: `compose(BaseModel, AuthFinder, WithSoftDeletes)`.
 
 ## Modèles avec Soft Delete
 

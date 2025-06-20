@@ -1,47 +1,12 @@
-import { BaseModel, column } from '@adonisjs/lucid/orm'
-import { DateTime } from 'luxon'
+import { BaseModel } from '@adonisjs/lucid/orm'
+import { compose } from '@adonisjs/core/helpers'
+import { WithSoftDeletes } from '../mixins/with_soft_deletes.js'
 
 /**
- * Base model for implementing soft delete functionality
+ * Classe de base pour les modèles avec soft delete
+ *
+ * Cette classe étend BaseModel et inclut le mixin WithSoftDeletes.
+ * Utilisez cette classe pour les modèles qui n'ont pas besoin d'autres mixins.
+ * Pour les modèles qui nécessitent d'autres mixins, utilisez directement compose avec WithSoftDeletes.
  */
-export default abstract class SoftDeletableModel extends BaseModel {
-  @column.dateTime()
-  declare deletedAt: DateTime | null
-
-  /**
-   * Soft deletes the model by setting deletedAt to the current time.
-   */
-  async softDelete(): Promise<void> {
-    this.deletedAt = DateTime.now()
-    await this.save()
-  }
-
-  /**
-   * Restores a soft-deleted model by setting deletedAt to null.
-   */
-  async restore(): Promise<void> {
-    this.deletedAt = null
-    await this.save()
-  }
-
-  /**
-   * Check if the current model is soft deleted
-   */
-  isTrashed(): boolean {
-    return this.deletedAt !== null
-  }
-
-  /**
-   * Override the delete method to use softDelete instead
-   */
-  async delete(): Promise<void> {
-    return this.softDelete()
-  }
-
-  /**
-   * Force delete the model (hard delete)
-   */
-  async forceDelete(): Promise<void> {
-    return super.delete()
-  }
-}
+export default abstract class SoftDeletableModel extends compose(BaseModel, WithSoftDeletes) {}
