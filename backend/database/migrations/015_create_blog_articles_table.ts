@@ -14,6 +14,7 @@ export default class extends BaseSchema {
       table.uuid('author_id').notNullable().references('id').inTable('users')
       table.string('main_picture').nullable()
 
+      table.timestamp('deleted_at').nullable()
       table.timestamp('created_at')
       table.timestamp('updated_at')
     })

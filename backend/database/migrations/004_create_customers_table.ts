@@ -14,6 +14,7 @@ export default class extends BaseSchema {
       table.text('address').notNullable()
 
       table.timestamp('created_at').notNullable()
+      table.timestamp('deleted_at').nullable()
       table.timestamp('updated_at').nullable()
     })
   }

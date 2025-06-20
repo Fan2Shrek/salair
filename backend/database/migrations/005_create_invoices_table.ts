@@ -17,6 +17,7 @@ export default class extends BaseSchema {
       table.string('pdf_url').nullable()
 
       table.timestamp('created_at').notNullable()
+      table.timestamp('deleted_at').nullable()
       table.timestamp('updated_at').nullable()
     })
   }
