@@ -11,14 +11,7 @@ export default class MeController {
     const user = auth.user!
 
     try {
-      const userData = request.only([
-        'firstName',
-        'lastName',
-        'email',
-        'phoneNumber',
-        'avatar',
-        'isVerified',
-      ])
+      const userData = request.only(['firstName', 'lastName', 'email', 'phoneNumber', 'avatar'])
 
       user.merge(userData)
       await user.save()

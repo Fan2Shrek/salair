@@ -41,9 +41,6 @@ export default class User extends compose(BaseModel, AuthFinder) {
   declare phoneNumber: string | null
 
   @column()
-  declare isVerified: boolean
-
-  @column()
   declare status: 'active' | 'inactive' | 'suspended'
 
   @column.dateTime()

@@ -7,7 +7,6 @@ export default interface User {
     email: string;
     role: 'user' | 'admin';
     phoneNumber?: string;
-    isVerified?: boolean;
     lastLoginAt: string;
     currentPlanId: number;
     isOnTrial: boolean;

@@ -12,7 +12,6 @@ export default class extends BaseSchema {
       table.string('password').notNullable()
       table.string('phone_number').nullable()
       table.enum('status', ['active', 'inactive', 'suspended']).notNullable().defaultTo('active')
-      table.boolean('is_verified').defaultTo(false)
       table.integer('current_plan_id').notNullable().defaultTo(1)
       table.boolean('is_on_trial').defaultTo(false)
       table.timestamp('trial_ends_at').nullable()

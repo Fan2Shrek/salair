@@ -28,7 +28,6 @@ export default class CreateUser extends BaseCommand {
         role: 'admin',
         currentPlanId: 1,
         password,
-        isVerified: true,
       })
 
       if (user) {

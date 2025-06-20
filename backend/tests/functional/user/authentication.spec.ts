@@ -13,7 +13,6 @@ test.group('User authentication', () => {
       email: 'john.doe@mail.com',
       password: 'password',
       role: 'user',
-      isVerified: true,
       isOnTrial: false,
     })
 
