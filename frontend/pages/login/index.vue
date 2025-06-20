@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
     definePageMeta({
         middleware: 'auth',
     });
@@ -6,29 +6,53 @@
     const authStore = useAuthStore();
     const router = useRouter();
     const { error } = useToast();
-    const { handleAuthError } = useErrorHandler()
+    const { handleAuthError } = useErrorHandler();
 
-    const email = ref('');
-    const password = ref('');
-    const rememberMe = ref(false);
+    // Form state
+    const email = ref<string>('');
+    const password = ref<string>('');
+    const rememberMe = ref<boolean>(false);
+    const isLoading = ref<boolean>(false);
 
-    const login = async () => {
-        const result = await authStore.login(email.value, password.value);
+    // Navigation helpers
+    const redirectUserAfterLogin = () => {
+        if (authStore.user?.role === 'admin') {
+            return router.push('/admin/dashboard');
+        }
 
-        if (result.success) {
-            if (authStore.user?.role === 'admin') {
-                router.push('/admin/dashboard');
-            } else if (!authStore.user?.company) {
-                router.push('/onboarding');
+        if (!authStore.user?.company) {
+            return router.push('/onboarding');
+        }
+
+        return router.push('/app/dashboard');
+    };
+
+    const handleLoginError = (result: { data?: { errors?: Array<{ message: string }> }; error?: string }): void => {
+        if (result.data?.errors?.length) {
+            handleAuthError(result.data.errors[0].message);
+        }
+
+        error('Une erreur est survenue', result.error || 'Erreur de connexion');
+    };
+
+    // Main login function
+    const login = async (): Promise<void> => {
+        if (isLoading.value) return;
+
+        try {
+            isLoading.value = true;
+
+            const result = await authStore.login(email.value, password.value);
+
+            if (result.success) {
+                await redirectUserAfterLogin();
             } else {
-                router.push('/app/dashboard');
+                handleLoginError(result);
             }
-        } else {
-            if (result.data?.errors) {
-                handleAuthError(result.data.errors[0].message)
-
-                error('Une erreur est survenue', result.error);
-            }
+        } catch {
+            error('Une erreur est survenue', 'Erreur de connexion');
+        } finally {
+            isLoading.value = false;
         }
     };
 </script>
@@ -98,4 +122,3 @@
         <section class="hidden md:block md:w-1/2 h-full bg-secondary"></section>
     </main>
 </template>
-
