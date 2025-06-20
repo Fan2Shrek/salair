@@ -15,8 +15,15 @@ export const useUserService = () => {
         })
     }
 
+    const remove = async (id: string) => {
+        return await useAuthFetch($api(`/api/admin/users/${id}`), {
+            method: 'DELETE'
+        })
+    }
+
     return {
         getAll,
-        suspend
+        suspend,
+        remove
     }
 }

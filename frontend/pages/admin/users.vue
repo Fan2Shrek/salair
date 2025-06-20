@@ -1,10 +1,12 @@
 <script setup lang="ts">
-    import DownloadIcon from '~/components/atoms/icons/DownloadIcon.vue';
+    import AlertCircleIcon from '~/components/atoms/icons/AlertCircleIcon.vue';
+import DownloadIcon from '~/components/atoms/icons/DownloadIcon.vue';
     import EditIcon from '~/components/atoms/icons/EditIcon.vue';
     import FilterLinesIcon from '~/components/atoms/icons/FilterLinesIcon.vue';
     import PlusIcon from '~/components/atoms/icons/PlusIcon.vue';
     import SearchIcon from '~/components/atoms/icons/SearchIcon.vue';
     import SlashOctogonIcon from '~/components/atoms/icons/SlashOctogonIcon.vue';
+import TrashIcon from '~/components/atoms/icons/TrashIcon.vue';
     import type { Column, TableAction } from '~/components/organisms/UTable.vue';
     import { useUsers } from '~/composables/admin/useUsers';
 
@@ -26,8 +28,8 @@
             label: 'Last name',
         },
         {
-            key: 'email',
             label: 'Email',
+            key: 'email',
         },
         {
             key: 'role',
@@ -48,6 +50,12 @@
             handler: (row) => console.log(row),
         },
         {
+            key: 'delete',
+            label: 'Supprimer',
+            icon: TrashIcon,
+            handler: (row) => openDeleteModal(row)
+        },
+        {
             key: 'suspend',
             label: 'Suspendre',
             icon: SlashOctogonIcon,
@@ -56,7 +64,8 @@
         },
     ];
 
-    const { fetchUsers, users, suspendUser } = useUsers();
+    const { fetchUsers, users, suspendUser, deleteUser } = useUsers();
+    const { isDeleteModalOpen, openDeleteModal, closeDeleteModal, confirmDelete } = useDeleteModal();
 
     onMounted(async () => {
         await fetchUsers();
@@ -148,6 +157,26 @@
                     </template>
                 </UTable>
             </section>
+
+            <UBaseModal :is-open="isDeleteModalOpen" @close="closeDeleteModal">
+                <div class="px-6 pt-6">
+                    <UFeaturedIcon :icon="AlertCircleIcon" size="lg" color="error" />
+                    <div class="space-y-0.5 mt-4">
+                        <h3 class="font-semibold text-primary">Supprimer l'utilisateur</h3>
+                        <p class="text-tertiary text-sm">
+                            Êtes-vous sûr de vouloir supprimer cet utilisateur ? Cette action est irréversible.
+                        </p>
+                    </div>
+                </div>
+                <div class="pt-8">
+                    <div class="flex items-center justify-between gap-3 px-6 pb-6">
+                        <UButton variant="secondary" class="w-full" @click="closeDeleteModal">Annuler</UButton>
+                        <UButton class="w-full" @click="confirmDelete((item) => deleteUser(item.id))"
+                            >Supprimer</UButton
+                        >
+                    </div>
+                </div>
+            </UBaseModal>
         </main>
     </NuxtLayout>
 </template>

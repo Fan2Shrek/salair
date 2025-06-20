@@ -10,7 +10,7 @@ export const useUsers = () => {
     const toast = useToast()
 
     // Services
-    const { getAll, suspend } = useUserService()
+    const { getAll, suspend, remove } = useUserService()
 
     // Functions
     const fetchUsers = async () => {
@@ -26,6 +26,8 @@ export const useUsers = () => {
             }
         } catch (error: any) {
             toast.error('An error occured', error)
+        } finally {
+            isLoading.value = false
         }
     }
 
@@ -43,6 +45,27 @@ export const useUsers = () => {
             }
         } catch (error: any) {
             toast.error('An error occured', error)
+        } finally {
+            isLoading.value = false
+        }
+    }
+
+    const deleteUser = async (id: string) => {
+        isLoading.value = true
+
+        try {
+            const { error } = await remove(id)
+
+            if (!error.value) {
+                toast.success(`The account (${id}) has been removed.`, '')
+                await fetchUsers();
+            } else {
+                toast.error('An error occured while removing user', '')
+            }
+        } catch (error: any) {
+            toast.error('An error occured', error)
+        } finally {
+            isLoading.value = false
         }
     }
 
@@ -50,6 +73,7 @@ export const useUsers = () => {
         users,
 
         fetchUsers,
-        suspendUser
+        suspendUser,
+        deleteUser
     }
 }
