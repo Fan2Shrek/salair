@@ -1,7 +1,6 @@
 <script setup lang="ts">
     import ChevronSelectorIcon from '~/components/atoms/icons/ChevronSelectorIcon.vue';
     import UserIcon from '~/components/atoms/icons/UserIcon.vue';
-    import SettingsIcon from '~/components/atoms/icons/SettingsIcon.vue';
     import BookOpenIcon from '~/components/atoms/icons/BookOpenIcon.vue';
     import LogoutIcon from '~/components/atoms/icons/LogoutIcon.vue';
     import type { MenuLinkItem } from '~/components/atoms/UMenuLink.vue';
@@ -19,13 +18,6 @@
             label: t('user_menu.profile'),
             action: () => {
                 console.log('View profile clicked');
-            },
-        },
-        {
-            icon: SettingsIcon,
-            label: t('user_menu.settings'),
-            action: () => {
-                console.log('Account settings clicked');
             },
         },
         {
