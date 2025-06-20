@@ -2,7 +2,7 @@ import NewsletterSubscriber from '#models/newsletter_subscriber'
 import { newsletterValidator } from '#validators/newsletter'
 import type { HttpContext } from '@adonisjs/core/http'
 
-export default class NewslettersController {
+export default class NewsletterController {
   async index({ request, response }: HttpContext) {
     const page = request.input('page', 1)
     const limit = request.input('limit', 10)

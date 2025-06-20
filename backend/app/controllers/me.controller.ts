@@ -5,6 +5,21 @@ export default class MeController {
   private avatarService = new AvatarService()
 
   /**
+   * Récupère les informations de l'utilisateur connecté
+   */
+  async me({ auth, response }: HttpContext) {
+    if (!auth.user) {
+      return response.status(401).send({ message: 'JWT not valid or missing' })
+    }
+
+    if (auth.user.role !== 'admin') {
+      await auth.user.load('company')
+    }
+
+    return auth.user
+  }
+
+  /**
    * Met à jour l'utilisateur connecté
    */
   async update({ request, response, auth }: HttpContext) {

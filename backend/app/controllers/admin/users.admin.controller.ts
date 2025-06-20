@@ -1,26 +1,48 @@
-import type { HttpContext } from '@adonisjs/core/http'
 import User from '#models/user'
+import type { HttpContext } from '@adonisjs/core/http'
 import { randomUUID } from 'node:crypto'
+// import { UserService } from '#services/user_service'
+// import { filterParamsSchema } from '#validators/admin/user'
 
-export default class UsersController {
-  /**
-   * Affiche une liste de tous les utilisateurs
-   */
+export default class UsersAdminController {
   async index({ response }: HttpContext) {
-    const users = await User.query()
+    const users = await User.query().orderBy('created_at', 'asc')
+
     return response.ok(users)
+
+    // const filters = await request.validateUsing(filterParamsSchema)
+    // return await UserService.getFilteredUsers(filters)
   }
 
-  /**
-   * Affiche un utilisateur spécifique
-   */
-  async show({ params, response }: HttpContext) {
-    try {
-      const user = await User.findOrFail(params.id)
-      return response.ok(user)
-    } catch (error) {
-      return response.notFound({ message: 'Utilisateur non trouvé' })
+  async show({ response, params }: HttpContext) {
+    const id = params.id
+
+    const user = await User.query().where('id', id).preload('company').first()
+
+    if (!user) {
+      return response.notFound()
     }
+
+    return response.ok(user)
+  }
+
+  async suspend({ response, params }: HttpContext) {
+    const id = params.id
+
+    if (!id) {
+      return response.badRequest({ message: 'The id is required.' })
+    }
+
+    const user = await User.query().where('id', id).first()
+
+    if (!user) {
+      return response.notFound()
+    }
+
+    user.status = 'suspended'
+    await user.save()
+
+    return response.ok(user)
   }
 
   /**

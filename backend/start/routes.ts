@@ -7,23 +7,22 @@
 |
 */
 
-const ArticlesAdminsController = () => import('#controllers/admin/articles_admins_controller')
+const ArticlesAdminController = () => import('#controllers/admin/articles.admin.controller')
+const UsersAdminController = () => import('#controllers/admin/users.admin.controller')
 
-const AuthController = () => import('#controllers/auth_controller')
-const PlansController = () => import('#controllers/plans_controller')
-const UsersController = () => import('#controllers/users_controller')
-const CompaniesController = () => import('#controllers/companies_controller')
-const InboundMailsController = () => import('#controllers/inbound_mails_controller')
-const MeController = () => import('#controllers/me_controller')
-const BlogArticlesController = () => import('#controllers/blog_articles_controller')
-const NewslettersController = () => import('#controllers/newsletters_controller')
-const ContactsController = () => import('#controllers/contacts_controller')
-const HealthChecksController = () => import('#controllers/health_checks_controller')
+const AuthController = () => import('#controllers/auth.controller')
+const PlansController = () => import('#controllers/plans.controller')
+const CompaniesController = () => import('#controllers/companies.controller')
+const InboundMailsController = () => import('#controllers/inbound_mails.controller')
+const MeController = () => import('#controllers/me.controller')
+const BlogArticlesController = () => import('#controllers/blog_articles.controller')
+const NewslettersController = () => import('#controllers/newsletter.controller')
+const ContactsController = () => import('#controllers/contacts.controller')
+const HealthChecksController = () => import('#controllers/health_checks.controller')
+const TwoFactorAuthController = () => import('#controllers/two_factor_auth.controller')
 
 import router from '@adonisjs/core/services/router'
 import { middleware } from './kernel.js'
-const UserAdminsController = () => import('#controllers/admin/user_admins_controller')
-const TwoFactorAuthController = () => import('#controllers/two_factor_auth_controller')
 
 router.get('/', async () => {
   return {
@@ -41,13 +40,8 @@ router
     router.post('/login', [AuthController, 'login']).as('auth.login')
     router.post('/login/verify-2fa', [AuthController, 'verify2fa']).as('auth.login.verify2fa')
     router.delete('/logout', [AuthController, 'logout']).as('auth.logout').use(middleware.auth())
-    router.get('/me', [AuthController, 'me']).as('auth.me').use(middleware.auth())
     router.post('/refresh', [AuthController, 'refresh']).as('auth.refresh')
     router.post('/check', [AuthController, 'check']).as('auth.check')
-    router
-      .patch('/me/avatar', [UsersController, 'updateAvatar'])
-      .as('auth.update_avatar')
-      .use(middleware.auth())
 
     router.post('/reset-password', [AuthController, 'reset'])
     router.post('/reset-password/verify', [AuthController, 'verifyReset'])
@@ -67,6 +61,8 @@ router
   .group(() => {
     router.put('/me', [MeController, 'update'])
     router.post('/me/avatar', [MeController, 'updateAvatar'])
+    router.get('/me', [MeController, 'me']).as('me.me')
+    router.patch('/me/avatar', [MeController, 'updateAvatar']).as('me.update_avatar')
 
     router.post('/2fa/generate', [TwoFactorAuthController, 'generate'])
     router.post('/2fa/enable', [TwoFactorAuthController, 'enable'])
@@ -88,7 +84,7 @@ router
     router.delete('/companies/:id', [CompaniesController, 'destroy']).as('companies.destroy')
     router
       .post('/companies/:id/logo', [
-        () => import('#controllers/companies_controller'),
+        () => import('#controllers/companies.controller'),
         'uploadLogo',
       ])
       .as('companies.uploadLogo')
@@ -144,21 +140,21 @@ router
   .group(() => {
     // Articles routes
     router.group(() => {
-      router.get('/articles', [ArticlesAdminsController, 'index'])
-      router.post('/articles', [ArticlesAdminsController, 'store'])
-      router.put('/articles/:id', [ArticlesAdminsController, 'update'])
-      router.delete('/articles/:id', [ArticlesAdminsController, 'delete'])
+      router.get('/articles', [ArticlesAdminController, 'index'])
+      router.post('/articles', [ArticlesAdminController, 'store'])
+      router.put('/articles/:id', [ArticlesAdminController, 'update'])
+      router.delete('/articles/:id', [ArticlesAdminController, 'delete'])
     })
 
     // Users routes
     router.group(() => {
-      router.get('/users', [UsersController, 'index'])
-      router.get('/users/:id', [UsersController, 'show'])
-      router.post('/users', [UsersController, 'store'])
-      router.put('/users/:id', [UsersController, 'update'])
-      router.patch('/users/:id/avatar', [UsersController, 'updateAvatar'])
-      router.delete('/users/:id', [UsersController, 'destroy'])
-      router.post('/suspend/:id', [UserAdminsController, 'suspend'])
+      router.get('/users', [UsersAdminController, 'index'])
+      router.get('/users/:id', [UsersAdminController, 'show'])
+      router.post('/users', [UsersAdminController, 'store'])
+      router.put('/users/:id', [UsersAdminController, 'update'])
+      router.patch('/users/:id/avatar', [UsersAdminController, 'updateAvatar'])
+      router.delete('/users/:id', [UsersAdminController, 'destroy'])
+      router.post('/suspend/:id', [UsersAdminController, 'suspend'])
     })
   })
   .prefix('api/admin')

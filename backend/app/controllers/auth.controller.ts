@@ -137,18 +137,6 @@ export default class AuthController {
     return { message: 'success' }
   }
 
-  async me({ auth, response }: HttpContext) {
-    if (!auth.user) {
-      return response.status(401).send({ message: 'JWT not valid or missing' })
-    }
-
-    if (auth.user.role !== 'admin') {
-      await auth.user.load('company')
-    }
-
-    return auth.user
-  }
-
   async refresh({ request, response, auth }: HttpContext) {
     const { refresh_token: refreshToken } = request.only(['refresh_token'])
 

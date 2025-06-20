@@ -2,7 +2,7 @@ import type { HttpContext } from '@adonisjs/core/http'
 import BlogArticle from '#models/blog_article'
 import { createArticleValidator } from '#validators/admin/article'
 
-export default class ArticlesAdminsController {
+export default class ArticlesAdminController {
   async index({ request }: HttpContext) {
     const limit = request.input('limit', 10)
     const page = request.input('page', 1)
