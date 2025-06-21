@@ -95,7 +95,9 @@
         }
 
         try {
-            if (logo.value) {
+            // Only upload the logo if it's set and the UFileInput hasn't already uploaded it
+            // This is a fallback for when the UFileInput doesn't have an uploadUrl (which happens before company ID is set)
+            if (logo.value && !authStore.user?.company?.logoUrl) {
                 await upload(logo.value, $api(`/api/companies/${onboardingStore.company.id}/logo`));
                 
                 if (isSuccess.value && responseData.value) {
@@ -129,6 +131,19 @@
             logo.value = file;
         }
     };
+    
+    const handleUploadSuccess = (event: { file: File, response: any }) => {
+        if (event.response && event.response.logoUrl) {
+            toastSuccess(t('onboarding.billing.form.logo.upload_success'), event.response.logoUrl);
+            if (authStore.user?.company) {
+                authStore.user.company.logoUrl = event.response.logoUrl;
+            }
+        }
+    };
+    
+    const handleUploadError = (_event: { file: File, error: any }) => {
+        toastError(t('general.error'), t('onboarding.billing.form.logo.errors.logo_upload_error'));
+    };
 </script>
 
 <template>
@@ -155,7 +170,13 @@
                 :label="t('onboarding.billing.form.default_note.label')"
                 :placeholder="t('onboarding.billing.form.default_note.placeholder')"
             />
-            <UFileInput :label="t('onboarding.billing.form.logo.label')" @update:file="handleFileUpload" />
+            <UFileInput 
+                :label="t('onboarding.billing.form.logo.label')" 
+                :upload-url="onboardingStore.company.id ? $api(`/api/companies/${onboardingStore.company.id}/logo`) : ''"
+                @update:file="handleFileUpload"
+                @upload:success="handleUploadSuccess"
+                @upload:error="handleUploadError"
+            />
         </div>
     </div>
     <UButton :disabled="isLoading" class="w-full mt-6" @click="handleNextStep">{{ t('general.continue') }}</UButton>

@@ -18,7 +18,6 @@ export const useSettings = () => {
         if (firstName.value !== authStore.user?.firstName) return true;
         if (lastName.value !== authStore.user?.lastName) return true;
         if (email.value !== authStore.user.email) return true;
-        if (avatar.value) return true;
 
         return false;
     });
@@ -37,6 +36,8 @@ export const useSettings = () => {
                 return;
             }
 
+            // Store the file reference but don't upload yet - the UFileInput will handle the upload
+            // if uploadUrl is provided, otherwise we'll upload in handleSaveDetails
             avatar.value = file;
         }
     }
@@ -67,11 +68,14 @@ export const useSettings = () => {
             }
         }
 
+        // Only upload the avatar if it's set and the UFileInput hasn't already uploaded it directly
+        // This is a fallback for when the UFileInput doesn't have an uploadUrl
         if (avatar.value) {
             await upload(avatar.value, $api(`/api/me/avatar`));
 
             if (isSuccess.value && responseData.value) {
                 authStore.user!.avatar = responseData.value.avatar_url as string;
+                toastSuccess(t('general.success'), t('settings.personal_info.form.photo.success'));
             }
         }
     }

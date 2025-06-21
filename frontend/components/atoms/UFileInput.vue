@@ -13,6 +13,7 @@
         dragText?: string;
         formatText?: string;
         multiple?: boolean;
+        uploadUrl?: string;
     }
 
     const _props = withDefaults(defineProps<FileInputProps>(), {
@@ -22,9 +23,10 @@
         dragText: 'or drag and drop',
         formatText: 'SVG, PNG, JPG or GIF',
         multiple: false,
+        uploadUrl: '',
     });
 
-    const emit = defineEmits(['update:file', 'update:progress']);
+    const emit = defineEmits(['update:file', 'update:progress', 'upload:success', 'upload:error']);
 
     const fileInput = ref<HTMLInputElement | null>(null);
     const isDragging = ref(false);
@@ -32,12 +34,13 @@
     const selectedFiles = ref<File[]>([]);
 
     const fileIds = ref(new Map<File, string>());
-
     const fileProgresses = ref<Map<string, { progress: number; currentSize: number; totalSize: number }>>(new Map());
+    
+    // Use the real upload functionality
+    const { upload, progress, isUploading, isSuccess, isError, responseData } = useFileUploadProgress();
 
-    const simulateUpload = (file: File) => {
+    const handleFileUpload = async (file: File) => {
         const fileId = `${file.name}-${file.size}-${Date.now()}`;
-
         fileIds.value.set(file, fileId);
 
         fileProgresses.value.set(fileId, {
@@ -45,18 +48,63 @@
             currentSize: 0,
             totalSize: file.size,
         });
-
-        const interval = setInterval(() => {
-            const fileData = fileProgresses.value.get(fileId);
-            if (fileData && fileData.progress < 100) {
-                fileData.progress += 5;
-                fileData.currentSize = Math.floor((fileData.progress / 100) * file.size);
-                fileProgresses.value.set(fileId, fileData);
-                emit('update:progress', { fileId, progress: fileData.progress });
-            } else {
-                clearInterval(interval);
+        
+        if (_props.uploadUrl) {
+            try {
+                // Start the real upload
+                await upload(file, _props.uploadUrl);
+                
+                // Update the file progress based on the upload progress
+                const updateProgress = () => {
+                    const fileData = fileProgresses.value.get(fileId);
+                    if (fileData) {
+                        fileData.progress = progress.value;
+                        fileData.currentSize = Math.floor((progress.value / 100) * file.size);
+                        fileProgresses.value.set(fileId, fileData);
+                        emit('update:progress', { fileId, progress: progress.value });
+                    }
+                };
+                
+                // Create an interval to update progress
+                const progressInterval = setInterval(() => {
+                    updateProgress();
+                    
+                    // When upload is complete or has error, clear the interval
+                    if (!isUploading.value) {
+                        updateProgress(); // Ensure final progress is set
+                        clearInterval(progressInterval);
+                        
+                        if (isSuccess.value) {
+                            emit('upload:success', { file, response: responseData.value });
+                        } else if (isError.value) {
+                            emit('upload:error', { file, error: 'Upload failed' });
+                        }
+                    }
+                }, 100);
+            } catch (error) {
+                // Handle upload errors
+                const fileData = fileProgresses.value.get(fileId);
+                if (fileData) {
+                    fileData.progress = 0;
+                    fileProgresses.value.set(fileId, fileData);
+                }
+                emit('upload:error', { file, error });
             }
-        }, 200);
+        } else {
+            // If no uploadUrl provided, notify but don't upload
+            // Just update the UI to show "Ready to upload"
+            const fileData = fileProgresses.value.get(fileId);
+            if (fileData) {
+                fileData.progress = 100; // Mark as ready for upload
+                fileData.currentSize = file.size; 
+                fileProgresses.value.set(fileId, fileData);
+                emit('update:progress', { fileId, progress: 100 });
+            }
+            
+            // We're not actually uploading the file, just emitting the event
+            // The parent component should handle the actual upload when a form is submitted
+            console.info('No uploadUrl provided for UFileInput. File will be passed to parent component.');
+        }
     };
 
     const handleFileSelect = (event: Event) => {
@@ -67,12 +115,12 @@
                 emit('update:file', selectedFiles.value);
 
                 selectedFiles.value.forEach((file) => {
-                    simulateUpload(file);
+                    handleFileUpload(file);
                 });
             } else {
                 selectedFile.value = input.files[0];
                 emit('update:file', selectedFile.value);
-                simulateUpload(selectedFile.value);
+                handleFileUpload(selectedFile.value);
             }
         }
     };
@@ -112,12 +160,12 @@
                 emit('update:file', selectedFiles.value);
 
                 selectedFiles.value.forEach((file) => {
-                    simulateUpload(file);
+                    handleFileUpload(file);
                 });
             } else {
                 selectedFile.value = e.dataTransfer.files[0];
                 emit('update:file', selectedFile.value);
-                simulateUpload(selectedFile.value);
+                handleFileUpload(selectedFile.value);
             }
         }
     };

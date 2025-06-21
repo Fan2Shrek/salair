@@ -11,6 +11,8 @@
     const authStore = useAuthStore();
     const { t } = useI18n();
     const colorMode = useColorMode();
+    const { error: toastError, success: toastSuccess } = useToast();
+    const { $api } = useNuxtApp();
 
     const {
         firstName,
@@ -22,6 +24,20 @@
         handleSaveDetails,
         handleSaveAppearance,
     } = useSettings();
+
+    // Handle avatar upload success
+    const onAvatarUploadSuccess = (event: { file: File, response: any }) => {
+        if (event.response && event.response.avatar_url) {
+            // Update the user avatar in the auth store
+            authStore.user!.avatar = event.response.avatar_url;
+            toastSuccess(t('general.success'), t('settings.personal_info.form.photo.success'));
+        }
+    };
+
+    // Handle avatar upload error
+    const onAvatarUploadError = (_event: { file: File, error: any }) => {
+        toastError(t('general.error'), t('settings.personal_info.form.photo.error'));
+    };
 
     useSeoMeta({
         title: t('sidebar.settings'),
@@ -127,7 +143,13 @@
                                             size="2xl"
                                             :text="authStore.user!.firstName[0] + authStore.user!.lastName[0]"
                                         />
-                                        <UFileInput class="w-full" @update:file="handleUpload" />
+                                        <UFileInput 
+                                            class="w-full" 
+                                            :upload-url="$api('/api/me/avatar')" 
+                                            @update:file="handleUpload" 
+                                            @upload:success="onAvatarUploadSuccess" 
+                                            @upload:error="onAvatarUploadError" 
+                                        />
                                     </div>
                                 </div>
                                 <UDivider class="w-full" orientation="horizontal" />
