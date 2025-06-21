@@ -258,6 +258,7 @@
             "edit": "Edit",
             "delete": "Delete",
             "suspend": "Suspend",
+            "reactivate": "Reactivate",
             "columns": {
                 "id": "ID",
                 "first_name": "First name",
@@ -289,7 +290,11 @@
                 "delete_success": "User deleted",
                 "delete_success_message": "The user (ID: {id}) has been successfully removed.",
                 "suspend_success": "User suspended",
-                "suspend_success_message": "The account {email} has been suspended."
+                "suspend_success_message": "The account {email} has been suspended.",
+                "reactive_success": "User reactivated",
+                "reactive_success_message": "The user (ID: {id}) has been successfully reactivated.",
+                "reactivate_error": "Reactivation error",
+                "reactivate_error_message": "An error occurred while reactivating the user."
             }
         },
         "articles": {

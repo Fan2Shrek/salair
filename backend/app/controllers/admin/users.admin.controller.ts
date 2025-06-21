@@ -42,6 +42,25 @@ export default class UsersAdminController {
     return response.ok(user)
   }
 
+  async reactivate({ response, params }: HttpContext) {
+    const id = params.id
+
+    if (!id) {
+      return response.badRequest({ message: 'The id is required' })
+    }
+
+    const user = await User.query().where('id', id).first()
+
+    if (!user) {
+      return response.notFound({ message: 'User not found' })
+    }
+
+    user.status = 'active'
+    await user.save()
+
+    return response.ok(user)
+  }
+
   /**
    * Crée un nouvel utilisateur
    */

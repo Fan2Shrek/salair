@@ -10,7 +10,7 @@ export const useUserService = () => {
     }
 
     const suspend = async (id: string) => {
-        return await useAuthFetch<User>($api(`/api/admin/suspend/${id}`), {
+        return await useAuthFetch<User>($api(`/api/admin/users/${id}/suspend`), {
             method: 'POST'
         })
     }
@@ -21,9 +21,16 @@ export const useUserService = () => {
         })
     }
 
+    const reactivate = async (id: string) => {
+        return await useAuthFetch($api(`/api/admin/users/${id}/reactivate`), {
+            method: 'POST'
+        });
+    }
+
     return {
         getAll,
         suspend,
-        remove
+        remove,
+        reactivate
     }
 }

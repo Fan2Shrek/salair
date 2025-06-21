@@ -3,9 +3,10 @@
     import DownloadIcon from '~/components/atoms/icons/DownloadIcon.vue';
     import EditIcon from '~/components/atoms/icons/EditIcon.vue';
     import FilterLinesIcon from '~/components/atoms/icons/FilterLinesIcon.vue';
+    import LockIcon from '~/components/atoms/icons/LockIcon.vue';
+    import LockUnlockedIcon from '~/components/atoms/icons/LockUnlockedIcon.vue';
     import PlusIcon from '~/components/atoms/icons/PlusIcon.vue';
     import SearchIcon from '~/components/atoms/icons/SearchIcon.vue';
-    import SlashOctogonIcon from '~/components/atoms/icons/SlashOctogonIcon.vue';
     import TrashIcon from '~/components/atoms/icons/TrashIcon.vue';
     import type { Column, TableAction } from '~/components/organisms/UTable.vue';
     import { useUsers } from '~/composables/admin/useUsers';
@@ -14,6 +15,8 @@
         middleware: 'admin',
     });
 
+    const { users, fetchUsers, suspendUser, deleteUser, reactivateUser } = useUsers();
+    const { isDeleteModalOpen, openDeleteModal, closeDeleteModal, confirmDelete } = useDeleteModal();
     const { t } = useI18n();
 
     const usersColumns: Column[] = [
@@ -60,14 +63,18 @@
         {
             key: 'suspend',
             label: t('admin.users.suspend'),
-            icon: SlashOctogonIcon,
+            icon: LockIcon,
             handler: (row) => suspendUser(row.id as string),
             visible: (row) => row.status !== 'suspended',
         },
+        {
+            key: 'reactivate',
+            label: t('admin.users.reactivate'),
+            icon: LockUnlockedIcon,
+            handler: (row) => reactivateUser(row.id as string),
+            visible: (row) => row.status === 'suspended',
+        },
     ];
-
-    const { fetchUsers, users, suspendUser, deleteUser } = useUsers();
-    const { isDeleteModalOpen, openDeleteModal, closeDeleteModal, confirmDelete } = useDeleteModal();
 
     onMounted(async () => {
         await fetchUsers();
@@ -85,7 +92,10 @@
                         </div>
                         <ChevronRightIcon class="text-fg-quaternary size-4" />
                         <div class="py-1 px-2">
-                            <ULink to="/admin/users" variant="secondary" class="text-quaternary font-semibold text-sm"
+                            <ULink
+                                to="/admin/users"
+                                variant="secondary"
+                                class="text-quaternary font-semibold text-sm"
                                 >{{ $t('admin.users.title') }}</ULink
                             >
                         </div>
@@ -96,10 +106,12 @@
                             <p class="text-tertiary">{{ $t('admin.users.subtitle') }}</p>
                         </div>
                         <div class="flex items-center gap-3">
-                            <UButton variant="secondary" :icon="DownloadIcon" icon-position="leading" disabled
-                                >{{ $t('admin.users.export') }}</UButton
-                            >
-                            <UButton :icon="PlusIcon" icon-position="leading" disabled>{{ $t('admin.users.add_user') }}</UButton>
+                            <UButton variant="secondary" :icon="DownloadIcon" icon-position="leading" disabled>{{
+                                $t('admin.users.export')
+                            }}</UButton>
+                            <UButton :icon="PlusIcon" icon-position="leading" disabled>{{
+                                $t('admin.users.add_user')
+                            }}</UButton>
                         </div>
                     </div>
                 </div>
@@ -115,9 +127,9 @@
                         class="w-96"
                         disabled
                     />
-                    <UButton variant="secondary" :icon="FilterLinesIcon" icon-position="leading" disabled
-                        >{{ $t('admin.users.filters') }}</UButton
-                    >
+                    <UButton variant="secondary" :icon="FilterLinesIcon" icon-position="leading" disabled>{{
+                        $t('admin.users.filters')
+                    }}</UButton>
                 </section>
                 <UTable
                     class="mt-8"
@@ -172,10 +184,12 @@
                 </div>
                 <div class="pt-8">
                     <div class="flex items-center justify-between gap-3 px-6 pb-6">
-                        <UButton variant="secondary" class="w-full" @click="closeDeleteModal">{{ $t('admin.users.delete_modal.cancel') }}</UButton>
-                        <UButton class="w-full" @click="confirmDelete((item) => deleteUser(item.id))"
-                            >{{ $t('admin.users.delete_modal.confirm') }}</UButton
-                        >
+                        <UButton variant="secondary" class="w-full" @click="closeDeleteModal">{{
+                            $t('admin.users.delete_modal.cancel')
+                        }}</UButton>
+                        <UButton class="w-full" @click="confirmDelete((item) => deleteUser(item.id))">{{
+                            $t('admin.users.delete_modal.confirm')
+                        }}</UButton>
                     </div>
                 </div>
             </UBaseModal>

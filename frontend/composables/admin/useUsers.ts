@@ -11,7 +11,7 @@ export const useUsers = () => {
     const { t } = useI18n()
 
     // Services
-    const { getAll, suspend, remove } = useUserService()
+    const { getAll, suspend, remove, reactivate } = useUserService()
 
     // Functions
     const fetchUsers = async () => {
@@ -79,11 +79,37 @@ export const useUsers = () => {
         }
     }
 
+    const reactivateUser = async (id: string) => {
+        isLoading.value = true
+
+        try {
+            const { data, error } = await reactivate(id)
+
+            if (data.value && !error.value) {
+                toast.success(
+                    t('admin.users.notifications.reactive_success'),
+                    t('admin.users.notifications.reactive_success_message', { id }),
+                )
+                await fetchUsers();
+            } else if (error.value) {
+                toast.error(
+                    t('admin.users.notifications.reactivate_error'),
+                    t('admin.users.notifications.reactivate_error_message'),
+                )
+            }
+        } catch (error: any) {
+            toast.error(t('admin.users.notifications.error'), error)
+        } finally {
+            isLoading.value = false
+        }
+    }
+
     return {
         users,
 
         fetchUsers,
         suspendUser,
-        deleteUser
+        deleteUser,
+        reactivateUser
     }
 }

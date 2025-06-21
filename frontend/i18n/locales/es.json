@@ -258,6 +258,7 @@
             "edit": "Editar",
             "delete": "Eliminar",
             "suspend": "Suspender",
+            "reactivate": "Reactivar",
             "columns": {
                 "id": "ID",
                 "first_name": "Nombre",
@@ -289,7 +290,11 @@
                 "delete_success": "Usuario eliminado",
                 "delete_success_message": "El usuario (ID: {id}) ha sido eliminado correctamente.",
                 "suspend_success": "Usuario suspendido",
-                "suspend_success_message": "La cuenta {email} ha sido suspendida."
+                "suspend_success_message": "La cuenta {email} ha sido suspendida.",
+                "reactive_success": "Usuario reactivado",
+                "reactive_success_message": "El usuario (ID: {id}) ha sido reactivado correctamente.",
+                "reactivate_error": "Error de reactivación",
+                "reactivate_error_message": "Ha ocurrido un error al reactivar el usuario."
             }
         },
         "articles": {
