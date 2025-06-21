@@ -101,10 +101,19 @@
                 await upload(logo.value, $api(`/api/companies/${onboardingStore.company.id}/logo`));
                 
                 if (isSuccess.value && responseData.value) {
-                    toastSuccess(t('onboarding.billing.form.logo.upload_success'), responseData.value.logoUrl);
+                    // Update the user's company logo url silently without showing a specific toast for it
                     authStore.user!.company!.logoUrl = responseData.value.logoUrl as string;
                 }
             }
+            
+            // Show a welcome message indicating completion of the onboarding process
+            toastSuccess(
+                t('onboarding.billing.form.onboarding_complete.title'), 
+                t('onboarding.billing.form.onboarding_complete.message')
+            );
+            
+            // Reset the onboarding store now that it's complete
+            onboardingStore.reset();
             
             isLoading.value = false;
             navigateTo('/app/dashboard');
@@ -112,6 +121,8 @@
             console.error('Erreur lors du téléchargement du logo:', error);
             isLoading.value = false;
             toastError(t('general.error'), t('onboarding.billing.form.errors.logo_upload_error'));
+            
+            // Note: We don't reset the onboarding store here so user can retry without losing data
         }
     }
 

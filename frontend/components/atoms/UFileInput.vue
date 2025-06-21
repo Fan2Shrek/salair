@@ -5,6 +5,7 @@
     import PNGIcon from '~/components/atoms/icons/PNGIcon.vue';
     import IMGIcon from '~/components/atoms/icons/IMGIcon.vue';
     import PDFIcon from '~/components/atoms/icons/PDFIcon.vue';
+    import InfoCircleIcon from '~/components/atoms/icons/InfoCircleIcon.vue';
 
     interface FileInputProps {
         accept?: string;
@@ -49,7 +50,10 @@
             totalSize: file.size,
         });
         
-        if (_props.uploadUrl) {
+        // Always emit the update:file event so parent components can get the file even if uploadUrl is not set
+        emit('update:file', file);
+        
+        if (_props.uploadUrl && _props.uploadUrl.trim() !== '') {
             try {
                 // Start the real upload
                 await upload(file, _props.uploadUrl);
@@ -91,19 +95,18 @@
                 emit('upload:error', { file, error });
             }
         } else {
-            // If no uploadUrl provided, notify but don't upload
-            // Just update the UI to show "Ready to upload"
+            // If no uploadUrl provided, store the file but don't upload
+            // Just update the UI to show "Ready for upload"
             const fileData = fileProgresses.value.get(fileId);
             if (fileData) {
-                fileData.progress = 100; // Mark as ready for upload
-                fileData.currentSize = file.size; 
+                fileData.progress = 0; // Show 0% progress since we're not actually uploading yet
                 fileProgresses.value.set(fileId, fileData);
-                emit('update:progress', { fileId, progress: 100 });
+                emit('update:progress', { fileId, progress: 0 });
             }
             
-            // We're not actually uploading the file, just emitting the event
-            // The parent component should handle the actual upload when a form is submitted
-            console.info('No uploadUrl provided for UFileInput. File will be passed to parent component.');
+            // We're not actually uploading the file, just storing it
+            // The parent component will handle the actual upload when needed
+            console.info('No uploadUrl provided for UFileInput. File will be passed to parent component for later upload.');
         }
     };
 
@@ -251,24 +254,35 @@
                         {{ formatFileSize(getFileProgress(selectedFile).currentSize) }} of
                         {{ formatFileSize(getFileProgress(selectedFile).totalSize) }}
                     </p>
-                    <UDivider orientation="vertical" class="h-full" />
-                    <div class="flex items-center gap-1">
-                        <CheckCircleIcon
-                            v-if="getFileProgress(selectedFile).progress === 100"
-                            class="size-4 text-fg-success-primary"
-                        />
-                        <UploadCloudIcon v-else class="size-4 text-fg-quaternary" />
-                        <p
-                            class="text-sm font-medium"
-                            :class="
-                                getFileProgress(selectedFile).progress === 100
-                                    ? 'text-fg-success-primary'
-                                    : 'text-quaternary'
-                            "
-                        >
-                            {{ getFileProgress(selectedFile).progress === 100 ? 'Complete' : 'Uploading...' }}
-                        </p>
-                    </div>
+                    <UDivider orientation="vertical" class="h-full" />                        <div class="flex items-center gap-1">
+                            <CheckCircleIcon
+                                v-if="getFileProgress(selectedFile).progress === 100"
+                                class="size-4 text-fg-success-primary"
+                            />
+                            <InfoCircleIcon 
+                                v-else-if="getFileProgress(selectedFile).progress === 0 && !_props.uploadUrl"
+                                class="size-4 text-fg-warning-primary" 
+                            />
+                            <UploadCloudIcon v-else class="size-4 text-fg-quaternary" />
+                            <p
+                                class="text-sm font-medium"
+                                :class="{
+                                    'text-fg-success-primary': getFileProgress(selectedFile).progress === 100,
+                                    'text-fg-warning-primary': getFileProgress(selectedFile).progress === 0 && !_props.uploadUrl,
+                                    'text-quaternary': getFileProgress(selectedFile).progress > 0 && getFileProgress(selectedFile).progress < 100
+                                }"
+                            >
+                                <template v-if="getFileProgress(selectedFile).progress === 100">
+                                    Complete
+                                </template>
+                                <template v-else-if="getFileProgress(selectedFile).progress === 0 && !_props.uploadUrl">
+                                    Pending
+                                </template>
+                                <template v-else>
+                                    Uploading...
+                                </template>
+                            </p>
+                        </div>
                 </div>
                 <div class="flex items-center gap-3">
                     <UProgress :value="getFileProgress(selectedFile).progress" />
@@ -297,14 +311,28 @@
                                 v-if="getFileProgress(file).progress === 100"
                                 class="size-4 text-fg-success-primary"
                             />
+                            <InfoCircleIcon 
+                                v-else-if="getFileProgress(file).progress === 0 && !_props.uploadUrl"
+                                class="size-4 text-fg-warning-primary" 
+                            />
                             <UploadCloudIcon v-else class="size-4 text-fg-quaternary" />
                             <p
                                 class="text-sm font-medium"
-                                :class="
-                                    getFileProgress(file).progress === 100 ? 'text-fg-success-primary' : 'text-quaternary'
-                                "
+                                :class="{
+                                    'text-fg-success-primary': getFileProgress(file).progress === 100,
+                                    'text-fg-warning-primary': getFileProgress(file).progress === 0 && !_props.uploadUrl,
+                                    'text-quaternary': getFileProgress(file).progress > 0 && getFileProgress(file).progress < 100
+                                }"
                             >
-                                {{ getFileProgress(file).progress === 100 ? 'Complete' : 'Uploading...' }}
+                                <template v-if="getFileProgress(file).progress === 100">
+                                    Complete
+                                </template>
+                                <template v-else-if="getFileProgress(file).progress === 0 && !_props.uploadUrl">
+                                    Pending
+                                </template>
+                                <template v-else>
+                                    Uploading...
+                                </template>
                             </p>
                         </div>
                     </div>

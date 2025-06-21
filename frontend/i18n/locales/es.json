@@ -569,6 +569,10 @@
                     "company_creation_error": "Se ha producido un error al crear la empresa",
                     "unexpected_error": "Se ha producido un error inesperado",
                     "logo_upload_error": "Se ha producido un error al subir el logo"
+                },
+                "onboarding_complete": {
+                    "title": "¡Bienvenido a Salair!",
+                    "message": "Tu cuenta está lista. Ya puedes comenzar a utilizar la aplicación."
                 }
             }
         }

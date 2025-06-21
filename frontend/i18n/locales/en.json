@@ -561,14 +561,18 @@
                         "invalid_image": "Please select a valid image file",
                         "file_too_large": "File size should not exceed 2MB"
                     },
-                    "upload_success": "Logo uploaded"
+                    "upload_success": "Logo successfully uploaded"
                 },
                 "errors": {
                     "select_billing_type": "Please select a billing type",
                     "select_currency": "Please select a currency",
                     "company_creation_error": "An error occurred while creating the company",
                     "unexpected_error": "An unexpected error occurred",
-                    "logo_upload_error": "An error occurred while uploading the logo"
+                    "logo_upload_error": "Unable to upload logo. Please try again later"
+                },
+                "onboarding_complete": {
+                    "title": "Welcome to Salair!",
+                    "message": "Your account is ready. You can now start using the application."
                 }
             }
         }

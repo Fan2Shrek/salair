@@ -561,14 +561,18 @@
                         "invalid_image": "Veuillez sélectionner un fichier image valide",
                         "file_too_large": "La taille du fichier ne doit pas dépasser 2 Mo"
                     },
-                    "upload_success": "Logo uploadé"
+                    "upload_success": "Logo importé avec succès"
                 },
                 "errors": {
                     "select_billing_type": "Veuillez sélectionner un type de facturation",
                     "select_currency": "Veuillez sélectionner une devise",
                     "company_creation_error": "Une erreur est survenue lors de la création de l'entreprise",
                     "unexpected_error": "Une erreur inattendue est survenue",
-                    "logo_upload_error": "Une erreur est survenue lors du téléchargement du logo"
+                    "logo_upload_error": "Impossible d'importer le logo. Veuillez réessayer ultérieurement"
+                },
+                "onboarding_complete": {
+                    "title": "Bienvenue sur Salair !",
+                    "message": "Votre compte est prêt. Vous pouvez maintenant commencer à utiliser l'application."
                 }
             }
         }
