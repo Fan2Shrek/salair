@@ -1,8 +1,6 @@
 import User from '#models/user'
 import type { HttpContext } from '@adonisjs/core/http'
 import { randomUUID } from 'node:crypto'
-// import { UserService } from '#services/user_service'
-// import { filterParamsSchema } from '#validators/admin/user'
 
 export default class UsersAdminController {
   async index({ response }: HttpContext) {
@@ -11,9 +9,6 @@ export default class UsersAdminController {
       .withScopes((scopes) => scopes.withoutTrashed())
 
     return response.ok(users)
-
-    // const filters = await request.validateUsing(filterParamsSchema)
-    // return await UserService.getFilteredUsers(filters)
   }
 
   async show({ response, params }: HttpContext) {
