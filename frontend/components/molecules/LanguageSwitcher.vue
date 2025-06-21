@@ -11,8 +11,7 @@
     // Liste des langues disponibles avec leur emoji de drapeau
     const languageOptions = [
         { code: 'fr', label: 'Français', emoji: '🇫🇷' },
-        { code: 'en', label: 'English', emoji: '🇬🇧' },
-        { code: 'es', label: 'Español', emoji: '🇪🇸' }
+        { code: 'en', label: 'English', emoji: '🇬🇧' }
     ];
 
     // Langue actuellement active
@@ -22,7 +21,7 @@
     });
 
     // Gestion du changement de langue
-    function changeLanguage(langCode: 'fr' | 'en' | 'es') {
+    function changeLanguage(langCode: 'fr' | 'en') {
         setLocale(langCode);
     }
 
