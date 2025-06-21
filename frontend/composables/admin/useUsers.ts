@@ -8,6 +8,7 @@ export const useUsers = () => {
 
     // Composables
     const toast = useToast()
+    const { t } = useI18n()
 
     // Services
     const { getAll, suspend, remove } = useUserService()
@@ -22,10 +23,10 @@ export const useUsers = () => {
             if (data.value && !error.value) {
                 users.value = data.value
             } else if (error.value) {
-                toast.error('An error occured', error.value.message)
+                toast.error(t('admin.users.notifications.error'), error.value.message)
             }
         } catch (error: any) {
-            toast.error('An error occured', error)
+            toast.error(t('admin.users.notifications.error'), error)
         } finally {
             isLoading.value = false
         }
@@ -38,13 +39,16 @@ export const useUsers = () => {
             const { data, error } = await suspend(id)
 
             if (data.value && !error.value) {
-                toast.success(`The account ${data.value.email} has been suspended`, '')
+                toast.success(
+                    t('admin.users.notifications.suspend_success'), 
+                    t('admin.users.notifications.suspend_success_message', { email: data.value.email })
+                )
                 await fetchUsers();
             } else if (error.value) {
-                toast.error('An error occured', error.value.message)
+                toast.error(t('admin.users.notifications.error'), error.value.message)
             }
         } catch (error: any) {
-            toast.error('An error occured', error)
+            toast.error(t('admin.users.notifications.error'), error)
         } finally {
             isLoading.value = false
         }
@@ -57,13 +61,19 @@ export const useUsers = () => {
             const { error } = await remove(id)
 
             if (!error.value) {
-                toast.success(`The account (${id}) has been removed.`, '')
+                toast.success(
+                    t('admin.users.notifications.delete_success'),
+                    t('admin.users.notifications.delete_success_message', { id })
+                )
                 await fetchUsers();
             } else {
-                toast.error('An error occured while removing user', '')
+                toast.error(
+                    t('admin.users.notifications.delete_error'),
+                    t('admin.users.notifications.delete_error_message')
+                )
             }
         } catch (error: any) {
-            toast.error('An error occured', error)
+            toast.error(t('admin.users.notifications.error'), error)
         } finally {
             isLoading.value = false
         }

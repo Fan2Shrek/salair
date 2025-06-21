@@ -236,8 +236,8 @@
     },
     "admin": {
         "dashboard": {
-            "title": "Dashboard",
-            "subtitle": "Vue d'ensemble de la plateforme",
+            "title": "Tableau de bord",
+            "subtitle": "Aperçu de la plateforme",
             "stats": {
                 "users": "Utilisateurs",
                 "total_users": "Total des utilisateurs",
@@ -248,9 +248,49 @@
             }
         },
         "users": {
-            "title": "Gestion des utilisateurs",
-            "subtitle": "Gérez les comptes utilisateurs de la plateforme",
-            "coming_soon": "Fonctionnalité en cours de développement"
+            "title": "Utilisateurs",
+            "subtitle": "Gérez et organisez tous les utilisateurs de la plateforme",
+            "coming_soon": "Fonctionnalité en cours de développement",
+            "export": "Export",
+            "add_user": "Ajouter un utilisateur",
+            "search": "Rechercher",
+            "filters": "Filtres",
+            "edit": "Modifier",
+            "delete": "Supprimer",
+            "suspend": "Suspendre",
+            "columns": {
+                "id": "ID",
+                "first_name": "Prénom",
+                "last_name": "Nom",
+                "email": "Email",
+                "role": "Rôle",
+                "status": "Statut"
+            },
+            "delete_modal": {
+                "title": "Supprimer l'utilisateur",
+                "description": "Êtes-vous sûr de vouloir supprimer cet utilisateur ? Cette action est irréversible.",
+                "cancel": "Annuler",
+                "confirm": "Supprimer"
+            },
+            "status": {
+                "active": "Actif",
+                "inactive": "Inactif",
+                "suspended": "Suspendu"
+            },
+            "roles": {
+                "admin": "Administrateur",
+                "user": "Utilisateur"
+            },
+            "notifications": {
+                "error": "Une erreur est survenue",
+                "error_message": "Une erreur inattendue s'est produite, veuillez réessayer.",
+                "delete_error": "Erreur de suppression",
+                "delete_error_message": "Une erreur s'est produite lors de la suppression de l'utilisateur.",
+                "delete_success": "Utilisateur supprimé",
+                "delete_success_message": "L'utilisateur (ID: {id}) a été supprimé avec succès.",
+                "suspend_success": "Utilisateur suspendu",
+                "suspend_success_message": "Le compte {email} a été suspendu."
+            }
         },
         "articles": {
             "title": "Articles",

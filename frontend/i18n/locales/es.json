@@ -236,8 +236,8 @@
     },
     "admin": {
         "dashboard": {
-            "title": "Dashboard",
-            "subtitle": "Vista general de la plataforma",
+            "title": "Panel",
+            "subtitle": "Resumen de la plataforma",
             "stats": {
                 "users": "Usuarios",
                 "total_users": "Total de usuarios",
@@ -248,9 +248,49 @@
             }
         },
         "users": {
-            "title": "Gestión de usuarios",
-            "subtitle": "Gestiona las cuentas de usuario de la plataforma",
-            "coming_soon": "Funcionalidad en desarrollo"
+            "title": "Usuarios",
+            "subtitle": "Gestiona y organiza todos los usuarios de la plataforma",
+            "coming_soon": "Funcionalidad en desarrollo",
+            "export": "Exportar",
+            "add_user": "Añadir usuario",
+            "search": "Buscar",
+            "filters": "Filtros",
+            "edit": "Editar",
+            "delete": "Eliminar",
+            "suspend": "Suspender",
+            "columns": {
+                "id": "ID",
+                "first_name": "Nombre",
+                "last_name": "Apellido",
+                "email": "Email",
+                "role": "Rol",
+                "status": "Estado"
+            },
+            "delete_modal": {
+                "title": "Eliminar usuario",
+                "description": "¿Estás seguro de que quieres eliminar este usuario? Esta acción es irreversible.",
+                "cancel": "Cancelar",
+                "confirm": "Eliminar"
+            },
+            "status": {
+                "active": "Activo",
+                "inactive": "Inactivo",
+                "suspended": "Suspendido"
+            },
+            "roles": {
+                "admin": "Administrador",
+                "user": "Usuario"
+            },
+            "notifications": {
+                "error": "Ha ocurrido un error",
+                "error_message": "Ha ocurrido un error inesperado, por favor inténtalo de nuevo.",
+                "delete_error": "Error al eliminar",
+                "delete_error_message": "Ha ocurrido un error al eliminar el usuario.",
+                "delete_success": "Usuario eliminado",
+                "delete_success_message": "El usuario (ID: {id}) ha sido eliminado correctamente.",
+                "suspend_success": "Usuario suspendido",
+                "suspend_success_message": "La cuenta {email} ha sido suspendida."
+            }
         },
         "articles": {
             "title": "Artículos",

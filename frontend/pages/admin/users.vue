@@ -1,12 +1,12 @@
 <script setup lang="ts">
     import AlertCircleIcon from '~/components/atoms/icons/AlertCircleIcon.vue';
-import DownloadIcon from '~/components/atoms/icons/DownloadIcon.vue';
+    import DownloadIcon from '~/components/atoms/icons/DownloadIcon.vue';
     import EditIcon from '~/components/atoms/icons/EditIcon.vue';
     import FilterLinesIcon from '~/components/atoms/icons/FilterLinesIcon.vue';
     import PlusIcon from '~/components/atoms/icons/PlusIcon.vue';
     import SearchIcon from '~/components/atoms/icons/SearchIcon.vue';
     import SlashOctogonIcon from '~/components/atoms/icons/SlashOctogonIcon.vue';
-import TrashIcon from '~/components/atoms/icons/TrashIcon.vue';
+    import TrashIcon from '~/components/atoms/icons/TrashIcon.vue';
     import type { Column, TableAction } from '~/components/organisms/UTable.vue';
     import { useUsers } from '~/composables/admin/useUsers';
 
@@ -14,50 +14,52 @@ import TrashIcon from '~/components/atoms/icons/TrashIcon.vue';
         middleware: 'admin',
     });
 
+    const { t } = useI18n();
+
     const usersColumns: Column[] = [
         {
             key: 'id',
-            label: 'ID',
+            label: t('admin.users.columns.id'),
         },
         {
             key: 'firstName',
-            label: 'First name',
+            label: t('admin.users.columns.first_name'),
         },
         {
             key: 'lastName',
-            label: 'Last name',
+            label: t('admin.users.columns.last_name'),
         },
         {
-            label: 'Email',
+            label: t('admin.users.columns.email'),
             key: 'email',
         },
         {
             key: 'role',
-            label: 'Role',
+            label: t('admin.users.columns.role'),
             sortable: true,
         },
         {
             key: 'status',
-            label: 'Status',
+            label: t('admin.users.columns.status'),
         },
     ];
 
     const actions: TableAction[] = [
         {
             key: 'edit',
-            label: 'Modifier',
+            label: t('admin.users.edit'),
             icon: EditIcon,
             handler: (row) => console.log(row),
         },
         {
             key: 'delete',
-            label: 'Supprimer',
+            label: t('admin.users.delete'),
             icon: TrashIcon,
-            handler: (row) => openDeleteModal(row)
+            handler: (row) => openDeleteModal(row),
         },
         {
             key: 'suspend',
-            label: 'Suspendre',
+            label: t('admin.users.suspend'),
             icon: SlashOctogonIcon,
             handler: (row) => suspendUser(row.id as string),
             visible: (row) => row.status !== 'suspended',
@@ -84,20 +86,20 @@ import TrashIcon from '~/components/atoms/icons/TrashIcon.vue';
                         <ChevronRightIcon class="text-fg-quaternary size-4" />
                         <div class="py-1 px-2">
                             <ULink to="/admin/users" variant="secondary" class="text-quaternary font-semibold text-sm"
-                                >Utilisateurs</ULink
+                                >{{ $t('admin.users.title') }}</ULink
                             >
                         </div>
                     </div>
                     <div class="flex gap-4 border-b border-secondary pb-4">
                         <div class="space-y-1 flex-grow">
-                            <h1 class="font-semibold text-primary text-2xl">Utilisateurs</h1>
-                            <p class="text-tertiary">Gérez et organisez tous les utilisateurs de la plateforme.</p>
+                            <h1 class="font-semibold text-primary text-2xl">{{ $t('admin.users.title') }}</h1>
+                            <p class="text-tertiary">{{ $t('admin.users.subtitle') }}</p>
                         </div>
                         <div class="flex items-center gap-3">
                             <UButton variant="secondary" :icon="DownloadIcon" icon-position="leading" disabled
-                                >Export</UButton
+                                >{{ $t('admin.users.export') }}</UButton
                             >
-                            <UButton :icon="PlusIcon" icon-position="leading" disabled>Ajouter un utilisateur</UButton>
+                            <UButton :icon="PlusIcon" icon-position="leading" disabled>{{ $t('admin.users.add_user') }}</UButton>
                         </div>
                     </div>
                 </div>
@@ -109,12 +111,12 @@ import TrashIcon from '~/components/atoms/icons/TrashIcon.vue';
                         :icon="SearchIcon"
                         icon-position="leading"
                         name="search"
-                        placeholder="Rechercher"
+                        :placeholder="$t('admin.users.search')"
                         class="w-96"
                         disabled
                     />
                     <UButton variant="secondary" :icon="FilterLinesIcon" icon-position="leading" disabled
-                        >Filtres</UButton
+                        >{{ $t('admin.users.filters') }}</UButton
                     >
                 </section>
                 <UTable
@@ -131,8 +133,8 @@ import TrashIcon from '~/components/atoms/icons/TrashIcon.vue';
                             variant="badge"
                             :color="row.role === 'admin' ? 'error' : row.role === 'user' ? 'success' : undefined"
                         >
-                            {{ row.role === 'admin' ? 'Administrator' : undefined }}
-                            {{ row.role === 'user' ? 'User' : undefined }}
+                            {{ row.role === 'admin' ? $t('admin.users.roles.admin') : undefined }}
+                            {{ row.role === 'user' ? $t('admin.users.roles.user') : undefined }}
                         </UBadge>
                     </template>
                     <template #cell-status="{ row }">
@@ -150,9 +152,9 @@ import TrashIcon from '~/components/atoms/icons/TrashIcon.vue';
                                         : undefined
                             "
                         >
-                            {{ row.status === 'active' ? 'Active' : undefined }}
-                            {{ row.status === 'inactive' ? 'Inactive' : undefined }}
-                            {{ row.status === 'suspended' ? 'Suspended' : undefined }}
+                            {{ row.status === 'active' ? $t('admin.users.status.active') : undefined }}
+                            {{ row.status === 'inactive' ? $t('admin.users.status.inactive') : undefined }}
+                            {{ row.status === 'suspended' ? $t('admin.users.status.suspended') : undefined }}
                         </UBadge>
                     </template>
                 </UTable>
@@ -162,17 +164,17 @@ import TrashIcon from '~/components/atoms/icons/TrashIcon.vue';
                 <div class="px-6 pt-6">
                     <UFeaturedIcon :icon="AlertCircleIcon" size="lg" color="error" />
                     <div class="space-y-0.5 mt-4">
-                        <h3 class="font-semibold text-primary">Supprimer l'utilisateur</h3>
+                        <h3 class="font-semibold text-primary">{{ $t('admin.users.delete_modal.title') }}</h3>
                         <p class="text-tertiary text-sm">
-                            Êtes-vous sûr de vouloir supprimer cet utilisateur ? Cette action est irréversible.
+                            {{ $t('admin.users.delete_modal.description') }}
                         </p>
                     </div>
                 </div>
                 <div class="pt-8">
                     <div class="flex items-center justify-between gap-3 px-6 pb-6">
-                        <UButton variant="secondary" class="w-full" @click="closeDeleteModal">Annuler</UButton>
+                        <UButton variant="secondary" class="w-full" @click="closeDeleteModal">{{ $t('admin.users.delete_modal.cancel') }}</UButton>
                         <UButton class="w-full" @click="confirmDelete((item) => deleteUser(item.id))"
-                            >Supprimer</UButton
+                            >{{ $t('admin.users.delete_modal.confirm') }}</UButton
                         >
                     </div>
                 </div>
