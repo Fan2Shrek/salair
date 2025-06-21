@@ -251,6 +251,46 @@
             "title": "Gestión de usuarios",
             "subtitle": "Gestiona las cuentas de usuario de la plataforma",
             "coming_soon": "Funcionalidad en desarrollo"
+        },
+        "articles": {
+            "title": "Artículos",
+            "subtitle": "Gestiona y organiza todos los artículos del blog.",
+            "breadcrumb": "Artículos",
+            "table": {
+                "id": "ID",
+                "title": "Título",
+                "slug": "Slug",
+                "status": "Estado"
+            },
+            "actions": {
+                "edit": "Editar",
+                "delete": "Eliminar",
+                "publish": "Publicar",
+                "archive": "Archivar",
+                "export": "Exportar",
+                "add": "Añadir un artículo",
+                "search": "Buscar",
+                "filters": "Filtros"
+            },
+            "status": {
+                "published": "Publicado",
+                "draft": "Borrador",
+                "archived": "Archivado"
+            },
+            "delete_modal": {
+                "title": "Eliminar artículo",
+                "message": "¿Estás seguro de que quieres eliminar este artículo? Esta acción es irreversible.",
+                "cancel": "Cancelar",
+                "confirm": "Confirmar"
+            },
+            "notifications": {
+                "published": "El artículo ha sido publicado",
+                "published_message": "El artículo {slug} ha sido publicado.",
+                "archived": "El artículo ha sido archivado",
+                "archived_message": "El artículo {slug} ha sido archivado.",
+                "deleted": "El artículo ha sido eliminado",
+                "deleted_message": "El artículo ha sido eliminado permanentemente."
+            }
         }
     },
     "settings": {

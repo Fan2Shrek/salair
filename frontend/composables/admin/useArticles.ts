@@ -1,7 +1,8 @@
 import type { BlogArticle } from "~/types/blog_article";
 import type { BlogArticlePaginated } from "~/types/blog_article_paginated";
 
-export default function useBlog() {
+export default function useArticles() {
+    const { t } = useI18n();
     const articles = ref<BlogArticlePaginated>();
     const toast = useToast();
     const { $api } = useNuxtApp();
@@ -15,10 +16,10 @@ export default function useBlog() {
             if (data.value && !error.value) {
                 articles.value = data.value
             } else {
-                toast.error('An error occured', error.value?.message || '')
+                toast.error(t('general.error'), error.value?.message || t('general.error_occurred'))
             }
         } catch {
-            toast.error('An error occured', '')
+            toast.error(t('general.error'), t('general.error_occurred'))
         }
     }
 
@@ -32,15 +33,19 @@ export default function useBlog() {
             })
 
             if (data.value && !error.value) {
-                toast.success("L'article a bien été publié", `L'article ${data.value.slug} a bien été publié.`)
+                const { t } = useI18n();
+                toast.success(
+                    t('admin.articles.notifications.published'), 
+                    t('admin.articles.notifications.published_message', { slug: data.value.slug })
+                )
                 await loadContent();
             }
 
             if (error.value) {
-                toast.error('An error occured', error.value.message)
+                toast.error(t('general.error'), error.value.message)
             }
         } catch {
-            toast.error('An error occured', '')
+            toast.error(t('general.error'), t('general.error_occurred'))
         }
     }
 
@@ -54,15 +59,19 @@ export default function useBlog() {
             });
 
             if (data.value && !error.value) {
-                toast.success("L'article a bien été archivé", `L'article ${data.value.slug} a bien été archivé.`)
+                const { t } = useI18n();
+                toast.success(
+                    t('admin.articles.notifications.archived'), 
+                    t('admin.articles.notifications.archived_message', { slug: data.value.slug })
+                )
                 await loadContent();
             }
 
             if (error.value) {
-                toast.error('An error occured', error.value.message)
+                toast.error(t('general.error'), error.value.message)
             }
         } catch {
-            toast.error('An error occured', '')
+            toast.error(t('general.error'), t('general.error_occurred'))
         }
     }
 
@@ -73,13 +82,17 @@ export default function useBlog() {
             });
 
             if (!error.value) {
-                toast.success("L'article a bien été supprimé", "L'article a bien été supprimé définitivement.")
+                const { t } = useI18n();
+                toast.success(
+                    t('admin.articles.notifications.deleted'), 
+                    t('admin.articles.notifications.deleted_message')
+                )
                 await loadContent();
             } else {
-                toast.error('An error occured', error.value.message)
+                toast.error(t('general.error'), error.value.message)
             }
         } catch {
-            toast.error('An error occured', '')
+            toast.error(t('general.error'), t('general.error_occurred'))
         }
     }
 

@@ -251,6 +251,46 @@
             "title": "User Management",
             "subtitle": "Manage platform user accounts",
             "coming_soon": "Feature under development"
+        },
+        "articles": {
+            "title": "Articles",
+            "subtitle": "Manage and organize all blog articles.",
+            "breadcrumb": "Articles",
+            "table": {
+                "id": "ID",
+                "title": "Title",
+                "slug": "Slug",
+                "status": "Status"
+            },
+            "actions": {
+                "edit": "Edit",
+                "delete": "Delete",
+                "publish": "Publish",
+                "archive": "Archive",
+                "export": "Export",
+                "add": "Add an article",
+                "search": "Search",
+                "filters": "Filters"
+            },
+            "status": {
+                "published": "Published",
+                "draft": "Draft",
+                "archived": "Archived"
+            },
+            "delete_modal": {
+                "title": "Delete article",
+                "message": "Are you sure you want to delete this article? This action is irreversible.",
+                "cancel": "Cancel",
+                "confirm": "Confirm"
+            },
+            "notifications": {
+                "published": "The article has been published",
+                "published_message": "The article {slug} has been published.",
+                "archived": "The article has been archived",
+                "archived_message": "The article {slug} has been archived.",
+                "deleted": "The article has been deleted",
+                "deleted_message": "The article has been permanently deleted."
+            }
         }
     },
     "settings": {

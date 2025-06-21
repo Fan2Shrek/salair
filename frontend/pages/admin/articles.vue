@@ -16,8 +16,10 @@
         middleware: 'admin',
     });
 
+    const { t } = useI18n();
+    
     useSeoMeta({
-        title: 'Articles',
+        title: t('admin.articles.title'),
     });
 
     const { articles, loadContent, publish, archive, deleteArticle } = useArticles();
@@ -26,19 +28,19 @@
     const articlesColumns: Column[] = [
         {
             key: 'id',
-            label: 'ID',
+            label: t('admin.articles.table.id'),
         },
         {
             key: 'title',
-            label: 'Title',
+            label: t('admin.articles.table.title'),
         },
         {
             key: 'slug',
-            label: 'Slug',
+            label: t('admin.articles.table.slug'),
         },
         {
             key: 'status',
-            label: 'Status',
+            label: t('admin.articles.table.status'),
             sortable: true,
         },
     ];
@@ -46,19 +48,19 @@
     const actions: TableAction[] = [
         {
             key: 'edit',
-            label: 'Modifier',
+            label: t('admin.articles.actions.edit'),
             icon: EditIcon,
             handler: (row) => console.log(row),
         },
         {
             key: 'delete',
-            label: 'Supprimer',
+            label: t('admin.articles.actions.delete'),
             icon: TrashIcon,
             handler: (row) => openDeleteModal(row),
         },
         {
             key: 'publish',
-            label: 'Publier',
+            label: t('admin.articles.actions.publish'),
             icon: GlobeIcon,
             handler: async (row) => {
                 await publish(row.id as string);
@@ -67,7 +69,7 @@
         },
         {
             key: 'archive',
-            label: 'Archiver',
+            label: t('admin.articles.actions.archive'),
             icon: FolderIcon,
             handler: async (row) => {
                 await archive(row.id as string);
@@ -96,20 +98,20 @@
                                 to="/admin/articles"
                                 variant="secondary"
                                 class="text-quaternary font-semibold text-sm"
-                                >Articles</ULink
+                                >{{ $t('admin.articles.breadcrumb') }}</ULink
                             >
                         </div>
                     </div>
                     <div class="flex gap-4 border-b border-secondary pb-4">
                         <div class="space-y-1 flex-grow">
-                            <h1 class="font-semibold text-primary text-2xl">Articles</h1>
-                            <p class="text-tertiary">Gérez et organisez tous les articles du blog.</p>
+                            <h1 class="font-semibold text-primary text-2xl">{{ $t('admin.articles.title') }}</h1>
+                            <p class="text-tertiary">{{ $t('admin.articles.subtitle') }}</p>
                         </div>
                         <div class="flex items-center gap-3">
                             <UButton variant="secondary" :icon="DownloadIcon" icon-position="leading" disabled
-                                >Export</UButton
+                                >{{ $t('admin.articles.actions.export') }}</UButton
                             >
-                            <UButton :icon="PlusIcon" icon-position="leading" disabled>Ajouter un article</UButton>
+                            <UButton :icon="PlusIcon" icon-position="leading" disabled>{{ $t('admin.articles.actions.add') }}</UButton>
                         </div>
                     </div>
                 </div>
@@ -121,12 +123,12 @@
                         :icon="SearchIcon"
                         icon-position="leading"
                         name="search"
-                        placeholder="Rechercher"
+                        :placeholder="$t('admin.articles.actions.search')"
                         class="w-96"
                         disabled
                     />
                     <UButton variant="secondary" :icon="FilterLinesIcon" icon-position="leading" disabled
-                        >Filtres</UButton
+                        >{{ $t('admin.articles.actions.filters') }}</UButton
                     >
                 </section>
                 <UTable
@@ -151,9 +153,9 @@
                                         : undefined
                             "
                         >
-                            {{ row.status === 'published' ? 'Published' : undefined }}
-                            {{ row.status === 'draft' ? 'Draft' : undefined }}
-                            {{ row.status === 'archived' ? 'Archived' : undefined }}
+                            {{ row.status === 'published' ? $t('admin.articles.status.published') : undefined }}
+                            {{ row.status === 'draft' ? $t('admin.articles.status.draft') : undefined }}
+                            {{ row.status === 'archived' ? $t('admin.articles.status.archived') : undefined }}
                         </UBadge>
                     </template>
                 </UTable>
@@ -164,17 +166,17 @@
                 <div class="px-6 pt-6">
                     <UFeaturedIcon :icon="AlertCircleIcon" size="lg" color="error" />
                     <div class="space-y-0.5 mt-4">
-                        <h3 class="font-semibold text-primary">Supprimer l'article</h3>
+                        <h3 class="font-semibold text-primary">{{ $t('admin.articles.delete_modal.title') }}</h3>
                         <p class="text-tertiary text-sm">
-                            Êtes-vous sûr de vouloir supprimer cet article ? Cette action est irréversible.
+                            {{ $t('admin.articles.delete_modal.message') }}
                         </p>
                     </div>
                 </div>
                 <div class="pt-8">
                     <div class="flex items-center justify-between gap-3 px-6 pb-6">
-                        <UButton variant="secondary" class="w-full" @click="closeDeleteModal">Cancel</UButton>
+                        <UButton variant="secondary" class="w-full" @click="closeDeleteModal">{{ $t('admin.articles.delete_modal.cancel') }}</UButton>
                         <UButton class="w-full" @click="confirmDelete((item) => deleteArticle(item.id))"
-                            >Confirm</UButton
+                            >{{ $t('admin.articles.delete_modal.confirm') }}</UButton
                         >
                     </div>
                 </div>
