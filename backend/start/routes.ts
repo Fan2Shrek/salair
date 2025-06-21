@@ -83,10 +83,7 @@ router
     router.put('/companies/:id', [CompaniesController, 'update']).as('companies.update')
     router.delete('/companies/:id', [CompaniesController, 'destroy']).as('companies.destroy')
     router
-      .post('/companies/:id/logo', [
-        () => import('#controllers/companies.controller'),
-        'uploadLogo',
-      ])
+      .post('/companies/:id/logo', [CompaniesController, 'uploadLogo'])
       .as('companies.uploadLogo')
   })
   .use([middleware.auth()])
