@@ -128,7 +128,7 @@ export default class CompaniesController {
         })
       }
 
-      const logo = request.file('logo', {
+      const logo = request.file('file', {
         size: '2mb', // Limit file size to 2MB
         extnames: ['jpg', 'jpeg', 'png', 'webp'], // Allow only image files
       })
