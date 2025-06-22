@@ -232,7 +232,8 @@
     "sidebar": {
         "home": "Home",
         "dashboard": "Dashboard",
-        "settings": "Settings"
+        "settings": "Settings",
+        "support": "Support"
     },
     "admin": {
         "dashboard": {

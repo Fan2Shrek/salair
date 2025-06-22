@@ -1,5 +1,6 @@
 <script setup lang="ts">
-    import SettingsIcon from '~/components/atoms/icons/SettingsIcon.vue';
+    import MessageChatCircleIcon from '~/components/atoms/icons/MessageChatCircleIcon.vue';
+import SettingsIcon from '~/components/atoms/icons/SettingsIcon.vue';
     import USidebarHeader from '~/components/molecules/app/USidebarHeader.vue';
     import USidebarNavigation from '~/components/molecules/app/USidebarNavigation.vue';
     import UUserProfileMenu from '~/components/molecules/app/UUserProfileMenu.vue';
@@ -17,6 +18,9 @@
                 <nav class="w-full mt-1 space-y-1">
                     <ul class="w-full">
                         <USidebarItem :title="t('sidebar.settings')" :icon="SettingsIcon" to="/app/settings" />
+                    </ul>
+                    <ul class="w-full">
+                        <USidebarItem :title="t('sidebar.support')" :icon="MessageChatCircleIcon" to="/app/support" />
                     </ul>
                 </nav>
                 <UUserProfileMenu v-if="authStore.user" :user="authStore.user" />

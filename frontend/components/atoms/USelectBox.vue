@@ -149,13 +149,13 @@
     const baseClasses = 'border bg-primary rounded-lg focus:ring-2 focus:border-transparent focus:outline-none placeholder:text-placeholder text-primary shadow-xs w-full';
     
     const variantClasses = {
-        default: 'border-primary focus:ring-primary hover:border-secondary',
+        default: 'border-primary focus:ring-primary',
         destructive: 'border-error-subtle focus:ring-error',
         disabled: 'bg-disabled border-disabled-subtle text-fg-disabled cursor-not-allowed',
     };
     
     const sizeClasses = {
-        sm: 'px-3 py-2 text-sm',
+        sm: 'px-3 py-2',
         md: 'px-4 py-2.5',
     };
 </script>
@@ -195,7 +195,7 @@
                 >
                     <XIcon class="size-4" />
                 </button>
-                <ChrevronDownIcon class="size-5 text-tertiary" />
+                <ChrevronDownIcon class="size-5 text-fg-quaternary" />
             </div>
         </div>
         

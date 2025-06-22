@@ -232,7 +232,8 @@
     "sidebar": {
         "home": "Accueil",
         "dashboard": "Tableau de bord",
-        "settings": "Paramètres"
+        "settings": "Paramètres",
+        "support": "Support"
     },
     "admin": {
         "dashboard": {

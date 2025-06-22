@@ -4,6 +4,7 @@
     import FileIcon from '~/components/atoms/icons/FileIcon.vue';
     import USidebarItem from '~/components/atoms/USidebarItem.vue';
     import UserIcon from '~/components/atoms/icons/UserIcon.vue';
+import FileLinesIcon from '~/components/atoms/icons/FileLinesIcon.vue';
 
     const { t } = useI18n();
     const authStore = useAuthStore();
@@ -18,6 +19,11 @@
             link: '/app/dashboard',
             icon: ChartIcon,
         },
+        {
+            title: 'Invoices',
+            link: '/app/invoices',
+            icon: FileLinesIcon
+        }
     ];
 
     const adminNavLinks = [
