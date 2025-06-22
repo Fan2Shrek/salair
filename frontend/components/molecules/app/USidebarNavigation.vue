@@ -5,6 +5,8 @@
     import USidebarItem from '~/components/atoms/USidebarItem.vue';
     import UserIcon from '~/components/atoms/icons/UserIcon.vue';
 import FileLinesIcon from '~/components/atoms/icons/FileLinesIcon.vue';
+import BuildingIcon from '~/components/atoms/icons/BuildingIcon.vue';
+import MultipleUsersIcon from '~/components/atoms/icons/MultipleUsersIcon.vue';
 
     const { t } = useI18n();
     const authStore = useAuthStore();
@@ -20,9 +22,19 @@ import FileLinesIcon from '~/components/atoms/icons/FileLinesIcon.vue';
             icon: ChartIcon,
         },
         {
-            title: 'Invoices',
+            title: t('sidebar.invoices'),
             link: '/app/invoices',
             icon: FileLinesIcon
+        },
+        {
+            title: t('sidebar.customers'),
+            link: '/app/customers',
+            icon: MultipleUsersIcon
+        },
+        {
+            title: t('sidebar.company'),
+            link: '/app/company',
+            icon: BuildingIcon
         }
     ];
 

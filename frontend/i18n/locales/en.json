@@ -7,7 +7,8 @@
         "search": "Search",
         "continue": "Continue",
         "error": "Error",
-        "error_occurred": "An error occurred"
+        "error_occurred": "An error occurred",
+        "close": "Close"
     },
     "about": {
         "title_small": "About us",
@@ -140,6 +141,11 @@
             "forgot_password": "Forgot password?",
             "submit": "Log in"
         },
+        "suspended": {
+            "title": "Account suspended",
+            "message": "Your account has been suspended. Please contact our support for more information.",
+            "contact_support": "Contact support"
+        },
         "no_account": "Don't have an account yet?"
     },
     "signup": {
@@ -233,7 +239,10 @@
         "home": "Home",
         "dashboard": "Dashboard",
         "settings": "Settings",
-        "support": "Support"
+        "support": "Support",
+        "invoices": "Invoices",
+        "customers": "Customers",
+        "company": "Company"
     },
     "admin": {
         "dashboard": {

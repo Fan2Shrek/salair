@@ -1,4 +1,6 @@
 <script setup lang="ts">
+    import AlertCircleIcon from '~/components/atoms/icons/AlertCircleIcon.vue';
+
     definePageMeta({
         middleware: 'auth',
     });
@@ -13,6 +15,7 @@
     const password = ref<string>('');
     const rememberMe = ref<boolean>(false);
     const isLoading = ref<boolean>(false);
+    const isSuspendedModalOpen = ref<boolean>(false);
 
     // Navigation helpers
     const redirectUserAfterLogin = () => {
@@ -27,9 +30,20 @@
         return router.push('/app/dashboard');
     };
 
-    const handleLoginError = (result: { data?: { errors?: Array<{ message: string }> }; error?: string }): void => {
+    const handleLoginError = (result: {
+        data?: { errors?: Array<{ message: string }>; message?: string };
+        error?: string;
+        statusCode?: number;
+    }): void => {
+        // Check for suspended account
+        if (result.statusCode === 403 && result.data?.message === 'Account suspended') {
+            isSuspendedModalOpen.value = true;
+            return;
+        }
+
         if (result.data?.errors?.length) {
             handleAuthError(result.data.errors[0].message);
+            return;
         }
 
         error('Une erreur est survenue', result.error || 'Erreur de connexion');
@@ -120,5 +134,24 @@
             </div>
         </section>
         <section class="hidden md:block md:w-1/2 h-full bg-secondary"></section>
+
+        <UBaseModal :is-open="isSuspendedModalOpen" @close="isSuspendedModalOpen = false">
+            <div class="px-6 pt-6">
+                <UFeaturedIcon :icon="AlertCircleIcon" size="lg" color="error" />
+                <div class="space-y-0.5 mt-4">
+                    <h3 class="font-semibold text-primary">{{ $t('login.suspended.title') }}</h3>
+                    <p class="text-tertiary text-sm">
+                        {{ $t('login.suspended.message') }}
+                    </p>
+                </div>
+            </div>
+            <div class="pt-8">
+                <div class="flex items-center justify-between gap-3 px-6 pb-6">
+                    <UButton variant="secondary" class="w-full" @click="isSuspendedModalOpen = false">{{ $t('general.close') }}</UButton>
+                    <UButton class="w-full" @click="navigateTo('/contact')">{{ $t('login.suspended.contact_support') }}</UButton>
+                </div>
+            </div>
+        </UBaseModal>
     </main>
 </template>
+
