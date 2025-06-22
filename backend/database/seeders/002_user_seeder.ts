@@ -16,7 +16,6 @@ export default class extends BaseSeeder {
         currentPlanId: 1,
         isOnTrial: false,
         trialEndsAt: DateTime.now().plus({ days: 30 }),
-        avatar: 'avatar-1.png',
       },
       {
         firstName: 'Thomas',
@@ -29,7 +28,6 @@ export default class extends BaseSeeder {
         currentPlanId: 2,
         isOnTrial: true,
         trialEndsAt: DateTime.now().plus({ days: 14 }),
-        avatar: 'avatar-2.png',
       },
       {
         firstName: 'Emma',
@@ -42,7 +40,6 @@ export default class extends BaseSeeder {
         currentPlanId: 1,
         isOnTrial: false,
         trialEndsAt: DateTime.now().minus({ days: 10 }),
-        avatar: 'avatar-3.png',
       },
       {
         firstName: 'Lucas',
@@ -55,7 +52,6 @@ export default class extends BaseSeeder {
         currentPlanId: 3,
         isOnTrial: true,
         trialEndsAt: DateTime.now().plus({ days: 28 }),
-        avatar: 'avatar-4.png',
       },
       {
         firstName: 'Chloé',
@@ -68,7 +64,6 @@ export default class extends BaseSeeder {
         currentPlanId: 2,
         isOnTrial: false,
         trialEndsAt: DateTime.now().minus({ days: 5 }),
-        avatar: 'avatar-5.png',
       },
       {
         firstName: 'Nassim',
