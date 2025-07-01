@@ -242,7 +242,13 @@
         "support": "Support",
         "invoices": "Factures",
         "customers": "Clients",
-        "company": "Entreprise"
+        "company": "Entreprise",
+        "admin": {
+            "dashboard": "Tableau de bord",
+            "articles": "Articles",
+            "users": "Utilisateurs",
+            "companies": "Entreprises"
+        }
     },
     "admin": {
         "dashboard": {

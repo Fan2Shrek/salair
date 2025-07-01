@@ -45,6 +45,10 @@
 
     const tabs: TabItem[] = [
         {
+            label: 'Général',
+            name: 'general'
+        },
+        {
             label: t('settings.tabs.details'),
             name: 'details',
         },
@@ -64,6 +68,10 @@
             label: t('settings.tabs.security'),
             name: 'security',
         },
+        {
+            label: 'Entreprise',
+            name: 'company'
+        }
     ];
 </script>
 
