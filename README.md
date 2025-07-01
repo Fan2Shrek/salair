@@ -12,7 +12,7 @@ Facturation, déclarations URSSAF, paiements en ligne, suivi client : tout est c
 -   👤 Gestion de clients & relances automatiques
 -   📊 Tableau de bord financier clair (CA, charges, solde)
 -   📅 Déclarations URSSAF mensuelles ou trimestrielles
--   📁 Stockage sécurisé des documents (MinIO)
+-   📁 Stockage sécurisé des documents (CloudFlare R2)
 
 
 ## 🛠 Stack technique
@@ -20,7 +20,7 @@ Facturation, déclarations URSSAF, paiements en ligne, suivi client : tout est c
 -   **Backend**: AdonisJS (Node.js)
 -   **Frontend**: Nuxt 3 + TailwindCSS
 -   **Base de données**: PostgreSQL
--   **Stockage fichiers**: MinIO (self-hosted S3)
+-   **Stockage fichiers**: CloudFlare R2
 -   **Paiement**: Stripe
 
 
