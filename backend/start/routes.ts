@@ -23,6 +23,7 @@ const TwoFactorAuthController = () => import('#controllers/two_factor_auth.contr
 
 import router from '@adonisjs/core/services/router'
 import { middleware } from './kernel.js'
+const CustomersController = () => import('#controllers/customers.controller')
 
 router.get('/', async () => {
   return {
@@ -56,7 +57,7 @@ router
   })
   .prefix('/api')
 
-// Users routes for role user
+// Me routes
 router
   .group(() => {
     router.put('/me', [MeController, 'update'])
@@ -70,6 +71,14 @@ router
   })
   .use([middleware.auth()])
   .prefix('api')
+
+// Customers routes
+router
+  .group(() => {
+    router.get('/customers', [CustomersController, 'index'])
+  })
+  .prefix('api')
+  .use([middleware.auth()])
 
 // Companies routes
 router
