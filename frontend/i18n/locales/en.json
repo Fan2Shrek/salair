@@ -626,6 +626,15 @@
         "error": "An error occurred during subscription",
         "network_error": "Connection error, please try again"
     },
+    "customers": {
+        "toast": {
+            "success_title": "Customers retrieved",
+            "success_message": "Your customer list has been successfully loaded",
+            "error_title": "Loading error",
+            "error_message": "Unable to retrieve customer data",
+            "network_error": "Server connection issue, please check your network"
+        }
+    },
     "blog": {
         "hero": {
             "subtitle": "Our blog",

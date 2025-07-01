@@ -626,6 +626,15 @@
         "error": "Une erreur est survenue lors de l'inscription",
         "network_error": "Erreur de connexion, veuillez réessayer"
     },
+    "customers": {
+        "toast": {
+            "success_title": "Clients récupérés",
+            "success_message": "La liste de vos clients a été chargée avec succès",
+            "error_title": "Erreur de chargement",
+            "error_message": "Impossible de récupérer les données clients",
+            "network_error": "Problème de connexion au serveur, veuillez vérifier votre réseau"
+        }
+    },
     "blog": {
         "meta": {
             "title": "Blog",
