@@ -1,16 +1,7 @@
 import type { BlogArticle } from "./blog_article";
+import type { PaginatedMeta } from "./paginated_meta";
 
 export interface BlogArticlePaginated {
     data: BlogArticle[]
-    meta: {
-        total: number
-        currentPage: number
-        firstPage: number
-        lastPage: number
-        firstPageUrl: string
-        lastPageUrl: string
-        nextPageUrl: string | null
-        previousPageUrl: string | null
-        perPage: number
-    }
+    meta: PaginatedMeta
 }
