@@ -56,6 +56,7 @@
             <section class="mt-8 px-8 flex items-center justify-between">
                 <div></div>
                 <UInput
+                    disabled
                     type="search"
                     placeholder="Search"
                     :icon="SearchIcon"
