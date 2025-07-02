@@ -16,6 +16,7 @@ const CompaniesController = () => import('#controllers/companies.controller')
 const InboundMailsController = () => import('#controllers/inbound_mails.controller')
 const MeController = () => import('#controllers/me.controller')
 const BlogArticlesController = () => import('#controllers/blog_articles.controller')
+const CustomersController = () => import('#controllers/customers.controller')
 const NewslettersController = () => import('#controllers/newsletter.controller')
 const ContactsController = () => import('#controllers/contacts.controller')
 const HealthChecksController = () => import('#controllers/health_checks.controller')
@@ -23,7 +24,6 @@ const TwoFactorAuthController = () => import('#controllers/two_factor_auth.contr
 
 import router from '@adonisjs/core/services/router'
 import { middleware } from './kernel.js'
-const CustomersController = () => import('#controllers/customers.controller')
 
 router.get('/', async () => {
   return {
@@ -76,6 +76,7 @@ router
 router
   .group(() => {
     router.get('/customers', [CustomersController, 'index'])
+    router.get('/customers/insights', [CustomersController, 'insights'])
   })
   .prefix('api')
   .use([middleware.auth()])
