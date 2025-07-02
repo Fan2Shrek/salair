@@ -28,7 +28,7 @@ export default class CustomersController {
       .whereBetween('createdAt', [startOfThisMonth.toSQL()!, now.toSQL()!])
 
     const customersBeforeThisMonth = totalCustomers.length - customersThisMonth.length
-    const evolution =
+    const customersEvolution =
       totalCustomers.length === 0 || customersBeforeThisMonth === 0
         ? 0
         : (customersThisMonth.length / customersBeforeThisMonth) * 100
@@ -38,7 +38,17 @@ export default class CustomersController {
         {
           label: 'Total customers',
           value: totalCustomers.length,
-          percentage: evolution,
+          percentage: customersEvolution,
+        },
+        {
+          label: 'Clients facturés',
+          value: 4,
+          percentage: -10,
+        },
+        {
+          label: 'Clients avec impayés',
+          value: 10,
+          percentage: 24,
         },
       ],
     })
