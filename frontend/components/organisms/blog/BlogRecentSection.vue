@@ -1,6 +1,6 @@
 <script setup lang="ts">
     import type { BlogArticle } from '~/types/blog_article';
-import VerticalBlogArticleCard from './VerticalBlogArticleCard.vue';
+    import VerticalBlogArticleCard from './VerticalBlogArticleCard.vue';
 
     interface BlogRecentSectionProps {
         articles: readonly BlogArticle[];
@@ -21,7 +21,7 @@ import VerticalBlogArticleCard from './VerticalBlogArticleCard.vue';
         </h2>
 
         <USkeleton v-if="isLoading" class="h-120 rounded-2xl" />
-        
+
         <div v-else-if="hasError" class="text-center py-12">
             <p class="text-error-primary font-medium">{{ t('blog.recent.error') }}</p>
             <p class="text-tertiary text-sm mt-2">{{ t('blog.recent.error_description') }}</p>
