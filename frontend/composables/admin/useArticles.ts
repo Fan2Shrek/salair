@@ -33,7 +33,6 @@ export default function useArticles() {
             })
 
             if (data.value && !error.value) {
-                const { t } = useI18n();
                 toast.success(
                     t('admin.articles.notifications.published'), 
                     t('admin.articles.notifications.published_message', { slug: data.value.slug })
@@ -59,7 +58,6 @@ export default function useArticles() {
             });
 
             if (data.value && !error.value) {
-                const { t } = useI18n();
                 toast.success(
                     t('admin.articles.notifications.archived'), 
                     t('admin.articles.notifications.archived_message', { slug: data.value.slug })
@@ -82,7 +80,6 @@ export default function useArticles() {
             });
 
             if (!error.value) {
-                const { t } = useI18n();
                 toast.success(
                     t('admin.articles.notifications.deleted'), 
                     t('admin.articles.notifications.deleted_message')
