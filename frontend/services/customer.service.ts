@@ -1,3 +1,4 @@
+import type { CustomersInsightsResponseDto } from "~/types/dtos/customers_insights_response.dto";
 import type { CustomersResponseDto } from "~/types/dtos/customers_response.dto";
 
 export const useCustomerService = () => {
@@ -9,7 +10,14 @@ export const useCustomerService = () => {
         })
     }
 
+    const getCustomersInsights = async () => {
+        return await useAuthFetch<CustomersInsightsResponseDto>($api('/api/customers/insights'), {
+            method: 'GET'
+        })
+    }
+
     return {
-        getCustomers
+        getCustomers,
+        getCustomersInsights
     }
 }
