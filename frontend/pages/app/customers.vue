@@ -21,7 +21,7 @@
         }
     ];
 
-    const { fetchCustomers, customersCount, customers } = useCustomers();
+    const { fetchCustomers, customersCount, customers, isLoading } = useCustomers();
 
     onMounted(fetchCustomers);
 </script>
@@ -38,7 +38,12 @@
             </section>
 
             <section class="px-8 flex gap-6 mt-8">
-                <div class="border border-secondary bg-primary shadow-xs rounded-xl p-5 min-w-80 relative">
+                <div v-if="isLoading" class="border border-secondary bg-primary shadow-xs rounded-xl p-5 min-w-80 relative">
+                    <USkeleton class="h-4 mr-6"/>
+                    <USkeleton class="absolute top-4.5 right-4 size-5" />
+                    <USkeleton class="mt-2 h-10" />
+                </div>
+                <div v-if="!isLoading" class="border border-secondary bg-primary shadow-xs rounded-xl p-5 min-w-80 relative">
                     <h3 class="text-tertiary text-sm font-medium">Total customers</h3>
                     <UButton :icon="DotsVerticalIcon" variant="tertiary" size="sm" class="absolute top-2 right-2" />
                     <div class="flex justify-between items-end mt-2 gap-4">

@@ -4,7 +4,7 @@ import type { Customer } from "~/types/customer"
 export const useCustomers = () => {
     // Refs
     const customers = ref<Customer[]>([])
-    const isLoading = ref<boolean>(false)
+    const isLoading = ref<boolean>(true)
 
     // Composables
     const toast = useToast();
@@ -38,6 +38,7 @@ export const useCustomers = () => {
 
     return {
         // Refs
+        isLoading,
         customers,
         customersCount,
 
