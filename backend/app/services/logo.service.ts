@@ -6,7 +6,7 @@ import { LogoResponseDto } from '../../types/dtos/logo_response.dto.js'
  * Handles logo-related operations and API interactions with Logo.dev.
  */
 export class LogoService {
-  private static readonly TOKEN = env.get('API_SIRENE_TOKEN', '')
+  private static readonly TOKEN = env.get('LOGO_DEV_TOKEN', '')
 
   static async search(query: string) {
     const response = await fetch(encodeURI(`https://api.logo.dev/search?q=${query}`), {
