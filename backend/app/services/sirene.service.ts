@@ -1,4 +1,5 @@
 import env from '#start/env'
+import { getLegalFormLabel } from '#utils/legal_form'
 
 export class SireneService {
   private static readonly BASE_URL = 'https://api.insee.fr/api-sirene/3.11'
@@ -46,8 +47,9 @@ export class SireneService {
       siren: legalUnit.siren,
       siret: establishment.siret,
       naf: periode.activitePrincipaleUniteLegale,
-      forme_juridique: periode.categorieJuridiqueUniteLegale,
-      created_at: legalUnit.dateCreationUniteLegale,
+      legalFormCode: periode.categorieJuridiqueUniteLegale,
+      legalFormName: getLegalFormLabel(periode.categorieJuridiqueUniteLegale),
+      createdAt: legalUnit.dateCreationUniteLegale,
       address:
         `${establishment.adresseEtablissement.numeroVoieEtablissement ?? ''} ${establishment.adresseEtablissement.libelleVoieEtablissement ?? ''}, ${establishment.adresseEtablissement.codePostalEtablissement} ${establishment.adresseEtablissement.libelleCommuneEtablissement}`.trim(),
     }
