@@ -55,4 +55,11 @@ export default await Env.create(new URL('../', import.meta.url), {
   |----------------------------------------------------------
   */
   GITHUB_TOKEN: Env.schema.string(),
+
+  /*
+  |----------------------------------------------------------
+  | Variables for the SIRENE api
+  |----------------------------------------------------------
+  */
+  API_SIRENE_TOKEN: Env.schema.string(),
 })

@@ -1,5 +1,5 @@
 import BlogArticle from '#models/blog_article'
-import { GithubService } from '#services/github_service'
+import { GithubService } from '#services/github.service'
 import { parseFrontmatter } from '#utils/markdown'
 import { blogArticleValidator } from '#validators/blog_article'
 import type { HttpContext } from '@adonisjs/core/http'

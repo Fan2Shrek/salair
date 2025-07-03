@@ -1,6 +1,6 @@
 import BlogArticle from '#models/blog_article'
 import User from '#models/user'
-import { GithubService } from '#services/github_service'
+import { GithubService } from '#services/github.service'
 import { parseFrontmatter } from '#utils/markdown'
 import { BaseCommand } from '@adonisjs/core/ace'
 import type { CommandOptions } from '@adonisjs/core/types/ace'

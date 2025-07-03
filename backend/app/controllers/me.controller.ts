@@ -1,4 +1,4 @@
-import { AvatarService } from '#services/avatar_service'
+import { AvatarService } from '#services/avatar.service'
 import type { HttpContext } from '@adonisjs/core/http'
 
 export default class MeController {
