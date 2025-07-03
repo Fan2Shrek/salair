@@ -1,4 +1,5 @@
 import Customer from '#models/customer'
+import { SireneService } from '#services/sirene.service'
 import type { HttpContext } from '@adonisjs/core/http'
 import { DateTime } from 'luxon'
 
@@ -70,5 +71,16 @@ export default class CustomersController {
         },
       ],
     })
+  }
+
+  async fetchCompany({ request, response }: HttpContext) {
+    const siren = request.input('siren')
+
+    try {
+      const result = await SireneService.enrichCustomer(siren)
+      return result
+    } catch {
+      return response.notFound({ messages: 'Company not found' })
+    }
   }
 }

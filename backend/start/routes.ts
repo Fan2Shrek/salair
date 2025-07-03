@@ -78,6 +78,7 @@ router
     router.get('/customers', [CustomersController, 'index'])
     router.get('/customers/insights', [CustomersController, 'insights'])
     router.delete('/customer/:id', [CustomersController, 'destroy'])
+    router.post('/customers/enrich', [CustomersController, 'fetchCompany'])
   })
   .prefix('api')
   .use([middleware.auth()])
