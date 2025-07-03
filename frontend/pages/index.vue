@@ -108,9 +108,11 @@
                         aria-label="Voir la démonstration"
                         >Demo</UButton
                     >
-                    <UButton size="xl" class="w-full sm:w-auto mt-3 sm:mt-0" aria-label="S'inscrire à Salair" @click="navigateTo('/signup')">{{
-                        $t('general.sign_up')
-                    }}</UButton>
+                    <NuxtLink to="/signup">
+                        <UButton size="xl" class="w-full sm:w-auto mt-3 sm:mt-0" aria-label="S'inscrire à Salair">{{
+                            $t('general.sign_up')
+                        }}</UButton>
+                    </NuxtLink>
                 </div>
                 <div
                     class="mt-10 sm:mt-14 md:mt-18 relative max-h-[300px] sm:max-h-[400px] md:max-h-[500px] overflow-hidden"
@@ -251,7 +253,11 @@
                             </h3>
                             <p class="text-tertiary text-lg text-center">{{ $t('faq.more_questions.subtitle') }}</p>
                         </div>
-                        <UButton class="mt-8 mx-auto" @click="navigateTo('/contact')">{{ $t('faq.more_questions.button') }}</UButton>
+                        <NuxtLink to="/contact">
+                            <UButton class="mt-8 mx-auto">{{
+                                $t('faq.more_questions.button')
+                            }}</UButton>
+                        </NuxtLink>
                     </div>
                 </div>
             </section>

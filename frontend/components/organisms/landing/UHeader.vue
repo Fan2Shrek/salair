@@ -94,22 +94,21 @@
                     </li>
                 </ul>
                 <div class="flex flex-col space-y-3 pt-4 border-t border-secondary">
-                    <UButton
-                        v-if="!authStore.isAuthenticated"
-                        variant="secondary"
-                        class="w-full"
-                        @click="navigateTo('/login')"
-                        >{{ $t('general.login') }}</UButton
-                    >
-                    <UButton
-                        v-if="authStore.isAuthenticated"
-                        variant="secondary"
-                        @click="navigateTo('/app/dashboard')"
-                        >{{ $t('sidebar.dashboard') }}</UButton
-                    >
-                    <UButton v-if="!authStore.isAuthenticated" class="w-full" @click="navigateTo('/signup')">{{
-                        $t('general.sign_up')
-                    }}</UButton>
+                    <NuxtLink v-if="!authStore.isAuthenticated" to="/login">
+                        <UButton variant="secondary" class="w-full">{{
+                            $t('general.login')
+                        }}</UButton>
+                    </NuxtLink>
+                    <NuxtLink v-if="authStore.isAuthenticated" to="/app/dashboard">
+                        <UButton variant="secondary">{{
+                            $t('sidebar.dashboard')
+                        }}</UButton>
+                    </NuxtLink>
+                    <NuxtLink v-if="!authStore.isAuthenticated" to="/signup">
+                        <UButton class="w-full">{{
+                            $t('general.sign_up')
+                        }}</UButton>
+                    </NuxtLink>
                     <LogoutButton v-else />
                 </div>
             </nav>
