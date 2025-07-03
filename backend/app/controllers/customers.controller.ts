@@ -79,7 +79,8 @@ export default class CustomersController {
     try {
       const result = await SireneService.enrichCustomer(siren)
       return result
-    } catch {
+    } catch (error: any) {
+      console.log(error)
       return response.notFound({ messages: 'Company not found' })
     }
   }
