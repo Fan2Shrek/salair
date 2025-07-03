@@ -62,4 +62,11 @@ export default await Env.create(new URL('../', import.meta.url), {
   |----------------------------------------------------------
   */
   API_SIRENE_TOKEN: Env.schema.string(),
+
+  /*
+  |----------------------------------------------------------
+  | Variables for the SIRENE api
+  |----------------------------------------------------------
+  */
+  LOGO_DEV_TOKEN: Env.schema.string(),
 })
