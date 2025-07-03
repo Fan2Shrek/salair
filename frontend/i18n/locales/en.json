@@ -632,7 +632,25 @@
             "success_message": "Your customer list has been successfully loaded",
             "error_title": "Loading error",
             "error_message": "Unable to retrieve customer data",
-            "network_error": "Server connection issue, please check your network"
+            "network_error": "Server connection issue, please check your network",
+            "delete_success_title": "Customer deleted",
+            "delete_success_message": "The customer has been successfully deleted",
+            "delete_error_title": "Deletion failed",
+            "delete_error_message": "Unable to delete the customer"
+        },
+        "page": {
+            "title": "Customers",
+            "import": "Import",
+            "add_customer": "Add customer",
+            "search": "Search",
+            "columns": {
+                "company_name": "Company name",
+                "contact_name": "Contact name",
+                "email": "Email"
+            },
+            "actions": {
+                "delete": "Delete"
+            }
         }
     },
     "blog": {

@@ -16,8 +16,15 @@ export const useCustomerService = () => {
         })
     }
 
+    const removeCustomer = async (id: string) => {
+        return await useAuthFetch($api(`/api/customer/${id}`), {
+            method: 'DELETE',
+        })
+    }
+
     return {
         getCustomers,
-        getCustomersInsights
+        getCustomersInsights,
+        removeCustomer
     }
 }

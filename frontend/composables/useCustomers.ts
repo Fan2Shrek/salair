@@ -13,7 +13,7 @@ export const useCustomers = () => {
     const { t } = useI18n();
 
     // Services
-    const { getCustomers, getCustomersInsights } = useCustomerService();
+    const { getCustomers, getCustomersInsights, removeCustomer } = useCustomerService();
 
     // Computed
     const customersCount = computed(() => customers.value.length || 0)
@@ -60,6 +60,27 @@ export const useCustomers = () => {
         }
     }
 
+    const deleteCustomer = async (id: string) => {
+        try {
+            const { error } = await removeCustomer(id);
+
+            if (!error.value) {
+                toast.success(
+                    t('customers.toast.delete_success_title'), 
+                    t('customers.toast.delete_success_message')
+                )
+                await fetchCustomersData();
+            } else if (error.value) {
+                toast.error(
+                    t('customers.toast.delete_error_title'), 
+                    t('customers.toast.delete_error_message')
+                )
+            }
+        } catch {
+            toast.error(t('customers.toast.error_title'), t('customers.toast.network_error'))
+        }
+    }
+
     return {
         // Refs
         isLoading,
@@ -68,6 +89,7 @@ export const useCustomers = () => {
         customersCount,
 
         // Functions
-        fetchCustomersData
+        fetchCustomersData,
+        deleteCustomer
     }
 }

@@ -5,25 +5,37 @@
     import EqualIcon from '~/components/atoms/icons/EqualIcon.vue';
     import PlusCircleIcon from '~/components/atoms/icons/PlusCircleIcon.vue';
     import SearchIcon from '~/components/atoms/icons/SearchIcon.vue';
+    import TrashIcon from '~/components/atoms/icons/TrashIcon.vue';
     import UploadCloudIcon from '~/components/atoms/icons/UploadCloudIcon.vue';
-    import type { Column } from '~/components/organisms/UTable.vue';
+    import type { Column, TableAction } from '~/components/organisms/UTable.vue';
+    
+    const { t } = useI18n();
 
     const customerColumns: Column[] = [
         {
             key: 'companyName',
-            label: 'Company name',
+            label: t('customers.page.columns.company_name'),
         },
         {
             key: 'contactName',
-            label: 'Contact name',
+            label: t('customers.page.columns.contact_name'),
         },
         {
             key: 'email',
-            label: 'Email',
+            label: t('customers.page.columns.email'),
         },
     ];
 
-    const { fetchCustomersData, customerInsights, customers, isLoading } = useCustomers();
+    const actions: TableAction[] = [
+        {
+            key: 'delete',
+            label: t('customers.page.actions.delete'),
+            icon: TrashIcon,
+            handler: (row) => deleteCustomer(row.id as string),
+        },
+    ];
+
+    const { fetchCustomersData, customerInsights, customers, isLoading, deleteCustomer } = useCustomers();
 
     onMounted(fetchCustomersData);
 </script>
@@ -32,10 +44,10 @@
     <NuxtLayout name="app">
         <main class="pt-8 pb-12">
             <section class="px-8 flex justify-center">
-                <h1 class="font-semibold text-2xl text-primary flex-grow">Customers</h1>
+                <h1 class="font-semibold text-2xl text-primary flex-grow">{{ t('customers.page.title') }}</h1>
                 <div class="flex items-center gap-3">
-                    <UButton disabled variant="secondary" :icon="UploadCloudIcon">Import</UButton>
-                    <UButton disabled :icon="PlusCircleIcon">Add customer</UButton>
+                    <UButton disabled variant="secondary" :icon="UploadCloudIcon">{{ t('customers.page.import') }}</UButton>
+                    <UButton disabled :icon="PlusCircleIcon">{{ t('customers.page.add_customer') }}</UButton>
                 </div>
             </section>
 
@@ -57,7 +69,12 @@
                     class="border border-secondary bg-primary shadow-xs rounded-xl p-5 min-w-80 w-full relative"
                 >
                     <h3 class="text-tertiary text-sm font-medium">{{ insight.label }}</h3>
-                    <UButton :icon="DotsVerticalIcon" variant="tertiary" size="sm" class="absolute top-2 right-2" />
+                    <UButton
+                        :icon="DotsVerticalIcon"
+                        variant="tertiary"
+                        size="sm"
+                        class="hidden absolute top-2 right-2"
+                    />
                     <div class="flex justify-between items-end mt-2 gap-4">
                         <p class="font-semibold text-3xl text-primary">{{ insight.value }}</p>
                         <UBadge
@@ -70,7 +87,7 @@
                                       ? ArrowDownLeftIcon
                                       : EqualIcon
                             "
-                            :color="insight.percentage > 0 ? 'success' : (insight.percentage < 0 ? 'error' : 'brand')"
+                            :color="insight.percentage > 0 ? 'success' : insight.percentage < 0 ? 'error' : 'brand'"
                             >{{ insight.percentage }}%</UBadge
                         >
                     </div>
@@ -82,7 +99,7 @@
                 <UInput
                     disabled
                     type="search"
-                    placeholder="Search"
+                    :placeholder="t('customers.page.search')"
                     :icon="SearchIcon"
                     icon-position="leading"
                     class="min-w-80"
@@ -90,7 +107,7 @@
             </section>
 
             <section class="px-8 mt-6">
-                <UTable :columns="customerColumns" :data="customers" />
+                <UTable :columns="customerColumns" :data="customers" :actions="actions" actions-display="dropdown" />
             </section>
         </main>
     </NuxtLayout>

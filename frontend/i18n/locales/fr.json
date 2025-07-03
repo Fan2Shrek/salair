@@ -632,7 +632,25 @@
             "success_message": "La liste de vos clients a été chargée avec succès",
             "error_title": "Erreur de chargement",
             "error_message": "Impossible de récupérer les données clients",
-            "network_error": "Problème de connexion au serveur, veuillez vérifier votre réseau"
+            "network_error": "Problème de connexion au serveur, veuillez vérifier votre réseau",
+            "delete_success_title": "Client supprimé",
+            "delete_success_message": "Le client a été supprimé avec succès",
+            "delete_error_title": "Échec de suppression",
+            "delete_error_message": "Impossible de supprimer le client"
+        },
+        "page": {
+            "title": "Clients",
+            "import": "Importer",
+            "add_customer": "Ajouter un client",
+            "search": "Rechercher",
+            "columns": {
+                "company_name": "Nom de l'entreprise",
+                "contact_name": "Nom du contact",
+                "email": "Email"
+            },
+            "actions": {
+                "delete": "Supprimer"
+            }
         }
     },
     "blog": {
