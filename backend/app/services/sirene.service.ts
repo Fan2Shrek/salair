@@ -1,5 +1,6 @@
 import env from '#start/env'
 import { getLegalFormLabel } from '#utils/legal_form'
+import { LogoService } from './logo.service.js'
 
 export class SireneService {
   private static readonly BASE_URL = 'https://api.insee.fr/api-sirene/3.11'
@@ -34,13 +35,19 @@ export class SireneService {
     const legalUnit = await this.getLegalUnit(siren)
 
     const periode = legalUnit.periodesUniteLegale?.find((p: any) => p.dateFin === null) ?? {}
-    const name =
+    const name: string =
       periode.denominationUniteLegale ??
       `${legalUnit.prenom1UniteLegale ?? ''} ${periode.nomUniteLegale ?? ''}`.trim()
 
     const siret = siren + periode.nicSiegeUniteLegale
 
     const establishment = await this.getEstablishment(siret)
+
+    const logos = await LogoService.search(name)
+
+    const logo = logos.find((l) => l?.name.toLowerCase() === name.toLowerCase())
+
+    console.log(logo)
 
     return {
       name,
@@ -50,6 +57,7 @@ export class SireneService {
       legalFormCode: periode.categorieJuridiqueUniteLegale,
       legalFormName: getLegalFormLabel(periode.categorieJuridiqueUniteLegale),
       createdAt: legalUnit.dateCreationUniteLegale,
+      logoUrl: logo?.logo_url,
       address:
         `${establishment.adresseEtablissement.numeroVoieEtablissement ?? ''} ${establishment.adresseEtablissement.libelleVoieEtablissement ?? ''}, ${establishment.adresseEtablissement.codePostalEtablissement} ${establishment.adresseEtablissement.libelleCommuneEtablissement}`.trim(),
     }
