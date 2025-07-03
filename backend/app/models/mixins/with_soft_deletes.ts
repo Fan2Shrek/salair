@@ -50,7 +50,7 @@ export const WithSoftDeletes = <T extends NormalizeConstructor<typeof BaseModel>
     }
 
     /**
-     * Define scopes as static properties on the class
+     * Without soft deleted entries
      */
     static withoutTrashed = scope((query) => {
       query.whereNull('deleted_at')

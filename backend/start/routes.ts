@@ -77,6 +77,7 @@ router
   .group(() => {
     router.get('/customers', [CustomersController, 'index'])
     router.get('/customers/insights', [CustomersController, 'insights'])
+    router.delete('/customer/:id', [CustomersController, 'destroy'])
   })
   .prefix('api')
   .use([middleware.auth()])

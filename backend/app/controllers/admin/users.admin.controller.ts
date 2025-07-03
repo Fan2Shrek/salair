@@ -6,7 +6,7 @@ export default class UsersAdminController {
   async index({ response }: HttpContext) {
     const users = await User.query()
       .orderBy('created_at', 'asc')
-      .withScopes((scopes) => scopes.withoutTrashed())
+      .apply((scopes) => scopes.withoutTrashed())
 
     return response.ok(users)
   }

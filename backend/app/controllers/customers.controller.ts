@@ -11,9 +11,27 @@ export default class CustomersController {
     const page = request.input('page', 1)
     const limit = request.input('limit', 10)
 
-    const customers = await Customer.query().where('userId', user.id).paginate(page, limit)
+    const customers = await Customer.query()
+      .where('userId', user.id)
+      .apply((scopes) => scopes.withoutTrashed())
+      .paginate(page, limit)
 
     return response.ok(customers)
+  }
+
+  async destroy({ response, params, auth }: HttpContext) {
+    const id = params.id
+    const user = auth.user!
+
+    const customer = await Customer.query().where('id', id).where('userId', user.id).first()
+
+    if (!customer) {
+      return response.notFound({ message: 'Customer not found' })
+    }
+
+    await customer.delete()
+
+    return response.noContent()
   }
 
   async insights({ response, auth }: HttpContext) {
