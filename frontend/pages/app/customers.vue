@@ -3,19 +3,15 @@
     import ArrowUpRightIcon from '~/components/atoms/icons/ArrowUpRightIcon.vue';
     import DotsVerticalIcon from '~/components/atoms/icons/DotsVerticalIcon.vue';
     import EqualIcon from '~/components/atoms/icons/EqualIcon.vue';
+    import HelpCircleIcon from '~/components/atoms/icons/HelpCircleIcon.vue';
     import PlusCircleIcon from '~/components/atoms/icons/PlusCircleIcon.vue';
     import SearchIcon from '~/components/atoms/icons/SearchIcon.vue';
     import TrashIcon from '~/components/atoms/icons/TrashIcon.vue';
     import UploadCloudIcon from '~/components/atoms/icons/UploadCloudIcon.vue';
+    import ULoading from '~/components/atoms/ULoading.vue';
     import type { Column, TableAction } from '~/components/organisms/UTable.vue';
-    import type { CustomersEnrichResponseDto } from '~/types/dtos/customers_enrich_response.dto';
 
     const { t } = useI18n();
-    const { $api } = useNuxtApp();
-
-    const isCreationModalOpen = ref<boolean>(false);
-    const siren = ref<number>();
-    const foundedCompany = ref();
 
     const customerColumns: Column[] = [
         {
@@ -42,23 +38,21 @@
     ];
 
     const { fetchCustomersData, customerInsights, customers, isLoading, deleteCustomer } = useCustomers();
+    const { 
+        isCreationModalOpen, 
+        siren, 
+        foundedCompany, 
+        isSearching, 
+        searchError,
+        openCreationModal, 
+        closeCreationModal, 
+        handleSirenInput,
+        createCustomer
+    } = useCustomerCreation();
 
-    const handleSirenChange = async () => {
-        if (siren.value?.toString().length === 9) {
-            const { data, error } = await useAuthFetch<CustomersEnrichResponseDto>($api('/api/customers/enrich'), {
-                method: 'POST',
-                body: {
-                    siren: siren.value,
-                },
-            });
-
-            if (data.value && !error.value) {
-                foundedCompany.value = data.value;
-            }
-        }
-    };
-
-    onMounted(fetchCustomersData);
+    onMounted(() => {
+        fetchCustomersData();
+    });
 </script>
 
 <template>
@@ -70,7 +64,7 @@
                     <UButton disabled variant="secondary" :icon="UploadCloudIcon">{{
                         t('customers.page.import')
                     }}</UButton>
-                    <UButton :icon="PlusCircleIcon" @click="isCreationModalOpen = true">{{
+                    <UButton :icon="PlusCircleIcon" @click="openCreationModal()">{{
                         t('customers.page.add_customer')
                     }}</UButton>
                 </div>
@@ -135,12 +129,12 @@
                 <UTable :columns="customerColumns" :data="customers" :actions="actions" actions-display="dropdown" />
             </section>
 
-            <UBaseModal :is-open="isCreationModalOpen" @close="isCreationModalOpen = false">
+            <UBaseModal :is-open="isCreationModalOpen" @close="closeCreationModal()">
                 <div class="px-6 pt-3">
                     <div class="space-y-0.5 mt-4">
-                        <h3 class="font-semibold text-primary">Create a new customer</h3>
+                        <h3 class="font-semibold text-primary">{{ t('customers.creation.title') }}</h3>
                         <p class="text-tertiary text-sm">
-                            Fill out the form below to add a new customer to your database.
+                            {{ t('customers.creation.description') }}
                         </p>
                     </div>
                 </div>
@@ -149,15 +143,27 @@
                         <UInput
                             v-model="siren"
                             label="SIREN"
-                            placeholder="Entrez le numéro SIREN"
-                            type="number"
-                            required
-                            @input="handleSirenChange"
+                            placeholder="Entrez le numéro SIREN (9 chiffres)"
+                            type="text"
+                            :maxlength="9"
+                            :hint="siren && siren.length > 0 && siren.length < 9 ? `${9 - siren.length} chiffres manquants` : ''"
+                            @input="(val: string) => handleSirenInput(val)"
                         />
                     </form>
 
-                    <div v-if="foundedCompany">
-                        <div class="mt-4 p-4 border border-secondary rounded-lg bg-gray-50">
+                    <div class="mt-4">
+                        <div v-if="isSearching" class="flex justify-center py-4">
+                            <ULoading class="size-6 text-gray-500" />
+                        </div>
+
+                        <div v-else-if="searchError" class="p-4 border border-red-200 rounded-lg bg-red-50 text-red-700">
+                            <div class="flex items-center gap-2">
+                                <HelpCircleIcon class="size-5 text-red-500" />
+                                <span>{{ searchError }}</span>
+                            </div>
+                        </div>
+
+                        <div v-else-if="foundedCompany" class="p-4 border border-secondary rounded-lg bg-gray-50">
                             <div class="flex items-center gap-4">
                                 <NuxtImg
                                     v-if="foundedCompany.logoUrl"
@@ -174,12 +180,17 @@
                         </div>
                     </div>
                 </div>
-                <!-- <div class="pt-8">
+                
+                <div v-if="foundedCompany" class="pt-8">
                     <div class="flex items-center justify-between gap-3 px-6 pb-6">
-                        <UButton variant="secondary" class="w-full" @click="isModalOpen = false">Cancel</UButton>
-                        <UButton class="w-full" @click="isModalOpen = false">Confirm</UButton>
+                        <UButton variant="secondary" class="w-full" @click="closeCreationModal()">
+                            {{ t('general.cancel') }}
+                        </UButton>
+                        <UButton class="w-full" @click="createCustomer()">
+                            {{ t('customers.creation.confirm') }}
+                        </UButton>
                     </div>
-                </div> -->
+                </div>
             </UBaseModal>
         </main>
     </NuxtLayout>

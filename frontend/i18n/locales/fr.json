@@ -1,5 +1,6 @@
 {
     "general": {
+        "cancel": "Annuler",
         "login": "Se connecter",
         "sign_up": "Nous rejoindre",
         "logout": "Déconnexion",
@@ -632,11 +633,14 @@
             "success_message": "La liste de vos clients a été chargée avec succès",
             "error_title": "Erreur de chargement",
             "error_message": "Impossible de récupérer les données clients",
+            "insights_error": "Une erreur s'est produite lors du chargement des statistiques",
             "network_error": "Problème de connexion au serveur, veuillez vérifier votre réseau",
             "delete_success_title": "Client supprimé",
             "delete_success_message": "Le client a été supprimé avec succès",
             "delete_error_title": "Échec de suppression",
-            "delete_error_message": "Impossible de supprimer le client"
+            "delete_error_message": "Impossible de supprimer le client",
+            "create_success_title": "Client créé",
+            "create_success_message": "Le client a été créé avec succès"
         },
         "page": {
             "title": "Clients",
@@ -651,6 +655,13 @@
             "actions": {
                 "delete": "Supprimer"
             }
+        },
+        "creation": {
+            "title": "Créer un nouveau client",
+            "description": "Remplissez le formulaire ci-dessous pour ajouter un nouveau client à votre base de données.",
+            "company_not_found": "Aucune entreprise trouvée avec ce SIREN",
+            "search_error": "Une erreur s'est produite lors de la recherche",
+            "confirm": "Créer le client"
         }
     },
     "blog": {

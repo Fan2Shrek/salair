@@ -1,5 +1,6 @@
 {
     "general": {
+        "cancel": "Cancel",
         "login": "Log in",
         "sign_up": "Join us",
         "logout": "Logout",
@@ -632,11 +633,14 @@
             "success_message": "Your customer list has been successfully loaded",
             "error_title": "Loading error",
             "error_message": "Unable to retrieve customer data",
+            "insights_error": "An error occurred while loading statistics",
             "network_error": "Server connection issue, please check your network",
             "delete_success_title": "Customer deleted",
             "delete_success_message": "The customer has been successfully deleted",
             "delete_error_title": "Deletion failed",
-            "delete_error_message": "Unable to delete the customer"
+            "delete_error_message": "Unable to delete the customer",
+            "create_success_title": "Customer created",
+            "create_success_message": "The customer has been successfully created"
         },
         "page": {
             "title": "Customers",
@@ -651,6 +655,13 @@
             "actions": {
                 "delete": "Delete"
             }
+        },
+        "creation": {
+            "title": "Create a new customer",
+            "description": "Fill out the form below to add a new customer to your database.",
+            "company_not_found": "No company found with this SIREN",
+            "search_error": "An error occurred during the search",
+            "confirm": "Create customer"
         }
     },
     "blog": {
