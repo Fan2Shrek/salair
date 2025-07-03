@@ -8,8 +8,14 @@
     import TrashIcon from '~/components/atoms/icons/TrashIcon.vue';
     import UploadCloudIcon from '~/components/atoms/icons/UploadCloudIcon.vue';
     import type { Column, TableAction } from '~/components/organisms/UTable.vue';
-    
+    import type { CustomersEnrichResponseDto } from '~/types/dtos/customers_enrich_response.dto';
+
     const { t } = useI18n();
+    const { $api } = useNuxtApp();
+
+    const isCreationModalOpen = ref<boolean>(false);
+    const siren = ref<number>();
+    const foundedCompany = ref();
 
     const customerColumns: Column[] = [
         {
@@ -37,6 +43,21 @@
 
     const { fetchCustomersData, customerInsights, customers, isLoading, deleteCustomer } = useCustomers();
 
+    const handleSirenChange = async () => {
+        if (siren.value?.toString().length === 9) {
+            const { data, error } = await useAuthFetch<CustomersEnrichResponseDto>($api('/api/customers/enrich'), {
+                method: 'POST',
+                body: {
+                    siren: siren.value,
+                },
+            });
+
+            if (data.value && !error.value) {
+                foundedCompany.value = data.value;
+            }
+        }
+    };
+
     onMounted(fetchCustomersData);
 </script>
 
@@ -46,8 +67,12 @@
             <section class="px-8 flex justify-center">
                 <h1 class="font-semibold text-2xl text-primary flex-grow">{{ t('customers.page.title') }}</h1>
                 <div class="flex items-center gap-3">
-                    <UButton disabled variant="secondary" :icon="UploadCloudIcon">{{ t('customers.page.import') }}</UButton>
-                    <UButton disabled :icon="PlusCircleIcon">{{ t('customers.page.add_customer') }}</UButton>
+                    <UButton disabled variant="secondary" :icon="UploadCloudIcon">{{
+                        t('customers.page.import')
+                    }}</UButton>
+                    <UButton :icon="PlusCircleIcon" @click="isCreationModalOpen = true">{{
+                        t('customers.page.add_customer')
+                    }}</UButton>
                 </div>
             </section>
 
@@ -109,6 +134,53 @@
             <section class="px-8 mt-6">
                 <UTable :columns="customerColumns" :data="customers" :actions="actions" actions-display="dropdown" />
             </section>
+
+            <UBaseModal :is-open="isCreationModalOpen" @close="isCreationModalOpen = false">
+                <div class="px-6 pt-3">
+                    <div class="space-y-0.5 mt-4">
+                        <h3 class="font-semibold text-primary">Create a new customer</h3>
+                        <p class="text-tertiary text-sm">
+                            Fill out the form below to add a new customer to your database.
+                        </p>
+                    </div>
+                </div>
+                <div class="px-6 pb-6">
+                    <form class="mt-6 space-y-4">
+                        <UInput
+                            v-model="siren"
+                            label="SIREN"
+                            placeholder="Entrez le numéro SIREN"
+                            type="number"
+                            required
+                            @input="handleSirenChange"
+                        />
+                    </form>
+
+                    <div v-if="foundedCompany">
+                        <div class="mt-4 p-4 border border-secondary rounded-lg bg-gray-50">
+                            <div class="flex items-center gap-4">
+                                <NuxtImg
+                                    v-if="foundedCompany.logoUrl"
+                                    :src="foundedCompany.logoUrl"
+                                    :alt="foundedCompany.name"
+                                    class="w-16 h-16 object-contain rounded-lg border"
+                                />
+                                <div class="flex-1">
+                                    <h4 class="font-semibold text-lg text-primary">{{ foundedCompany.name }}</h4>
+                                    <p class="text-tertiary text-sm">{{ foundedCompany.address }}</p>
+                                    <p class="text-tertiary text-sm">SIREN: {{ foundedCompany.siren }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="pt-8">
+                    <div class="flex items-center justify-between gap-3 px-6 pb-6">
+                        <UButton variant="secondary" class="w-full" @click="isModalOpen = false">Cancel</UButton>
+                        <UButton class="w-full" @click="isModalOpen = false">Confirm</UButton>
+                    </div>
+                </div> -->
+            </UBaseModal>
         </main>
     </NuxtLayout>
 </template>
