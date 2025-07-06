@@ -148,7 +148,7 @@
             <div class="pt-8">
                 <div class="flex items-center justify-between gap-3 px-6 pb-6">
                     <UButton variant="secondary" class="w-full" @click="isSuspendedModalOpen = false">{{ $t('general.close') }}</UButton>
-                    <NuxtLink to="/contact">
+                    <NuxtLink to="/contact" class="w-full">
                         <UButton class="w-full">{{ $t('login.suspended.contact_support') }}</UButton>
                     </NuxtLink>
                 </div>
