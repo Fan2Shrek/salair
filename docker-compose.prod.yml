@@ -41,6 +41,8 @@ services:
             MAILGUN_API_KEY: ${MAILGUN_API_KEY}
             MAILGUN_DOMAIN: ${MAILGUN_DOMAIN}
             GITHUB_TOKEN: ${GITHUB_TOKEN}
+            API_SIRENE_TOKEN: ${API_SIRENE_TOKEN}
+            LOGO_DEV_TOKEN: ${LOGO_DEV_TOKEN}
         ports:
             - '3299:3333'
         depends_on:
