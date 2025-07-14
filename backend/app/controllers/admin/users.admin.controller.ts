@@ -1,80 +1,98 @@
-import User from '#models/user'
 import type { HttpContext } from '@adonisjs/core/http'
 import { randomUUID } from 'node:crypto'
+import UserRepository from '#repositories/user.repository'
+import ErrorService from '#services/error.service'
+import { DateTime } from 'luxon'
 
 export default class UsersAdminController {
-  async index({ response }: HttpContext) {
-    const users = await User.query()
-      .orderBy('created_at', 'asc')
-      .apply((scopes) => scopes.withoutTrashed())
+  async index({ request, response }: HttpContext) {
+    try {
+      const filters = request.only([
+        'email',
+        'status',
+        'created_after',
+        'created_before',
+        'page',
+        'limit',
+        'sort_by',
+        'order',
+      ])
 
-    return response.ok(users)
+      // Convert date strings to DateTime objects if provided
+      if (filters.created_after) {
+        filters.created_after = DateTime.fromISO(filters.created_after)
+      }
+      if (filters.created_before) {
+        filters.created_before = DateTime.fromISO(filters.created_before)
+      }
+
+      // Set default pagination if not provided
+      filters.page = Number.parseInt(filters.page) || 1
+      filters.limit = Number.parseInt(filters.limit) || 10
+
+      const users = await UserRepository.getFilteredUsers(filters)
+      return response.ok(users)
+    } catch (error) {
+      return ErrorService.internal(response, error, 'Failed to fetch users')
+    }
   }
 
   async show({ response, params }: HttpContext) {
-    const id = params.id
-
-    const user = await User.query().where('id', id).preload('company').first()
-
-    if (!user) {
-      return response.notFound()
+    try {
+      const user = await UserRepository.findByIdOrFail(params.id)
+      await user.load('company')
+      return response.ok(user)
+    } catch (error) {
+      return ErrorService.userNotFound(response)
     }
-
-    return response.ok(user)
   }
 
   async suspend({ response, params }: HttpContext) {
-    const id = params.id
+    try {
+      if (!params.id) {
+        return ErrorService.missingRequiredField(response, 'id')
+      }
 
-    if (!id) {
-      return response.badRequest({ message: 'The id is required.' })
+      const user = await UserRepository.findByIdOrFail(params.id)
+      const updatedUser = await UserRepository.update(user, { status: 'suspended' })
+
+      return response.ok(updatedUser)
+    } catch (error) {
+      return ErrorService.userNotFound(response)
     }
-
-    const user = await User.query().where('id', id).first()
-
-    if (!user) {
-      return response.notFound()
-    }
-
-    user.status = 'suspended'
-    await user.save()
-
-    return response.ok(user)
   }
 
   async reactivate({ response, params }: HttpContext) {
-    const id = params.id
+    try {
+      if (!params.id) {
+        return ErrorService.missingRequiredField(response, 'id')
+      }
 
-    if (!id) {
-      return response.badRequest({ message: 'The id is required' })
+      const user = await UserRepository.findByIdOrFail(params.id)
+      const updatedUser = await UserRepository.update(user, { status: 'active' })
+
+      return response.ok(updatedUser)
+    } catch (error) {
+      return ErrorService.userNotFound(response)
     }
-
-    const user = await User.query().where('id', id).first()
-
-    if (!user) {
-      return response.notFound({ message: 'User not found' })
-    }
-
-    user.status = 'active'
-    await user.save()
-
-    return response.ok(user)
   }
 
   /**
    * Crée un nouvel utilisateur
    */
   async store({ request, response }: HttpContext) {
-    const userData = request.only(['firstName', 'lastName', 'email', 'password', 'phoneNumber'])
-
     try {
-      const user = await User.create(userData)
+      const userData = request.only(['firstName', 'lastName', 'email', 'password', 'phoneNumber'])
+
+      // Check if email already exists
+      if (await UserRepository.emailExists(userData.email)) {
+        return ErrorService.emailAlreadyExists(response)
+      }
+
+      const user = await UserRepository.create(userData)
       return response.created(user)
     } catch (error) {
-      return response.badRequest({
-        message: "Impossible de créer l'utilisateur",
-        error: error.message,
-      })
+      return ErrorService.internal(response, error, 'Failed to create user')
     }
   }
 
@@ -83,15 +101,20 @@ export default class UsersAdminController {
    */
   async update({ params, request, response }: HttpContext) {
     try {
-      const user = await User.findOrFail(params.id)
+      const user = await UserRepository.findByIdOrFail(params.id)
       const userData = request.only(['firstName', 'lastName', 'email', 'phoneNumber', 'avatar'])
 
-      user.merge(userData)
-      await user.save()
+      // Check if email already exists for another user
+      if (userData.email && userData.email !== user.email) {
+        if (await UserRepository.emailExists(userData.email)) {
+          return ErrorService.emailAlreadyExists(response)
+        }
+      }
 
-      return response.ok(user)
+      const updatedUser = await UserRepository.update(user, userData)
+      return response.ok(updatedUser)
     } catch (error) {
-      return response.notFound({ message: 'Utilisateur non trouvé' })
+      return ErrorService.userNotFound(response)
     }
   }
 
@@ -99,20 +122,15 @@ export default class UsersAdminController {
    * Met à jour spécifiquement l'avatar d'un utilisateur
    */
   async updateAvatar({ auth, request, response }: HttpContext) {
-    const user = auth.user!
-
     try {
+      const user = auth.user!
       const avatarFile = request.file('file', {
-        size: '2mb', // Limit file size to 2MB
-        extnames: ['jpg', 'jpeg', 'png', 'webp'], // Allow only image files
+        size: '2mb',
+        extnames: ['jpg', 'jpeg', 'png', 'webp'],
       })
 
       if (!avatarFile || !avatarFile.isValid) {
-        return response.badRequest({
-          message:
-            'Invalid file. Please provide a valid image file (jpg, jpeg, png, webp) under 2MB.',
-          errors: avatarFile?.errors || [],
-        })
+        return ErrorService.invalidFileType(response, ['jpg', 'jpeg', 'png', 'webp'])
       }
 
       const filename = `${randomUUID()}.${avatarFile.extname}`
@@ -120,12 +138,10 @@ export default class UsersAdminController {
 
       await avatarFile.moveToDisk(key)
 
-      user.avatar = avatarFile.meta.url
-      await user.save()
-
-      return response.ok({ user, avatar_url: user.avatar })
+      const updatedUser = await UserRepository.update(user, { avatar: avatarFile.meta.url })
+      return response.ok({ user: updatedUser, avatar_url: updatedUser.avatar })
     } catch (error) {
-      return response.notFound({ message: 'Utilisateur non trouvé' })
+      return ErrorService.internal(response, error, 'Failed to update avatar')
     }
   }
 
@@ -134,12 +150,12 @@ export default class UsersAdminController {
    */
   async destroy({ params, response }: HttpContext) {
     try {
-      const user = await User.findOrFail(params.id)
-      await user.delete()
+      const user = await UserRepository.findByIdOrFail(params.id)
+      await UserRepository.delete(user)
 
       return response.noContent()
     } catch (error) {
-      return response.notFound({ message: 'Utilisateur non trouvé' })
+      return ErrorService.userNotFound(response)
     }
   }
 }

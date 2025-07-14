@@ -1,5 +1,6 @@
 import type { HttpContext } from '@adonisjs/core/http'
 import ErrorService from '#services/error.service'
+import UserRepository from '#repositories/user.repository'
 import { authenticator } from 'otplib'
 import qrcode from 'qrcode'
 
@@ -11,8 +12,8 @@ export default class TwoFactorAuthController {
     try {
       const user = auth.user!
       const secret = authenticator.generateSecret()
-      user.twoFactorSecret = secret
-      await user.save()
+
+      await UserRepository.update(user, { twoFactorSecret: secret })
 
       const otpauth = authenticator.keyuri(user.email, 'Salair', secret)
       const qrCodeDataUrl = await qrcode.toDataURL(otpauth)
@@ -41,8 +42,7 @@ export default class TwoFactorAuthController {
         return ErrorService.invalidTwoFactorToken(response)
       }
 
-      user.isTwoFactorEnabled = true
-      await user.save()
+      await UserRepository.enable2FA(user, user.twoFactorSecret)
 
       return response.ok({ message: '2FA has been enabled' })
     } catch (error) {
@@ -56,10 +56,7 @@ export default class TwoFactorAuthController {
   async disable({ auth, response }: HttpContext) {
     try {
       const user = auth.user!
-      user.isTwoFactorEnabled = false
-      user.twoFactorSecret = null
-
-      await user.save()
+      await UserRepository.disable2FA(user)
 
       return response.ok({ message: '2FA has been disabled' })
     } catch (error) {
