@@ -6,7 +6,7 @@ export default defineSitemapEventHandler(async () => {
     
     const res = await fetch(`${runtimeConfig.public.apiUrl}/api/blog/slugs`)
     const slugs = await res.json()
-    console.log(slugs)
+
     const urls = slugs.map((s: {slug: string}) => {
         return {
             loc: `/blog/${s.slug}`

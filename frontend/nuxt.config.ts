@@ -69,10 +69,10 @@ export default defineNuxtConfig({
         name: 'Salair - Gérez votre activité de freelance, sans prise de tête',
     },
     routeRules: {
-        '/doc/**': { robots: false },
-        '/app/**': { robots: false },
-        '/admin/**': { robots: false },
-        '/onboarding': { robots: false },
+        '/doc/**': { robots: false, ssr: false },
+        '/app/**': { robots: false, ssr: false },
+        '/admin/**': { robots: false, ssr: false },
+        '/onboarding': { robots: false, ssr: false },
         '/forgot-password': { robots: false },
     },
     content: {
