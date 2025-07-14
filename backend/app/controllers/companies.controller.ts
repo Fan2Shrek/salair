@@ -27,7 +27,7 @@ export default class CompaniesController {
       const company = await Company.findOrFail(params.id)
       return response.ok(company)
     } catch (error) {
-      return ErrorService.notFound(response, 'Company not found')
+      return ErrorService.companyNotFound(response)
     }
   }
 
@@ -71,7 +71,7 @@ export default class CompaniesController {
       const company = await Company.findOrFail(params.id)
 
       if (company.ownerId !== user.id) {
-        return ErrorService.authorization(response, 'You are not authorized to update this company')
+        return ErrorService.resourceAccessDenied(response, 'company')
       }
 
       company.merge(
@@ -93,7 +93,7 @@ export default class CompaniesController {
       await company.save()
       return response.ok(company)
     } catch (error) {
-      return ErrorService.notFound(response, 'Company not found')
+      return ErrorService.companyNotFound(response)
     }
   }
 
@@ -106,13 +106,13 @@ export default class CompaniesController {
       const company = await Company.findOrFail(params.id)
 
       if (company.ownerId !== user.id) {
-        return ErrorService.authorization(response, 'You are not authorized to delete this company')
+        return ErrorService.resourceAccessDenied(response, 'company')
       }
 
       await company.delete()
       return response.noContent()
     } catch (error) {
-      return ErrorService.notFound(response, 'Company not found')
+      return ErrorService.companyNotFound(response)
     }
   }
 
@@ -125,10 +125,7 @@ export default class CompaniesController {
       const company = await Company.findOrFail(params.id)
 
       if (company.ownerId !== user.id) {
-        return ErrorService.authorization(
-          response,
-          'You are not authorized to upload a logo for this company'
-        )
+        return ErrorService.resourceAccessDenied(response, 'company logo')
       }
 
       const logo = request.file('file', {
@@ -137,11 +134,7 @@ export default class CompaniesController {
       })
 
       if (!logo || !logo.isValid) {
-        return ErrorService.validation(
-          response,
-          'Invalid file. Please provide a valid image file (jpg, jpeg, png, webp) under 2MB.',
-          logo?.errors || []
-        )
+        return ErrorService.invalidFileType(response, ['jpg', 'jpeg', 'png', 'webp'])
       }
 
       const filename = `${randomUUID()}.${logo.extname}`
@@ -156,7 +149,7 @@ export default class CompaniesController {
 
       return response.ok({ logoUrl })
     } catch (error) {
-      return ErrorService.notFound(response, 'Company not found')
+      return ErrorService.companyNotFound(response)
     }
   }
 }

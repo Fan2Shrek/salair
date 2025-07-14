@@ -32,13 +32,13 @@ export default class TwoFactorAuthController {
       const { token } = request.only(['token'])
 
       if (!user.twoFactorSecret) {
-        return ErrorService.businessLogic(response, '2FA secret not generated yet')
+        return ErrorService.twoFactorSecretNotGenerated(response)
       }
 
       const isValid = authenticator.verify({ token, secret: user.twoFactorSecret })
 
       if (!isValid) {
-        return ErrorService.validation(response, 'Invalid 2FA token')
+        return ErrorService.invalidTwoFactorToken(response)
       }
 
       user.isTwoFactorEnabled = true

@@ -27,7 +27,7 @@ export default class CustomersController {
       const customer = await Customer.query().where('id', id).where('userId', user.id).first()
 
       if (!customer) {
-        return ErrorService.notFound(response, 'Customer not found')
+        return ErrorService.customerNotFound(response)
       }
 
       await customer.delete()
@@ -52,13 +52,13 @@ export default class CustomersController {
       const siren = request.input('siren')
 
       if (!siren) {
-        return ErrorService.validation(response, 'SIREN is required')
+        return ErrorService.missingRequiredField(response, 'SIREN')
       }
 
       const result = await SireneService.enrichCustomer(siren)
       return result
     } catch (error: any) {
-      return ErrorService.externalService(response, error.message, 'SIRENE API')
+      return ErrorService.sireneApiError(response, error.message)
     }
   }
 }

@@ -13,10 +13,7 @@ export default class PlansController {
       const billingCycle = request.qs().billingCycle || 'both'
 
       if (!['monthly', 'yearly', 'both'].includes(billingCycle)) {
-        return ErrorService.validation(
-          response,
-          'Invalid billing cycle. Must be "monthly", "yearly", or "both"'
-        )
+        return ErrorService.invalidBillingCycle(response)
       }
 
       let plans
