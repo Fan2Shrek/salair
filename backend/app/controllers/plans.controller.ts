@@ -1,5 +1,6 @@
 import type { HttpContext } from '@adonisjs/core/http'
 import Plan from '../models/plan.js'
+import ErrorService from '#services/error.service'
 
 export default class PlansController {
   /**
@@ -12,9 +13,10 @@ export default class PlansController {
       const billingCycle = request.qs().billingCycle || 'both'
 
       if (!['monthly', 'yearly', 'both'].includes(billingCycle)) {
-        return response.badRequest({
-          error: 'Invalid billing cycle. Must be "monthly", "yearly", or "both"',
-        })
+        return ErrorService.validation(
+          response,
+          'Invalid billing cycle. Must be "monthly", "yearly", or "both"'
+        )
       }
 
       let plans
@@ -27,10 +29,7 @@ export default class PlansController {
 
       return response.ok(plans)
     } catch (error) {
-      return response.internalServerError({
-        error: 'An error occurred while retrieving plans',
-        details: process.env.NODE_ENV === 'development' ? error.message : undefined,
-      })
+      return ErrorService.internal(response, error, 'An error occurred while retrieving plans')
     }
   }
 }
