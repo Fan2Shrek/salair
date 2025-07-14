@@ -1,7 +1,7 @@
 import InboundMail from '#models/inbound_mail'
 import ErrorService from '#services/error.service'
+import EmailService from '#services/email.service'
 import type { HttpContext } from '@adonisjs/core/http'
-import mail from '@adonisjs/mail/services/main'
 import logger from '@adonisjs/core/services/logger'
 
 export default class InboundMailsController {
@@ -18,20 +18,7 @@ export default class InboundMailsController {
       })
 
       if (inboudMail.to === 'contact@salair.fr') {
-        await mail.send((message) => {
-          message
-            .to(inboudMail.from)
-            .from('Support Salair <contact@salair.fr>')
-            .subject('Demande de contact reçue !')
-            .text(
-              `Bonjour, 
-              
-              Votre demande de contact a bien été reçue. Elle sera traitée rapidement par un membre de notre équipe.
-              
-              Cordialement,
-              L'équipe Salair`
-            )
-        })
+        await EmailService.sendSupportResponseEmail(inboudMail.from)
       }
 
       logger.info(`📥 Mail received from ${inboudMail.from}`, {

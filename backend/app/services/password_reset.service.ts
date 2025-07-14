@@ -2,7 +2,7 @@ import User from '#models/user'
 import PasswordReset from '#models/password_reset'
 import { generateSixDigitCode } from '#utils/number'
 import hash from '@adonisjs/core/services/hash'
-import mail from '@adonisjs/mail/services/main'
+import EmailService from '#services/email.service'
 import { DateTime } from 'luxon'
 
 export class PasswordResetService {
@@ -29,12 +29,9 @@ export class PasswordResetService {
     })
 
     // Send email
-    await mail.send((message) => {
-      message
-        .to(user.email)
-        .from('Salair <noreply@salair.fr>')
-        .subject('Demande de réinitialisation de mot de passe')
-        .htmlView('mails/reset_password', { code, user })
+    await EmailService.sendPasswordResetEmail({
+      user,
+      code,
     })
   }
 

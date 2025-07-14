@@ -1,8 +1,8 @@
 import ContactRequest from '#models/contact_request'
 import { contactValidator } from '#validators/contact'
 import ErrorService from '#services/error.service'
+import EmailService from '#services/email.service'
 import type { HttpContext } from '@adonisjs/core/http'
-import mail from '@adonisjs/mail/services/main'
 
 export default class ContactsController {
   async receive({ request, response }: HttpContext) {
@@ -23,15 +23,8 @@ export default class ContactsController {
         return ErrorService.internal(response, new Error('Failed to create contact request'))
       }
 
-      await mail.send((sendingMessage) => {
-        sendingMessage
-          .to(email)
-          .from('Salair <noreply@salair.fr>')
-          .subject(`[#${contactRequest.id}] Demande de contact`)
-          .htmlView('mails/contact', {
-            firstName: contactRequest.firstName,
-            lastName: contactRequest.lastName,
-          })
+      await EmailService.sendContactConfirmationEmail({
+        contactRequest,
       })
 
       return response.ok({ message: 'Contact request successfully submitted' })
