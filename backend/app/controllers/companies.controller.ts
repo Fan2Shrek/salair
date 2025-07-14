@@ -1,5 +1,6 @@
 import type { HttpContext } from '@adonisjs/core/http'
 import Company from '#models/company'
+import ErrorService from '#services/error.service'
 import { randomUUID } from 'node:crypto'
 
 export default class CompaniesController {
@@ -7,12 +8,15 @@ export default class CompaniesController {
    * Get all companies (paginated)
    */
   async index({ request, response }: HttpContext) {
-    const page = request.input('page', 1)
-    const limit = request.input('limit', 10)
+    try {
+      const page = request.input('page', 1)
+      const limit = request.input('limit', 10)
 
-    const companies = await Company.query().paginate(page, limit)
-
-    return response.ok(companies)
+      const companies = await Company.query().paginate(page, limit)
+      return response.ok(companies)
+    } catch (error) {
+      return ErrorService.internal(response, error)
+    }
   }
 
   /**
@@ -23,7 +27,7 @@ export default class CompaniesController {
       const company = await Company.findOrFail(params.id)
       return response.ok(company)
     } catch (error) {
-      return response.notFound({ message: 'Company not found' })
+      return ErrorService.notFound(response, 'Company not found')
     }
   }
 
@@ -31,41 +35,43 @@ export default class CompaniesController {
    * Create a new company
    */
   async store({ request, response, auth }: HttpContext) {
-    const user = auth.user!
+    try {
+      const user = auth.user!
 
-    const companyData = {
-      ...request.only([
-        'siret',
-        'activity',
-        'tradeName',
-        'urssafFrequency',
-        'businessStartDate',
-        'isVatPayer',
-        'billingType',
-        'currency',
-        'defaultDueDays',
-        'defaultInvoiceNote',
-      ]),
-      ownerId: user.id,
-      status: 'active',
+      const companyData = {
+        ...request.only([
+          'siret',
+          'activity',
+          'tradeName',
+          'urssafFrequency',
+          'businessStartDate',
+          'isVatPayer',
+          'billingType',
+          'currency',
+          'defaultDueDays',
+          'defaultInvoiceNote',
+        ]),
+        ownerId: user.id,
+        status: 'active',
+      }
+
+      const company = await Company.create(companyData)
+      return response.created(company)
+    } catch (error) {
+      return ErrorService.internal(response, error)
     }
-
-    const company = await Company.create(companyData)
-
-    return response.created(company)
   }
 
   /**
    * Update a company
    */
   async update({ params, request, response, auth }: HttpContext) {
-    const user = auth.user!
-
     try {
+      const user = auth.user!
       const company = await Company.findOrFail(params.id)
 
       if (company.ownerId !== user.id) {
-        return response.forbidden({ message: 'You are not authorized to update this company' })
+        return ErrorService.authorization(response, 'You are not authorized to update this company')
       }
 
       company.merge(
@@ -85,10 +91,9 @@ export default class CompaniesController {
       )
 
       await company.save()
-
       return response.ok(company)
     } catch (error) {
-      return response.notFound({ message: 'Company not found' })
+      return ErrorService.notFound(response, 'Company not found')
     }
   }
 
@@ -96,20 +101,18 @@ export default class CompaniesController {
    * Delete a company (soft delete)
    */
   async destroy({ params, response, auth }: HttpContext) {
-    const user = auth.user!
-
     try {
+      const user = auth.user!
       const company = await Company.findOrFail(params.id)
 
       if (company.ownerId !== user.id) {
-        return response.forbidden({ message: 'You are not authorized to delete this company' })
+        return ErrorService.authorization(response, 'You are not authorized to delete this company')
       }
 
       await company.delete()
-
       return response.noContent()
     } catch (error) {
-      return response.notFound({ message: 'Company not found' })
+      return ErrorService.notFound(response, 'Company not found')
     }
   }
 
@@ -117,15 +120,15 @@ export default class CompaniesController {
    * Upload company logo to S3 bucket
    */
   async uploadLogo({ request, response, params, auth }: HttpContext) {
-    const user = auth.user!
-
     try {
+      const user = auth.user!
       const company = await Company.findOrFail(params.id)
 
       if (company.ownerId !== user.id) {
-        return response.forbidden({
-          message: 'You are not authorized to upload a logo for this company',
-        })
+        return ErrorService.authorization(
+          response,
+          'You are not authorized to upload a logo for this company'
+        )
       }
 
       const logo = request.file('file', {
@@ -134,11 +137,11 @@ export default class CompaniesController {
       })
 
       if (!logo || !logo.isValid) {
-        return response.badRequest({
-          message:
-            'Invalid file. Please provide a valid image file (jpg, jpeg, png, webp) under 2MB.',
-          errors: logo?.errors || [],
-        })
+        return ErrorService.validation(
+          response,
+          'Invalid file. Please provide a valid image file (jpg, jpeg, png, webp) under 2MB.',
+          logo?.errors || []
+        )
       }
 
       const filename = `${randomUUID()}.${logo.extname}`
@@ -153,7 +156,7 @@ export default class CompaniesController {
 
       return response.ok({ logoUrl })
     } catch (error) {
-      return response.notFound({ message: 'Company not found', error: error })
+      return ErrorService.notFound(response, 'Company not found')
     }
   }
 }

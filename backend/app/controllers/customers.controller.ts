@@ -1,6 +1,7 @@
 import Customer from '#models/customer'
 import { SireneService } from '#services/sirene.service'
 import CustomerInsightsService from '#services/customer_insights.service'
+import ErrorService from '#services/error.service'
 import type { HttpContext } from '@adonisjs/core/http'
 
 export default class CustomersController {
@@ -19,35 +20,45 @@ export default class CustomersController {
   }
 
   async destroy({ response, params, auth }: HttpContext) {
-    const id = params.id
-    const user = auth.user!
+    try {
+      const id = params.id
+      const user = auth.user!
 
-    const customer = await Customer.query().where('id', id).where('userId', user.id).first()
+      const customer = await Customer.query().where('id', id).where('userId', user.id).first()
 
-    if (!customer) {
-      return response.notFound({ message: 'Customer not found' })
+      if (!customer) {
+        return ErrorService.notFound(response, 'Customer not found')
+      }
+
+      await customer.delete()
+      return response.noContent()
+    } catch (error) {
+      return ErrorService.internal(response, error)
     }
-
-    await customer.delete()
-
-    return response.noContent()
   }
 
   async insights({ response, auth }: HttpContext) {
-    const user = auth.user!
-    const insights = await CustomerInsightsService.getInsights(user)
-    return response.ok(insights)
+    try {
+      const user = auth.user!
+      const insights = await CustomerInsightsService.getInsights(user)
+      return response.ok(insights)
+    } catch (error) {
+      return ErrorService.internal(response, error)
+    }
   }
 
   async fetchCompany({ request, response }: HttpContext) {
-    const siren = request.input('siren')
-
     try {
+      const siren = request.input('siren')
+
+      if (!siren) {
+        return ErrorService.validation(response, 'SIREN is required')
+      }
+
       const result = await SireneService.enrichCustomer(siren)
       return result
     } catch (error: any) {
-      console.log(error)
-      return response.notFound({ messages: 'Company not found' })
+      return ErrorService.externalService(response, error.message, 'SIRENE API')
     }
   }
 }

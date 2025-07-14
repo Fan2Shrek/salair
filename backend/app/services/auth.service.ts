@@ -1,5 +1,6 @@
 import RefreshToken from '#models/refresh_token'
 import User from '#models/user'
+import ErrorService from '#services/error.service'
 import type { HttpContext } from '@adonisjs/core/http'
 import { DateTime } from 'luxon'
 import * as crypto from 'node:crypto'
@@ -56,7 +57,7 @@ export class AuthService {
     const user = await User.verifyCredentials(email, password)
 
     if (user.status === 'suspended') {
-      throw new Error('Account suspended')
+      throw ErrorService.createAuthorizationError('Account suspended')
     }
 
     if (user.isTwoFactorEnabled) {
@@ -77,16 +78,16 @@ export class AuthService {
   ): Promise<AuthTokens> {
     const user = await User.findBy('email', email)
     if (!user) {
-      throw new Error('User not found')
+      throw ErrorService.createNotFoundError('User not found')
     }
 
     if (!user.isTwoFactorEnabled || !user.twoFactorSecret) {
-      throw new Error('2FA is not enabled for this user')
+      throw ErrorService.createBusinessError('2FA is not enabled for this user')
     }
 
     const isValid = authenticator.verify({ token: totpToken, secret: user.twoFactorSecret })
     if (!isValid) {
-      throw new Error('Invalid 2FA token')
+      throw ErrorService.createAuthError('Invalid 2FA token')
     }
 
     return this.createTokens(user, auth)
@@ -121,7 +122,7 @@ export class AuthService {
       .first()
 
     if (!token) {
-      throw new Error('Invalid or expired refresh token')
+      throw ErrorService.createAuthError('Invalid or expired refresh token')
     }
 
     const user = await token.related('user').query().firstOrFail()
