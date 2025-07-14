@@ -1,119 +1,194 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-    <meta charset="utf-8">
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
+  <head>
+    <meta charset="utf-8" />
+    <script src="https://cdn.tailwindcss.com">
+      
+    </script>
+  </head>
 
-<body class="p-8">
+  <body class="p-8">
     <header class="flex items-center gap-3 rounded-lg p-6">
-        <svg class="size-10" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <g filter="url(#filter0_iii_1083_118533)">
-                <g clip-path="url(#clip0_1083_118533)">
-                    <rect width="48" height="48" rx="12" fill="#6938EF" />
-                    <rect width="48" height="48" fill="url(#paint0_linear_1083_118533)" />
-                    <g filter="url(#filter1_d_1083_118533)">
-                        <path
-                            d="M23.3219 8.00876C23.2905 8.02761 23.1271 8.05276 22.97 8.0779C22.4296 8.14703 22.4485 8.09047 22.4108 9.79377C22.3919 10.6234 22.3605 11.3211 22.3416 11.3399C22.3228 11.3588 21.9835 11.4594 21.5813 11.5599C18.5148 12.333 16.3909 14.2312 15.7123 16.8144C15.5615 17.3675 15.5426 17.5686 15.5363 18.5114C15.5301 19.6114 15.5741 19.9571 15.8254 20.7427C16.303 22.2323 17.3901 23.4579 18.9484 24.2562C19.9036 24.7401 20.4628 24.9161 23.5418 25.7018C24.3587 25.9029 25.207 26.1355 25.427 26.2109C27.3372 26.852 28.2358 27.9456 28.0536 29.385C27.8336 31.0568 26.093 31.9242 23.1648 31.8236C20.9655 31.7482 19.0867 30.994 17.3272 29.4667C16.9628 29.1461 16.7051 29.1398 16.4789 29.4352C16.3909 29.5547 16.0202 30.202 15.6557 30.8808C14.8514 32.3893 14.8451 32.4396 15.3227 32.8921C16.8748 34.3377 19.1181 35.3434 21.5687 35.6891L22.3291 35.7959L22.3605 37.6941C22.3919 39.8311 22.3793 39.7808 22.8758 39.9253C23.2277 40.0259 25.295 40.0259 25.7537 39.9191C26.4386 39.7682 26.4009 39.9128 26.4198 37.6061L26.4386 35.6011L26.8282 35.5194C28.0347 35.2742 29.4988 34.6269 30.4414 33.9103C32.2511 32.5464 33.156 30.7426 33.156 28.4924C33.156 27.5937 33.0743 27.028 32.8355 26.3052C32.3202 24.7339 31.0949 23.4328 29.3606 22.622C28.6819 22.3077 27.7457 22.006 26.2564 21.6164C21.751 20.441 21.4179 20.3216 20.7142 19.5736C20.2492 19.0708 20.0481 18.524 20.0983 17.8829C20.2303 16.2802 21.8452 15.3374 24.4718 15.3374C26.4701 15.3374 27.7771 15.7459 29.5868 16.9213C30.2906 17.3801 30.4414 17.4178 30.6613 17.1915C30.7744 17.0847 31.9683 14.778 32.0877 14.4449C32.2008 14.1306 32.1129 13.9672 31.6165 13.5838C30.234 12.5153 28.2169 11.6354 26.7717 11.4657L26.4324 11.4217V9.89434C26.4324 7.90191 26.5832 8.05904 24.6101 8.01504C23.9377 7.99619 23.3596 7.99619 23.3219 8.00876Z"
-                            fill="url(#paint1_linear_1083_118533)" />
-                    </g>
-                </g>
-                <rect x="1" y="1" width="46" height="46" rx="11" stroke="url(#paint2_linear_1083_118533)"
-                    stroke-width="2" />
+      <svg
+        class="size-10"
+        width="48"
+        height="48"
+        viewBox="0 0 48 48"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <g filter="url(#filter0_iii_1083_118533)">
+          <g clip-path="url(#clip0_1083_118533)">
+            <rect width="48" height="48" rx="12" fill="#6938EF" />
+            <rect width="48" height="48" fill="url(#paint0_linear_1083_118533)" />
+            <g filter="url(#filter1_d_1083_118533)">
+              <path
+                d="M23.3219 8.00876C23.2905 8.02761 23.1271 8.05276 22.97 8.0779C22.4296 8.14703 22.4485 8.09047 22.4108 9.79377C22.3919 10.6234 22.3605 11.3211 22.3416 11.3399C22.3228 11.3588 21.9835 11.4594 21.5813 11.5599C18.5148 12.333 16.3909 14.2312 15.7123 16.8144C15.5615 17.3675 15.5426 17.5686 15.5363 18.5114C15.5301 19.6114 15.5741 19.9571 15.8254 20.7427C16.303 22.2323 17.3901 23.4579 18.9484 24.2562C19.9036 24.7401 20.4628 24.9161 23.5418 25.7018C24.3587 25.9029 25.207 26.1355 25.427 26.2109C27.3372 26.852 28.2358 27.9456 28.0536 29.385C27.8336 31.0568 26.093 31.9242 23.1648 31.8236C20.9655 31.7482 19.0867 30.994 17.3272 29.4667C16.9628 29.1461 16.7051 29.1398 16.4789 29.4352C16.3909 29.5547 16.0202 30.202 15.6557 30.8808C14.8514 32.3893 14.8451 32.4396 15.3227 32.8921C16.8748 34.3377 19.1181 35.3434 21.5687 35.6891L22.3291 35.7959L22.3605 37.6941C22.3919 39.8311 22.3793 39.7808 22.8758 39.9253C23.2277 40.0259 25.295 40.0259 25.7537 39.9191C26.4386 39.7682 26.4009 39.9128 26.4198 37.6061L26.4386 35.6011L26.8282 35.5194C28.0347 35.2742 29.4988 34.6269 30.4414 33.9103C32.2511 32.5464 33.156 30.7426 33.156 28.4924C33.156 27.5937 33.0743 27.028 32.8355 26.3052C32.3202 24.7339 31.0949 23.4328 29.3606 22.622C28.6819 22.3077 27.7457 22.006 26.2564 21.6164C21.751 20.441 21.4179 20.3216 20.7142 19.5736C20.2492 19.0708 20.0481 18.524 20.0983 17.8829C20.2303 16.2802 21.8452 15.3374 24.4718 15.3374C26.4701 15.3374 27.7771 15.7459 29.5868 16.9213C30.2906 17.3801 30.4414 17.4178 30.6613 17.1915C30.7744 17.0847 31.9683 14.778 32.0877 14.4449C32.2008 14.1306 32.1129 13.9672 31.6165 13.5838C30.234 12.5153 28.2169 11.6354 26.7717 11.4657L26.4324 11.4217V9.89434C26.4324 7.90191 26.5832 8.05904 24.6101 8.01504C23.9377 7.99619 23.3596 7.99619 23.3219 8.00876Z"
+                fill="url(#paint1_linear_1083_118533)"
+              />
             </g>
-            <defs>
-                <filter id="filter0_iii_1083_118533" x="0" y="-3" width="48" height="54" filterUnits="userSpaceOnUse"
-                    color-interpolation-filters="sRGB">
-                    <feFlood flood-opacity="0" result="BackgroundImageFix" />
-                    <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
-                    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                        result="hardAlpha" />
-                    <feOffset dy="-3" />
-                    <feGaussianBlur stdDeviation="1.5" />
-                    <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1" />
-                    <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0" />
-                    <feBlend mode="normal" in2="shape" result="effect1_innerShadow_1083_118533" />
-                    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                        result="hardAlpha" />
-                    <feOffset dy="3" />
-                    <feGaussianBlur stdDeviation="1.5" />
-                    <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1" />
-                    <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.1 0" />
-                    <feBlend mode="normal" in2="effect1_innerShadow_1083_118533"
-                        result="effect2_innerShadow_1083_118533" />
-                    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                        result="hardAlpha" />
-                    <feMorphology radius="1" operator="erode" in="SourceAlpha"
-                        result="effect3_innerShadow_1083_118533" />
-                    <feOffset />
-                    <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1" />
-                    <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0" />
-                    <feBlend mode="normal" in2="effect2_innerShadow_1083_118533"
-                        result="effect3_innerShadow_1083_118533" />
-                </filter>
-                <filter id="filter1_d_1083_118533" x="6" y="5.25" width="36" height="42" filterUnits="userSpaceOnUse"
-                    color-interpolation-filters="sRGB">
-                    <feFlood flood-opacity="0" result="BackgroundImageFix" />
-                    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                        result="hardAlpha" />
-                    <feMorphology radius="1.5" operator="erode" in="SourceAlpha"
-                        result="effect1_dropShadow_1083_118533" />
-                    <feOffset dy="2.25" />
-                    <feGaussianBlur stdDeviation="2.25" />
-                    <feComposite in2="hardAlpha" operator="out" />
-                    <feColorMatrix type="matrix"
-                        values="0 0 0 0 0.141176 0 0 0 0 0.141176 0 0 0 0 0.141176 0 0 0 0.1 0" />
-                    <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1083_118533" />
-                    <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1083_118533" result="shape" />
-                </filter>
-                <linearGradient id="paint0_linear_1083_118533" x1="24" y1="5.96047e-07" x2="26" y2="48"
-                    gradientUnits="userSpaceOnUse">
-                    <stop stop-color="white" stop-opacity="0" />
-                    <stop offset="1" stop-color="white" stop-opacity="0.12" />
-                </linearGradient>
-                <linearGradient id="paint1_linear_1083_118533" x1="24.078" y1="40" x2="24.078" y2="8"
-                    gradientUnits="userSpaceOnUse">
-                    <stop stop-color="white" stop-opacity="0.8" />
-                    <stop offset="1" stop-color="white" stop-opacity="0.5" />
-                </linearGradient>
-                <linearGradient id="paint2_linear_1083_118533" x1="24" y1="0" x2="24" y2="48"
-                    gradientUnits="userSpaceOnUse">
-                    <stop stop-color="white" stop-opacity="0.12" />
-                    <stop offset="1" stop-color="white" stop-opacity="0" />
-                </linearGradient>
-                <clipPath id="clip0_1083_118533">
-                    <rect width="48" height="48" rx="12" fill="white" />
-                </clipPath>
-            </defs>
-        </svg>
-        <p class="font-semibold text-lg">Salair</p>
+          </g>
+          <rect
+            x="1"
+            y="1"
+            width="46"
+            height="46"
+            rx="11"
+            stroke="url(#paint2_linear_1083_118533)"
+            stroke-width="2"
+          />
+        </g>
+        <defs>
+          <filter
+            id="filter0_iii_1083_118533"
+            x="0"
+            y="-3"
+            width="48"
+            height="54"
+            filterUnits="userSpaceOnUse"
+            color-interpolation-filters="sRGB"
+          >
+            <feFlood flood-opacity="0" result="BackgroundImageFix" />
+            <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+            <feColorMatrix
+              in="SourceAlpha"
+              type="matrix"
+              values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+              result="hardAlpha"
+            />
+            <feOffset dy="-3" />
+            <feGaussianBlur stdDeviation="1.5" />
+            <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1" />
+            <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0" />
+            <feBlend mode="normal" in2="shape" result="effect1_innerShadow_1083_118533" />
+            <feColorMatrix
+              in="SourceAlpha"
+              type="matrix"
+              values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+              result="hardAlpha"
+            />
+            <feOffset dy="3" />
+            <feGaussianBlur stdDeviation="1.5" />
+            <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1" />
+            <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.1 0" />
+            <feBlend mode="normal" in2="effect1_innerShadow_1083_118533" result="effect2_innerShadow_1083_118533" />
+            <feColorMatrix
+              in="SourceAlpha"
+              type="matrix"
+              values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+              result="hardAlpha"
+            />
+            <feMorphology radius="1" operator="erode" in="SourceAlpha" result="effect3_innerShadow_1083_118533" />
+            <feOffset />
+            <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1" />
+            <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0" />
+            <feBlend mode="normal" in2="effect2_innerShadow_1083_118533" result="effect3_innerShadow_1083_118533" />
+          </filter>
+          <filter
+            id="filter1_d_1083_118533"
+            x="6"
+            y="5.25"
+            width="36"
+            height="42"
+            filterUnits="userSpaceOnUse"
+            color-interpolation-filters="sRGB"
+          >
+            <feFlood flood-opacity="0" result="BackgroundImageFix" />
+            <feColorMatrix
+              in="SourceAlpha"
+              type="matrix"
+              values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+              result="hardAlpha"
+            />
+            <feMorphology radius="1.5" operator="erode" in="SourceAlpha" result="effect1_dropShadow_1083_118533" />
+            <feOffset dy="2.25" />
+            <feGaussianBlur stdDeviation="2.25" />
+            <feComposite in2="hardAlpha" operator="out" />
+            <feColorMatrix type="matrix" values="0 0 0 0 0.141176 0 0 0 0 0.141176 0 0 0 0 0.141176 0 0 0 0.1 0" />
+            <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1083_118533" />
+            <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1083_118533" result="shape" />
+          </filter>
+          <linearGradient
+            id="paint0_linear_1083_118533"
+            x1="24"
+            y1="5.96047e-07"
+            x2="26"
+            y2="48"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop stop-color="white" stop-opacity="0" />
+            <stop offset="1" stop-color="white" stop-opacity="0.12" />
+          </linearGradient>
+          <linearGradient
+            id="paint1_linear_1083_118533"
+            x1="24.078"
+            y1="40"
+            x2="24.078"
+            y2="8"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop stop-color="white" stop-opacity="0.8" />
+            <stop offset="1" stop-color="white" stop-opacity="0.5" />
+          </linearGradient>
+          <linearGradient id="paint2_linear_1083_118533" x1="24" y1="0" x2="24" y2="48" gradientUnits="userSpaceOnUse">
+            <stop stop-color="white" stop-opacity="0.12" />
+            <stop offset="1" stop-color="white" stop-opacity="0" />
+          </linearGradient>
+          <clipPath id="clip0_1083_118533">
+            <rect width="48" height="48" rx="12" fill="white" />
+          </clipPath>
+        </defs>
+      </svg>
+      <p class="font-semibold text-lg">
+        Salair
+      </p>
     </header>
     <main class="px-6 py-8">
-        <div class="space-y-4">
-            <p class="text-[#535862]">Bonjour {{ firstName }} {{ lastName }},</p>
-            
-            <p class="text-[#535862]">Nous avons bien reçu votre demande de contact via notre site web. Voici un récapitulatif de votre message :</p>
-            
-            <p class="text-[#535862]">Notre équipe va examiner votre demande et vous répondre dans les plus brefs délais, généralement sous 24 heures ouvrées.</p>
-            
-            <div class="bg-blue-50 p-4 rounded-lg">
-                <p class="text-[#535862]"><strong>Que se passe-t-il ensuite ?</strong></p>
-                <ul class="list-disc list-inside text-[#535862] mt-2 space-y-1">
-                    <li>Nous analysons votre demande</li>
-                    <li>Un membre de notre équipe vous contactera</li>
-                    <li>Nous planifierons un échange si nécessaire</li>
-                </ul>
-            </div>
-            
-            <p class="text-[#535862]">En attendant, n'hésitez pas à explorer notre plateforme et nos ressources disponibles.</p>
-            
-            <div class="border-t pt-4 mt-6">
-                <p class="text-[#535862]">Cordialement,</p>
-                <p class="font-semibold text-[#6938EF]">L'équipe Salair</p>
-            </div>
+      <div class="space-y-4">
+        <p class="text-[#535862]">
+          Bonjour {{ firstName }} {{ lastName }},
+        </p>
+
+        <p class="text-[#535862]">
+          Nous avons bien reçu votre demande de contact via notre site web. Voici un récapitulatif de votre message :
+        </p>
+
+        <p class="text-[#535862]">
+          Notre équipe va examiner votre demande et vous répondre dans les plus brefs délais, généralement sous 24 heures ouvrées.
+        </p>
+
+        <div class="bg-blue-50 p-4 rounded-lg">
+          <p class="text-[#535862]">
+            <strong>Que se passe-t-il ensuite ?</strong>
+          </p>
+          <ul class="list-disc list-inside text-[#535862] mt-2 space-y-1">
+            <li>
+              Nous analysons votre demande
+            </li>
+            <li>
+              Un membre de notre équipe vous contactera
+            </li>
+            <li>
+              Nous planifierons un échange si nécessaire
+            </li>
+          </ul>
         </div>
+
+        <p class="text-[#535862]">
+          En attendant, n'hésitez pas à explorer notre plateforme et nos ressources disponibles.
+        </p>
+
+        <div class="border-t pt-4 mt-6">
+          <p class="text-[#535862]">
+            Cordialement,
+          </p>
+          <p class="font-semibold text-[#6938EF]">
+            L'équipe Salair
+          </p>
+        </div>
+      </div>
     </main>
-</body>
+  </body>
 
 </html>
