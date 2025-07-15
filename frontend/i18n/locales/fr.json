@@ -707,6 +707,37 @@
         "unknown_status": "Code de statut inconnu",
         "go_back": "Retour",
         "go_home": "Accueil"
+    },
+    "invoices": {
+        "toast": {
+            "error_title": "Erreur",
+            "error_message": "Impossible de récupérer les factures",
+            "stats_error": "Erreur lors du chargement des statistiques",
+            "network_error": "Problème de connexion au serveur",
+            "delete_success_title": "Facture supprimée",
+            "delete_success_message": "La facture a été supprimée avec succès",
+            "delete_error_title": "Échec de suppression",
+            "delete_error_message": "Impossible de supprimer la facture",
+            "status_update_success_title": "Statut mis à jour",
+            "status_update_success_message": "Le statut de la facture a été mis à jour",
+            "status_update_error_title": "Erreur de mise à jour",
+            "status_update_error_message": "Impossible de mettre à jour le statut",
+            "create_success_title": "Facture créée",
+            "create_success_message": "La facture a été créée avec succès",
+            "create_error_title": "Erreur de création",
+            "create_error_message": "Impossible de créer la facture",
+            "update_success_title": "Facture mise à jour",
+            "update_success_message": "La facture a été mise à jour avec succès",
+            "update_error_title": "Erreur de mise à jour",
+            "update_error_message": "Impossible de mettre à jour la facture"
+        },
+        "status": {
+            "draft": "Brouillon",
+            "sent": "Envoyée",
+            "paid": "Payée",
+            "overdue": "En retard",
+            "cancelled": "Annulée"
+        }
     }
 }
 

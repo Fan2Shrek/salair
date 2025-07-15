@@ -35,10 +35,7 @@ export default class InvoicesController {
         processedFilters
       )
 
-      return response.json({
-        success: true,
-        data: invoices,
-      })
+      return response.json(invoices)
     } catch (error) {
       return ErrorService.internal(response, error, 'Failed to fetch invoices')
     }

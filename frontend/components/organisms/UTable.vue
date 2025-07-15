@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup lang="ts" generic="T extends Record<string, any>">
     import ArrowDownIcon from '~/components/atoms/icons/ArrowDownIcon.vue';
     import ArrowUpIcon from '~/components/atoms/icons/ArrowUpIcon.vue';
     import ChevronSelectorIcon from '~/components/atoms/icons/ChevronSelectorIcon.vue';
@@ -11,23 +11,21 @@
         width?: string;
     }
 
-    export interface TableAction {
+    export interface TableAction<TRow = any> {
         key: string;
         label: string;
         icon?: Component | string | null;
         variant?: 'primary' | 'secondary' | 'tertiary';
         size?: 'sm' | 'md' | 'lg' | 'xl';
-        handler: (row: TableData) => void | Promise<void>;
-        disabled?: (row: TableData) => boolean;
-        visible?: (row: TableData) => boolean;
+        handler: (row: TRow) => void | Promise<void>;
+        disabled?: (row: TRow) => boolean;
+        visible?: (row: TRow) => boolean;
     }
-
-    type TableData = Record<string, unknown>;
 
     interface TableProps {
         columns: Column[];
-        data: TableData[];
-        actions?: TableAction[];
+        data: T[];
+        actions?: TableAction<T>[];
         actionsDisplay?: 'icons' | 'dropdown';
         loading?: boolean;
         striped?: boolean;
@@ -47,19 +45,19 @@
     });
 
     const emit = defineEmits<{
-        (e: 'row-click', row: TableData): void;
-        (e: 'selection-change', selectedRows: TableData[]): void;
+        (e: 'row-click', row: T): void;
+        (e: 'selection-change', selectedRows: T[]): void;
     }>();
 
-    const selectedRows = ref<TableData[]>([]);
+    const selectedRows = ref<T[]>([]);
     const allSelected = ref(false);
     const popovers = ref<Record<string, any>>({})
 
-    const isRowSelected = (row: TableData) => {
+    const isRowSelected = (row: T) => {
         return selectedRows.value.some((selectedRow) => JSON.stringify(selectedRow) === JSON.stringify(row));
     };
 
-    const toggleRowSelection = (row: TableData, _event: Event) => {
+    const toggleRowSelection = (row: T, _event: Event) => {
         const index = selectedRows.value.findIndex(
             (selectedRow) => JSON.stringify(selectedRow) === JSON.stringify(row)
         );
@@ -184,7 +182,7 @@
         })
     }
 
-    function executeAction(action: TableAction, row: TableData, rowIndex: number) {
+    function executeAction(action: TableAction<T>, row: T, rowIndex: number) {
         if (action.disabled && action.disabled(row)) return;
                 
         try {
@@ -205,11 +203,11 @@
         }
     }
 
-    function isActionVisible(action: TableAction, row: TableData): boolean {
+    function isActionVisible(action: TableAction<T>, row: T): boolean {
         return action.visible ? action.visible(row) : true;
     }
 
-    function isActionDisabled(action: TableAction, row: TableData): boolean {
+    function isActionDisabled(action: TableAction<T>, row: T): boolean {
         return action.disabled ? action.disabled(row) : false;
     }
 

@@ -703,6 +703,37 @@
         "unknown_status": "Unknown status code",
         "go_back": "Go back",
         "go_home": "Go home"
+    },
+    "invoices": {
+        "toast": {
+            "error_title": "Error",
+            "error_message": "Unable to retrieve invoices",
+            "stats_error": "Error loading statistics",
+            "network_error": "Server connection problem",
+            "delete_success_title": "Invoice deleted",
+            "delete_success_message": "The invoice has been successfully deleted",
+            "delete_error_title": "Deletion failed",
+            "delete_error_message": "Unable to delete the invoice",
+            "status_update_success_title": "Status updated",
+            "status_update_success_message": "The invoice status has been updated",
+            "status_update_error_title": "Update error",
+            "status_update_error_message": "Unable to update the status",
+            "create_success_title": "Invoice created",
+            "create_success_message": "The invoice has been successfully created",
+            "create_error_title": "Creation error",
+            "create_error_message": "Unable to create the invoice",
+            "update_success_title": "Invoice updated",
+            "update_success_message": "The invoice has been successfully updated",
+            "update_error_title": "Update error",
+            "update_error_message": "Unable to update the invoice"
+        },
+        "status": {
+            "draft": "Draft",
+            "sent": "Sent",
+            "paid": "Paid",
+            "overdue": "Overdue",
+            "cancelled": "Cancelled"
+        }
     }
 }
 
