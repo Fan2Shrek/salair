@@ -17,14 +17,14 @@ export interface PaymentCreateData {
   invoiceId: string
   userId: string
   amount: number
-  method: string
-  receivedAt: DateTime
+  method: 'stripe' | 'bank_transfer' | 'cash' | 'check'
+  receivedAt: DateTime | null
 }
 
 export interface PaymentUpdateData {
   amount?: number
-  method?: string
-  receivedAt?: DateTime
+  method?: 'stripe' | 'bank_transfer' | 'cash' | 'check'
+  receivedAt?: DateTime | null
 }
 
 export interface PaymentStats {
@@ -276,12 +276,14 @@ export class PaymentRepository {
     const monthlyData: Record<string, { count: number; amount: number }> = {}
 
     for (const payment of payments) {
-      const monthKey = payment.receivedAt.toFormat('yyyy-MM')
-      if (!monthlyData[monthKey]) {
-        monthlyData[monthKey] = { count: 0, amount: 0 }
+      if (payment.receivedAt) {
+        const monthKey = payment.receivedAt.toFormat('yyyy-MM')
+        if (!monthlyData[monthKey]) {
+          monthlyData[monthKey] = { count: 0, amount: 0 }
+        }
+        monthlyData[monthKey].count++
+        monthlyData[monthKey].amount += payment.amount
       }
-      monthlyData[monthKey].count++
-      monthlyData[monthKey].amount += payment.amount
     }
 
     // Convert to array and sort by month

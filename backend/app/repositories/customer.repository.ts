@@ -18,8 +18,11 @@ export interface CustomerCreateData {
   companyName: string
   contactName: string
   email: string
-  phoneNumber: string
-  address: string
+  phoneNumber?: string
+  address?: string
+  siret?: string
+  vatNumber?: string
+  notes?: string
 }
 
 export interface CustomerUpdateData {

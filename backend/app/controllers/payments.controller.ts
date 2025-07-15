@@ -3,6 +3,11 @@ import PaymentRepository from '#repositories/payment.repository'
 import type { PaymentFilters } from '#repositories/payment.repository'
 import ErrorService from '#services/error.service'
 import { DateTime } from 'luxon'
+import {
+  createPaymentValidator,
+  updatePaymentValidator,
+  paymentFilterValidator,
+} from '#validators/payment'
 
 export default class PaymentsController {
   /**
@@ -13,22 +18,21 @@ export default class PaymentsController {
       await auth.use('api').authenticate()
       const user = auth.user!
 
-      const page = request.input('page', 1)
-      const limit = request.input('limit', 20)
+      const payload = await request.validateUsing(paymentFilterValidator)
+      const { page = 1, limit = 20, ...filters } = payload
 
-      const filters: PaymentFilters = {
-        invoiceId: request.input('invoiceId'),
-        method: request.input('method'),
-        search: request.input('search'),
-        startDate: request.input('startDate')
-          ? DateTime.fromISO(request.input('startDate'))
-          : undefined,
-        endDate: request.input('endDate') ? DateTime.fromISO(request.input('endDate')) : undefined,
-        minAmount: request.input('minAmount'),
-        maxAmount: request.input('maxAmount'),
+      const processedFilters: PaymentFilters = {
+        ...filters,
+        startDate: filters.startDate ? DateTime.fromJSDate(filters.startDate) : undefined,
+        endDate: filters.endDate ? DateTime.fromJSDate(filters.endDate) : undefined,
       }
 
-      const payments = await PaymentRepository.getPaginatedForUser(user.id, page, limit, filters)
+      const payments = await PaymentRepository.getPaginatedForUser(
+        user.id,
+        page,
+        limit,
+        processedFilters
+      )
 
       return response.json({
         success: true,
@@ -70,12 +74,12 @@ export default class PaymentsController {
       await auth.use('api').authenticate()
       const user = auth.user!
 
-      const data = request.only(['invoiceId', 'amount', 'method', 'receivedAt'])
+      const payload = await request.validateUsing(createPaymentValidator)
 
       const payment = await PaymentRepository.create({
-        ...data,
+        ...payload,
         userId: user.id,
-        receivedAt: DateTime.fromISO(data.receivedAt),
+        receivedAt: payload.receivedAt ? DateTime.fromJSDate(payload.receivedAt) : null,
       })
 
       return response.status(201).json({
@@ -96,14 +100,14 @@ export default class PaymentsController {
       await auth.use('api').authenticate()
       const user = auth.user!
 
-      const data = request.only(['amount', 'method', 'receivedAt'])
+      const payload = await request.validateUsing(updatePaymentValidator)
 
-      // Convert date if provided
-      if (data.receivedAt) {
-        data.receivedAt = DateTime.fromISO(data.receivedAt)
+      const updateData = {
+        ...payload,
+        receivedAt: payload.receivedAt ? DateTime.fromJSDate(payload.receivedAt) : undefined,
       }
 
-      const payment = await PaymentRepository.update(params.id, user.id, data)
+      const payment = await PaymentRepository.update(params.id, user.id, updateData)
 
       return response.json({
         success: true,
@@ -245,16 +249,16 @@ export default class PaymentsController {
       await auth.use('api').authenticate()
       const user = auth.user!
 
-      const { startDate, endDate } = request.only(['startDate', 'endDate'])
+      const payload = await request.validateUsing(paymentFilterValidator)
 
-      if (!startDate || !endDate) {
+      if (!payload.startDate || !payload.endDate) {
         return ErrorService.validation(response, 'Start date and end date are required')
       }
 
       const payments = await PaymentRepository.getByDateRangeForUser(
         user.id,
-        DateTime.fromISO(startDate),
-        DateTime.fromISO(endDate)
+        DateTime.fromJSDate(payload.startDate),
+        DateTime.fromJSDate(payload.endDate)
       )
 
       return response.json({
@@ -274,16 +278,12 @@ export default class PaymentsController {
       await auth.use('api').authenticate()
       const user = auth.user!
 
+      const payload = await request.validateUsing(paymentFilterValidator)
+
       const filters: PaymentFilters = {
-        invoiceId: request.input('invoiceId'),
-        method: request.input('method'),
-        search: request.input('search'),
-        startDate: request.input('startDate')
-          ? DateTime.fromISO(request.input('startDate'))
-          : undefined,
-        endDate: request.input('endDate') ? DateTime.fromISO(request.input('endDate')) : undefined,
-        minAmount: request.input('minAmount'),
-        maxAmount: request.input('maxAmount'),
+        ...payload,
+        startDate: payload.startDate ? DateTime.fromJSDate(payload.startDate) : undefined,
+        endDate: payload.endDate ? DateTime.fromJSDate(payload.endDate) : undefined,
       }
 
       const payments = await PaymentRepository.getForExport(user.id, filters)

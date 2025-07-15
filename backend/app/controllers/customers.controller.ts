@@ -4,36 +4,31 @@ import CustomerInsightsService from '#services/customer_insights.service'
 import ErrorService from '#services/error.service'
 import type { HttpContext } from '@adonisjs/core/http'
 import { DateTime } from 'luxon'
+import {
+  createCustomerValidator,
+  updateCustomerValidator,
+  customerFilterValidator,
+  customerEnrichValidator,
+} from '#validators/customer'
 
 export default class CustomersController {
   async index({ request, response, auth }: HttpContext) {
     try {
       const user = auth.user!
-      const filters = request.only([
-        'companyName',
-        'contactName',
-        'email',
-        'created_after',
-        'created_before',
-        'page',
-        'limit',
-        'sort_by',
-        'order',
-      ])
+      const payload = await request.validateUsing(customerFilterValidator)
+      const { page = 1, limit = 10, ...filters } = payload
 
-      // Convert date strings to DateTime objects if provided
-      if (filters.created_after) {
-        filters.created_after = DateTime.fromISO(filters.created_after)
-      }
-      if (filters.created_before) {
-        filters.created_before = DateTime.fromISO(filters.created_before)
+      const processedFilters = {
+        ...filters,
+        createdAfter: filters.createdAfter ? DateTime.fromJSDate(filters.createdAfter) : undefined,
+        createdBefore: filters.createdBefore
+          ? DateTime.fromJSDate(filters.createdBefore)
+          : undefined,
+        page,
+        limit,
       }
 
-      // Set default pagination if not provided
-      filters.page = Number.parseInt(filters.page) || 1
-      filters.limit = Number.parseInt(filters.limit) || 10
-
-      const customers = await CustomerRepository.getFilteredCustomers(user.id, filters)
+      const customers = await CustomerRepository.getFilteredCustomers(user.id, processedFilters)
       return response.ok(customers)
     } catch (error) {
       return ErrorService.internal(response, error, 'Failed to fetch customers')
@@ -84,21 +79,15 @@ export default class CustomersController {
   async store({ request, response, auth }: HttpContext) {
     try {
       const user = auth.user!
-      const customerData = request.only([
-        'companyName',
-        'contactName',
-        'email',
-        'phoneNumber',
-        'address',
-      ])
+      const payload = await request.validateUsing(createCustomerValidator)
 
       // Check if email already exists for this user
-      if (await CustomerRepository.emailExistsForUser(customerData.email, user.id)) {
+      if (await CustomerRepository.emailExistsForUser(payload.email, user.id)) {
         return ErrorService.conflict(response, 'Customer with this email already exists')
       }
 
       const customer = await CustomerRepository.create({
-        ...customerData,
+        ...payload,
         userId: user.id,
       })
 
@@ -122,28 +111,18 @@ export default class CustomersController {
         return ErrorService.customerNotFound(response)
       }
 
-      const customerData = request.only([
-        'companyName',
-        'contactName',
-        'email',
-        'phoneNumber',
-        'address',
-      ])
+      const payload = await request.validateUsing(updateCustomerValidator)
 
       // Check if email already exists for another customer of this user
-      if (customerData.email && customerData.email !== customer.email) {
+      if (payload.email && payload.email !== customer.email) {
         if (
-          await CustomerRepository.emailExistsForUserExcluding(
-            customerData.email,
-            user.id,
-            customer.id
-          )
+          await CustomerRepository.emailExistsForUserExcluding(payload.email, user.id, customer.id)
         ) {
           return ErrorService.conflict(response, 'Customer with this email already exists')
         }
       }
 
-      const updatedCustomer = await CustomerRepository.update(customer, customerData)
+      const updatedCustomer = await CustomerRepository.update(customer, payload)
       return response.ok(updatedCustomer)
     } catch (error) {
       return ErrorService.internal(response, error, 'Failed to update customer')
@@ -190,13 +169,8 @@ export default class CustomersController {
 
   async fetchCompany({ request, response }: HttpContext) {
     try {
-      const siren = request.input('siren')
-
-      if (!siren) {
-        return ErrorService.missingRequiredField(response, 'SIREN')
-      }
-
-      const result = await SireneService.enrichCustomer(siren)
+      const payload = await request.validateUsing(customerEnrichValidator)
+      const result = await SireneService.enrichCustomer(payload.siret)
       return result
     } catch (error: any) {
       return ErrorService.sireneApiError(response, error.message)

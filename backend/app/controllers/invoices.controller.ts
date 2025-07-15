@@ -3,6 +3,12 @@ import InvoiceRepository from '#repositories/invoice.repository'
 import type { InvoiceFilters } from '#repositories/invoice.repository'
 import ErrorService from '#services/error.service'
 import { DateTime } from 'luxon'
+import {
+  createInvoiceValidator,
+  updateInvoiceValidator,
+  invoiceStatusValidator,
+  invoiceFilterValidator,
+} from '#validators/invoice'
 
 export default class InvoicesController {
   /**
@@ -13,20 +19,21 @@ export default class InvoicesController {
       await auth.use('api').authenticate()
       const user = auth.user!
 
-      const page = request.input('page', 1)
-      const limit = request.input('limit', 20)
+      const payload = await request.validateUsing(invoiceFilterValidator)
+      const { page = 1, limit = 20, ...filters } = payload
 
-      const filters: InvoiceFilters = {
-        status: request.input('status'),
-        customerId: request.input('customerId'),
-        search: request.input('search'),
-        startDate: request.input('startDate')
-          ? DateTime.fromISO(request.input('startDate'))
-          : undefined,
-        endDate: request.input('endDate') ? DateTime.fromISO(request.input('endDate')) : undefined,
+      const processedFilters: InvoiceFilters = {
+        ...filters,
+        startDate: filters.startDate ? DateTime.fromJSDate(filters.startDate) : undefined,
+        endDate: filters.endDate ? DateTime.fromJSDate(filters.endDate) : undefined,
       }
 
-      const invoices = await InvoiceRepository.getPaginatedForUser(user.id, page, limit, filters)
+      const invoices = await InvoiceRepository.getPaginatedForUser(
+        user.id,
+        page,
+        limit,
+        processedFilters
+      )
 
       return response.json({
         success: true,
@@ -68,37 +75,46 @@ export default class InvoicesController {
       await auth.use('api').authenticate()
       const user = auth.user!
 
-      const data = request.only([
-        'customerId',
-        'invoiceNumber',
-        'issueDate',
-        'dueDate',
-        'status',
-        'totalHT',
-        'totalTTC',
-        'notes',
-        'pdfUrl',
-      ])
+      const payload = await request.validateUsing(createInvoiceValidator)
 
       // Generate invoice number if not provided
-      if (!data.invoiceNumber) {
-        data.invoiceNumber = await InvoiceRepository.generateNextInvoiceNumber(user.id)
+      if (!payload.invoiceNumber) {
+        payload.invoiceNumber = await InvoiceRepository.generateNextInvoiceNumber(user.id)
       }
 
       // Check if invoice number already exists
       const existingInvoice = await InvoiceRepository.invoiceNumberExistsForUser(
-        data.invoiceNumber,
+        payload.invoiceNumber,
         user.id
       )
       if (existingInvoice) {
         return ErrorService.validation(response, 'Invoice number already exists')
       }
 
+      // Calculate totals from items
+      let totalHT = 0
+      let totalTTC = 0
+
+      for (const item of payload.items) {
+        const itemTotal = item.quantity * item.unitPrice
+        const vatRate = item.vatRate || 0
+        const vatAmount = (itemTotal * vatRate) / 100
+
+        totalHT += itemTotal
+        totalTTC += itemTotal + vatAmount
+      }
+
       const invoice = await InvoiceRepository.create({
-        ...data,
         userId: user.id,
-        issueDate: DateTime.fromISO(data.issueDate),
-        dueDate: DateTime.fromISO(data.dueDate),
+        customerId: payload.customerId,
+        invoiceNumber: payload.invoiceNumber,
+        issueDate: DateTime.fromJSDate(payload.issueDate),
+        dueDate: DateTime.fromJSDate(payload.dueDate),
+        status: 'draft',
+        totalHT,
+        totalTTC,
+        notes: payload.notes || '',
+        pdfUrl: '',
       })
 
       return response.status(201).json({
@@ -119,22 +135,12 @@ export default class InvoicesController {
       await auth.use('api').authenticate()
       const user = auth.user!
 
-      const data = request.only([
-        'customerId',
-        'invoiceNumber',
-        'issueDate',
-        'dueDate',
-        'status',
-        'totalHT',
-        'totalTTC',
-        'notes',
-        'pdfUrl',
-      ])
+      const payload = await request.validateUsing(updateInvoiceValidator)
 
       // Check if invoice number already exists (excluding current invoice)
-      if (data.invoiceNumber) {
+      if (payload.invoiceNumber) {
         const existingInvoice = await InvoiceRepository.invoiceNumberExistsForUser(
-          data.invoiceNumber,
+          payload.invoiceNumber,
           user.id,
           params.id
         )
@@ -143,15 +149,35 @@ export default class InvoicesController {
         }
       }
 
-      // Convert dates if provided
-      if (data.issueDate) {
-        data.issueDate = DateTime.fromISO(data.issueDate)
-      }
-      if (data.dueDate) {
-        data.dueDate = DateTime.fromISO(data.dueDate)
+      // Process the data
+      const updateData: any = {}
+
+      if (payload.customerId) updateData.customerId = payload.customerId
+      if (payload.invoiceNumber) updateData.invoiceNumber = payload.invoiceNumber
+      if (payload.issueDate) updateData.issueDate = DateTime.fromJSDate(payload.issueDate)
+      if (payload.dueDate) updateData.dueDate = DateTime.fromJSDate(payload.dueDate)
+      if (payload.status) updateData.status = payload.status
+      if (payload.notes !== undefined) updateData.notes = payload.notes
+
+      // Recalculate totals if items are provided
+      if (payload.items) {
+        let totalHT = 0
+        let totalTTC = 0
+
+        for (const item of payload.items) {
+          const itemTotal = item.quantity * item.unitPrice
+          const vatRate = item.vatRate || 0
+          const vatAmount = (itemTotal * vatRate) / 100
+
+          totalHT += itemTotal
+          totalTTC += itemTotal + vatAmount
+        }
+
+        updateData.totalHT = totalHT
+        updateData.totalTTC = totalTTC
       }
 
-      const invoice = await InvoiceRepository.update(params.id, user.id, data)
+      const invoice = await InvoiceRepository.update(params.id, user.id, updateData)
 
       return response.json({
         success: true,
@@ -190,13 +216,9 @@ export default class InvoicesController {
       await auth.use('api').authenticate()
       const user = auth.user!
 
-      const { status } = request.only(['status'])
+      const payload = await request.validateUsing(invoiceStatusValidator)
 
-      if (!['draft', 'sent', 'paid', 'overdue', 'cancelled'].includes(status)) {
-        return ErrorService.validation(response, 'Invalid status')
-      }
-
-      const invoice = await InvoiceRepository.updateStatus(params.id, user.id, status)
+      const invoice = await InvoiceRepository.updateStatus(params.id, user.id, payload.status)
 
       return response.json({
         success: true,
