@@ -57,7 +57,7 @@ router
   })
   .prefix('/api')
 
-// Me routes
+// Me routes (user profile)
 router
   .group(() => {
     router.put('/me', [MeController, 'update'])
@@ -65,6 +65,7 @@ router
     router.get('/me', [MeController, 'me']).as('me.me')
     router.patch('/me/avatar', [MeController, 'updateAvatar']).as('me.update_avatar')
 
+    // 2FA routes - user can only manage their own 2FA
     router.post('/2fa/generate', [TwoFactorAuthController, 'generate'])
     router.post('/2fa/enable', [TwoFactorAuthController, 'enable'])
     router.post('/2fa/disable', [TwoFactorAuthController, 'disable'])
@@ -77,7 +78,18 @@ router
   .group(() => {
     router.get('/customers', [CustomersController, 'index'])
     router.get('/customers/insights', [CustomersController, 'insights'])
-    router.delete('/customer/:id', [CustomersController, 'destroy'])
+    router.get('/customers/search', [CustomersController, 'search'])
+    router.get('/customers/statistics', [CustomersController, 'statistics'])
+    router.post('/customers', [CustomersController, 'store'])
+    router
+      .get('/customers/:id', [CustomersController, 'show'])
+      .use(middleware.resourceOwnership({ resourceType: 'customer' }))
+    router
+      .put('/customers/:id', [CustomersController, 'update'])
+      .use(middleware.resourceOwnership({ resourceType: 'customer' }))
+    router
+      .delete('/customers/:id', [CustomersController, 'destroy'])
+      .use(middleware.resourceOwnership({ resourceType: 'customer' }))
     router.post('/customers/enrich', [CustomersController, 'fetchCompany'])
   })
   .prefix('api')
@@ -90,13 +102,26 @@ router
       .get('/companies', [CompaniesController, 'index'])
       .as('companies.index')
       .use(middleware.admin())
-    router.get('/companies/:id', [CompaniesController, 'show']).as('companies.show')
+    router.get('/companies/search', [CompaniesController, 'search']).use(middleware.admin())
+    router.get('/companies/statistics', [CompaniesController, 'statistics']).use(middleware.admin())
+    router.get('/companies/my', [CompaniesController, 'getMyCompany'])
+    router
+      .get('/companies/:id', [CompaniesController, 'show'])
+      .as('companies.show')
+      .use(middleware.resourceOwnership({ resourceType: 'company' }))
     router.post('/companies', [CompaniesController, 'store']).as('companies.store')
-    router.put('/companies/:id', [CompaniesController, 'update']).as('companies.update')
-    router.delete('/companies/:id', [CompaniesController, 'destroy']).as('companies.destroy')
+    router
+      .put('/companies/:id', [CompaniesController, 'update'])
+      .as('companies.update')
+      .use(middleware.resourceOwnership({ resourceType: 'company' }))
+    router
+      .delete('/companies/:id', [CompaniesController, 'destroy'])
+      .as('companies.destroy')
+      .use(middleware.resourceOwnership({ resourceType: 'company' }))
     router
       .post('/companies/:id/logo', [CompaniesController, 'uploadLogo'])
       .as('companies.uploadLogo')
+      .use(middleware.resourceOwnership({ resourceType: 'company' }))
   })
   .use([middleware.auth()])
   .prefix('api')
@@ -155,7 +180,7 @@ router
       router.delete('/articles/:id', [ArticlesAdminController, 'delete'])
     })
 
-    // Users routes
+    // Users routes - admin only
     router.group(() => {
       router.get('/users', [UsersAdminController, 'index'])
       router.get('/users/:id', [UsersAdminController, 'show'])

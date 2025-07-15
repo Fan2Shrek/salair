@@ -45,4 +45,7 @@ router.use([
 export const middleware = router.named({
   auth: () => import('#middleware/auth_middleware'),
   admin: () => import('#middleware/admin_middleware'),
+
+  // Generic resource ownership middleware
+  resourceOwnership: () => import('#middleware/resource_ownership_middleware'),
 })
