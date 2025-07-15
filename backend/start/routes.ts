@@ -21,6 +21,8 @@ const NewslettersController = () => import('#controllers/newsletter.controller')
 const ContactsController = () => import('#controllers/contacts.controller')
 const HealthChecksController = () => import('#controllers/health_checks.controller')
 const TwoFactorAuthController = () => import('#controllers/two_factor_auth.controller')
+const InvoicesController = () => import('#controllers/invoices.controller')
+const PaymentsController = () => import('#controllers/payments.controller')
 
 import router from '@adonisjs/core/services/router'
 import { middleware } from './kernel.js'
@@ -122,6 +124,79 @@ router
       .post('/companies/:id/logo', [CompaniesController, 'uploadLogo'])
       .as('companies.uploadLogo')
       .use(middleware.resourceOwnership({ resourceType: 'company' }))
+  })
+  .use([middleware.auth()])
+  .prefix('api')
+
+// Invoices routes
+router
+  .group(() => {
+    router.get('/invoices', [InvoicesController, 'index']).as('invoices.index')
+    router.get('/invoices/statistics', [InvoicesController, 'statistics']).as('invoices.statistics')
+    router.get('/invoices/overdue', [InvoicesController, 'overdue']).as('invoices.overdue')
+    router.get('/invoices/recent', [InvoicesController, 'recent']).as('invoices.recent')
+    router.get('/invoices/export', [InvoicesController, 'export']).as('invoices.export')
+    router.post('/invoices', [InvoicesController, 'store']).as('invoices.store')
+    router
+      .get('/invoices/:id', [InvoicesController, 'show'])
+      .as('invoices.show')
+      .use(middleware.resourceOwnership({ resourceType: 'invoice' }))
+    router
+      .put('/invoices/:id', [InvoicesController, 'update'])
+      .as('invoices.update')
+      .use(middleware.resourceOwnership({ resourceType: 'invoice' }))
+    router
+      .delete('/invoices/:id', [InvoicesController, 'destroy'])
+      .as('invoices.destroy')
+      .use(middleware.resourceOwnership({ resourceType: 'invoice' }))
+    router
+      .patch('/invoices/:id/status', [InvoicesController, 'updateStatus'])
+      .as('invoices.updateStatus')
+      .use(middleware.resourceOwnership({ resourceType: 'invoice' }))
+    router
+      .get('/customers/:customerId/invoices', [InvoicesController, 'byCustomer'])
+      .as('invoices.byCustomer')
+      .use(middleware.resourceOwnership({ resourceType: 'customer', paramName: 'customerId' }))
+  })
+  .use([middleware.auth()])
+  .prefix('api')
+
+// Payments routes
+router
+  .group(() => {
+    router.get('/payments', [PaymentsController, 'index']).as('payments.index')
+    router.get('/payments/statistics', [PaymentsController, 'statistics']).as('payments.statistics')
+    router.get('/payments/recent', [PaymentsController, 'recent']).as('payments.recent')
+    router.get('/payments/methods', [PaymentsController, 'methods']).as('payments.methods')
+    router.get('/payments/export', [PaymentsController, 'export']).as('payments.export')
+    router.post('/payments', [PaymentsController, 'store']).as('payments.store')
+    router
+      .get('/payments/:id', [PaymentsController, 'show'])
+      .as('payments.show')
+      .use(middleware.resourceOwnership({ resourceType: 'payment' }))
+    router
+      .put('/payments/:id', [PaymentsController, 'update'])
+      .as('payments.update')
+      .use(middleware.resourceOwnership({ resourceType: 'payment' }))
+    router
+      .delete('/payments/:id', [PaymentsController, 'destroy'])
+      .as('payments.destroy')
+      .use(middleware.resourceOwnership({ resourceType: 'payment' }))
+    router
+      .get('/invoices/:invoiceId/payments', [PaymentsController, 'byInvoice'])
+      .as('payments.byInvoice')
+      .use(middleware.resourceOwnership({ resourceType: 'invoice', paramName: 'invoiceId' }))
+    router
+      .get('/invoices/:invoiceId/payments/total', [PaymentsController, 'totalForInvoice'])
+      .as('payments.totalForInvoice')
+      .use(middleware.resourceOwnership({ resourceType: 'invoice', paramName: 'invoiceId' }))
+    router
+      .get('/invoices/:invoiceId/payments/check', [PaymentsController, 'checkForInvoice'])
+      .as('payments.checkForInvoice')
+      .use(middleware.resourceOwnership({ resourceType: 'invoice', paramName: 'invoiceId' }))
+    router
+      .get('/payments/date-range', [PaymentsController, 'byDateRange'])
+      .as('payments.byDateRange')
   })
   .use([middleware.auth()])
   .prefix('api')

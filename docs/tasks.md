@@ -5,7 +5,7 @@ Ce document contient une liste complète des tâches que tu peux réaliser pour 
 ## 🚀 FONCTIONNALITÉS MANQUANTES (Priorité élevée)
 
 ### Système de facturation complet
-- [ ] Implémenter le contrôleur `InvoicesController` avec tous les endpoints CRUD
+- [x] Implémenter le contrôleur `InvoicesController` avec tous les endpoints CRUD
 - [ ] Créer le validateur `invoice.ts` pour la validation des données
 - [ ] Développer le formulaire de création de facture frontend (`/app/invoices/create.vue`)
 - [ ] Implémenter la gestion des statuts de facture (brouillon → envoyée → payée → en retard)
@@ -14,16 +14,16 @@ Ce document contient une liste complète des tâches que tu peux réaliser pour 
 - [ ] Implémenter la prévisualisation et l'export PDF des factures
 
 ### Gestion des clients
-- [ ] Compléter les opérations CRUD pour les clients (création, modification)
+- [x] Compléter les opérations CRUD pour les clients (création, modification)
 - [ ] Créer le validateur `customer.ts` pour la validation des données client
 - [ ] Améliorer le modal de création de client avec validation SIREN complète
 - [ ] Ajouter la page de détails client avec historique des factures
 - [ ] Implémenter les vraies statistiques clients (remplacer les valeurs hardcodées)
-- [ ] Créer l'interface de recherche et filtrage des clients
+- [x] Créer l'interface de recherche et filtrage des clients
 
 ### Système de paiement
 - [ ] Intégrer le traitement des paiements avec Stripe
-- [ ] Créer les API d'enregistrement des paiements (`PaymentsController`)
+- [x] Créer les API d'enregistrement des paiements (`PaymentsController`)
 - [ ] Implémenter l'interface de suivi des paiements
 - [ ] Ajouter la réconciliation automatique des paiements
 - [ ] Créer les rapports de paiements et impayés
@@ -37,24 +37,24 @@ Ce document contient une liste complète des tâches que tu peux réaliser pour 
 ## 🔧 AMÉLIORATIONS BACKEND
 
 ### Contrôleurs et API
-- [ ] Créer le contrôleur complet pour les factures avec tous les endpoints
+- [x] Créer le contrôleur complet pour les factures avec tous les endpoints
 - [ ] Implémenter les endpoints de gestion des articles de facture
-- [ ] Compléter la gestion des profils d'entreprise (`CompaniesController`)
+- [x] Compléter la gestion des profils d'entreprise (`CompaniesController`)
 - [ ] Créer les API de rapports financiers et statistiques
-- [ ] Implémenter les endpoints de recherche et filtrage
+- [x] Implémenter les endpoints de recherche et filtrage
 
 ### Validation et sécurité
 - [ ] Créer les validateurs pour factures, clients, paiements
-- [ ] Implémenter l'autorisation au niveau des ressources (ownership checks)
+- [x] Implémenter l'autorisation au niveau des ressources (ownership checks)
 - [ ] Ajouter la limitation de taux (rate limiting) sur les endpoints critiques
-- [ ] Améliorer la gestion d'erreurs standardisée
+- [x] Améliorer la gestion d'erreurs standardisée
 - [ ] Implémenter la validation des données d'entreprise (SIREN/SIRET)
 
 ### Services métier
-- [ ] Extraire la logique métier des contrôleurs vers des services
+- [x] Extraire la logique métier des contrôleurs vers des services
 - [ ] Créer `InvoiceService` pour la gestion des factures
-- [ ] Créer `PaymentService` pour la gestion des paiements
-- [ ] Créer `CustomerService` pour la gestion des clients
+- [x] Créer `PaymentService` pour la gestion des paiements
+- [x] Créer `CustomerService` pour la gestion des clients
 - [ ] Implémenter la logique de transitions d'état des factures
 - [ ] Ajouter les calculs de taxes et totaux automatiques
 

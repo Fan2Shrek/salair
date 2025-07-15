@@ -13,7 +13,7 @@ export default class ResourceOwnershipMiddleware {
     ctx: HttpContext,
     next: NextFn,
     options: {
-      resourceType?: 'customer' | 'company' | 'user'
+      resourceType?: 'customer' | 'company' | 'user' | 'invoice' | 'payment'
       paramName?: string
       allowAdmin?: boolean
     } = {}
