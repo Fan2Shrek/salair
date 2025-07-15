@@ -1,11 +1,14 @@
 import { DateTime } from 'luxon'
 import hash from '@adonisjs/core/services/hash'
 import { compose } from '@adonisjs/core/helpers'
-import { BaseModel, beforeCreate, column, hasOne } from '@adonisjs/lucid/orm'
+import { BaseModel, beforeCreate, column, hasOne, hasMany } from '@adonisjs/lucid/orm'
 import { withAuthFinder } from '@adonisjs/auth/mixins/lucid'
 import { DbAccessTokensProvider } from '@adonisjs/auth/access_tokens'
 import Company from './company.js'
-import type { HasOne } from '@adonisjs/lucid/types/relations'
+import Customer from './customer.js'
+import Invoice from './invoice.js'
+import Payment from './payment.js'
+import type { HasOne, HasMany } from '@adonisjs/lucid/types/relations'
 import { v7 as randomUUID } from 'uuid'
 import { WithSoftDeletes } from './mixins/with_soft_deletes.js'
 
@@ -76,6 +79,15 @@ export default class User extends compose(BaseModel, AuthFinder, WithSoftDeletes
 
   @hasOne(() => Company, { foreignKey: 'ownerId' })
   declare company: HasOne<typeof Company>
+
+  @hasMany(() => Customer)
+  declare customers: HasMany<typeof Customer>
+
+  @hasMany(() => Invoice)
+  declare invoices: HasMany<typeof Invoice>
+
+  @hasMany(() => Payment)
+  declare payments: HasMany<typeof Payment>
 
   static accessTokens = DbAccessTokensProvider.forModel(User)
 }

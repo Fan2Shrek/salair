@@ -1,7 +1,8 @@
 import { DateTime } from 'luxon'
-import { beforeCreate, belongsTo, column } from '@adonisjs/lucid/orm'
-import type { BelongsTo } from '@adonisjs/lucid/types/relations'
+import { beforeCreate, belongsTo, column, hasMany } from '@adonisjs/lucid/orm'
+import type { BelongsTo, HasMany } from '@adonisjs/lucid/types/relations'
 import User from './user.js'
+import Invoice from './invoice.js'
 import { v7 } from 'uuid'
 import SoftDeletableModel from './base/soft_deletable_model.js'
 
@@ -34,6 +35,9 @@ export default class Customer extends SoftDeletableModel {
 
   @belongsTo(() => User)
   declare user: BelongsTo<typeof User>
+
+  @hasMany(() => Invoice)
+  declare invoices: HasMany<typeof Invoice>
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime

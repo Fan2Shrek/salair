@@ -39,6 +39,9 @@ export default class Company extends SoftDeletableModel {
   declare isVatPayer: boolean
 
   @column()
+  declare defaultVatRate: number
+
+  @column()
   declare billingType: string
 
   @column()

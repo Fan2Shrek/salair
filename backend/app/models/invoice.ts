@@ -4,6 +4,7 @@ import Customer from './customer.js'
 import type { BelongsTo, HasMany } from '@adonisjs/lucid/types/relations'
 import User from './user.js'
 import InvoiceItem from './invoice_item.js'
+import Payment from './payment.js'
 import { v7 } from 'uuid'
 import SoftDeletableModel from './base/soft_deletable_model.js'
 
@@ -54,6 +55,9 @@ export default class Invoice extends SoftDeletableModel {
 
   @hasMany(() => InvoiceItem)
   declare invoiceItems: HasMany<typeof InvoiceItem>
+
+  @hasMany(() => Payment)
+  declare payments: HasMany<typeof Payment>
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime
