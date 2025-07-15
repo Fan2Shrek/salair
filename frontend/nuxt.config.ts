@@ -74,6 +74,7 @@ export default defineNuxtConfig({
         '/admin/**': { robots: false, ssr: false },
         '/onboarding': { robots: false, ssr: false },
         '/forgot-password': { robots: false },
+        '/.well-known/**': { headers: { 'Cache-Control': 'max-age=31536000' }, prerender: true },
     },
     content: {
         preview: {
