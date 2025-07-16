@@ -6,16 +6,16 @@ Ce document contient une liste complète des tâches que tu peux réaliser pour 
 
 ### Système de facturation complet
 - [x] Implémenter le contrôleur `InvoicesController` avec tous les endpoints CRUD
-- [ ] Créer le validateur `invoice.ts` pour la validation des données
+- [x] Créer le validateur `invoice.ts` pour la validation des données
 - [ ] Développer le formulaire de création de facture frontend (`/app/invoices/create.vue`)
-- [ ] Implémenter la gestion des statuts de facture (brouillon → envoyée → payée → en retard)
+- [x] Implémenter la gestion des statuts de facture (brouillon → envoyée → payée → en retard)
 - [ ] Créer le système de numérotation automatique des factures
 - [ ] Ajouter la fonctionnalité d'envoi de facture par email
 - [ ] Implémenter la prévisualisation et l'export PDF des factures
 
 ### Gestion des clients
 - [x] Compléter les opérations CRUD pour les clients (création, modification)
-- [ ] Créer le validateur `customer.ts` pour la validation des données client
+- [x] Créer le validateur `customer.ts` pour la validation des données client
 - [ ] Améliorer le modal de création de client avec validation SIREN complète
 - [ ] Ajouter la page de détails client avec historique des factures
 - [ ] Implémenter les vraies statistiques clients (remplacer les valeurs hardcodées)
@@ -24,27 +24,27 @@ Ce document contient une liste complète des tâches que tu peux réaliser pour 
 ### Système de paiement
 - [ ] Intégrer le traitement des paiements avec Stripe
 - [x] Créer les API d'enregistrement des paiements (`PaymentsController`)
-- [ ] Implémenter l'interface de suivi des paiements
+- [x] Implémenter l'interface de suivi des paiements
 - [ ] Ajouter la réconciliation automatique des paiements
 - [ ] Créer les rapports de paiements et impayés
 
 ### Gestion des articles de facture
-- [ ] Implémenter la gestion des lignes de facture (InvoiceItem)
+- [x] Implémenter la gestion des lignes de facture (InvoiceItem)
 - [ ] Créer l'interface d'ajout/suppression d'articles dans les factures
-- [ ] Ajouter le calcul automatique des totaux et taxes
+- [x] Ajouter le calcul automatique des totaux et taxes
 - [ ] Implémenter la gestion des taux de TVA
 
 ## 🔧 AMÉLIORATIONS BACKEND
 
 ### Contrôleurs et API
 - [x] Créer le contrôleur complet pour les factures avec tous les endpoints
-- [ ] Implémenter les endpoints de gestion des articles de facture
+- [x] Implémenter les endpoints de gestion des articles de facture
 - [x] Compléter la gestion des profils d'entreprise (`CompaniesController`)
-- [ ] Créer les API de rapports financiers et statistiques
+- [x] Créer les API de rapports financiers et statistiques
 - [x] Implémenter les endpoints de recherche et filtrage
 
 ### Validation et sécurité
-- [ ] Créer les validateurs pour factures, clients, paiements
+- [x] Créer les validateurs pour factures, clients, paiements
 - [x] Implémenter l'autorisation au niveau des ressources (ownership checks)
 - [ ] Ajouter la limitation de taux (rate limiting) sur les endpoints critiques
 - [x] Améliorer la gestion d'erreurs standardisée
@@ -52,11 +52,11 @@ Ce document contient une liste complète des tâches que tu peux réaliser pour 
 
 ### Services métier
 - [x] Extraire la logique métier des contrôleurs vers des services
-- [ ] Créer `InvoiceService` pour la gestion des factures
+- [x] Créer `InvoiceService` pour la gestion des factures
 - [x] Créer `PaymentService` pour la gestion des paiements
 - [x] Créer `CustomerService` pour la gestion des clients
-- [ ] Implémenter la logique de transitions d'état des factures
-- [ ] Ajouter les calculs de taxes et totaux automatiques
+- [x] Implémenter la logique de transitions d'état des factures
+- [x] Ajouter les calculs de taxes et totaux automatiques
 
 ### Base de données
 - [ ] Ajouter les indexes manquants pour optimiser les performances
@@ -171,12 +171,12 @@ Ce document contient une liste complète des tâches que tu peux réaliser pour 
 ### Immédiatement réalisables
 - [ ] Remplacer les valeurs hardcodées dans `customers.controller.ts:63-70`
 - [ ] Implémenter la page vide `/app/invoices/create.vue`
-- [ ] Créer le fichier manquant `/backend/app/validators/invoice.ts`
+- [x] Créer le fichier manquant `/backend/app/validators/invoice.ts`
 - [ ] Compléter le modal de création de client avec validation
 - [ ] Ajouter la gestion d'erreurs dans `fetchCompany` method
 
 ### À moyen terme
-- [ ] Refactoriser la logique métier des contrôleurs vers des services
+- [x] Refactoriser la logique métier des contrôleurs vers des services
 - [ ] Implémenter la pagination cohérente sur tous les endpoints
 - [ ] Créer les tests manquants pour les fonctionnalités existantes
 - [ ] Optimiser les requêtes de base de données avec des indexes
