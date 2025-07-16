@@ -16,7 +16,6 @@ export default class InvoicesController {
    */
   async index({ auth, request, response }: HttpContext) {
     try {
-      await auth.use('api').authenticate()
       const user = auth.user!
 
       const payload = await request.validateUsing(invoiceFilterValidator)

@@ -67,6 +67,7 @@ export class InvoiceRepository {
       .preload('customer')
       .preload('invoiceItems')
       .orderBy('createdAt', 'desc')
+      .apply((scopes) => scopes.withoutTrashed())
 
     // Apply filters
     if (filters.status) {

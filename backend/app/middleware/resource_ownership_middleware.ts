@@ -4,6 +4,7 @@ import ErrorService from '#services/error.service'
 import CustomerRepository from '#repositories/customer.repository'
 import CompanyRepository from '#repositories/company.repository'
 import UserRepository from '#repositories/user.repository'
+import InvoiceRepository from '#repositories/invoice.repository'
 
 /**
  * Resource ownership middleware to ensure users can only access their own resources
@@ -73,6 +74,10 @@ export default class ResourceOwnershipMiddleware {
           // or if the user exists and belongs to the same organization/context
           const targetUser = await UserRepository.findById(resourceId)
           return targetUser ? targetUser.id === userId : false
+
+        case 'invoice':
+          const invoice = await InvoiceRepository.findByIdForUser(resourceId, userId)
+          return !!invoice
 
         default:
           return false

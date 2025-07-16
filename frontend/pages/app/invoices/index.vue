@@ -6,7 +6,8 @@
     import TrashIcon from '~/components/atoms/icons/TrashIcon.vue';
     import type { Column, TableAction } from '~/components/organisms/UTable.vue';
     import type { InvoiceFilters, InvoiceStatus, Invoice } from '~/types/invoice';
-
+    import EditIcon from '~/components/atoms/icons/EditIcon.vue';
+    import CopyIcon from '~/components/atoms/icons/CopyIcon.vue';
 
     const statusOptions: { label: string; value: InvoiceStatus | '' }[] = [
         { label: 'Tous', value: '' },
@@ -35,12 +36,12 @@
         },
         {
             key: 'issueDate',
-            label: 'Date d\'émission',
+            label: "Date d'émission",
             sortable: true,
         },
         {
             key: 'dueDate',
-            label: 'Date d\'échéance',
+            label: "Date d'échéance",
             sortable: true,
         },
         {
@@ -59,11 +60,13 @@
         {
             key: 'edit',
             label: 'Modifier',
+            icon: EditIcon,
             handler: (row) => editInvoice(row.id),
         },
         {
             key: 'duplicate',
             label: 'Dupliquer',
+            icon: CopyIcon,
             handler: (row) => duplicateInvoice(row.id),
         },
         {
@@ -74,23 +77,23 @@
         },
     ];
 
-    const { 
-        invoices, 
-        isLoading, 
-        fetchInvoicesData, 
-        deleteInvoiceById, 
-        getStatusColor, 
-        getStatusLabel, 
-        formatAmount, 
-        formatDate 
+    const {
+        invoices,
+        isLoading,
+        fetchInvoicesData,
+        deleteInvoiceById,
+        getStatusColor,
+        getStatusLabel,
+        formatAmount,
+        formatDate,
     } = useInvoices();
 
     const customerOptions = computed(() => [
         { label: 'Tous', value: '' },
-        ...customers.value.map(customer => ({
+        ...customers.value.map((customer) => ({
             label: customer.companyName || customer.contactName,
-            value: customer.id
-        }))
+            value: customer.id,
+        })),
     ]);
 
     const filters = computed<InvoiceFilters>(() => ({
@@ -121,10 +124,7 @@
 
     const initializeData = async () => {
         try {
-            await Promise.all([
-                fetchInvoicesData(1, filters.value),
-                fetchCustomersData()
-            ]);
+            await Promise.all([fetchInvoicesData(1, filters.value), fetchCustomersData()]);
         } catch (error) {
             console.error('Error initializing data:', error);
         }
@@ -164,9 +164,7 @@
                             <h1 class="font-semibold text-primary text-2xl">Invoices</h1>
                         </div>
                         <div class="flex items-center gap-3">
-                            <UButton :icon="PlusCircleIcon" @click="createInvoice()">
-                                Créer une facture
-                            </UButton>
+                            <UButton :icon="PlusCircleIcon" @click="createInvoice()"> Créer une facture </UButton>
                         </div>
                     </div>
                 </div>
@@ -185,40 +183,42 @@
                     <USelectBox v-model="selectedStatus" :options="statusOptions" size="sm" label="Statut" />
                     <USelectBox v-model="selectedCustomer" :options="customerOptions" size="sm" label="Client" />
                 </section>
-                
+
                 <section class="mt-6">
                     <UTable
-                        :columns="invoiceColumns" 
-                        :data="invoices" 
-                        :actions="actions" 
+                        :columns="invoiceColumns"
+                        :data="invoices"
+                        :actions="actions"
                         :loading="isLoading"
                         actions-display="dropdown"
                     >
                         <template #cell-customer="{ row }">
                             <div class="flex flex-col">
-                                <span class="font-medium text-primary">{{ row.customer?.companyName || row.customer?.contactName || 'Client inconnu' }}</span>
+                                <span class="font-medium text-primary">{{
+                                    row.customer?.companyName || row.customer?.contactName || 'Client inconnu'
+                                }}</span>
                                 <span class="text-sm text-tertiary">{{ row.customer?.email }}</span>
                             </div>
                         </template>
-                        
+
                         <template #cell-status="{ row }">
                             <UBadge class="w-fit" :color="getStatusColor(row.status)">
                                 {{ getStatusLabel(row.status) }}
                             </UBadge>
                         </template>
-                        
+
                         <template #cell-totalTTC="{ row }">
                             <span class="font-medium text-primary">{{ formatAmount(row.totalTtc) }}</span>
                         </template>
-                        
+
                         <template #cell-issueDate="{ row }">
                             <span class="text-tertiary">{{ formatDate(row.issueDate) }}</span>
                         </template>
-                        
+
                         <template #cell-dueDate="{ row }">
                             <span class="text-tertiary">{{ formatDate(row.dueDate) }}</span>
                         </template>
-                        
+
                         <template #cell-invoiceNumber="{ row }">
                             <span class="font-mono text-sm text-primary">{{ row.invoiceNumber }}</span>
                         </template>
