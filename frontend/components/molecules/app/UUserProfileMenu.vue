@@ -55,14 +55,14 @@
         </div>
 
         <div class="absolute top-1.5 right-1.5">
-            <UPopover trigger="click" content-side="right" content-align="end" :content-side-offset="16">
+            <UPopover trigger="click" content-side="right" content-align="end" :content-side-offset="16" teleport>
                 <UButton variant="tertiary" class="group !p-1.5">
                     <ChevronSelectorIcon
                         class="size-5 text-fg-quaternary group-hover:text-fg-quaternary-hover transition duration-200"
                     />
                 </UButton>
                 <template #content>
-                    <div class="bg-secondary-alt border border-secondary shadow-lg rounded-xl w-64">
+                    <div class="bg-secondary-alt border border-secondary shadow-lg rounded-xl w-64 z-[100]">
                         <div
                             class="py-1.5 flex flex-col gap-0.5 border border-secondary rounded-t-[11px] rounded-b-2xl bg-primary"
                         >

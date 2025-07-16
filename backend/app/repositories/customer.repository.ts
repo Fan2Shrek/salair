@@ -250,6 +250,48 @@ export class CustomerRepository {
   }
 
   /**
+   * Get customers who have been billed (have invoices) in a specific time period
+   */
+  async getBilledCustomersInPeriod(
+    userId: string,
+    startDate: DateTime,
+    endDate: DateTime
+  ): Promise<Customer[]> {
+    return await Customer.query()
+      .where('userId', userId)
+      .apply((scopes) => scopes.withoutTrashed())
+      .whereExists((query) => {
+        query
+          .from('invoices')
+          .whereRaw('invoices.customer_id = customers.id')
+          .where('invoices.user_id', userId)
+          .whereBetween('invoices.created_at', [startDate.toSQL()!, endDate.toSQL()!])
+          .whereIn('invoices.status', ['sent', 'paid', 'overdue'])
+      })
+  }
+
+  /**
+   * Get customers with overdue invoices in a specific time period
+   */
+  async getCustomersWithOverdueInPeriod(
+    userId: string,
+    startDate: DateTime,
+    endDate: DateTime
+  ): Promise<Customer[]> {
+    return await Customer.query()
+      .where('userId', userId)
+      .apply((scopes) => scopes.withoutTrashed())
+      .whereExists((query) => {
+        query
+          .from('invoices')
+          .whereRaw('invoices.customer_id = customers.id')
+          .where('invoices.user_id', userId)
+          .where('invoices.status', 'overdue')
+          .whereBetween('invoices.created_at', [startDate.toSQL()!, endDate.toSQL()!])
+      })
+  }
+
+  /**
    * Get customers by company name pattern for a specific user
    */
   async getByCompanyNamePattern(

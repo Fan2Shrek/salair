@@ -1,4 +1,5 @@
 import Customer from '#models/customer'
+import CustomerRepository from '#repositories/customer.repository'
 import type User from '#models/user'
 import { DateTime } from 'luxon'
 
@@ -38,7 +39,6 @@ export class CustomerInsightsService {
       customersBeforeThisMonth
     )
 
-    // TODO: Replace hardcoded values with real calculations
     const billedCustomers = await this.getBilledCustomersCount(user.id)
     const customersWithOverduePayments = await this.getCustomersWithOverduePaymentsCount(user.id)
 
@@ -75,31 +75,71 @@ export class CustomerInsightsService {
 
   /**
    * Get count of customers who have been billed
-   * TODO: Implement real logic when invoices are implemented
    */
   private async getBilledCustomersCount(
-    _userId: string
+    userId: string
   ): Promise<{ count: number; evolution: number }> {
-    // For now, return hardcoded values
-    // TODO: Query invoices table to get real count
+    const now = DateTime.now()
+    const startOfThisMonth = now.startOf('month')
+    const startOfLastMonth = startOfThisMonth.minus({ months: 1 })
+
+    // Get customers who have invoices this month
+    const billedCustomersThisMonth = await CustomerRepository.getBilledCustomersInPeriod(
+      userId,
+      startOfThisMonth,
+      now
+    )
+
+    // Get customers who had invoices last month
+    const billedCustomersLastMonth = await CustomerRepository.getBilledCustomersInPeriod(
+      userId,
+      startOfLastMonth,
+      startOfThisMonth
+    )
+
+    const evolution = this.calculatePercentageEvolution(
+      billedCustomersThisMonth.length,
+      billedCustomersLastMonth.length
+    )
+
     return {
-      count: 4,
-      evolution: -10,
+      count: billedCustomersThisMonth.length,
+      evolution,
     }
   }
 
   /**
    * Get count of customers with overdue payments
-   * TODO: Implement real logic when payments are implemented
    */
   private async getCustomersWithOverduePaymentsCount(
-    _userId: string
+    userId: string
   ): Promise<{ count: number; evolution: number }> {
-    // For now, return hardcoded values
-    // TODO: Query invoices/payments tables to get real count
+    const now = DateTime.now()
+    const startOfThisMonth = now.startOf('month')
+    const startOfLastMonth = startOfThisMonth.minus({ months: 1 })
+
+    // Get customers with overdue invoices this month
+    const customersWithOverdueThisMonth = await CustomerRepository.getCustomersWithOverdueInPeriod(
+      userId,
+      startOfThisMonth,
+      now
+    )
+
+    // Get customers with overdue invoices last month
+    const customersWithOverdueLastMonth = await CustomerRepository.getCustomersWithOverdueInPeriod(
+      userId,
+      startOfLastMonth,
+      startOfThisMonth
+    )
+
+    const evolution = this.calculatePercentageEvolution(
+      customersWithOverdueThisMonth.length,
+      customersWithOverdueLastMonth.length
+    )
+
     return {
-      count: 10,
-      evolution: 24,
+      count: customersWithOverdueThisMonth.length,
+      evolution,
     }
   }
 }
