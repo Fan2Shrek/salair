@@ -9,7 +9,7 @@ Ce document contient une liste complète des tâches que tu peux réaliser pour 
 - [x] Créer le validateur `invoice.ts` pour la validation des données
 - [ ] Développer le formulaire de création de facture frontend (`/app/invoices/create.vue`)
 - [x] Implémenter la gestion des statuts de facture (brouillon → envoyée → payée → en retard)
-- [ ] Créer le système de numérotation automatique des factures
+- [x] Créer le système de numérotation automatique des factures
 - [ ] Ajouter la fonctionnalité d'envoi de facture par email
 - [ ] Implémenter la prévisualisation et l'export PDF des factures
 
@@ -18,7 +18,7 @@ Ce document contient une liste complète des tâches que tu peux réaliser pour 
 - [x] Créer le validateur `customer.ts` pour la validation des données client
 - [ ] Améliorer le modal de création de client avec validation SIREN complète
 - [ ] Ajouter la page de détails client avec historique des factures
-- [ ] Implémenter les vraies statistiques clients (remplacer les valeurs hardcodées)
+- [x] Implémenter les vraies statistiques clients (remplacer les valeurs hardcodées)
 - [x] Créer l'interface de recherche et filtrage des clients
 
 ### Système de paiement
@@ -169,7 +169,7 @@ Ce document contient une liste complète des tâches que tu peux réaliser pour 
 ## 📋 TÂCHES TECHNIQUES SPÉCIFIQUES
 
 ### Immédiatement réalisables
-- [ ] Remplacer les valeurs hardcodées dans `customers.controller.ts:63-70`
+- [x] Remplacer les valeurs hardcodées dans `customers.controller.ts:63-70`
 - [ ] Implémenter la page vide `/app/invoices/create.vue`
 - [x] Créer le fichier manquant `/backend/app/validators/invoice.ts`
 - [ ] Compléter le modal de création de client avec validation
