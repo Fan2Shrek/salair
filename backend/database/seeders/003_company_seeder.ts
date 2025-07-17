@@ -83,6 +83,20 @@ export default class extends BaseSeeder {
         logoUrl: 'logo-textcraft.png',
         defaultInvoiceNote: 'Conditions de règlement : paiement à 30 jours.',
       },
+      {
+        ownerId: users[6].id,
+        status: 'active',
+        siret: '56789012345680',
+        activity: 'Informatique',
+        tradeName: 'NassCorp',
+        urssafFrequency: 'mensuelle',
+        businessStartDate: DateTime.fromISO('2021-09-12'),
+        isVatPayer: true,
+        billingType: 'hourly',
+        currency: 'EUR',
+        defaultDueDays: 21,
+        defaultInvoiceNote: 'Conditions de règlement : paiement à 30 jours.',
+      },
     ])
   }
 }
