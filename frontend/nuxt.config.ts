@@ -31,6 +31,7 @@ export default defineNuxtConfig({
     tailwindcss: {
         exposeConfig: true,
         viewer: true,
+        cssPath: './app/assets/css/tailwind.css'
     },
     runtimeConfig: {
         public: {
