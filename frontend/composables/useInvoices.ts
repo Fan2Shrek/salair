@@ -37,7 +37,6 @@ export const useInvoices = () => {
     const handleInvoicesResponse = ({ data, error }: { data: Ref<InvoicesResponseDto | null>, error: any }) => {
         if (data.value && !error.value) {
             invoices.value = data.value.data || []
-            console.log(data.value)
             pagination.value = {
                 current: data.value.meta?.currentPage || 1,
                 total: data.value.meta?.total || 0,
