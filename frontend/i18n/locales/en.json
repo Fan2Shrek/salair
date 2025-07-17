@@ -733,7 +733,22 @@
             "paid": "Paid",
             "overdue": "Overdue",
             "cancelled": "Cancelled"
-        }
-    }
+        },
+		form: {
+			invoiceNumber: {
+				label: "Invoice number",
+			},
+			issueDate: {
+				label: "Issue date",
+			},
+			dueDate: {
+				label: "Due date",
+			},
+			notes: {
+				label: "Notes",
+				placeholder: "Add any additional notes or terms here"
+			},
+			submit: "Save invoice",
+		},
+    },
 }
-

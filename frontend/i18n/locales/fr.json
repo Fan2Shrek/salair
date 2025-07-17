@@ -737,7 +737,22 @@
             "paid": "Payée",
             "overdue": "En retard",
             "cancelled": "Annulée"
-        }
+        },
+		form: {
+			invoiceNumber: {
+				label: "Numéro de facture",
+			},
+			issueDate: {
+				label: "Numéro de facture",
+			},
+			dueDate: {
+				label: "Date d'échéance",
+			},
+			notes: {
+				label: "Notes",
+				placeholder: "Ajoutez des notes ou des instructions ici"
+			},
+			submit: "Enregistrer la facture",
+		},
     }
 }
-
