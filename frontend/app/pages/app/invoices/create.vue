@@ -1,7 +1,8 @@
 <script setup lang="ts">
     import UTextArea from '~/components/atoms/UTextArea.vue';
     import UDatePicker from '~/components/molecules/UDatePicker.vue';
-    import type { Invoice } from '~/types/invoice';
+    import InvoiceItemForm from '~/components/organisms/form/InvoiceItemForm.vue';
+    import type { Invoice, InvoiceItem } from '~/types/invoice';
 
     definePageMeta({
         middleware: 'auth',
@@ -19,17 +20,38 @@
     ]);
 
     // Form state
-    const customerId = ref<string|null>(null); const invoiceNumber = ref<number>(0);
+    const customerId = ref<string | null>(null);
+    const invoiceNumber = ref<number>(0);
     const issueDate = ref<Date | null>(null);
     const dueDate = ref<Date | null>(null);
     const notes = ref<string | null>(null);
-    const items = ref<Invoice['items']>([]); //@todo
+    const items = ref<InvoiceItem[]>([
+        {
+            description: '',
+            quantity: 1,
+            unitPrice: 0,
+            totalPrice: 0,
+            vatRate: 20,
+            vatAmount: 0,
+        },
+    ]);
+
+	const addItem = () => {
+		items.value.push({
+			description: '',
+			quantity: 1,
+			unitPrice: 0,
+			totalPrice: 0,
+			vatRate: 20,
+			vatAmount: 0,
+		});
+	}
 
     // Récupération du paramètre de duplication
     const duplicateId = computed(() => route.query.duplicate as string | undefined);
 
     const createInvoice = async () => {
-		// @todo api call here
+        // @todo api call here
         console.log('Creating invoice with:', {
             customerId: customerId.value,
             invoiceNumber: invoiceNumber.value,
@@ -52,7 +74,7 @@
                 <h1 class="text-2xl font-semibold text-primary mb-6">Créer une facture</h1>
                 <div class="bg-secondary rounded-xl p-6">
                     <form @submit.prevent="createInvoice">
-						<USelectBox v-model="customerId" :options="customerOptions" size="sm" label="Client" />
+                        <USelectBox v-model="customerId" :options="customerOptions" size="sm" label="Client" />
                         <UInput
                             v-model="invoiceNumber"
                             type="number"
@@ -81,6 +103,23 @@
                             :label="$t('invoices.form.notes.label')"
                             :placeholder="$t('invoices.form.notes.placeholder')"
                         />
+                        <div class="mt-4">
+                            <label class="block text-sm font-medium text-gray-700">{{
+                                $t('invoices.form.items.title')
+                            }}</label>
+                            <div v-for="(item, index) in items" :key="index" class="text-sm text-gray-500 mb-2">
+								<p class="font-semibold mb-1">
+									{{ $t('invoices.form.items.item', { index: index + 1 }) }}
+								</p>
+                                <InvoiceItemForm
+                                    :model-value="item"
+                                    @update:modelValue="(value) => (items[index] = value)"
+                                />
+                            </div>
+                            <UButton class="mt-5 sm:mt-6 w-full justify-center" @click="addItem">{{
+                                $t('invoices.form.items.addItem')
+                            }}</UButton>
+                        </div>
                         <UButton class="mt-5 sm:mt-6 w-full justify-center" type="submit">{{
                             $t('invoices.form.submit')
                         }}</UButton>

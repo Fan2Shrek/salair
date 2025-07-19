@@ -752,6 +752,37 @@
 				label: "Notes",
 				placeholder: "Ajoutez des notes ou des instructions ici"
 			},
+			items: {
+				title: "Articles de la facture",
+				form: {
+					description: {
+						label: "Description",
+						placeholder: "Description de l'article"
+					},
+					quantity: {
+						label: "Quantité",
+						placeholder: "Quantité"
+					},
+					unitPrice: {
+						label: "Prix unitaire",
+						placeholder: "Prix unitaire"
+					},
+					totalPrice: {
+						label: "Total",
+						placeholder: "Total"
+					},
+					vatRate: {
+						label: "Taux de TVA",
+						placeholder: "Taux de TVA"
+					},
+					vatAmount: {
+						label: "Montant de la TVA",
+						placeholder: "Montant de la TVA"
+					},
+				},
+				addItem: "Ajouter un article",
+				item: "Article n°{index}",
+			},
 			submit: "Enregistrer la facture",
 		},
     }
